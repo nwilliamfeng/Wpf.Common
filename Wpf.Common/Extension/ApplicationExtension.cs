@@ -17,7 +17,12 @@ namespace Wpf.Common
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
                 action();
-                var window = application.Windows.Cast<Window>().FirstOrDefault(x => x.Visibility == Visibility.Visible);
+                var window = application.Windows.Cast<Window>().FirstOrDefault();
+                if (window == null)
+                {
+                    Console.WriteLine("there is no window");
+                    return;
+                }
                 HwndSource source = PresentationSource.FromVisual(window) as HwndSource;
                 source.AddHook(WndProc);
 

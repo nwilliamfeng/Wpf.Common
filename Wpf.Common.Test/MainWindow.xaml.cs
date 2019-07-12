@@ -30,7 +30,7 @@ namespace Wpf.Common.Test
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Application.Current.SetSingleInstance();
+            Application.Current.SetSingleInstance(); 
         }
     }
 }
