@@ -34,6 +34,7 @@ namespace Wpf.Common.Behavior
         {
             var el = d as UIElement;
             if (el == null) return;
+            el.PreviewDragOver += (s, arg) => arg.Handled = true;
             el.Drop += (s, arg) =>
             {
                 GetDropCommand(el).Execute(arg.Data);

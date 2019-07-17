@@ -27,18 +27,17 @@ namespace Wpf.Common.Test
             this.DataContext = new CommandTest();
             
             this.Loaded += MainWindow_Loaded;
-            this.textBox.DragEnter += TextBox_DragEnter;
-            this.textBox.DragLeave += TextBox_DragLeave;
-            this.textBox.DragOver += TextBox_DragOver;
-        
-         //   this.textBox.AllowDrop = true;
-            
-            this.textBox.TextChanged += TextBox_TextChanged;
+            //this.textBox.DragEnter += TextBox_DragEnter;
+            //this.textBox.DragLeave += TextBox_DragLeave;
+            //this.textBox.DragOver += TextBox_DragOver;
 
-            this.textBox.PreviewDragEnter += TextBox_PreviewDragEnter;
-            this.textBox.PreviewDragLeave += TextBox_PreviewDragLeave;
-            this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
-            this.textBox.PreviewDrop += TextBox_PreviewDrop;
+
+            //this.textBox.TextChanged += TextBox_TextChanged;
+
+           // this.textBox.PreviewDragEnter += TextBox_PreviewDragEnter;
+          //  this.textBox.PreviewDragLeave += TextBox_PreviewDragLeave;
+          //  this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
+          //  this.textBox.PreviewDrop += TextBox_PreviewDrop;
             
     
         }
