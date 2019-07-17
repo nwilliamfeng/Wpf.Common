@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Common.Test"
+        xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"  >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBox" behavior:DropBehavior.DropCommand="{Binding LoadFileCommand}" Text="{Binding FileNames}"/>
+        <ListBox Grid.Row="1" AllowDrop="True">
+
+            <ListBox.Items>
+                <ListBoxItem Content="a" AllowDrop="True"/>
+                <ListBoxItem Content="a1" AllowDrop="True"/>
+                <ListBoxItem Content="a2" AllowDrop="True"/>
+            </ListBox.Items>
+        </ListBox>
     </Grid>
 </Window>
