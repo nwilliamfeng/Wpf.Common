@@ -30,7 +30,7 @@ namespace Wpf.Common.Test
             this.textBox.DragEnter += TextBox_DragEnter;
             this.textBox.DragLeave += TextBox_DragLeave;
             this.textBox.DragOver += TextBox_DragOver;
-            this.textBox.Drop += TextBox_Drop;
+        
          //   this.textBox.AllowDrop = true;
             
             this.textBox.TextChanged += TextBox_TextChanged;
@@ -64,7 +64,7 @@ namespace Wpf.Common.Test
         private void TextBox_PreviewDragEnter(object sender, DragEventArgs e)
         {
             //   e.Data.
-            (sender as TextBox).Cursor = System.Windows.Input.Cursors.Hand;
+          
             Console.WriteLine("TextBox_PreviewDragEnter");
         }
 
@@ -73,27 +73,7 @@ namespace Wpf.Common.Test
             Console.WriteLine("TextBox_TextChanged");
         }
 
-        private void TextBox_Drop(object sender, DragEventArgs e)
-        {
-           var files = e.Data.GetData(DataFormats.FileDrop) as string[];
-            StringBuilder sb = new StringBuilder();
-           
-            
-            files.ToList().ForEach(x => sb.AppendLine());
-            (sender as TextBox).Text = files.FirstOrDefault();
-            //e.Data.GetFormats().ToList().ForEach(x =>
-            //{
-               
-            //    if (x == "FileDrop")
-            //    {
-            //        var result= e.Data.GetData(x) as string[];
-            //        result.ToList().ForEach(a => Console.WriteLine(a));
-                     
-            //    }
-
-            //});
-            Console.WriteLine("TextBox_Drop");
-        }
+        
 
         private void TextBox_DragOver(object sender, DragEventArgs e)
         {
