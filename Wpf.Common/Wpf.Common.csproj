@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behavior\DropBehavior.cs" />
+    <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
     <Compile Include="Extension\ApplicationExtension.cs" />
     <Compile Include="Extension\DataObjectExtension.cs" />
+    <Compile Include="Extension\UIElementExtension.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayCommand.Generic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

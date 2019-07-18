@@ -8,18 +8,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"  >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
-        </Grid.RowDefinitions>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBox" behavior:DropBehavior.DropCommand="{Binding LoadFileCommand}" Text="{Binding FileNames}"/>
-        <ListBox Grid.Row="1" AllowDrop="True">
-
-            <ListBox.Items>
-                <ListBoxItem Content="a" AllowDrop="True"/>
-                <ListBoxItem Content="a1" AllowDrop="True"/>
-                <ListBoxItem Content="a2" AllowDrop="True"/>
-            </ListBox.Items>
-        </ListBox>
+        
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBox" Visibility="Collapsed"
+                 behavior:DropBehavior.MultiFileEnable="True"
+                 behavior:DropBehavior.DropCommand="{Binding LoadFileCommand}"  
+                 behavior:FileDropAndOpenBehavior.FileExtensions=".json,.xlst"
+                 behavior:FileDropAndOpenBehavior.OpenFileEnable="True"/>
+        <local:DropFileView/>
     </Grid>
 </Window>

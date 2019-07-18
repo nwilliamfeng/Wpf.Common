@@ -18,11 +18,8 @@ namespace Wpf.Common
             {
                 action();
                 var window = application.Windows.Cast<Window>().FirstOrDefault();
-                if (window == null)
-                {
-                    Console.WriteLine("there is no window");
-                    return;
-                }
+                if (window == null) return;
+
                 HwndSource source = PresentationSource.FromVisual(window) as HwndSource;
                 source.AddHook(WndProc);
 

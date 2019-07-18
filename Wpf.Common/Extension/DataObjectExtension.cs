@@ -22,5 +22,15 @@ namespace Wpf.Common
             return dataObject.GetData(DataFormats.FileDrop) as string[];
             
         }
+
+        /// <summary>
+        /// 返回是否多个文件被拖拽
+        /// </summary>
+        /// <param name="dataObject"></param>
+        /// <returns></returns>
+        public static bool IsMultiFileDroped(this IDataObject dataObject)
+        {
+            return dataObject.GetDropFileNames().Count() > 1;
+        }
     }
 }
