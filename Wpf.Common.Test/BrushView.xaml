@@ -41,5 +41,17 @@
                 </VisualBrush>  
             </Border.Background>
         </Border>
+        <Border Width="100" Height="100" >
+            <Border.Background>
+                <VisualBrush Stretch="Uniform" TileMode="Tile" Viewport="3,3,3,3" ViewportUnits="Absolute" >
+                    
+                    <VisualBrush.Visual>
+
+                        <Rectangle Width="3" Height="3" Fill="White" Stroke="Red" StrokeThickness="0.1"/>
+
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.Background>
+        </Border>
     </UniformGrid>
 </UserControl>
