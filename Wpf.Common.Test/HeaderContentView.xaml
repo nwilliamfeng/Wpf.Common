@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Wpf.Common.Test.HeaderContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf.Common.Test"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <UserControl.Resources>
+        <Style TargetType="HeaderedContentControl">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Header,RelativeSource={RelativeSource AncestorType=HeaderedContentControl}}" FontWeight="Bold"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HeaderedContentControl">
+                        <DockPanel LastChildFill="False">
+                            <ContentPresenter Content="{TemplateBinding Header}" TextElement.FontWeight="Bold"   />
+                            <ContentPresenter Content="{TemplateBinding Content}" DockPanel.Dock="Right"  />
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Stretch" Width="400">
+        <HeaderedContentControl Header="abc">
+            <TextBox Text="abc" Width="200"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="5353435443434" >
+            <TextBox Text="7777777" Width="200"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="4565464" >
+            <TextBox Text="bndfsdfsewrwerwe" Width="200"/>
+        </HeaderedContentControl>
+        
+    </StackPanel>
+</UserControl>

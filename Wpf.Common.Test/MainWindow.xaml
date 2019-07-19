@@ -7,13 +7,17 @@
         xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"  >
-    <Grid>
+    <TabControl>
+        <TabItem Header="Drop">
+            <local:DropFileView/>
+        </TabItem>
+        <TabItem Header="HeadeContentControl">
+            <local:HeaderContentView Background="AliceBlue" MinWidth="200"/>
+        </TabItem>
+
+        <TabItem Header="Brush">
+            <local:BrushView/>
+        </TabItem>
         
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBox" Visibility="Collapsed"
-                 behavior:DropBehavior.MultiFileEnable="True"
-                 behavior:DropBehavior.DropCommand="{Binding LoadFileCommand}"  
-                 behavior:FileDropAndOpenBehavior.FileExtensions=".json,.xlst"
-                 behavior:FileDropAndOpenBehavior.OpenFileEnable="True"/>
-        <local:DropFileView/>
-    </Grid>
+    </TabControl>
 </Window>

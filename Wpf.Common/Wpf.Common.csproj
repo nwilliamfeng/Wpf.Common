@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
+    <Compile Include="Data\DelegateMultiValueConverter.cs" />
+    <Compile Include="Data\DelegateValueConverter.cs" />
+    <Compile Include="Data\ValueConverters.cs" />
     <Compile Include="Extension\ApplicationExtension.cs" />
     <Compile Include="Extension\DataObjectExtension.cs" />
     <Compile Include="Extension\UIElementExtension.cs" />
@@ -71,5 +74,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
