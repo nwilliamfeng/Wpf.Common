@@ -12,11 +12,11 @@ namespace Wpf.Common
 {
     public static class SingleInstanceHelper
     {
-        public static void SetSingleInstance(this Application application, Mutex mutex, Action action)
+        public static void SetSingleInstance(this Application application, Mutex mutex, Action callback)
         {
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
-                action();
+                callback();
                 var window = application.Windows.Cast<Window>().FirstOrDefault();
                 if (window == null) return;
 
@@ -37,11 +37,16 @@ namespace Wpf.Common
 
         }
 
-        public static void SetSingleInstance(this Application application, Action action=null)
+        /// <summary>
+        /// 设置单实例
+        /// </summary>
+        /// <param name="application"></param>
+        /// <param name="callBack"></param>
+        public static void SetSingleInstance(this Application application, Action callBack=null)
         {
-            if (action == null)
-                action = new System.Action(() => { });
-            SetSingleInstance(application, new Mutex(true, System.Reflection.Assembly.GetEntryAssembly().FullName), action);
+            if (callBack == null)
+                callBack = new System.Action(() => { });
+            SetSingleInstance(application, new Mutex(true, System.Reflection.Assembly.GetEntryAssembly().FullName), callBack);
 
         }
 

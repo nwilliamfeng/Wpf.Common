@@ -8,29 +8,26 @@
              Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="Border">
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="100"/>
-        </Style>
+        
     </UserControl.Resources>
-    <UniformGrid Rows="3" Columns="3">
+    <UniformGrid Rows="3" Columns="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Border>
             <Border.Background>
                 <SolidColorBrush Color="Blue"/>
             </Border.Background>
         </Border>
        
-        <Border Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Border   Width="100" Height="100" >
             <Border.Background>
                 <ImageBrush ImageSource="\Resources\Imgs\Icon.png"  Stretch="Uniform"  />
             </Border.Background>
         </Border>
-        <Border Width="32" Height="32">
+        <Border   VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="100" BorderBrush="Blue" BorderThickness="1">
             <Border.Background>
                 <VisualBrush Stretch="Uniform">
                     <VisualBrush.Visual>
                          
-                            <TextBlock Text="abc">
+                            <TextBlock Text="abd">
                                 <TextBlock.LayoutTransform>
                                     <RotateTransform Angle="15" CenterX="0" CenterY="0" />
                                 </TextBlock.LayoutTransform>
@@ -41,16 +38,26 @@
                 </VisualBrush>  
             </Border.Background>
         </Border>
-        <Border Width="100" Height="100" >
+        <Border   >
             <Border.Background>
-                <VisualBrush Stretch="Uniform" TileMode="Tile" Viewport="3,3,3,3" ViewportUnits="Absolute" >
-                    
+                <VisualBrush Stretch="Uniform" TileMode="Tile" Viewport="16,16,16,16" ViewportUnits="Absolute" >
                     <VisualBrush.Visual>
-
-                        <Rectangle Width="3" Height="3" Fill="White" Stroke="Red" StrokeThickness="0.1"/>
-
+                        <Rectangle Width="3" Height="3" Fill="White" Stroke="Gray" StrokeThickness="0.1"/>
                     </VisualBrush.Visual>
                 </VisualBrush>
+            </Border.Background>
+        </Border>
+        <Border   Width="16" Height="16">
+            <Border.Background>
+                <VisualBrush     >
+                    <VisualBrush.Visual>
+                       
+                            <Path Data="{StaticResource Close}" Fill="Red" Stretch="Uniform" />
+                      
+                        
+                    </VisualBrush.Visual>
+                </VisualBrush>
+                
             </Border.Background>
         </Border>
     </UniformGrid>

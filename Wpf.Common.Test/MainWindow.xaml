@@ -16,7 +16,7 @@
         </TabItem>
 
         <TabItem Header="Brush">
-            <local:BrushView/>
+            <local:BrushView />
         </TabItem>
         
     </TabControl>

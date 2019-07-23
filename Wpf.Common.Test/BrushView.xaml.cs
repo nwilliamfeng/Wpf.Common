@@ -22,7 +22,7 @@ namespace Wpf.Common.Test
     {
         public BrushView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
     }
 }

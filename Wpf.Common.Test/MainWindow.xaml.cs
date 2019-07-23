@@ -34,12 +34,30 @@ namespace Wpf.Common.Test
 
             //this.textBox.TextChanged += TextBox_TextChanged;
 
-           // this.textBox.PreviewDragEnter += TextBox_PreviewDragEnter;
-          //  this.textBox.PreviewDragLeave += TextBox_PreviewDragLeave;
-          //  this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
-          //  this.textBox.PreviewDrop += TextBox_PreviewDrop;
-            
-    
+            // this.textBox.PreviewDragEnter += TextBox_PreviewDragEnter;
+            //  this.textBox.PreviewDragLeave += TextBox_PreviewDragLeave;
+            //  this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
+            //  this.textBox.PreviewDrop += TextBox_PreviewDrop;
+            this.SetTitleAsync();
+        }
+
+
+
+        private async void SetTitleAsync()
+        {
+            var title = await GetTitle();
+            this.Title = title;
+        }
+
+
+
+        public Task<string> GetTitle()
+        {
+            return Task.Run(() =>
+            {
+                System.Threading.Thread.Sleep(3000);
+                return "abc";
+            });
         }
 
         private void TextBox_PreviewDrop(object sender, DragEventArgs e)
