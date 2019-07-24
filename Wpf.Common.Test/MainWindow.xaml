@@ -18,6 +18,15 @@
         <TabItem Header="Brush">
             <local:BrushView />
         </TabItem>
+
+        <TabItem Header="ViewBox">
+            <Border>
+                <Viewbox    MouseWheel="ViewBox_MouseWheel" Stretch="Uniform">
+                    <TextBlock Text="abcd"/>
+                </Viewbox>
+            </Border>
+            
+        </TabItem>
         
     </TabControl>
 </Window>
