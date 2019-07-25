@@ -20,12 +20,8 @@
         </TabItem>
 
         <TabItem Header="ViewBox">
-            <Border>
-                <Viewbox    MouseWheel="ViewBox_MouseWheel" Stretch="Uniform">
-                    <TextBlock Text="abcd"/>
-                </Viewbox>
-            </Border>
-            
+            <local:ViewBoxView/>
+
         </TabItem>
         
     </TabControl>

@@ -112,12 +112,6 @@ namespace Wpf.Common.Test
             Application.Current.SetSingleInstance(); 
         }
 
-        private void ViewBox_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if( Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                var border =(sender as Viewbox).Parent  as ;
-            }
-        }
+       
     }
 }
