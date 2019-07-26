@@ -39,6 +39,7 @@ namespace Wpf.Common.Test
             //  this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
             //  this.textBox.PreviewDrop += TextBox_PreviewDrop;
             this.SetTitleAsync();
+
         }
 
 

@@ -23,6 +23,9 @@
             <local:ViewBoxView/>
 
         </TabItem>
+        <TabItem Header="ScrollView">
+            <local:HugeDataView/>
+        </TabItem>
         
     </TabControl>
 </Window>
