@@ -23,7 +23,7 @@
             <local:ViewBoxView/>
 
         </TabItem>
-        <TabItem Header="ScrollView">
+        <TabItem Header="HugeData">
             <local:HugeDataView/>
         </TabItem>
         

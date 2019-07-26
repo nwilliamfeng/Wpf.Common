@@ -32,10 +32,10 @@ namespace Wpf.Common.Test
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HugeDataViewModel;
-            vm.Items.Clear();
-            for (int i = 0; i < 100000; i++)
+            vm.Clear();
+            for (int i = 0; i < 200000; i++)
             {
-                vm.Items.Add(new HugeDataItemViewModel { Index = i, Name = "name" + i.ToString(),Time =DateTime.Now });
+                vm.Add(new HugeDataItemViewModel { Index = i, Name = "name" + i.ToString(),Time =DateTime.Now });
             }
 
            
@@ -60,9 +60,11 @@ namespace Wpf.Common.Test
 
         public HugeDataViewModel()
         {
-            this.Items = CollectionViewSource.GetDefaultView(this._items);
-            this.Items.SortDescriptions.Add(new SortDescription { Direction = ListSortDirection.Ascending, PropertyName = "Time" });
-            this.Items.Filter = x => string.IsNullOrEmpty(Filter)? true: (x as HugeDataItemViewModel).Name.Contains(Filter);
+
+            this.Items =  CollectionViewSource.GetDefaultView(this._items);
+          // this.Items.SortDescriptions.Add(new SortDescription { Direction = ListSortDirection.Ascending, PropertyName = "Time" });//不要设置!
+           
+           
         }
 
         private string _filter;
@@ -74,17 +76,23 @@ namespace Wpf.Common.Test
             {
                 this._filter = value;
                 this.PropertyChanged?.Invoke(this,new PropertyChangedEventArgs("Filter"));
+                //触发filter
+                this.Items.Filter = x =>
+                {
+                    return string.IsNullOrEmpty(Filter) ? true : (x as HugeDataItemViewModel).Name.Contains(Filter);
+                };
+
             }
         }
 
         public void Clear()
         {
-            ??
+            this._items.Clear();
         }
 
-        public void Add()
+        public void Add(HugeDataItemViewModel dataItem)
         {
-
+            this._items.Add(dataItem);
         }
 
         public ICollectionView Items { get; private set; }

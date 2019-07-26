@@ -36,9 +36,13 @@
     </UserControl.Resources>
      
     <DockPanel  >
-        <Button Margin="10" Content="Update" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Click="Button_Click"/>
-        <TextBox Width="200" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+        <Button Margin="10" Content="Update" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Click="Button_Click" Padding="5"/>
+        <DockPanel  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Center" >
+            <TextBlock Text="filter: "  />
+            <TextBox   Padding="3,2" Text="{Binding Filter,UpdateSourceTrigger=PropertyChanged}"/>
 
+        </DockPanel>
+       
         <ListBox ItemsSource="{Binding Items}"  
                  VirtualizingPanel.VirtualizationMode="Recycling"
                  x:Name="hg_listBox" Margin="10" 
