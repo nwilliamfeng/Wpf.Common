@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
+    <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Data\DelegateMultiValueConverter.cs" />
     <Compile Include="Data\DelegateValueConverter.cs" />
     <Compile Include="Data\ValueConverters.cs" />
