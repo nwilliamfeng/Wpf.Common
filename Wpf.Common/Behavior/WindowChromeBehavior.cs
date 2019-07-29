@@ -25,7 +25,7 @@ namespace Wpf.Common.Behavior
         /// <summary>
         /// 设置窗体标题栏的高度
         /// </summary>
-        public static readonly DependencyProperty TitleHeightProperty = DependencyProperty.RegisterAttached("TitleHeight", typeof(int), typeof(WindowChromeBehavior), new PropertyMetadata(OnTitleHeightPropertyChange));
+        public static readonly DependencyProperty TitleHeightProperty = DependencyProperty.RegisterAttached("TitleHeight", typeof(int), typeof(WindowChromeBehavior), new PropertyMetadata(28,OnTitleHeightPropertyChange));
 
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Wpf.Common.Behavior
                 window.Content = windowBorder;
             };
 
-            if (window.Padding == new Thickness(0)) window.Padding = new Thickness(5);
+          //  if (window.Padding == new Thickness(0)) window.Padding = new Thickness(5);
             window.WindowStyle = WindowStyle.None;
             window.ResizeMode = ResizeMode.CanResizeWithGrip;
             window.AllowsTransparency = true;

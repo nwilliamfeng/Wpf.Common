@@ -9,7 +9,7 @@
         Title="ChromeWindow" Height="450" Width="800" 
         behavior:WindowChromeBehavior.IsEnable="True"
         behavior:WindowChromeBehavior.TitleBackground="Orange"
-        behavior:WindowChromeBehavior.TitleHeight="45"
+         
         behavior:WindowChromeBehavior.TitleForeground="White"
         BorderBrush="Red" 
         

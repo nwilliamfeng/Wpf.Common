@@ -3,25 +3,28 @@
                     xmlns:local="clr-namespace:Wpf.Common.Resources">
     <Style TargetType="Button" x:Key="chromeButtonStyle">
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border 
-                                x:Name="border"
-                                 
-                                Width="{TemplateBinding Width}"
-                                BorderThickness="1"
-                                Height="{TemplateBinding Height}"                           
-                               TextElement.FontSize="{TemplateBinding FontSize}"
-                                TextElement.Foreground="{TemplateBinding Foreground}"
-                                Background="{TemplateBinding Background}">
+                        x:Name="border"                                 
+                        Width="{TemplateBinding Width}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Height="{TemplateBinding Height}"                           
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.Foreground="{TemplateBinding Foreground}"
+                        Opacity="{TemplateBinding Opacity}"
+                        Background="{TemplateBinding Background}">
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                 Content="{TemplateBinding Content}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
                     </Border>
-                    <ControlTemplate.Triggers>
+                    <!--<ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"/>
@@ -36,9 +39,9 @@
                                 <Condition Property="IsPressed" Value="True"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Opacity" Value="0.9" TargetName="border"/>
-                            <Setter Property="BorderBrush" Value="White" TargetName="border"/>
+                           
                         </MultiTrigger>
-                    </ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

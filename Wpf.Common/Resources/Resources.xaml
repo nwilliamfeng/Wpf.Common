@@ -3,5 +3,6 @@
                     xmlns:local="clr-namespace:Wpf.Common.Resources">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Windows.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Svgs.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
