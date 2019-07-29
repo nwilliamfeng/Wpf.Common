@@ -1,0 +1,21 @@
+﻿<Window x:Class="Wpf.Common.Test.TestChromeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf.Common.Test"
+        xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
+        mc:Ignorable="d"       
+        Title="ChromeWindow" Height="450" Width="800" 
+        behavior:WindowChromeBehavior.IsEnable="True"
+        behavior:WindowChromeBehavior.TitleBackground="Orange"
+        behavior:WindowChromeBehavior.TitleHeight="45"
+        behavior:WindowChromeBehavior.TitleForeground="White"
+        BorderBrush="Red" 
+        
+        BorderThickness="1">
+    <!--<behavior:WindowChromeBehavior.TitleContent>
+        <TextBlock Text="ddddd" Foreground="White" FontSize="18"/>
+    </behavior:WindowChromeBehavior.TitleContent>-->
+    <TextBlock>this is a window content</TextBlock>
+</Window>
