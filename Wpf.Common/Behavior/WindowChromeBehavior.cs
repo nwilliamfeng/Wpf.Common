@@ -86,16 +86,11 @@ namespace Wpf.Common.Behavior
         {          
             if (!(e.NewValue is bool) || !(bool)e.NewValue) return;
             if (!(obj is Window)) return;
-            var window = obj as Window;
-           
-           
+            var window = obj as Window;                 
             window.Initialized += delegate
             {
                 var content = window.Content as UIElement;
                 var windowBorder = ResourceHelper.GetWindowBorder();
-
-               // windowBorder.BorderBrush = GetBorderBrush(window);
-              //  windowBorder.Effect = new DropShadowEffect { ShadowDepth = 0, Color =(windowBorder.BorderBrush as SolidColorBrush).Color,  Opacity = 1, BlurRadius = 5 };
 
                 window.Activated += delegate
                 {

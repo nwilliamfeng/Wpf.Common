@@ -9,7 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Border x:Key="WindowBorder" Background="White"  Margin="0.1" Padding="1">
+    <Border x:Key="WindowBorder" Background="White"  Margin="0.1"  >
         <Border.Style>
             <Style TargetType="Border">
                 <Setter Property="BorderThickness" Value="1"/>

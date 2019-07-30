@@ -11,8 +11,8 @@
         behavior:WindowChromeBehavior.BorderBrush="Red"
        >
     
-    <!--<behavior:WindowChromeBehavior.TitleContent>
-        <TextBlock Text="ddddd" Foreground="White" FontSize="18"/>
-    </behavior:WindowChromeBehavior.TitleContent>-->
+    <behavior:WindowChromeBehavior.TitleContent>
+        <TextBlock Text="ddddd" Foreground="Black" FontSize="18"/>
+    </behavior:WindowChromeBehavior.TitleContent>
     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">this is a window content</TextBlock>
 </Window>
