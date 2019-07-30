@@ -3,11 +3,11 @@
                     xmlns:local="clr-namespace:Wpf.Common.Resources">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Colors.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Brushes.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Windows.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Svgs.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Buttons.xaml"/>
-        
-        
     </ResourceDictionary.MergedDictionaries>
+    
+    <!--窗体活动状态下的画刷-->
+    <SolidColorBrush x:Key="window-active-border-brush" Color="{StaticResource window-active-border-color}"/>
+
+    <!--窗体非活动状态下的画刷-->
+    <SolidColorBrush x:Key="window-inactive-border-brush" Color="{StaticResource window-inactive-border-color}"/>
 </ResourceDictionary>

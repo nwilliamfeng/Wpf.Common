@@ -8,14 +8,11 @@
         mc:Ignorable="d"       
         Title="ChromeWindow" Height="450" Width="800" 
         behavior:WindowChromeBehavior.IsEnable="True"
-        behavior:WindowChromeBehavior.TitleBackground="Orange"
-         
-        behavior:WindowChromeBehavior.TitleForeground="White"
-        BorderBrush="Red" 
-        
-        BorderThickness="1">
+        behavior:WindowChromeBehavior.BorderBrush="Red"
+       >
+    
     <!--<behavior:WindowChromeBehavior.TitleContent>
         <TextBlock Text="ddddd" Foreground="White" FontSize="18"/>
     </behavior:WindowChromeBehavior.TitleContent>-->
-    <TextBlock>this is a window content</TextBlock>
+    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">this is a window content</TextBlock>
 </Window>

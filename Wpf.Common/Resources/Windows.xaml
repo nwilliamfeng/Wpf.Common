@@ -1,29 +1,53 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:data="clr-namespace:Wpf.Common.Data"
                     xmlns:local="clr-namespace:Wpf.Common.Resources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Buttons.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Svgs.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Border x:Key="WindowBorder" Background="Transparent" >
+    <Border x:Key="WindowBorder" Background="White"  Margin="0.1" Padding="1">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="1"/>
+                <!--<Setter Property="BorderBrush" Value="{StaticResource window-active-border-brush}"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="0" Color="{StaticResource window-active-border-color}" Opacity="1" BlurRadius="5"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
+                        <Setter Property="BorderBrush" Value="{StaticResource window-inactive-border-brush}"/>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="0" Color="{StaticResource window-inactive-border-color}" Opacity="1" BlurRadius="5"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>-->
+            </Style>
+        </Border.Style>
+       
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--Title-->
-            <Border x:Name="titleBorder" Background="Transparent"  >
+            <Border x:Name="titleBorder" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <!--标题内容-->
-                    <ContentControl x:Name="titleContent" Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window}}"                            
-                                VerticalAlignment="Center"   
-                                
+                    <ContentControl x:Name="titleContent" 
+                                Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window},Converter={x:Static data:ValueConverters.PrefixWhiteSpaceConverter},ConverterParameter=2}"                            
+                                VerticalAlignment="Center"                                  
                                 HorizontalContentAlignment="Left"/>
 
                     <!--标题命令按钮-->
@@ -89,12 +113,13 @@
                                 </Style.Triggers>
                             </Style>
                         </UniformGrid.Resources>
-                        <Button x:Name="minSizeButton"  Style="{StaticResource normalButtonStyle}">
+                        <Button x:Name="minimizeButton"  Style="{StaticResource normalButtonStyle}" ToolTip="最小化">
                             <Path  Data="{StaticResource Minimize}" Style="{StaticResource basePathStyle}"  Width="10" Height="1.1" Stretch="Uniform" StrokeThickness="0.2"/>
                         </Button>
-                        <Button  x:Name="maxSizeButton">
+                        <Button  x:Name="maximizeButton">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource normalButtonStyle}">
+                                    <Setter Property="ToolTip" Value="最大化"/>
                                     <Setter Property="Content">
                                         <Setter.Value>
                                             <Path  Data="{StaticResource Maximize}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
@@ -102,6 +127,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding WindowState,RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                                            <Setter Property="ToolTip" Value="向下还原"/>
                                             <Setter Property="Content" >
                                                 <Setter.Value>
                                                     <Path  Data="{StaticResource Restore}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
@@ -113,7 +139,7 @@
                             </Button.Style>
                             
                         </Button>
-                        <Button    x:Name="closeButton" Style="{StaticResource closeButtonStyle}">
+                        <Button    x:Name="closeButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
                             <Path  Data="{StaticResource Close}"  Width="10" Height="10"  StrokeThickness="0.1">
                                 <Path.Style>
                                     <Style TargetType="Path" BasedOn="{StaticResource  basePathStyle}">

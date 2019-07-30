@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Shell;
 using Wpf.Common.Resources;
 
@@ -48,19 +49,25 @@ namespace Wpf.Common.Behavior
         public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.RegisterAttached("TitleForeground", typeof(Brush), typeof(WindowChromeBehavior), new PropertyMetadata(Brushes.Black));
 
 
+        /// <summary>
+        /// 设置窗体边框画刷
+        /// </summary>
+        public static readonly DependencyProperty BorderBrushProperty = DependencyProperty.RegisterAttached("BorderBrush",typeof(SolidColorBrush),typeof(WindowChromeBehavior),new PropertyMetadata(ResourceHelper.GetWindowActiveBorderBrush()));
+
         private static void OnTitleHeightPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             if (!(e.NewValue is int) ) return;
             var height = (int)e.NewValue;
             var window = obj as Window;
             if (window==null) return;
-            var windowBorder = WindowResourceHelper.GetWindowBorder();
+            var windowBorder = ResourceHelper.GetWindowBorder();
             var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
             titleBorder.Height = height;
             var chrome = WindowChrome.GetWindowChrome(window);
             if (chrome != null) chrome.CaptionHeight = height - 5;
         }
 
+         
 
         private static void OnTitleContentPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
@@ -68,20 +75,39 @@ namespace Wpf.Common.Behavior
             var el = (FrameworkElement)e.NewValue;
             var window = obj as Window;
             if (window == null) return;
-            var contentControl = WindowResourceHelper.GetWindowBorder().FindChildren<ContentControl>("titleContent");
+            var contentControl = ResourceHelper.GetWindowBorder().FindChildren<ContentControl>("titleContent");
             contentControl.Content = el;
           
         }
+
+       
 
         private static void OnIsEnablePropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {          
             if (!(e.NewValue is bool) || !(bool)e.NewValue) return;
             if (!(obj is Window)) return;
             var window = obj as Window;
-            window.Loaded += delegate
-            {            
+           
+           
+            window.Initialized += delegate
+            {
                 var content = window.Content as UIElement;
-                var windowBorder = WindowResourceHelper.GetWindowBorder();
+                var windowBorder = ResourceHelper.GetWindowBorder();
+
+               // windowBorder.BorderBrush = GetBorderBrush(window);
+              //  windowBorder.Effect = new DropShadowEffect { ShadowDepth = 0, Color =(windowBorder.BorderBrush as SolidColorBrush).Color,  Opacity = 1, BlurRadius = 5 };
+
+                window.Activated += delegate
+                {
+                    windowBorder.BorderBrush = GetBorderBrush(window);
+                    windowBorder.Effect = new DropShadowEffect { ShadowDepth = 0, Color = (windowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 5 };
+                };
+                window.Deactivated += delegate
+                {
+                    windowBorder.BorderBrush =ResourceHelper.GetWindowInactiveBorderBrush();
+                    windowBorder.Effect = new DropShadowEffect { ShadowDepth = 0, Color = (windowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 5 };
+                };
+
                 var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
                 TextElement.SetFontSize(titleBorder,GetTitleFontSize(window));
                 TextElement.SetForeground(titleBorder, GetTitleForeground(window));
@@ -90,9 +116,15 @@ namespace Wpf.Common.Behavior
                 var windowContentControl = windowBorder.FindChildren<ContentControl>("contentControl");
                 windowContentControl.Content = content;
                 window.Content = windowBorder;
+                //注册命令按钮事件
+                var buttons = windowBorder.FindChildren<Button>().ToList();
+                buttons.First(x => x.Name == "maximizeButton").Click += (s, arg) => window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+                buttons.First(x => x.Name == "minimizeButton").Click += (s, arg) => window.WindowState = WindowState.Minimized;
+                buttons.First(x => x.Name == "closeButton").Click += (s, arg) => window.Close();
+
             };
 
-          //  if (window.Padding == new Thickness(0)) window.Padding = new Thickness(5);
+       
             window.WindowStyle = WindowStyle.None;
             window.ResizeMode = ResizeMode.CanResizeWithGrip;
             window.AllowsTransparency = true;
@@ -105,11 +137,12 @@ namespace Wpf.Common.Behavior
             };
 
            
+
             
 
             window.SizeChanged += delegate
             {
-                var windowBorder = WindowResourceHelper.GetWindowBorder();
+                var windowBorder = ResourceHelper.GetWindowBorder();
                 var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
                 var newThickness = window.WindowState == WindowState.Maximized ? new Thickness(window.Padding.Left + 5, window.Padding.Top +5, window.Padding.Right+5 , window.Padding.Bottom )
                 : window.Padding;
@@ -122,7 +155,7 @@ namespace Wpf.Common.Behavior
             
         }
 
-
+       
 
         public static void SetIsEnable(UIElement el, bool value) => el.SetValue(IsEnableProperty, value);
 
@@ -153,5 +186,8 @@ namespace Wpf.Common.Behavior
         public static Brush GetTitleForeground(UIElement el) => el.GetValue<Brush>(TitleForegroundProperty);
 
 
+        public static void SetBorderBrush(UIElement el, SolidColorBrush value) => el.SetValue(BorderBrushProperty, value);
+
+        public static SolidColorBrush GetBorderBrush(UIElement el) => el.GetValue<SolidColorBrush>(BorderBrushProperty);
     }
 }

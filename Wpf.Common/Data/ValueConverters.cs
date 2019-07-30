@@ -76,7 +76,7 @@ namespace Wpf.Common.Data
                 return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
                 {
                     if (!(value is string))
-                        return value;
+                        return DependencyProperty.UnsetValue;
                     string str = null;
                     foreach (char c in value as string)
                         str += char.ToUpper(c);
@@ -95,11 +95,53 @@ namespace Wpf.Common.Data
                 return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
                 {
                     if (!(value is string))
-                        return value;
+                        return DependencyProperty.UnsetValue;
                     string str = null;
                     foreach (char c in value as string)
                         str += char.ToLower(c);
                     return str;
+                });
+            }
+        }
+
+        /// <summary>
+        /// 在前方增加空格
+        /// </summary>
+        public static IValueConverter PrefixWhiteSpaceConverter
+        {
+            get
+            {             
+                return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
+                {
+                    var bv = (string)value;
+                    if (string.IsNullOrEmpty(bv)) return DependencyProperty.UnsetValue;
+                    int count = 0;
+                    if (!(int.TryParse(parameter as string, out count))) count = 1;
+                    var spaces = "";
+                    for (int i = 0; i < count; i++)
+                        spaces += " ";
+                    return spaces+bv;
+                });
+            }
+        }
+
+        /// <summary>
+        /// 在后方增加空格
+        /// </summary>
+        public static IValueConverter SuffixWhiteSpaceConverter
+        {
+            get
+            {
+                return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
+                {
+                    var bv = (string)value;
+                    if (string.IsNullOrEmpty(bv)) return DependencyProperty.UnsetValue;
+                    int count = 0;
+                    if (!(int.TryParse(parameter as string, out count))) count = 1;
+                    var spaces = "";
+                    for (int i = 0; i < count; i++)
+                        spaces += " ";
+                    return bv+spaces;
                 });
             }
         }
@@ -193,7 +235,7 @@ namespace Wpf.Common.Data
                 {
 
                     if (!(value is int))
-                        return value;
+                        return DependencyProperty.UnsetValue;
                     if (parameter is string)
                     {
                         int s = 0;
@@ -217,7 +259,7 @@ namespace Wpf.Common.Data
                 return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
                 {
                     if (!(value is double))
-                        return value;
+                        return DependencyProperty.UnsetValue;
                     if (parameter is string)
                     {
                         double s = 0;

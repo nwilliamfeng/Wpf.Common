@@ -22,7 +22,7 @@ namespace Wpf.Common.Test
         public TestChromeWindow()
         {
             InitializeComponent();
-            this.Loaded += TestChromeWindow_Loaded;
+            this.Loaded += TestChromeWindow_Loaded; 
         }
 
         private void TestChromeWindow_Loaded(object sender, RoutedEventArgs e)
