@@ -1,18 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:data="clr-namespace:Wpf.Common.Data"
-                    xmlns:local="clr-namespace:Wpf.Common.Resources">
+                    >
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Buttons.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Svgs.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="Buttons.xaml"/>
+        <ResourceDictionary Source="../Icons.xaml"/>
+        <ResourceDictionary Source="../Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Border x:Key="WindowBorder" Background="White"  Margin="0.1"  >
         <Border.Style>
             <Style TargetType="Border">
                 <Setter Property="BorderThickness" Value="1"/>
+                <!--设置边框逻辑改成behavior里写入-->
                 <!--<Setter Property="BorderBrush" Value="{StaticResource window-active-border-brush}"/>
                 <Setter Property="Effect">
                     <Setter.Value>

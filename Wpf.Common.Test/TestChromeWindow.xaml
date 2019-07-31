@@ -5,14 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Common.Test"
         xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
+        xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common"
         mc:Ignorable="d"       
         Title="ChromeWindow" Height="450" Width="800" 
         behavior:WindowChromeBehavior.IsEnable="True"
         behavior:WindowChromeBehavior.BorderBrush="Red"
        >
-    
+    <Window.Resources>
+        <RoutedCommand x:Key="openCommand"   />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource openCommand}" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute"/>
+    </Window.CommandBindings>
     <behavior:WindowChromeBehavior.TitleContent>
         <TextBlock Text="ddddd" Foreground="Black" FontSize="18"/>
     </behavior:WindowChromeBehavior.TitleContent>
-    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">this is a window content</TextBlock>
+    <StackPanel>
+        <controls:Rank ItemCount="3">
+          
+        </controls:Rank>
+
+        <TextBox x:Name="tb" Width="120" Margin="20"/>
+
+        <Button Content="open" Padding="10,5" Margin="10" HorizontalAlignment="Center" Command="{StaticResource openCommand}"/>
+
+
+    </StackPanel>
+    
 </Window>

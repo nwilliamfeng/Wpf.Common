@@ -45,14 +45,13 @@
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
+    <Compile Include="Controls\Helper\RankHelper.cs" />
+    <Compile Include="Controls\Rank.cs" />
     <Compile Include="Data\DelegateMultiValueConverter.cs" />
     <Compile Include="Data\DelegateValueConverter.cs" />
     <Compile Include="Data\ValueConverters.cs" />
     <Compile Include="Extension\ApplicationExtension.cs" />
-    <Compile Include="Extension\DataObjectExtension.cs" />
     <Compile Include="Extension\UIElementExtension.cs" />
-    <Compile Include="Input\RelayCommand.cs" />
-    <Compile Include="Input\RelayCommand.Generic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -81,7 +80,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Buttons.xaml">
+    <Page Include="Resources\Controls\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,18 +88,32 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Controls\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Controls\Rank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Svgs.xaml">
+    <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Windows.xaml">
+    <Page Include="Resources\Controls\Windows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj">
+      <Project>{eddcaa6e-8cd6-46c6-930e-0d691187b03e}</Project>
+      <Name>Wpf.Common.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

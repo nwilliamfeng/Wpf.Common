@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Test;component/resources/svgs.xaml"/>
+                
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Common;component/resources/resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

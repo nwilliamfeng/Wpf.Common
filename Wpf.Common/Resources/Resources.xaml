@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Wpf.Common.Resources">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Colors.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Brushes.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Windows.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Svgs.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/Wpf.Common;Component/Resources/Buttons.xaml"/>
+        <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Brushes.xaml"/>
+        <ResourceDictionary Source="Icons.xaml"/>
+        <ResourceDictionary Source="Controls/Index.xaml"/>
+        
         
         
     </ResourceDictionary.MergedDictionaries>

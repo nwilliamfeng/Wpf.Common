@@ -146,6 +146,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj">
+      <Project>{eddcaa6e-8cd6-46c6-930e-0d691187b03e}</Project>
+      <Name>Wpf.Common.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wpf.Common\Wpf.Common.csproj">
       <Project>{f3025e53-623f-4493-88b7-6e642a4de3dc}</Project>
       <Name>Wpf.Common</Name>

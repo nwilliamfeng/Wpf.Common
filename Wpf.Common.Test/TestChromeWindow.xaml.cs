@@ -29,5 +29,16 @@ namespace Wpf.Common.Test
         {
             Console.WriteLine(this.Content);
         }
+
+        
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("open command execute!");
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.tb.Text.Length>4;
+        }
     }
 }
