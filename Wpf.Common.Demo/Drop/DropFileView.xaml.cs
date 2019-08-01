@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wpf.Common.Test
+namespace Wpf.Common.Demo
 {
     /// <summary>
-    /// HeaderContentControl.xaml 的交互逻辑
+    /// DropFileView.xaml 的交互逻辑
     /// </summary>
-    public partial class HeaderContentView : UserControl
+    public partial class DropFileView : UserControl
     {
-        public HeaderContentView()
+        public DropFileView()
         {
             InitializeComponent();
+            this.DataContext = new CommandTest();           
         }
     }
 }

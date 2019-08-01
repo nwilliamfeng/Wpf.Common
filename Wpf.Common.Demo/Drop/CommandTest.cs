@@ -8,7 +8,7 @@ using Wpf.Common.Input;
 using System.ComponentModel;
 using System.Windows;
 
-namespace Wpf.Common.Test
+namespace Wpf.Common.Demo
 {
     public class CommandTest : INotifyPropertyChanged
     {

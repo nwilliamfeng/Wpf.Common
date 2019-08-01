@@ -66,9 +66,10 @@ namespace Wpf.Common.Controls
                     .ForEach(x => x.IsSelected = true);
             else
                 item.ParentItems
-                   .Where(x => x.IsSelected  && x.Value >= item.Value)
+                   .Where(x => x.IsSelected  && x.Value > item.Value)
                    .ToList()
                    .ForEach(x => x.IsSelected = false);
+            item.RaiseClick();
             e.Handled = true;
 
         }

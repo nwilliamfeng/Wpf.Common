@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wpf.Common.Test
+namespace Wpf.Common.Demo
 {
     /// <summary>
-    /// BrushView.xaml 的交互逻辑
+    /// HeaderContentControl.xaml 的交互逻辑
     /// </summary>
-    public partial class BrushView : UserControl
+    public partial class HeaderContentView : UserControl
     {
-        public BrushView()
+        public HeaderContentView()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wpf.Common.Test
+namespace Wpf.Common.Demo
 {
     /// <summary>
     /// ViewBoxView.xaml 的交互逻辑

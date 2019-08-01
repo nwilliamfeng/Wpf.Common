@@ -74,19 +74,16 @@ namespace Wpf.Common.Controls
             var items = Enumerable.Range(1, count)
                 .Select(x => new RankItem(x) { Size = size })
                 .ToList();
-            PropertyChangedEventHandler valueChange = (s, e) =>
+            EventHandler onClick = (s, e) =>
             {
-                if (e.PropertyName == "IsSelected")
-                {
-                    var rankItem = s as RankItem;
-                    this.Value = rankItem.IsSelected ? rankItem.Value : rankItem.Value - 1;
-                }
+              var rankItem = s as RankItem;
+              this.Value = rankItem.IsSelected ? rankItem.Value : rankItem.Value - 1;             
             };
 
-            items.ForEach(x =>
+            items.ForEach(x => 
             {
                 x.ParentItems = items;
-                x.PropertyChanged += valueChange;
+                x.Clicked += onClick;
             });
 
             itemControl.ItemsSource = items;
@@ -155,7 +152,7 @@ namespace Wpf.Common.Controls
 
         internal event EventHandler Clicked;
 
-        internal void RaiseClick() => this.Clicked?.Invoke(this, EventArgs.Empty);?
+        internal void RaiseClick() => this.Clicked?.Invoke(this, EventArgs.Empty);
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

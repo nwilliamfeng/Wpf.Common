@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Wpf.Common.Test"
-             xmlns:Behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common" x:Class="Wpf.Common.Test.DropFileView"
+             xmlns:local="clr-namespace:Wpf.Common.Demo"
+             xmlns:Behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common" x:Class="Wpf.Common.Demo.DropFileView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 
-namespace Wpf.Common.Test
+namespace Wpf.Common.Demo
 {
     /// <summary>
     /// App.xaml 的交互逻辑
