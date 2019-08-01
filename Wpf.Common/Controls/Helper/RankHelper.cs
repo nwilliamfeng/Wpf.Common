@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -19,10 +20,16 @@ namespace Wpf.Common.Controls
             var item = (sender as Button).DataContext as RankItem;
             if (!item.IsEnabled)
                 return;
+           
             item.ParentItems
                 .Where(x => x.Value <= item.Value && !x.IsSelected)
                 .ToList()
                 .ForEach(x => x.IsTempSelected = true);
+
+            item.ParentItems
+                .Where(x => x.Value > item.Value && !x.IsSelected && x.IsTempSelected)
+                .ToList()
+                .ForEach(x => x.IsTempSelected = false);
             e.Handled = true;
 
         }
@@ -37,11 +44,31 @@ namespace Wpf.Common.Controls
                 return;
             if (item.ParentItems.Any(x => !x.IsSelected && x.IsTempSelected && x.Value > item.Value))
                 return;
+            if (item.IsTempSelected)
+                item.IsTempSelected = false;
+            e.Handled = true;
 
-            item.ParentItems
-                .Where(x => x.IsTempSelected && !x.IsSelected)
-                .ToList()
-                .ForEach(x => x.IsTempSelected = false);
+        }
+
+        public static RoutedEventHandler RankItem_Click => OnRankItem_Click;
+
+
+        private static void OnRankItem_Click(object sender,  RoutedEventArgs e)
+        {
+            var item = (sender as Button).DataContext as RankItem;
+            if (!item.IsEnabled)
+                return;
+            bool isSelected = !item.IsSelected ;
+            if (isSelected)
+                item.ParentItems
+                    .Where(x =>  !x.IsSelected && x.Value <= item.Value)
+                    .ToList()
+                    .ForEach(x => x.IsSelected = true);
+            else
+                item.ParentItems
+                   .Where(x => x.IsSelected  && x.Value >= item.Value)
+                   .ToList()
+                   .ForEach(x => x.IsSelected = false);
             e.Handled = true;
 
         }

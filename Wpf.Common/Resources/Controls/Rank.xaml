@@ -7,9 +7,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="RankItemTemplate">
-        <Button Margin="5"  Style="{StaticResource chromeButtonStyle}" 
+        <Button Padding="5"  Style="{StaticResource chromeButtonStyle}" 
                 MouseEnter="{x:Static controls:RankHelper.RankItem_MouseEnter}"
                 MouseLeave="{x:Static controls:RankHelper.RankItem_MouseLeave}"
+                Click="{x:Static controls:RankHelper.RankItem_Click}"
                 >
             <Path Data="{StaticResource Star}" Stretch="Uniform">
                 <Path.Style>
@@ -46,6 +47,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:Rank}">
                     <ItemsControl x:Name="PART_ItemsControl" 
+                                  Background="Transparent"
                                   ItemTemplate="{TemplateBinding ItemTemplate}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>

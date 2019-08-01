@@ -21,7 +21,7 @@
         <TextBlock Text="ddddd" Foreground="Black" FontSize="18"/>
     </behavior:WindowChromeBehavior.TitleContent>
     <StackPanel>
-        <controls:Rank ItemCount="3">
+        <controls:Rank ItemCount="6">
           
         </controls:Rank>
 
