@@ -61,6 +61,9 @@
     <Compile Include="Controls\RankView.xaml.cs">
       <DependentUpon>RankView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SliderView.xaml.cs">
+      <DependentUpon>SliderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestChromeWindow.xaml.cs">
       <DependentUpon>TestChromeWindow.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\RankView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SliderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

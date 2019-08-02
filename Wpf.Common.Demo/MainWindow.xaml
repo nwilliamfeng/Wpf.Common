@@ -32,6 +32,8 @@
         <TabItem Header="Rank">
             <controlView:RankView/>
         </TabItem>
-        
+        <TabItem Header="Slider">
+            <controlView:SliderView/>
+        </TabItem>
     </TabControl>
 </Window>
