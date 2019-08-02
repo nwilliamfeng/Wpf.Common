@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace Wpf.Common.Controls
 {
@@ -15,6 +16,9 @@ namespace Wpf.Common.Controls
     {
         public const string ItemsControlName = "PART_ItemsControl";
 
+        /// <summary>
+        /// 设置要显示的数目
+        /// </summary>
         public static readonly DependencyProperty ItemCountProperty = DependencyProperty.Register("ItemCount", typeof(int), typeof(Rank), new PropertyMetadata(5));
 
         /// <summary>
@@ -22,12 +26,9 @@ namespace Wpf.Common.Controls
         /// </summary>
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(int), typeof(Rank), new PropertyMetadata(0));
 
+        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(Rank));
 
-        /// <summary>
-        /// 设置Rank项的数据模板
-        /// </summary>
-        public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(Rank), new PropertyMetadata(null));
-        
+ 
         /// <summary>
         /// 设置Rank项的大小
         /// </summary>
@@ -51,17 +52,17 @@ namespace Wpf.Common.Controls
             set => this.SetValue(ItemCountProperty, value);           
         }
 
-        public DataTemplate ItemTemplate
+        public PathGeometry Icon
         {
-            get => this.GetValue<DataTemplate>(ItemTemplateProperty);
-            set => this.SetValue(ItemTemplateProperty, value);
+            get => this.GetValue<PathGeometry>(IconProperty);
+            set => this.SetValue(IconProperty, value);
         }
 
 
         public double ItemSize
         {
-            get => this.GetValue<double>(ItemTemplateProperty);
-            set => this.SetValue(ItemTemplateProperty,value);
+            get => this.GetValue<double>(ItemSizeProperty);
+            set => this.SetValue(ItemSizeProperty, value);
         }
 
 

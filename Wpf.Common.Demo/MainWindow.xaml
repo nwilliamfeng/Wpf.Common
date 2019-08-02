@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Common.Demo"
         xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
+        xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common"
+        xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"  >
    
@@ -26,6 +28,9 @@
         </TabItem>
         <TabItem Header="HugeData">
             <local:HugeDataView/>
+        </TabItem>
+        <TabItem Header="Rank">
+            <controlView:RankView/>
         </TabItem>
         
     </TabControl>

@@ -9,7 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Shell;
-using Wpf.Common.Resources;
+using Wpf.Common.Themes;
 
 namespace Wpf.Common.Behavior
 {

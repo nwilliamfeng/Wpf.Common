@@ -12,20 +12,20 @@
                 MouseLeave="{x:Static controls:RankHelper.RankItem_MouseLeave}"
                 Click="{x:Static controls:RankHelper.RankItem_Click}"
                 >
-            <Path Data="{StaticResource Star}" Stretch="Uniform">
+            <Path Data="{Binding Icon,RelativeSource={RelativeSource AncestorType={x:Type controls:Rank}}}" Stretch="Uniform">
                 <Path.Style>
                     <Style TargetType="Path">
                         <Setter Property="Fill" Value="LightGray"/>
                         <Setter Property="Height" Value="{Binding Size}"/>
                         <Setter Property="Width" Value="{Binding Size}"/>
                         <Style.Triggers>
-                           
+
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                <Setter Property="Fill" Value="Orange"/>
+                                <Setter Property="Fill" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type controls:Rank}}}"/>
                             </DataTrigger>
 
                             <DataTrigger Binding="{Binding IsTempSelected}" Value="True">
-                                <Setter Property="Fill" Value="Orange"/>
+                                <Setter Property="Fill" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type controls:Rank}}}"/>
                             </DataTrigger>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
@@ -34,36 +34,45 @@
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="Fill" Value="LightGray"/>
                             </MultiDataTrigger>
-                            
+
                         </Style.Triggers>
                     </Style>
                 </Path.Style>
             </Path>
         </Button>
     </DataTemplate>
-    
+
     <Style TargetType="{x:Type controls:Rank}">
+        <Setter Property="Foreground" Value="Orange"/>
+        <Setter Property="Icon" Value="{StaticResource Star}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:Rank}">
                     <ItemsControl x:Name="PART_ItemsControl" 
                                   Background="Transparent"
-                                  ItemTemplate="{TemplateBinding ItemTemplate}">
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  ItemTemplate="{StaticResource RankItemTemplate}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                   
+
                     </ItemsControl>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="ItemTemplate"  Value="{x:Null}">
+                        <!--<Trigger Property="ItemTemplate"  Value="{x:Null}">
                             <Setter Property="ItemTemplate" TargetName="PART_ItemsControl"  Value="{StaticResource RankItemTemplate}"/>
+                        </Trigger>-->
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.3"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+         
     </Style>
-    
+
 </ResourceDictionary>

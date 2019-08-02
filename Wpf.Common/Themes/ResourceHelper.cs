@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Wpf.Common.Resources
+namespace Wpf.Common.Themes
 {
     public static class ResourceHelper
     {
