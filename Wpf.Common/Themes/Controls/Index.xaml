@@ -3,6 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Buttons.xaml"/>
         <ResourceDictionary Source="Rank.xaml"/>
+        <ResourceDictionary Source="Slider.xaml"/>
         <ResourceDictionary Source="Windows.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
