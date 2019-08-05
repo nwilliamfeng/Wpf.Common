@@ -29,6 +29,7 @@
 
         <Slider   
                 Foreground="Violet"
+            TickPlacement="Both" 
                 Maximum="100"
                 Minimum="0"           
                HorizontalAlignment="Center"
