@@ -4,17 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
+             xmlns:behavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     
     <UniformGrid Columns="1">
         <TextBox Width="200" VerticalAlignment="Center" 
-                 Tag="345"
-                 Padding="10"
-                  />
+                 BorderBrush="Red"
+                 Padding="10" behavior:TextBoxBehavior.Watermark="请输入名字"
+                 behavior:TextBoxBehavior.CornerRadius="5,5,5,5"/>
+       
 
         <TextBox Width="200" VerticalAlignment="Center" 
-                 Tag="345"
+                 
                  Padding="5"
                   />
     </UniformGrid>

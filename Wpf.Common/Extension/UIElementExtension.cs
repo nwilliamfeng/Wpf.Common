@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Wpf.Common
@@ -44,6 +45,23 @@ namespace Wpf.Common
                     yield return item;
                          
             }
+
+        }
+
+        /// <summary>
+        /// 从控件模板中获取指定名称的元素
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="control"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static T FindChildrenFromTemplate<T>(this Control control,string name)
+            where T:FrameworkElement
+        {
+            if (control.Template == null) return null;            
+            var result= control.Template.FindName(name, control) as T;
+            if (result == null) control.ApplyTemplate();//应用模板，否则取不到对应的模板元素
+            return control.Template.FindName(name, control) as T;
 
         }
 
