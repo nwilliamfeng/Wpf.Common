@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Wpf.Common.Data
 {
@@ -194,6 +195,21 @@ namespace Wpf.Common.Data
                 {
                     bool bv = (bool)value;
                     return bv ? Visibility.Visible : Visibility.Collapsed;
+                });
+            }
+        }
+
+
+        public static IValueConverter BrushToColorConverter
+        {
+            get
+            {
+
+                return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
+                {
+                    SolidColorBrush brush =  value as SolidColorBrush;
+                    if (brush == null) return DependencyProperty.UnsetValue;
+                    return brush.Color;
                 });
             }
         }
