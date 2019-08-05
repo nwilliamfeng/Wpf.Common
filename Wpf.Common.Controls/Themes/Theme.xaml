@@ -10,4 +10,8 @@
         
         
     </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="Slider" BasedOn="{StaticResource SliderStyle}"/>
+    <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
+
+
 </ResourceDictionary>

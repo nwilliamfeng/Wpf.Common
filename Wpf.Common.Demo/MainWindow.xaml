@@ -35,5 +35,11 @@
         <TabItem Header="Slider">
             <controlView:SliderView/>
         </TabItem>
+        <TabItem Header="Progressbar">
+            <controlView:ProgressView/>
+        </TabItem>
+        <TabItem Header="TextBox">
+            <controlView:TextBoxView/>
+        </TabItem>
     </TabControl>
 </Window>

@@ -125,7 +125,7 @@
                 <Setter Property="Background" TargetName="grip" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"/>
             </Trigger>
             <Trigger Property="IsDragging" Value="true">
-                <Setter Property="Width" TargetName="grip" Value="16"/>
+                <Setter Property="Width" TargetName="grip" Value="22"/>
                 <Setter Property="CornerRadius" TargetName="grip" Value="3"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">

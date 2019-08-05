@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Wpf.Common.Themes
+namespace Wpf.Common.Controls
 {
-    public static class ResourceHelper
+    internal static class ResourceHelper
     {
 
         public static Border GetWindowBorder() => Application.Current.FindResource("WindowBorder") as Border;

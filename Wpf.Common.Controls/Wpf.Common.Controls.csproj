@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3025E53-623F-4493-88B7-6E642A4DE3DC}</ProjectGuid>
+    <ProjectGuid>{1FF1575C-FB5F-4861-BD08-83B709560204}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>Wpf.Common</RootNamespace>
-    <AssemblyName>Wpf.Common</AssemblyName>
+    <RootNamespace>Wpf.Common.Controls</RootNamespace>
+    <AssemblyName>Wpf.Common.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -42,13 +42,56 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behavior\DropBehavior.cs" />
-    <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
-    <Compile Include="Data\DelegateMultiValueConverter.cs" />
-    <Compile Include="Data\DelegateValueConverter.cs" />
-    <Compile Include="Data\ValueConverters.cs" />
-    <Compile Include="Extension\ApplicationExtension.cs" />
-    <Compile Include="Extension\UIElementExtension.cs" />
+    <Page Include="Themes\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Colors\Gray.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\Index.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\Rank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\Slider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\Windows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Behavior\WindowChromeBehavior.cs" />
+    <Compile Include="Helper\RankHelper.cs" />
+    <Compile Include="Rank.cs" />
+    <Compile Include="Helper\ResourceHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +118,10 @@
     <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj">
       <Project>{eddcaa6e-8cd6-46c6-930e-0d691187b03e}</Project>
       <Name>Wpf.Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wpf.Common\Wpf.Common.csproj">
+      <Project>{f3025e53-623f-4493-88b7-6e642a4de3dc}</Project>
+      <Name>Wpf.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

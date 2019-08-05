@@ -58,11 +58,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ProgressView.xaml.cs">
+      <DependentUpon>ProgressView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RankView.xaml.cs">
       <DependentUpon>RankView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SliderView.xaml.cs">
       <DependentUpon>SliderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextBoxView.xaml.cs">
+      <DependentUpon>TextBoxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestChromeWindow.xaml.cs">
       <DependentUpon>TestChromeWindow.xaml</DependentUpon>
@@ -77,11 +83,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RankView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SliderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +174,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wpf.Common.Controls\Wpf.Common.Controls.csproj">
+      <Project>{1ff1575c-fb5f-4861-bd08-83b709560204}</Project>
+      <Name>Wpf.Common.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj">
       <Project>{eddcaa6e-8cd6-46c6-930e-0d691187b03e}</Project>
       <Name>Wpf.Common.Core</Name>
