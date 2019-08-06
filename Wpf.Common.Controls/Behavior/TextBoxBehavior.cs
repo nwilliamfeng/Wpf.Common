@@ -16,7 +16,7 @@ namespace Wpf.Common.Controls.Behavior
     {
         public const string PART_WatermarkName = "PART_Watermark";
         public const string PART_BorderName = "PART_Border";
-        public const string PART_ButtonHostName = "PART_ButtonHost";
+        public const string PART_IconHostName = "PART_IconHost";
 
         /// <summary>
         /// 设置为空时的文本内容
@@ -43,42 +43,42 @@ namespace Wpf.Common.Controls.Behavior
 
 
         /// <summary>
-        /// 设置Button
+        /// 设置Icon
         /// </summary>
-        public static readonly DependencyProperty ButtonProperty =
-           DependencyProperty.RegisterAttached("Button", typeof(Button), typeof(TextBoxBehavior), new PropertyMetadata(OnButtonPropertyChanged));
+        public static readonly DependencyProperty IconProperty =
+           DependencyProperty.RegisterAttached("Icon", typeof(FrameworkElement), typeof(TextBoxBehavior), new PropertyMetadata(OnIconPropertyChanged));
 
 
-        public static void SetButton(UIElement obj, Button value) => obj.SetValue(ButtonProperty, value);
+        public static void SetIcon(UIElement obj, FrameworkElement value) => obj.SetValue(IconProperty, value);
 
-        public static Button GetButton(UIElement obj) => obj.GetValue<Button>(ButtonProperty);
+        public static FrameworkElement GetIcon(UIElement obj) => obj.GetValue<FrameworkElement>(IconProperty);
 
 
         /// <summary>
-        /// 设置ButtonDock
+        /// 设置IconDock
         /// </summary>
-        public static readonly DependencyProperty ButtonDockProperty =
-           DependencyProperty.RegisterAttached("ButtonDock", typeof(Dock), typeof(TextBoxBehavior), new PropertyMetadata(Dock.Left));
+        public static readonly DependencyProperty IconDockProperty =
+           DependencyProperty.RegisterAttached("IconDock", typeof(Dock), typeof(TextBoxBehavior), new PropertyMetadata(Dock.Left));
 
 
-        public static void SetButtonDock(UIElement obj, Dock value) => obj.SetValue(ButtonDockProperty, value);
+        public static void SetIconDock(UIElement obj, Dock value) => obj.SetValue(IconDockProperty, value);
 
-        public static Dock GetButtonDock(UIElement obj) => obj.GetValue<Dock>(ButtonDockProperty);
+        public static Dock GetIconDock(UIElement obj) => obj.GetValue<Dock>(IconDockProperty);
 
 
-        private static void OnButtonPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
+        private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
-            var button = arg.NewValue as Button;
-            if (button == null) return;
+            var el = arg.NewValue as FrameworkElement;
+            if (el == null) return;
             var textBox = source as TextBox;
             if (textBox == null) return;
             textBox.Initialized += delegate
             {
-                var cc = textBox.FindChildrenFromTemplate<ContentControl>(PART_ButtonHostName);
+                var cc = textBox.FindChildrenFromTemplate<ContentControl>(PART_IconHostName);
                 if (cc != null)
                 {
-                    cc.Content = button;
-                    DockPanel.SetDock(cc, GetButtonDock(textBox));
+                    cc.Content = el;
+                    DockPanel.SetDock(cc, GetIconDock(textBox));
                 }
             };
         }

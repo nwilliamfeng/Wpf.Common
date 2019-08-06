@@ -41,5 +41,8 @@
         <TabItem Header="TextBox">
             <controlView:TextBoxView/>
         </TabItem>
+        <TabItem Header="Validation">
+            <controlView:ErrorTemplateView/>
+        </TabItem>
     </TabControl>
 </Window>

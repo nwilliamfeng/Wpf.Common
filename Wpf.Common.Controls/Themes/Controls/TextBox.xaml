@@ -4,11 +4,12 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../colors/Gray.xaml"/>
         <ResourceDictionary Source="../colors.xaml"/>
+        <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    <SolidColorBrush x:Key="TextBox.Static.Border" Color="{StaticResource Gray5}"/>
-    <SolidColorBrush x:Key="WatermarkForeground" Color="{StaticResource Gray4}"/>
+    <SolidColorBrush x:Key="TextBox.Static.Border" Color="{StaticResource Gray7}"/>
+    <SolidColorBrush x:Key="WatermarkForeground" Color="{StaticResource Gray5}"/>
     <SolidColorBrush x:Key="TextBox.Active.Border" Color="{StaticResource control-active-border-color}"/>
-   
+
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
@@ -20,50 +21,64 @@
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Grid>
-                        <Border x:Name="PART_Border" 
+                    
+                        <Grid>
+                        <AdornerDecorator >
+                            <Border x:Name="PART_Border" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}"    
-                              UseLayoutRounding="True"
+                               
                             />
-
+                        
+                        </AdornerDecorator>
                         <DockPanel LastChildFill="True">
-                            <ContentControl x:Name="PART_ButtonHost" DockPanel.Dock="Left"/>
+                            <ContentControl x:Name="PART_IconHost" DockPanel.Dock="Left"/>
                             <Grid >
                                 <TextBlock x:Name="PART_Watermark"                                           
                                            Foreground="{StaticResource WatermarkForeground}"                                           
                                            Padding="{TemplateBinding Padding}"
                                            Visibility="Collapsed"
                                            VerticalAlignment="Center" />
+                               
                                 <ScrollViewer x:Name="PART_ContentHost" 
                                           Focusable="false"                                        
                                           HorizontalScrollBarVisibility="Hidden" 
                                           VerticalScrollBarVisibility="Hidden"/>
+                                
                             </Grid>
-
-                            
-
                         </DockPanel>
-
-
                     </Grid>
-
+                    
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <!--<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>-->
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </Trigger>
                         <Trigger Property="Text" Value="">
                             <Setter Property="Visibility" TargetName="PART_Watermark" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="PART_Border" Value="0.56"/>
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="Validation.HasError" Value="False"/>
+                            </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource TextBox.Active.Border}"/>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="true">
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="Validation.HasError" Value="False"/>
+                            </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource TextBox.Active.Border}"/>
 
                             <Setter Property="Effect"  TargetName="PART_Border">
@@ -75,7 +90,28 @@
                                                       RenderingBias="Quality"/>
                                 </Setter.Value>
                             </Setter>
-                        </Trigger>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="Validation.HasError" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="Red"/>
+
+                            <Setter Property="Effect"  TargetName="PART_Border">
+                                <Setter.Value>
+                                    <DropShadowEffect Direction="-90"   
+                                                      ShadowDepth="0"    
+                                                      Color="Red"  
+                                                      BlurRadius="2" 
+                                                      RenderingBias="Quality"/>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+
+                 
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

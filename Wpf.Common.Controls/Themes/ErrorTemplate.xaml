@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Wpf.Common.Controls"
+                   >
+ 
+    <ControlTemplate x:Key="ErrorTemplate">
+
+        <Grid >
+            <AdornedElementPlaceholder x:Name="placeholder" />
+            <Popup x:Name="ValidationPopup"
+                   Placement="Right"
+                    StaysOpen="False" 
+                    AllowsTransparency="True"
+                    PlacementTarget="{Binding ElementName=PopupTargetElement, Mode=OneWay}">
+                 
+                <Border Padding="5" 
+                            Background="Red"                              
+                            CornerRadius="2">
+                    <TextBlock Text="{Binding CurrentItem.ErrorContent}" 
+                               MaxWidth="200"                                     
+                               TextWrapping="Wrap"
+                               UseLayoutRounding="False"
+                               Foreground="White" 
+                               FontSize="14"/>
+                </Border>
+            </Popup>
+        </Grid>
+
+
+        <ControlTemplate.Triggers>
+            <!--<MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.IsKeyboardFocusWithin, Mode=OneWay}" Value="True" />
+                    <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.HasError), Mode=OneWay}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="ValidationPopup" Property="IsOpen" Value="True" />
+            </MultiDataTrigger>-->
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+
+                    <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.IsFocused,Mode=OneWay}" Value="True" />
+                    <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.HasError), Mode=OneWay}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="ValidationPopup" Property="IsOpen" Value="True" />
+            </MultiDataTrigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</ResourceDictionary>
