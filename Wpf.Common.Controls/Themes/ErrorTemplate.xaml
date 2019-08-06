@@ -7,9 +7,10 @@
 
         <Grid >
             <AdornedElementPlaceholder x:Name="placeholder" />
-            <Popup x:Name="ValidationPopup"
+            <controls:CustomValidationPopup x:Name="ValidationPopup"
                    Placement="Right"
                     StaysOpen="False" 
+                                            
                     AllowsTransparency="True"
                     PlacementTarget="{Binding ElementName=PopupTargetElement, Mode=OneWay}">
                  
@@ -23,7 +24,7 @@
                                Foreground="White" 
                                FontSize="14"/>
                 </Border>
-            </Popup>
+            </controls:CustomValidationPopup>
         </Grid>
 
 
@@ -38,12 +39,14 @@
 
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-
-                    <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.IsFocused,Mode=OneWay}" Value="True" />
+                    <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.IsKeyboardFocusWithin,Mode=OneWay}" Value="True" />
+                    
                     <Condition Binding="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.HasError), Mode=OneWay}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter TargetName="ValidationPopup" Property="IsOpen" Value="True" />
             </MultiDataTrigger>
+
+            
 
         </ControlTemplate.Triggers>
     </ControlTemplate>

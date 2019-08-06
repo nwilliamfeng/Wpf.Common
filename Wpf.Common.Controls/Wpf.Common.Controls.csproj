@@ -93,6 +93,7 @@
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Helper\RankHelper.cs" />
+    <Compile Include="PopupEx.cs" />
     <Compile Include="Rank.cs" />
     <Compile Include="Helper\ResourceHelper.cs" />
   </ItemGroup>
