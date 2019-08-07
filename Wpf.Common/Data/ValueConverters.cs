@@ -42,7 +42,24 @@ namespace Wpf.Common.Data
             }
         }
 
- 
+        public static IValueConverter EmptyOrNullStringToVisibilityConverter
+        {
+            get
+            {
+
+                return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
+                {
+                    if (value == null)
+                        return Visibility.Visible;
+                    var str = value as string;
+                    if (str == null) return DependencyProperty.UnsetValue;
+                
+                    return  string.IsNullOrEmpty(str) ? Visibility.Visible : Visibility.Collapsed;
+                });
+            }
+        }
+
+
         public static IValueConverter NullToVisibilityConverter
         {
             get

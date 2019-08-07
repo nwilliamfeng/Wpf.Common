@@ -28,7 +28,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged,IDataErrorInfo
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -53,6 +53,23 @@ namespace Wpf.Common.Demo.Controls
             {
                 this._name = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+            }
+        }
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Password):
+                        return string.IsNullOrEmpty(this.Password) ? "请输入密码" : null;
+                    default:
+                        return null;
+                }
+                
             }
         }
     }
