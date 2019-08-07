@@ -61,6 +61,9 @@
     <Compile Include="Controls\ErrorTemplateView.xaml.cs">
       <DependentUpon>ErrorTemplateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PasswordBoxView.xaml.cs">
+      <DependentUpon>PasswordBoxView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ErrorTemplateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PasswordBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

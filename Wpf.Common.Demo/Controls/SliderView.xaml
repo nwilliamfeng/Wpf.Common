@@ -9,14 +9,21 @@
    
 
     <UniformGrid Columns="1">
-        <Slider  x:Name="slider"
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="75" Margin="10,0" Height="27"  VerticalAlignment="Center" 
+                     Text="{Binding Value,ElementName=slider1,Mode=OneWay,StringFormat=N{0}}"/>
+            <Slider  x:Name="slider1"
                 VerticalAlignment="Center"             
                 Maximum="100"
+                     Width="300"
                 Minimum="0"           
               Foreground="Violet"
              TickPlacement="TopLeft"
-                ToolTip="{Binding Path=Value,StringFormat='000',RelativeSource={RelativeSource Mode=Self}}"
+                ToolTip="{Binding Path=Value,StringFormat=N{0.00},RelativeSource={RelativeSource Mode=Self}}"
         Margin="20" Style="{DynamicResource SliderStyle }"/>
+        </StackPanel>
+        
 
         <Slider   
                 VerticalAlignment="Center"             

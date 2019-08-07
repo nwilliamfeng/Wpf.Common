@@ -4,14 +4,10 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml"/>
         <ResourceDictionary Source="Brushes.xaml"/>
-       
         <ResourceDictionary Source="Controls/Index.xaml"/>
-        
-        
-        
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="Slider" BasedOn="{StaticResource SliderStyle}"/>
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
-
+    <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
 
 </ResourceDictionary>

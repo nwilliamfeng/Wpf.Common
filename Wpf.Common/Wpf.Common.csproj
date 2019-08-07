@@ -42,6 +42,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
     <Compile Include="Data\DelegateMultiValueConverter.cs" />
@@ -62,16 +63,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Windows.Shell\Constants.cs" />
-    <Compile Include="Windows.Shell\DesignerConstants.cs" />
-    <Compile Include="Windows.Shell\ErrorCodes.cs" />
-    <Compile Include="Windows.Shell\MONITORINFO.cs" />
-    <Compile Include="Windows.Shell\NativeMethods.cs" />
-    <Compile Include="Windows.Shell\SafeLibraryHandle.cs" />
-    <Compile Include="Windows.Shell\UnsafeNativeMethods.cs" />
-    <Compile Include="Windows.Shell\Utilities.cs" />
-    <Compile Include="Windows.Shell\Utilities.Windows.cs" />
-    <Compile Include="Windows.Shell\Verify.cs" />
+    <Compile Include="ControlzEx\Native\Constants.cs" />
+    <Compile Include="ControlzEx\DesignerConstants.cs" />
+    <Compile Include="ControlzEx\Standard\ErrorCodes.cs" />
+    <Compile Include="ControlzEx\Standard\MONITORINFO.cs" />
+    <Compile Include="ControlzEx\Standard\NativeMethods.cs" />
+    <Compile Include="ControlzEx\Native\SafeLibraryHandle.cs" />
+    <Compile Include="ControlzEx\Native\UnsafeNativeMethods.cs" />
+    <Compile Include="ControlzEx\Standard\Utilities.cs" />
+    <Compile Include="ControlzEx\Standard\Utilities.Windows.cs" />
+    <Compile Include="ControlzEx\Standard\Verify.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

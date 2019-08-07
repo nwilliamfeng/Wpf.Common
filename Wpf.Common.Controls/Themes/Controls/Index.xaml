@@ -6,5 +6,6 @@
         <ResourceDictionary Source="Slider.xaml"/>
         <ResourceDictionary Source="Windows.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
+        <ResourceDictionary Source="PasswordBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

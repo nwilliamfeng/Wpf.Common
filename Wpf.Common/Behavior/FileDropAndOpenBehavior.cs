@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Wpf.Common.Behavior
 {
-    public static class FileDropAndOpenBehavior
+    public  class FileDropAndOpenBehavior
     {
         /// <summary>
         /// 是否拖拽后自动打开文件

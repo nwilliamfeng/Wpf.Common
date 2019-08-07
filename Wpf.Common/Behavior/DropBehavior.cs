@@ -12,7 +12,7 @@ namespace Wpf.Common.Behavior
     /// Drop行为
     /// </summary>
     /// <seealso cref="https://www.wpfsharp.com/2012/03/22/mvvm-and-drag-and-drop-command-binding-with-an-attached-behavior/"/>
-    public static class DropBehavior
+    public  class DropBehavior
     {
         /// <summary>
         /// 设置触发拖拽的命令

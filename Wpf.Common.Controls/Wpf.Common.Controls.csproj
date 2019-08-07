@@ -62,6 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Controls\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Controls\Rank.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,7 +97,7 @@
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Helper\RankHelper.cs" />
-    <Compile Include="PopupEx.cs" />
+    <Compile Include="CustomValidationPopup.cs" />
     <Compile Include="Rank.cs" />
     <Compile Include="Helper\ResourceHelper.cs" />
   </ItemGroup>

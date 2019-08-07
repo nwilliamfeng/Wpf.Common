@@ -15,76 +15,27 @@ namespace Wpf.Common.Controls
     {
         private Window hostWindow;
 
-        public static readonly DependencyProperty CloseOnMouseLeftButtonDownProperty
-            = DependencyProperty.Register(nameof(CloseOnMouseLeftButtonDown),
-                                          typeof(bool),
-                                          typeof(CustomValidationPopup),
-                                          new PropertyMetadata(true));
-
-        /// <summary>
-        /// Gets or sets whether if the popup can be closed by left mouse button down.
-        /// </summary>
-        public bool CloseOnMouseLeftButtonDown
-        {
-            get { return (bool)this.GetValue(CloseOnMouseLeftButtonDownProperty); }
-            set { this.SetValue(CloseOnMouseLeftButtonDownProperty, value); }
-        }
-
-        public static readonly DependencyProperty ShowValidationErrorOnMouseOverProperty
-            = DependencyProperty.RegisterAttached(nameof(ShowValidationErrorOnMouseOver),
-                                                  typeof(bool),
-                                                  typeof(CustomValidationPopup),
-                                                  new PropertyMetadata(false));
-
-        /// <summary>
-        /// Gets or sets whether the validation error text will be shown when hovering the validation triangle.
-        /// </summary>
-        public bool ShowValidationErrorOnMouseOver
-        {
-            get { return (bool)this.GetValue(ShowValidationErrorOnMouseOverProperty); }
-            set { this.SetValue(ShowValidationErrorOnMouseOverProperty, value); }
-        }
-
+     
         public CustomValidationPopup()
         {
             this.Loaded += this.CustomValidationPopup_Loaded;
             this.Opened += this.CustomValidationPopup_Opened;
-            this.Closed += CustomValidationPopup_Closed;
         }
 
-        private async void CustomValidationPopup_Closed(object sender, EventArgs e)
-        {
-          ??  if(_unsafeClose)
-            {
-                _unsafeClose = false;
-                await System.Threading.Tasks.Task.Run(() =>
-                {
-                    System.Threading.Thread.Sleep(100);
-                });
-                this.IsOpen = true;
-            }
-             
-            Console.WriteLine("closed "  );
-        }
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            if (this.CloseOnMouseLeftButtonDown)
+
+            var adornedElement = this.GetAdornedElement();
+            if (adornedElement != null)
             {
                 this.SetCurrentValue(IsOpenProperty, false);
             }
             else
             {
-                var adornedElement = this.GetAdornedElement();
-                if (adornedElement != null )
-                {
-                    this.SetCurrentValue(IsOpenProperty, false);
-                }
-                else
-                {
-                    e.Handled = true;
-                }
+                e.Handled = true;
             }
+
         }
 
         private void CustomValidationPopup_Loaded(object sender, RoutedEventArgs e)
@@ -119,10 +70,8 @@ namespace Wpf.Common.Controls
         }
 
         private void CustomValidationPopup_Opened(object sender, EventArgs e)
-        {
-            
+        {     
             this.SetTopmostState(true);
-            Console.WriteLine("do open "+this.IsOpen);
         }
 
         private void hostWindow_Activated(object sender, EventArgs e)
@@ -188,20 +137,13 @@ namespace Wpf.Common.Controls
         }
 
         private bool? appliedTopMost;
-
-        private bool _unsafeClose;
         
         private void SetTopmostState(bool isTop)
         {
-            // Don’t apply state if it’s the same as incoming state
             if (this.appliedTopMost.HasValue && this.appliedTopMost == isTop)
-            {
-                Console.WriteLine("aaa");
-                _unsafeClose = true;
+            {            
                 return;
             }
-            else
-                Console.WriteLine("bbb"+this.appliedTopMost+"  "+isTop);
 
             if (this.Child == null)
             {
@@ -223,7 +165,6 @@ namespace Wpf.Common.Controls
             {
                 return;
             }
-            //Debug.WriteLine("setting z-order " + isTop);
 
             var left = rect.Left;
             var top = rect.Top;
@@ -235,10 +176,6 @@ namespace Wpf.Common.Controls
             }
             else
             {
-                // Z-Order would only get refreshed/reflected if clicking the
-                // the titlebar (as opposed to other parts of the external
-                // window) unless I first set the popup to HWND_BOTTOM
-                // then HWND_TOP before HWND_NOTOPMOST
                 NativeMethods.SetWindowPos(hwnd, Constants.HWND_BOTTOM, left, top, width, height, SWP.TOPMOST);
                 NativeMethods.SetWindowPos(hwnd, Constants.HWND_TOP, left, top, width, height, SWP.TOPMOST);
                 NativeMethods.SetWindowPos(hwnd, Constants.HWND_NOTOPMOST, left, top, width, height, SWP.TOPMOST);
