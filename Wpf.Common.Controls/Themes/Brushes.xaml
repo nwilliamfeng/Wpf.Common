@@ -23,4 +23,9 @@
 
     <!--处于禁用状态下的控件边框画刷-->
     <SolidColorBrush x:Key="control-border-disable-brush" Color="{StaticResource Gray3}"/>
+
+    <SolidColorBrush x:Key="control-item-select-brush" Color="{StaticResource control-item-select-color}"/>
+
+    <SolidColorBrush x:Key="control-item-mouseover-brush" Color="{StaticResource control-item-mouseover-color}"/>
+    
 </ResourceDictionary>

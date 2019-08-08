@@ -9,4 +9,8 @@
 
     <Color x:Key="control-border-active-color">#1E90FF</Color>
 
+    <Color x:Key="control-item-select-color">#0066CC</Color>
+
+    <Color x:Key="control-item-mouseover-color">#7DBEFF</Color>
+
 </ResourceDictionary>
