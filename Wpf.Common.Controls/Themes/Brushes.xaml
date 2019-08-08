@@ -7,10 +7,10 @@
     </ResourceDictionary.MergedDictionaries>
     
     <!--窗体活动状态下的画刷-->
-    <SolidColorBrush x:Key="window-active-border-brush" Color="{StaticResource window-active-border-color}"/>
+    <SolidColorBrush x:Key="window-border-active-brush" Color="{StaticResource window-border-active-color}"/>
 
     <!--窗体非活动状态下的画刷-->
-    <SolidColorBrush x:Key="window-inactive-border-brush" Color="{StaticResource window-inactive-border-color}"/>
+    <SolidColorBrush x:Key="window-border-inactive-brush" Color="{StaticResource window-border-inactive-color}"/>
 
     <!--控件边框画刷-->
     <SolidColorBrush x:Key="control-border-brush" Color="{StaticResource Gray7}"/>
@@ -19,5 +19,8 @@
     <SolidColorBrush x:Key="WatermarkForeground" Color="{StaticResource Gray5}"/>
     
     <!--处于活动状态下的控件边框画刷-->
-    <SolidColorBrush x:Key="control-active-border-brush" Color="{StaticResource control-active-border-color}"/>
+    <SolidColorBrush x:Key="control-border-active-brush" Color="{StaticResource control-border-active-color}"/>
+
+    <!--处于禁用状态下的控件边框画刷-->
+    <SolidColorBrush x:Key="control-border-disable-brush" Color="{StaticResource Gray3}"/>
 </ResourceDictionary>

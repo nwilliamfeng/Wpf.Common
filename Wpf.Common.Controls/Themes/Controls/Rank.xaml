@@ -46,7 +46,7 @@
     <Style TargetType="{x:Type controls:Rank}">
         <Setter Property="Foreground" Value="Orange"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Icon" Value="{StaticResource Star}"/>
+        <Setter Property="Icon" Value="{StaticResource StarIcon}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:Rank}">

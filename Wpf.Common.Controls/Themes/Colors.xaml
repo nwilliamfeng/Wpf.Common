@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      >
     <!--窗体激活状态的边框色-->
-    <Color x:Key="window-active-border-color">#1E90FF</Color>
+    <Color x:Key="window-border-active-color">#1E90FF</Color>
 
     <!--窗体非激活状态的边框色-->
-    <Color x:Key="window-inactive-border-color">#808080</Color>
+    <Color x:Key="window-border-inactive-color">#808080</Color>
 
-    <Color x:Key="control-active-border-color">#1E90FF</Color>
+    <Color x:Key="control-border-active-color">#1E90FF</Color>
 
 </ResourceDictionary>

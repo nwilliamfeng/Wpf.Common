@@ -7,5 +7,6 @@
         <ResourceDictionary Source="Windows.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
         <ResourceDictionary Source="PasswordBox.xaml"/>
+        <ResourceDictionary Source="ComboBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

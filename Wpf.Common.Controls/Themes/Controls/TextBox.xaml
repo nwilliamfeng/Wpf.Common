@@ -28,13 +28,14 @@
                         <!--适用于ErrorTemplate的AdornerPlaceHolder-->
                         <AdornerDecorator >
                             <Border x:Name="PART_Border" 
+                                    UseLayoutRounding="True"
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}"/>
                         </AdornerDecorator>
                         <DockPanel LastChildFill="True">
                             <ContentControl x:Name="PART_IconHost" DockPanel.Dock="Left"/>
-                            <Grid >
+                            <Grid>
                                 <!--Watermark-->
                                 <TextBlock x:Name="PART_Watermark"                                           
                                            Foreground="{StaticResource WatermarkForeground}"                                           
@@ -68,7 +69,7 @@
                                 <Condition Property="IsMouseOver" Value="True"/>
                                 <Condition Property="Validation.HasError" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource control-active-border-brush}"/>
+                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource control-border-active-brush}"/>
                         </MultiTrigger>
 
                         <MultiTrigger>
@@ -76,13 +77,13 @@
                                 <Condition Property="IsKeyboardFocused" Value="True"/>
                                 <Condition Property="Validation.HasError" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource control-active-border-brush}"/>
+                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource control-border-active-brush}"/>
 
                             <Setter Property="Effect"  TargetName="PART_Border">
                                 <Setter.Value>
                                     <DropShadowEffect Direction="-90"   
                                                       ShadowDepth="0"    
-                                                      Color="{StaticResource control-active-border-color}"  
+                                                      Color="{StaticResource control-border-active-color}"  
                                                       BlurRadius="2" 
                                                       RenderingBias="Quality"/>
                                 </Setter.Value>

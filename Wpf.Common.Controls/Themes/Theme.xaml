@@ -9,5 +9,6 @@
     <Style TargetType="Slider" BasedOn="{StaticResource SliderStyle}"/>
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
     <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
+    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
 
 </ResourceDictionary>

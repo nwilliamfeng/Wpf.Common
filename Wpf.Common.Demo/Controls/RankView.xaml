@@ -14,6 +14,6 @@
         <controls:Rank ItemCount="6" Foreground="Red" ItemSize="32"/>
 
         <controls:Rank  IsEnabled="False" />
-        <controls:Rank Icon="{StaticResource  Heart}"/>
+        <controls:Rank Icon="{StaticResource  HeartIcon}"/>
     </UniformGrid>
 </UserControl>

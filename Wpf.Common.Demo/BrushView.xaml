@@ -52,7 +52,7 @@
                 <VisualBrush     >
                     <VisualBrush.Visual>
                        
-                            <Path Data="{StaticResource Close}" Fill="Red" Stretch="Uniform" />
+                            <Path Data="{StaticResource CloseIcon}" Fill="Red" Stretch="Uniform" />
                       
                         
                     </VisualBrush.Visual>

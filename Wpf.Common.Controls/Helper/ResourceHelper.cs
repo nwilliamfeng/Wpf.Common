@@ -14,9 +14,9 @@ namespace Wpf.Common.Controls
 
         public static Border GetWindowBorder() => Application.Current.FindResource("WindowBorder") as Border;
 
-        public static SolidColorBrush GetWindowActiveBorderBrush() => Application.Current.FindResource("window-active-border-brush") as SolidColorBrush;
+        public static SolidColorBrush GetWindowActiveBorderBrush() => Application.Current.FindResource("window-border-active-brush") as SolidColorBrush;
 
-        public static SolidColorBrush GetWindowInactiveBorderBrush() => Application.Current.FindResource("window-inactive-border-brush") as SolidColorBrush;
+        public static SolidColorBrush GetWindowInactiveBorderBrush() => Application.Current.FindResource("window-border-inactive-brush") as SolidColorBrush;
 
     }
 }
