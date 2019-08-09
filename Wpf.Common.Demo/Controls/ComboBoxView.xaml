@@ -11,7 +11,11 @@
    
     
     <UniformGrid Columns="1">
-        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10,5" Width="200"  />
+        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10,5" Width="200" >
+            <ComboBoxItem>1</ComboBoxItem>
+            <ComboBoxItem>2</ComboBoxItem>
+            <ComboBoxItem>3</ComboBoxItem>
+        </ComboBox>
         <ComboBox VerticalAlignment="Center" Padding="10,5" HorizontalAlignment="Center" Width="200" IsEditable="True" >
             <ComboBox.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.WindowFrameBrushKey}"  Color="Red"/>
