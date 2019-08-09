@@ -10,5 +10,6 @@
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
     <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
     <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
+    <Style TargetType="RadioButton" BasedOn="{StaticResource RadioButtonStyle}"/>
     <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}"/>
 </ResourceDictionary>
