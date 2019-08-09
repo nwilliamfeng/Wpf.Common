@@ -41,11 +41,14 @@
         <TabItem Header="TextBox">
             <controlView:TextBoxView/>
         </TabItem>
-        <TabItem Header="Password">
+        <TabItem Header="PasswordBox">
             <controlView:PasswordBoxView/>
         </TabItem>
         <TabItem Header="ComboBox">
             <controlView:ComboBoxView/>
+        </TabItem>
+        <TabItem Header="CheckBox">
+            <controlView:CheckBoxView/>
         </TabItem>
         <TabItem Header="Validation">
             <controlView:ErrorTemplateView/>

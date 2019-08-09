@@ -10,5 +10,5 @@
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
     <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
     <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
-
+    <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}"/>
 </ResourceDictionary>
