@@ -4,28 +4,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
-    
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+            xmlns:behaviors="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              x:Class="Wpf.Common.Demo.Controls.ComboBoxView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
    
     
     <UniformGrid Columns="1">
-        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10,5" Width="200" >
-            <ComboBoxItem>1</ComboBoxItem>
-            <ComboBoxItem>2</ComboBoxItem>
-            <ComboBoxItem>3</ComboBoxItem>
+        <ComboBox VerticalAlignment="Center" 
+                  SelectedItem="{Binding Value,Mode=TwoWay, 
+            UpdateSourceTrigger=PropertyChanged,
+            ValidatesOnDataErrors=True,
+            ValidatesOnNotifyDataErrors=True}" 
+                  HorizontalAlignment="Center" Padding="10,5" Width="200" >
+            <sys:Int32>0</sys:Int32>
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>3</sys:Int32>
         </ComboBox>
-        <ComboBox VerticalAlignment="Center" Padding="10,5" HorizontalAlignment="Center" Width="200" IsEditable="True" >
+
+        <ComboBox VerticalAlignment="Center" 
+                  IsEditable="true"
+                  behaviors:ComboBoxBehavior.CornerRadius="4"
+                  behaviors:ComboBoxBehavior.Watermark="请输入值"
+                  SelectedItem="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                  HorizontalAlignment="Center" Padding="10,5" Width="200" >
             <ComboBox.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.WindowFrameBrushKey}"  Color="Red"/>
             </ComboBox.Resources>
-            <ComboBoxItem>1</ComboBoxItem>
-            <ComboBoxItem>2</ComboBoxItem>
-            <ComboBoxItem>3</ComboBoxItem>
+            <sys:Int32>0</sys:Int32>
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>31</sys:Int32>
+            <sys:Int32>32</sys:Int32>
+            <sys:Int32>33</sys:Int32>
+            <sys:Int32>34</sys:Int32>
+            <sys:Int32>35</sys:Int32>
+            <sys:Int32>36</sys:Int32>
+            <sys:Int32>37</sys:Int32>
+            <sys:Int32>38</sys:Int32>
+            <sys:Int32>39</sys:Int32>
+            <sys:Int32>391</sys:Int32>
+            <sys:Int32>392</sys:Int32>
+            <sys:Int32>393</sys:Int32>
+            <sys:Int32>394</sys:Int32>
+            <sys:Int32>395</sys:Int32>
+            <sys:Int32>396</sys:Int32>
+            <sys:Int32>397</sys:Int32>
+            <sys:Int32>398</sys:Int32>
+            <sys:Int32>399</sys:Int32>
+            
         </ComboBox>
-
-        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" IsEditable="True" IsEnabled="False"  />
+        
+        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" IsEditable="True"  IsEnabled="False"  />
 
    
 

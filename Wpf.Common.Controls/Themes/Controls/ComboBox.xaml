@@ -6,12 +6,9 @@
         <ResourceDictionary Source="../Icons.xaml"/>
         <ResourceDictionary Source="../Brushes.xaml"/>
         <ResourceDictionary Source="../Colors/Gray.xaml"/>
+        <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    <SolidColorBrush x:Key="dropDown-brush" Color="{StaticResource Gray5}" />
-    <SolidColorBrush x:Key="dropDown-active-brush" Color="{StaticResource Gray8}" />
-    <SolidColorBrush x:Key="dropDown-disable-brush" Color="{StaticResource Gray3}" />
 
-    
     <!--ToggleButton-->
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -22,9 +19,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border x:Name="templateRoot" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" 
+                            BorderBrush="Transparent"                          
+                            Background="Transparent" 
                             SnapsToDevicePixels="true">
                         <Border x:Name="splitBorder" 
                                 BorderBrush="Transparent" 
@@ -43,81 +39,20 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <!--<MultiDataTrigger>
+
+                        <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding (Validation.HasError),RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="False" />
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <!--<Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>-->
                             </MultiDataTrigger.Conditions>
-                           
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource control-border-brush }"/>
-                            -->
-                        <!--<Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Static.Editable.Button.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Static.Editable.Button.Border}"/>-->
-                        <!--
-                        </MultiDataTrigger>-->
-                        <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Fill" TargetName="arrow" Value="{StaticResource control-border-active-brush}"/>
-                        </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
-                            </MultiDataTrigger.Conditions>
-
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource control-border-active-brush}"/>
                         </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource control-border-active-brush}"/>
-
-                        </MultiDataTrigger>
-                        <!--<Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ComboBox.Pressed.Glyph}"/>
-                        </Trigger>-->
-                        <!--<MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
-                            </MultiDataTrigger.Conditions>
-                            
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource ComboBox.Pressed.Border}"/>
-                        </MultiDataTrigger>-->
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource control-border-active-brush}"/>
-                            <!--<Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Pressed.Editable.Button.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Pressed.Editable.Button.Border}"/>-->
-                        </MultiDataTrigger>
+                    
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource dropDown-disable-brush}"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource control-border-disable-brush}"/>
                         </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource control-border-disable-brush}"/>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource control-border-disable-brush}"/>
-                            <!--<Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Disabled.Editable.Button.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Disabled.Editable.Button.Border}"/>-->
-                        </MultiDataTrigger>
+                     
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -155,6 +90,7 @@
 
     <!--不可编辑（默认）模板-->
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
+
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -190,6 +126,13 @@
                 </Border>
 
             </Popup>
+            <AdornerDecorator Grid.ColumnSpan="2">
+                <Border x:Name="PART_Border"                                
+                                UseLayoutRounding="True"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}"/>
+            </AdornerDecorator>
             <ToggleButton x:Name="toggleButton" 
                           BorderBrush="{TemplateBinding BorderBrush}" 
                           BorderThickness="{TemplateBinding BorderThickness}" 
@@ -197,6 +140,7 @@
                           Grid.ColumnSpan="2" 
                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                           Style="{StaticResource ComboBoxToggleButton}"/>
+
             <ContentPresenter x:Name="contentPresenter" 
                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
                               ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" 
@@ -209,6 +153,18 @@
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
         </Grid>
         <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" Value="True"/>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" TargetName="PART_Border" Value="Red"/>
+                <Setter Property="Effect"  TargetName="PART_Border">
+                    <Setter.Value>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="2" RenderingBias="Quality"/>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
 
             <Trigger Property="HasItems" Value="false">
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
@@ -226,7 +182,6 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-
 
     <!--可编辑的模板-->
     <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
@@ -286,27 +241,67 @@
                 </Border>
 
             </Popup>
-            <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" 
-                              BorderThickness="{TemplateBinding BorderThickness}" 
-                              Background="{TemplateBinding Background}" 
+
+            <AdornerDecorator Grid.ColumnSpan="2">
+                <Border x:Name="PART_Border"                                
+                                UseLayoutRounding="True"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}"/>
+            </AdornerDecorator>
+            
+            <ToggleButton x:Name="toggleButton" 
                               Grid.ColumnSpan="2" 
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                               Style="{StaticResource ComboBoxToggleButton}"/>
             <Border x:Name="border" 
                         Background="{TemplateBinding Background}" 
                         Margin="{TemplateBinding BorderThickness}">
-                <TextBox x:Name="PART_EditableTextBox" 
+                <Grid>
+                    <!--Watermark-->
+                    <TextBlock x:Name="PART_Watermark"                                           
+                                           Foreground="{StaticResource WatermarkForeground}"                                           
+                                           Padding="{TemplateBinding Padding}"
+                                           Visibility="Collapsed"
+                                           VerticalAlignment="Center" />
+                    <TextBox x:Name="PART_EditableTextBox" 
                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" 
                              Margin="{TemplateBinding Padding}" 
                              Style="{StaticResource ComboBoxEditableTextBox}" 
                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Grid>
+                
             </Border>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsEnabled"  Value="false">
-                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" SourceName="PART_EditableTextBox"  Value="True"/>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush"  Value="Red"/>
+
+                <Setter Property="Effect"  TargetName="PART_Border">
+                    <Setter.Value>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="2" RenderingBias="Quality"/>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+           
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" SourceName="PART_EditableTextBox"  Value="True"/>
+                    <Condition Property="Validation.HasError" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="{StaticResource control-border-active-brush}"/>
+                <Setter Property="Effect"  TargetName="PART_Border">
+                    <Setter.Value>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="{StaticResource control-border-active-color}" BlurRadius="2" RenderingBias="Quality"/>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+
             <Trigger Property="IsKeyboardFocusWithin" Value="true">
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
@@ -346,7 +341,23 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
         <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Validation.HasError" Value="False" />
+                    <Condition Property="IsMouseOver" Value="true"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush"  Value="{StaticResource control-border-active-brush}"/>
+            </MultiTrigger>
+            
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="BorderBrush"  Value="Red"  />
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="BorderBrush" Value="{StaticResource control-border-disable-brush}"/>
+            </Trigger>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false"/>
                 <Setter Property="Padding" Value="2"/>

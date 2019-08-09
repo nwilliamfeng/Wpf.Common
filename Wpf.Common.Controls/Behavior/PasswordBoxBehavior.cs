@@ -15,9 +15,7 @@ namespace Wpf.Common.Controls.Behavior
     public  class PasswordBoxBehavior:Wpf.Common.Behavior.PasswordBoxBehavior
     {
         public const string PART_WatermarkName = "PART_Watermark";
-        public const string PART_BorderName = "PART_Border";
-        public const string PART_IconHostName = "PART_IconHost";
-
+     
         /// <summary>
         /// 设置为空时的文本内容
         /// </summary>
@@ -68,19 +66,8 @@ namespace Wpf.Common.Controls.Behavior
 
         private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
-            var el = arg.NewValue as FrameworkElement;
-            if (el == null) return;
-            var textBox = source as PasswordBox;
-            if (textBox == null) return;
-            textBox.Initialized += delegate
-            {
-                var cc = textBox.FindChildrenFromTemplate<ContentControl>(PART_IconHostName);
-                if (cc != null)
-                {
-                    cc.Content = el;
-                    DockPanel.SetDock(cc, GetIconDock(textBox));
-                }
-            };
+        
+            source.InitializeControlIcon(arg, GetIconDock(source as UIElement));
         }
 
 
@@ -110,16 +97,7 @@ namespace Wpf.Common.Controls.Behavior
 
         private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
-            if (!(arg.NewValue is CornerRadius)) return;
-            var value =(CornerRadius) arg.NewValue;          
-            var textBox = source as PasswordBox;
-            if (textBox == null) return;
-            textBox.Initialized += delegate
-            {
-                var border = textBox.FindChildrenFromTemplate<Border>(PART_BorderName);
-                if (border != null)
-                    border.CornerRadius=value; 
-            };
+            source.InitializeControlBorderCornerRadius(arg);
         }
 
 
