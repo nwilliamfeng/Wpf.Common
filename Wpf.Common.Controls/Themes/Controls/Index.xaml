@@ -9,6 +9,7 @@
         <ResourceDictionary Source="PasswordBox.xaml"/>
         <ResourceDictionary Source="ComboBox.xaml"/>
         <ResourceDictionary Source="CheckBox.xaml"/>
+        <ResourceDictionary Source="DatePicker.xaml"/>
         <ResourceDictionary Source="RadioButton.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -50,6 +50,9 @@
         <TabItem Header="CheckBox">
             <controlView:CheckBoxView/>
         </TabItem>
+        <TabItem Header="DatePicker">
+            <controlView:DatePickerView/>
+        </TabItem>
         <TabItem Header="RadioButton">
             <controlView:RadioView/>
         </TabItem>

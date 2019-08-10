@@ -67,6 +67,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Controls\DatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Controls\DatePickerTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Controls\Index.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,6 +116,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Behavior\ComboBoxBehavior.cs" />
+    <Compile Include="Behavior\DatePickerBehavior.cs" />
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />

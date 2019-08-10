@@ -12,4 +12,5 @@
     <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
     <Style TargetType="RadioButton" BasedOn="{StaticResource RadioButtonStyle}"/>
     <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}"/>
+    <Style TargetType="DatePicker" BasedOn="{StaticResource DatePickerStyle}"/>
 </ResourceDictionary>

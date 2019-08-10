@@ -21,6 +21,7 @@
                     <Border x:Name="templateRoot" 
                             BorderBrush="Transparent"                          
                             Background="Transparent" 
+                            Margin="0,0,5,0"
                             SnapsToDevicePixels="true">
                         <Border x:Name="splitBorder" 
                                 BorderBrush="Transparent" 
@@ -102,7 +103,7 @@
                    IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                    Margin="1" 
                    PopupAnimation="Slide" 
-                   Placement="Center">
+                   Placement="Bottom">
 
                 <Border x:Name="dropDownBorder" 
                         BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" 
@@ -161,7 +162,7 @@
                 <Setter Property="BorderBrush" TargetName="PART_Border" Value="Red"/>
                 <Setter Property="Effect"  TargetName="PART_Border">
                     <Setter.Value>
-                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="2" RenderingBias="Quality"/>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="1" RenderingBias="Quality"/>
                     </Setter.Value>
                 </Setter>
             </MultiTrigger>
@@ -215,7 +216,7 @@
                        Grid.ColumnSpan="2" 
                        IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" 
                        PopupAnimation="Slide"                 
-                       Placement="Center">
+                       Placement="Bottom">
 
                 <Border x:Name="dropDownBorder" 
                                 BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" 
@@ -284,7 +285,7 @@
 
                 <Setter Property="Effect"  TargetName="PART_Border">
                     <Setter.Value>
-                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="2" RenderingBias="Quality"/>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="1" RenderingBias="Quality"/>
                     </Setter.Value>
                 </Setter>
             </MultiTrigger>
@@ -297,7 +298,11 @@
                 <Setter Property="BorderBrush" Value="{StaticResource control-border-active-brush}"/>
                 <Setter Property="Effect"  TargetName="PART_Border">
                     <Setter.Value>
-                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="{StaticResource control-border-active-color}" BlurRadius="2" RenderingBias="Quality"/>
+                        <DropShadowEffect Direction="-90" 
+                                          ShadowDepth="0" 
+                                          Color="{StaticResource control-border-active-color}" 
+                                          BlurRadius="1" 
+                                          RenderingBias="Quality"/>
                     </Setter.Value>
                 </Setter>
             </MultiTrigger>

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Wpf.Common.Demo.Controls.DatePickerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
+             xmlns:behaviors="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    
+
+    <UniformGrid Columns="1">
+        <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    SelectedDate="{Binding Date,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  
+                    Width="125" Padding="5" />
+
+        <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    SelectedDate="{Binding Date,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  
+                    Width="125" Padding="5"  behaviors:DatePickerBehavior.CornerRadius="12"/>
+
+        <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"  Width="125"  />
+        <DatePickerTextBox VerticalAlignment="Center" HorizontalAlignment="Center"  />
+    </UniformGrid>
+</UserControl>

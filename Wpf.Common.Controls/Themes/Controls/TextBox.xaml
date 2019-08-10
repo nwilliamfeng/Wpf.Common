@@ -77,14 +77,14 @@
                                 <Condition Property="IsKeyboardFocused" Value="True"/>
                                 <Condition Property="Validation.HasError" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource control-border-active-brush}"/>
+                            <Setter Property="BorderBrush"  Value="{StaticResource control-border-active-brush}"/>
 
                             <Setter Property="Effect"  TargetName="PART_Border">
                                 <Setter.Value>
                                     <DropShadowEffect Direction="-90"   
                                                       ShadowDepth="0"    
                                                       Color="{StaticResource control-border-active-color}"  
-                                                      BlurRadius="2" 
+                                                      BlurRadius="1" 
                                                       RenderingBias="Quality"/>
                                 </Setter.Value>
                             </Setter>
@@ -95,14 +95,14 @@
                                 <Condition Property="IsKeyboardFocused" Value="True"/>
                                 <Condition Property="Validation.HasError" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="Red"/>
+                            <Setter Property="BorderBrush" Value="Red"/>
 
                             <Setter Property="Effect"  TargetName="PART_Border">
                                 <Setter.Value>
                                     <DropShadowEffect Direction="-90"   
                                                       ShadowDepth="0"    
                                                       Color="Red"  
-                                                      BlurRadius="2" 
+                                                      BlurRadius="1" 
                                                       RenderingBias="Quality"/>
                                 </Setter.Value>
                             </Setter>

@@ -65,6 +65,9 @@
     <Compile Include="Controls\ComboBoxView.xaml.cs">
       <DependentUpon>ComboBoxView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DatePickerView.xaml.cs">
+      <DependentUpon>DatePickerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ErrorTemplateView.xaml.cs">
       <DependentUpon>ErrorTemplateView.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ComboBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DatePickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
