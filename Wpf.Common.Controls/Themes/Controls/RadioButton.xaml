@@ -9,7 +9,7 @@
    
     <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-         
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -56,7 +56,7 @@
                             
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.3"/>
                             <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource control-border-disable-brush}"/>
                             <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource control-border-disable-brush}"/>
                         </Trigger>

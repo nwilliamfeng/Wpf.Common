@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wpf.Common.Controls.Themes.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Brushes.xaml"/>
+      
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate TargetType="{x:Type ToggleButton}" x:Key="ToggleButtonTemplate">
+        <ControlTemplate.Resources>
+            <SineEase x:Key="RippleEasingFunction" EasingMode="EaseInOut"/>
+            
+        </ControlTemplate.Resources>
+        <Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CheckStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="*" To="Checked">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24.5">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseOut"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                        <VisualTransition From="Checked" To="Unchecked">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="24.5"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseOut"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder" Duration="0" To="24.5" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" 
+                                             Storyboard.TargetName="ThumbHolder"
+                                             Duration="0" 
+                                             To="0" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+                <Rectangle x:Name="Track"                                     
+                           Fill="Transparent" 
+                           HorizontalAlignment="Left" 
+                           Height="22" 
+                            FocusVisualStyle="{x:Null}"
+                           Stroke="Transparent"
+                           StrokeThickness="1"
+                         
+                          
+                           Width="45" 
+                           RadiusY="11" 
+                           RadiusX="11"/>
+
+                <Grid x:Name="ThumbHolder" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <AdornerDecorator>
+                        <Ellipse x:Name="Thumb"
+                                             Fill="{TemplateBinding Foreground}" Stroke="{x:Null}" 
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                                             Width="11" Height="11"
+                                             Margin="5,5,0,0"
+                                             RenderTransformOrigin="0.5,0.5" >
+                        </Ellipse>
+                    </AdornerDecorator>
+                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                      Content="{TemplateBinding Content}" 
+                                      FocusVisualStyle="{x:Null}"
+                                      Margin="{TemplateBinding Padding}"                                               
+                                      x:Name="ContentPresenter"                                                  
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                      FlowDirection="LeftToRight"/>
+                    <Grid.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </Grid.RenderTransform>
+                </Grid>
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Thumb" Property="Fill" Value="White" />
+                <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
+                <Setter Property="Foreground" Value="Gray"/>
+            </Trigger>
+            
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Stroke" TargetName="Track" Value="Black"/>
+                <Setter Property="Fill" TargetName="Track" Value="White"/>
+                
+            </Trigger>
+
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Stroke" TargetName="Track" Value="Transparent"/>
+                <Setter Property="Fill" TargetName="Track" Value="LightGray"/>
+
+            </Trigger>
+            <Trigger Property="Button.IsDefaulted" Value="true"/>
+            <Trigger Property="IsMouseOver" Value="true"/>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False"/>
+                    <Condition Property="IsChecked" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />
+                <Setter TargetName="Track" Property="Fill" Value="{StaticResource control-border-disable-brush}"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />
+                <Setter TargetName="Track" Property="Fill" Value="Transparent"/>
+                <Setter Property="Stroke" TargetName="Track" Value="#BDBDBD"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+        
+        <Setter Property="Background" Value="{StaticResource control-border-active-brush}"/>
+        <Setter Property="Template" Value="{StaticResource ToggleButtonTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

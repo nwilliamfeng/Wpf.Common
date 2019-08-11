@@ -11,5 +11,6 @@
         <ResourceDictionary Source="CheckBox.xaml"/>
         <ResourceDictionary Source="DatePicker.xaml"/>
         <ResourceDictionary Source="RadioButton.xaml"/>
+        <ResourceDictionary Source="ToggleButton.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
