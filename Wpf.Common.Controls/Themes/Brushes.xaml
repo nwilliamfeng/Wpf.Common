@@ -27,5 +27,9 @@
     <SolidColorBrush x:Key="control-item-select-brush" Color="{StaticResource control-item-select-color}"/>
 
     <SolidColorBrush x:Key="control-item-mouseover-brush" Color="{StaticResource control-item-mouseover-color}"/>
-    
+
+    <SolidColorBrush x:Key="menuItem-highlight-brush" Color="{StaticResource Gray3}"/>
+
+    <SolidColorBrush x:Key="menuItem-press-brush" Color="{StaticResource Gray4}"/>
+
 </ResourceDictionary>

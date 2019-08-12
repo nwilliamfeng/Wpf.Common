@@ -13,5 +13,6 @@
         <ResourceDictionary Source="RadioButton.xaml"/>
         <ResourceDictionary Source="ToggleButton.xaml"/>
         <ResourceDictionary Source="MenuItem.xaml"/>
+        <ResourceDictionary Source="Menu.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
