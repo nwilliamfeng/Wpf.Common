@@ -16,7 +16,7 @@
 
         <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center" 
                     SelectedDate="{Binding Date,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  
-                    Width="125" Padding="5"  behaviors:DatePickerBehavior.CornerRadius="12"/>
+                    Width="125"    behaviors:DatePickerBehavior.CornerRadius="5"/>
 
         <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"  Width="125"  />
         <DatePickerTextBox VerticalAlignment="Center" HorizontalAlignment="Center"  />

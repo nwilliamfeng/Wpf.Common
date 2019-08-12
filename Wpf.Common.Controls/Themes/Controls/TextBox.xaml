@@ -84,7 +84,7 @@
                                     <DropShadowEffect Direction="-90"   
                                                       ShadowDepth="0"    
                                                       Color="{StaticResource control-border-active-color}"  
-                                                      BlurRadius="1" 
+                                                      BlurRadius="2" 
                                                       RenderingBias="Quality"/>
                                 </Setter.Value>
                             </Setter>
@@ -102,7 +102,7 @@
                                     <DropShadowEffect Direction="-90"   
                                                       ShadowDepth="0"    
                                                       Color="Red"  
-                                                      BlurRadius="1" 
+                                                      BlurRadius="2" 
                                                       RenderingBias="Quality"/>
                                 </Setter.Value>
                             </Setter>

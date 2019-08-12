@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:Wpf.Common.Demo"
         xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
         xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
+        xmlns:controlBehavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
         xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"  >
+        Title="MainWindow" Height="450" Width="800"  
+         controlBehavior:WindowChromeBehavior.IsEnable="True"
+        >
    
-    <TabControl TabStripPlacement="Left">
+    <TabControl TabStripPlacement="Left" Margin="10">
         <TabItem Header="Drop">
             <local:DropFileView/>
         </TabItem>

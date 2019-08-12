@@ -162,7 +162,7 @@
                 <Setter Property="BorderBrush" TargetName="PART_Border" Value="Red"/>
                 <Setter Property="Effect"  TargetName="PART_Border">
                     <Setter.Value>
-                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="1" RenderingBias="Quality"/>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="2" RenderingBias="Quality"/>
                     </Setter.Value>
                 </Setter>
             </MultiTrigger>
@@ -285,7 +285,7 @@
 
                 <Setter Property="Effect"  TargetName="PART_Border">
                     <Setter.Value>
-                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="1" RenderingBias="Quality"/>
+                        <DropShadowEffect Direction="-90" ShadowDepth="0" Color="Red" BlurRadius="2" RenderingBias="Quality"/>
                     </Setter.Value>
                 </Setter>
             </MultiTrigger>
@@ -301,7 +301,7 @@
                         <DropShadowEffect Direction="-90" 
                                           ShadowDepth="0" 
                                           Color="{StaticResource control-border-active-color}" 
-                                          BlurRadius="1" 
+                                          BlurRadius="2" 
                                           RenderingBias="Quality"/>
                     </Setter.Value>
                 </Setter>
@@ -334,7 +334,7 @@
     </ControlTemplate>
 
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
-
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>

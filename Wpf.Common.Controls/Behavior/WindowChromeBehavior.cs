@@ -86,40 +86,44 @@ namespace Wpf.Common.Controls.Behavior
         {          
             if (!(e.NewValue is bool) || !(bool)e.NewValue) return;
             if (!(obj is Window)) return;
-            var window = obj as Window;                 
+            var window = obj as Window;
+           
             window.Initialized += delegate
             {
                 var content = window.Content as UIElement;
                 var windowBorder = ResourceHelper.GetWindowBorder();
+                //var glowBorder = ResourceHelper.GetWindowGlowBorder();
+                //window.Activated += delegate
+                //{
+                //    glowBorder.BorderBrush = GetBorderBrush(window);
+                //    glowBorder.Effect = new DropShadowEffect {Direction=190, ShadowDepth = 1, Color = (glowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 1 };
+                //};
+                //window.Deactivated += delegate
+                //{
+                //    glowBorder.BorderBrush =ResourceHelper.GetWindowInactiveBorderBrush();
+                //    glowBorder.Effect = new DropShadowEffect { Direction = 190, ShadowDepth = 1, Color = (glowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 1 };
+                //};
 
-                window.Activated += delegate
-                {
-                    windowBorder.BorderBrush = GetBorderBrush(window);
-                    windowBorder.Effect = new DropShadowEffect { ShadowDepth = 0, Color = (windowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 5 };
-                };
-                window.Deactivated += delegate
-                {
-                    windowBorder.BorderBrush =ResourceHelper.GetWindowInactiveBorderBrush();
-                    windowBorder.Effect = new DropShadowEffect { ShadowDepth = 0, Color = (windowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 5 };
-                };
-
+               
                 var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
                 TextElement.SetFontSize(titleBorder,GetTitleFontSize(window));
                 TextElement.SetForeground(titleBorder, GetTitleForeground(window));
                 titleBorder.Background = GetTitleBackground(obj as UIElement);
                 titleBorder.Height = GetTitleHeight(obj as UIElement);
+              
                 var windowContentControl = windowBorder.FindChildren<ContentControl>("contentControl");
+           
                 windowContentControl.Content = content;
-                window.Content = windowBorder;
+                window.Content = windowBorder.Parent;
                 //注册命令按钮事件
+              
                 var buttons = windowBorder.FindChildren<Button>().ToList();
                 buttons.First(x => x.Name == "maximizeButton").Click += (s, arg) => window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
                 buttons.First(x => x.Name == "minimizeButton").Click += (s, arg) => window.WindowState = WindowState.Minimized;
                 buttons.First(x => x.Name == "closeButton").Click += (s, arg) => window.Close();
 
             };
-
-       
+  
             window.WindowStyle = WindowStyle.None;
             window.ResizeMode = ResizeMode.CanResizeWithGrip;
             window.AllowsTransparency = true;

@@ -8,8 +8,7 @@
         xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
         mc:Ignorable="d"       
         Title="ChromeWindow" Height="450" Width="800" 
-        behavior:WindowChromeBehavior.IsEnable="True"
-        behavior:WindowChromeBehavior.BorderBrush="Red"
+        
        >
     <Window.Resources>
         <RoutedCommand x:Key="openCommand"   />

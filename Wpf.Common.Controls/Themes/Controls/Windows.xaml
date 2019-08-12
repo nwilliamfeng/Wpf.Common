@@ -9,163 +9,177 @@
         <ResourceDictionary Source="../Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Border x:Key="WindowBorder" Background="White"  Margin="0.1"  >
-        <Border.Style>
-            <Style TargetType="Border">
-                <Setter Property="BorderThickness" Value="1"/>
-                <!--设置边框逻辑改成behavior里写入-->
-                <!--<Setter Property="BorderBrush" Value="{StaticResource window-active-border-brush}"/>
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect ShadowDepth="0" Color="{StaticResource window-border-active-color}" Opacity="1" BlurRadius="5"/>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
-                        <Setter Property="BorderBrush" Value="{StaticResource window-inactive-border-brush}"/>
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                <DropShadowEffect ShadowDepth="0" Color="{StaticResource window-border-inactive-color}" Opacity="1" BlurRadius="5"/>
-                            </Setter.Value>
-                        </Setter>
-                    </DataTrigger>
-                </Style.Triggers>-->
-            </Style>
-        </Border.Style>
-       
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!--Title-->
-            <Border x:Name="titleBorder" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <!--标题内容-->
-                    <ContentControl x:Name="titleContent" 
+    <Grid x:Key="WindowGrid">
+        <Border x:Name="GlowBorder" Background="White" BorderThickness="1.2"    >
+            <Border.Style>
+                <Style TargetType="Border">
+
+                     <Setter Property="BorderBrush" Value="{StaticResource window-border-active-brush}"/> 
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect 
+                                ShadowDepth="0"                                             
+                                Color="{StaticResource window-border-active-color}" 
+                                Opacity="1" 
+                                BlurRadius="5" 
+                                RenderingBias="Quality"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
+                             <Setter Property="BorderBrush" Value="{StaticResource window-border-inactive-brush}"/> 
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect 
+                                        ShadowDepth="0" 
+                                        Color="{StaticResource window-border-inactive-color}" 
+                                        Opacity="1"  
+                                        RenderingBias="Quality" 
+                                        BlurRadius="5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+        <Border x:Name="WindowBorder" BorderThickness="1" >
+             
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Border x:Name="titleBorder" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!--标题内容-->
+                        <ContentControl x:Name="titleContent" 
                                 Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window},Converter={x:Static data:ValueConverters.PrefixWhiteSpaceConverter},ConverterParameter=2}"                            
                                 VerticalAlignment="Center"                                  
                                 HorizontalContentAlignment="Left"/>
 
-                    <!--标题命令按钮-->
-                    <UniformGrid Columns="3" Grid.Column="1">
-                        <UniformGrid.Resources>
-                            <Style TargetType="Path" x:Key="basePathStyle">
-                                <Setter Property="Stretch"  Value="Uniform"/>
-                                <Setter Property="Fill" Value="Black"/>
-                                <Setter Property="Stroke" Value="Black"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
-                                        <Setter Property="Fill" Value="Gray"/>
-                                        <Setter Property="Stroke" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-
-                            </Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}" x:Key="normalButtonStyle">
-                                <Setter Property="Height" Value="{Binding Height,ElementName=titleBorder}"/>
-                                <Setter Property="Width" Value="45"/>
-                                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-                                <Style.Triggers>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                            <Condition Property="IsPressed" Value="False"/>
-                                        </MultiTrigger.Conditions>
-                                        <Setter Property="Background" Value="#E5E5E5" />
-
-                                    </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                            <Condition Property="IsPressed" Value="True"/>
-                                        </MultiTrigger.Conditions>
-                                        <Setter Property="Background" Value="#CACACB" />
-
-                                    </MultiTrigger>
-                                </Style.Triggers>
-                            </Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}" x:Key="closeButtonStyle">
-                                <Setter Property="Height" Value="{Binding Height,ElementName=titleBorder}"/>
-                                
-                                <Setter Property="Width" Value="45"/>
-                                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-                                <Style.Triggers>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                            <Condition Property="IsPressed" Value="False"/>
-                                        </MultiTrigger.Conditions>
-                                        <Setter Property="Background" Value="Red"/>
-                                        
-                                    </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsMouseOver" Value="True"/>
-                                            <Condition Property="IsPressed" Value="True"/>
-                                        </MultiTrigger.Conditions>
-                                        <Setter Property="Opacity" Value="0.8" />
-                                        <Setter Property="Background" Value="Red"/>
-                                    </MultiTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </UniformGrid.Resources>
-                        <Button x:Name="minimizeButton"  Style="{StaticResource normalButtonStyle}" ToolTip="最小化">
-                            <Path  Data="{StaticResource Minimize}" Style="{StaticResource basePathStyle}"  Width="10" Height="1.1" Stretch="Uniform" StrokeThickness="0.2"/>
-                        </Button>
-                        <Button  x:Name="maximizeButton">
-                            <Button.Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource normalButtonStyle}">
-                                    <Setter Property="ToolTip" Value="最大化"/>
-                                    <Setter Property="Content">
-                                        <Setter.Value>
-                                            <Path  Data="{StaticResource Maximize}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
-                                        </Setter.Value>
-                                    </Setter>
+                        <!--标题命令按钮-->
+                        <UniformGrid Columns="3" Grid.Column="1">
+                            <UniformGrid.Resources>
+                                <Style TargetType="Path" x:Key="basePathStyle">
+                                    <Setter Property="Stretch"  Value="Uniform"/>
+                                    <Setter Property="Fill" Value="Black"/>
+                                    <Setter Property="Stroke" Value="Black"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding WindowState,RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
-                                            <Setter Property="ToolTip" Value="向下还原"/>
-                                            <Setter Property="Content" >
-                                                <Setter.Value>
-                                                    <Path  Data="{StaticResource RestoreIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
-                                                </Setter.Value>
-                                            </Setter>
+                                        <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
+                                            <Setter Property="Fill" Value="Gray"/>
+                                            <Setter Property="Stroke" Value="Gray"/>
                                         </DataTrigger>
                                     </Style.Triggers>
+
                                 </Style>
-                            </Button.Style>
-                            
-                        </Button>
-                        <Button    x:Name="closeButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
-                            <Path  Data="{StaticResource CloseIcon}"  Width="10" Height="10"  StrokeThickness="0.1">
-                                <Path.Style>
-                                    <Style TargetType="Path" BasedOn="{StaticResource  basePathStyle}">
+                                <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}" x:Key="normalButtonStyle">
+                                    <Setter Property="Height" Value="{Binding Height,ElementName=titleBorder}"/>
+                                    <Setter Property="Width" Value="45"/>
+                                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                                <Condition Property="IsPressed" Value="False"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="#E5E5E5" />
+
+                                        </MultiTrigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                                <Condition Property="IsPressed" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="#CACACB" />
+
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}" x:Key="closeButtonStyle">
+                                    <Setter Property="Height" Value="{Binding Height,ElementName=titleBorder}"/>
+
+                                    <Setter Property="Width" Value="45"/>
+                                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                                <Condition Property="IsPressed" Value="False"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="Red"/>
+
+                                        </MultiTrigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                                <Condition Property="IsPressed" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Opacity" Value="0.8" />
+                                            <Setter Property="Background" Value="Red"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </UniformGrid.Resources>
+                            <Button x:Name="minimizeButton" UseLayoutRounding="True" Style="{StaticResource normalButtonStyle}" ToolTip="最小化">
+                                <Path  Data="{StaticResource MinimizeIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="1.1" Stretch="Uniform" StrokeThickness="0.2"/>
+                            </Button>
+                            <Button  x:Name="maximizeButton" UseLayoutRounding="True">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource normalButtonStyle}">
+                                        <Setter Property="ToolTip" Value="最大化"/>
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <Path  Data="{StaticResource MaximizeIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
+                                            </Setter.Value>
+                                        </Setter>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=Button}}" Value="true">
-                                                <Setter Property="Fill" Value="White" />
-                                                <Setter Property="Stroke" Value="White" />
+                                            <DataTrigger Binding="{Binding WindowState,RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                                                <Setter Property="ToolTip" Value="向下还原"/>
+                                                <Setter Property="Content" >
+                                                    <Setter.Value>
+                                                        <Path  Data="{StaticResource RestoreIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
+                                                    </Setter.Value>
+                                                </Setter>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
-                                </Path.Style>
-                            </Path>
-                        </Button>
-                    </UniformGrid>
-                </Grid>
-            </Border>
+                                </Button.Style>
+
+                            </Button>
+                            <Button UseLayoutRounding="True"   x:Name="closeButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
+                                <Path  Data="{StaticResource CloseIcon}"  Width="10" Height="10"  StrokeThickness="0.1">
+                                    <Path.Style>
+                                        <Style TargetType="Path" BasedOn="{StaticResource  basePathStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=Button}}" Value="true">
+                                                    <Setter Property="Fill" Value="White" />
+                                                    <Setter Property="Stroke" Value="White" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Path.Style>
+                                </Path>
+                            </Button>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
 
 
 
-            <!--Content-->
-            <Border Grid.Row="1" x:Name="contentBorder">
-                <ContentControl x:Name="contentControl" />
-            </Border>
+                <!--Content-->
+                <Border Grid.Row="1" x:Name="contentBorder">
+                    <ContentControl x:Name="contentControl" />
+                </Border>
 
 
-        </Grid>
-    </Border>
+            </Grid>
+        </Border>
+    </Grid>
 </ResourceDictionary>

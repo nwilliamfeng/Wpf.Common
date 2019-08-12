@@ -9,11 +9,12 @@
         <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
-
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -23,9 +24,8 @@
                 <ControlTemplate TargetType="{x:Type DatePicker}">
                     <Grid>
                         <!--适用于ErrorTemplate的AdornerPlaceHolder-->
-                        <AdornerDecorator x:Name="adorner">
-                            <Border x:Name="PART_Border" 
-                                    UseLayoutRounding="True"
+                        <AdornerDecorator x:Name="adorner" >
+                            <Border x:Name="PART_Border"            
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}"/>
@@ -33,6 +33,7 @@
 
 
                         <Grid x:Name="PART_Root" 
+                              
                                   Background="{TemplateBinding Background}" 
                                   Margin="{TemplateBinding Padding}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -116,11 +117,11 @@
 
                             <Setter Property="Effect"  TargetName="PART_Border">
                                 <Setter.Value>
-                                    <DropShadowEffect Direction="-90"   
+                                    <DropShadowEffect Direction="-90"            
                                                       ShadowDepth="0"    
                                                       Color="Red"  
-                                                      BlurRadius="1" 
-                                                      RenderingBias="Quality"/>
+                                                      BlurRadius="2" 
+                                                      />
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
@@ -136,8 +137,8 @@
                                     <DropShadowEffect Direction="-90"   
                                                       ShadowDepth="0"    
                                                       Color="{StaticResource control-border-active-color}"  
-                                                      BlurRadius="1" 
-                                                      RenderingBias="Quality"/>
+                                                      BlurRadius="2" 
+                                                     />
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
