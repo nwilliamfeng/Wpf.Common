@@ -5,7 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Icons.xaml"/>
         <ResourceDictionary Source="../Brushes.xaml"/>
-        <ResourceDictionary Source="../Colors/Gray.xaml"/>
+     
         <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 

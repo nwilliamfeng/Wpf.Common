@@ -14,4 +14,5 @@
     <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}"/>
     <Style TargetType="DatePicker" BasedOn="{StaticResource DatePickerStyle}"/>
     <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}"/>
+    <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}"/>
 </ResourceDictionary>

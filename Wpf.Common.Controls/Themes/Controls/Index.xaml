@@ -12,5 +12,6 @@
         <ResourceDictionary Source="DatePicker.xaml"/>
         <ResourceDictionary Source="RadioButton.xaml"/>
         <ResourceDictionary Source="ToggleButton.xaml"/>
+        <ResourceDictionary Source="MenuItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

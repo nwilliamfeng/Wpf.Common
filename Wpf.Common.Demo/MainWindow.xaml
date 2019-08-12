@@ -65,5 +65,9 @@
         <TabItem Header="ToggleButton">
             <controlView:ToggleButtonView/>
         </TabItem>
+
+        <TabItem Header="Menu">
+            <controlView:MenuView/>
+        </TabItem>
     </TabControl>
 </Window>
