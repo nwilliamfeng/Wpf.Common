@@ -16,4 +16,5 @@
     <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}"/>
     <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}"/>
     <Style TargetType="Menu" BasedOn="{StaticResource MenuStyle}"/>
+    <Style TargetType="ContextMenu" BasedOn="{StaticResource ContextMenuStyle}"/>
 </ResourceDictionary>

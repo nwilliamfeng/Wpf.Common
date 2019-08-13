@@ -3,7 +3,6 @@
                    >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Brushes.xaml"/>
-        <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!--顶级菜单项Header模板-->
@@ -53,7 +52,7 @@
                        PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" 
                        Placement="Bottom">
                     <Border x:Name="SubMenuBorder" 
-                            BorderBrush="#FFBDBDBD" 
+                            BorderBrush="{StaticResource submenu-border-brush}" 
                             BorderThickness="1" 
                             Background="White" 
                             UseLayoutRounding="True"  >
@@ -139,7 +138,7 @@
                                   ContentSource="Icon" 
                                   HorizontalAlignment="Right" 
                                   Height="16" 
-                                  Margin="15,3,0,3" 
+                                  Margin="10,3,0,3" 
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                   VerticalAlignment="Center" 
                                   Width="16"/>
@@ -172,7 +171,12 @@
                                   RecognizesAccessKey="True" 
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                   VerticalAlignment="Center"/>
-                <TextBlock x:Name="menuGestureText" Grid.Column="4" Margin="{TemplateBinding Padding}" Opacity="0.7" Text="{TemplateBinding InputGestureText}" VerticalAlignment="Center"/>
+                <TextBlock x:Name="menuGestureText" 
+                           Grid.Column="4" 
+                           Margin="{TemplateBinding Padding}" 
+                           Opacity="0.7" 
+                           Text="{TemplateBinding InputGestureText}" 
+                           VerticalAlignment="Center"/>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -274,7 +278,7 @@
                        Placement="Right" 
                        VerticalOffset="-3">
                     <Border x:Name="SubMenuBorder" 
-                            BorderBrush="#FF999999" 
+                            BorderBrush="{StaticResource submenu-border-brush}" 
                             BorderThickness="1" 
                             Background="White" 
                             Padding="0">

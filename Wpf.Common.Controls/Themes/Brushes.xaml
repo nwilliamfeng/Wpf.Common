@@ -32,4 +32,6 @@
 
     <SolidColorBrush x:Key="menuItem-press-brush" Color="{StaticResource Gray4}"/>
 
+    <SolidColorBrush x:Key="submenu-border-brush" Color="{StaticResource submenu-border-color}"/>
+
 </ResourceDictionary>

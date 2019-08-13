@@ -13,4 +13,6 @@
 
     <Color x:Key="control-item-mouseover-color">#7DBEFF</Color>
 
+    <Color x:Key="submenu-border-color">#FFBDBDBD</Color>
+
 </ResourceDictionary>
