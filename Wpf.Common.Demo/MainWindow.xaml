@@ -10,6 +10,7 @@
         xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"  
+      
          controlBehavior:WindowChromeBehavior.IsEnable="True"
         >
    
@@ -68,6 +69,9 @@
 
         <TabItem Header="Menu">
             <controlView:MenuView/>
+        </TabItem>
+        <TabItem Header="MemoryLeak">
+            <local:MemoryLeakView/>
         </TabItem>
     </TabControl>
 </Window>
