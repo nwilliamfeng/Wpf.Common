@@ -10,11 +10,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Grid x:Key="WindowGrid">
-        <Border x:Name="GlowBorder" Background="White" BorderThickness="1.2"    >
+        <Border x:Name="GlowBorder" Background="White" BorderThickness="1.2">
             <Border.Style>
                 <Style TargetType="Border">
-
-                     <Setter Property="BorderBrush" Value="{StaticResource window-border-active-brush}"/> 
+                    <Setter Property="BorderBrush" Value="{StaticResource window-border-active-brush}"/> 
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect 
@@ -44,8 +43,6 @@
             </Border.Style>
         </Border>
         <Border x:Name="WindowBorder" BorderThickness="1" >
-             
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -65,7 +62,7 @@
                                 HorizontalContentAlignment="Left"/>
 
                         <!--标题命令按钮-->
-                        <UniformGrid Columns="3" Grid.Column="1">
+                        <UniformGrid Columns="3" Grid.Column="1" VerticalAlignment="Top">
                             <UniformGrid.Resources>
                                 <Style TargetType="Path" x:Key="basePathStyle">
                                     <Setter Property="Stretch"  Value="Uniform"/>
@@ -79,10 +76,17 @@
                                     </Style.Triggers>
 
                                 </Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}" x:Key="normalButtonStyle">
-                                    <Setter Property="Height" Value="{Binding Height,ElementName=titleBorder}"/>
+                                <Style x:Key="windowButtonStyle" 
+                                       TargetType="Button" 
+                                       BasedOn="{StaticResource chromeButtonStyle}">
+                                    <Setter Property="Height" Value="28"/>
                                     <Setter Property="Width" Value="45"/>
                                     <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                                </Style>
+                                <Style TargetType="Button" 
+                                       BasedOn="{StaticResource windowButtonStyle}" 
+                                       x:Key="normalButtonStyle">
+                                                                 
                                     <Style.Triggers>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -102,11 +106,9 @@
                                         </MultiTrigger>
                                     </Style.Triggers>
                                 </Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}" x:Key="closeButtonStyle">
-                                    <Setter Property="Height" Value="{Binding Height,ElementName=titleBorder}"/>
-
-                                    <Setter Property="Width" Value="45"/>
-                                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                                <Style TargetType="Button" 
+                                       BasedOn="{StaticResource windowButtonStyle}"
+                                       x:Key="closeButtonStyle">
                                     <Style.Triggers>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>

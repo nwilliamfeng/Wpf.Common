@@ -63,8 +63,12 @@ namespace Wpf.Common.Controls.Behavior
             var windowBorder = ResourceHelper.GetWindowBorder();
             var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
             titleBorder.Height = height;
-            var chrome = WindowChrome.GetWindowChrome(window);
-            if (chrome != null) chrome.CaptionHeight = height - 5;
+            window.Initialized += delegate
+            {
+                var chrome = WindowChrome.GetWindowChrome(window);
+                if (chrome != null) chrome.CaptionHeight = height - 5;
+            };
+          
         }
 
          
@@ -131,6 +135,7 @@ namespace Wpf.Common.Controls.Behavior
                 ResizeBorderThickness = new Thickness(5),
                 CornerRadius = new CornerRadius(0),
                 UseAeroCaptionButtons = false,
+                
                 GlassFrameThickness = new Thickness(0),
                 NonClientFrameEdges = NonClientFrameEdges.None,
             };
