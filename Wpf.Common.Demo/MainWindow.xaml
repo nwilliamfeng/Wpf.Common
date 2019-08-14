@@ -82,5 +82,8 @@
         <TabItem Header="MemoryLeak">
             <local:MemoryLeakView/>
         </TabItem>
+        <TabItem Header="TreeView">
+            <controlView:TreeViewPage/>
+        </TabItem>
     </TabControl>
 </Window>
