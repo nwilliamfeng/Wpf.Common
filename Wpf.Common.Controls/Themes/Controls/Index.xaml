@@ -15,5 +15,6 @@
         <ResourceDictionary Source="MenuItem.xaml"/>
         <ResourceDictionary Source="Menu.xaml"/>
         <ResourceDictionary Source="ContextMenu.xaml"/>
+        <ResourceDictionary Source="TreeViewItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -17,4 +17,5 @@
     <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}"/>
     <Style TargetType="Menu" BasedOn="{StaticResource MenuStyle}"/>
     <Style TargetType="ContextMenu" BasedOn="{StaticResource ContextMenuStyle}"/>
+    <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
 </ResourceDictionary>

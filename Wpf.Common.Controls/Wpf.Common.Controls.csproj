@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Controls\TreeViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Controls\Windows.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +140,8 @@
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
+    <Compile Include="Data\TreeViewItemLeftMarginMultiplierConverter.cs" />
+    <Compile Include="Helper\TreeViewItemExtensions.cs" />
     <Compile Include="Helper\ControlTemplateHelper.cs" />
     <Compile Include="Helper\RankHelper.cs" />
     <Compile Include="CustomValidationPopup.cs" />
