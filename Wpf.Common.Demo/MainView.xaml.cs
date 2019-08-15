@@ -18,9 +18,9 @@ namespace Wpf.Common.Demo
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainView : Window
     {
-        public MainWindow()
+        public MainView()
         {
            
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace Wpf.Common.Demo
             //  this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
             //  this.textBox.PreviewDrop += TextBox_PreviewDrop;
             this.SetTitleAsync();
-
+             
         }
 
 

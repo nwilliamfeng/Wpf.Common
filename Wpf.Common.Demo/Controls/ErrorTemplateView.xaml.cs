@@ -24,12 +24,12 @@ namespace Wpf.Common.Demo.Controls
         public ErrorTemplateView()
         {
             InitializeComponent();
-            this.DataContext = new Customer();
+            this.DataContext = new ErrorTemplateViewModel();
         }
     }
 
 
-    public class Customer : INotifyPropertyChanged,IDataErrorInfo
+    public class ErrorTemplateViewModel : INotifyPropertyChanged,IDataErrorInfo
     {
         private string _name;
 

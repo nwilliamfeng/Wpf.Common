@@ -30,7 +30,6 @@
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=TreeViewItem}}" Value="true">
                             <Setter Property="Fill"  TargetName="ExpandPath" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-
                         </DataTrigger>
                        
                         <Trigger Property="IsChecked" Value="True">
