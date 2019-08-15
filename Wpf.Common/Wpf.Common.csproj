@@ -42,6 +42,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behavior\TreeViewBehavior.cs" />
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />

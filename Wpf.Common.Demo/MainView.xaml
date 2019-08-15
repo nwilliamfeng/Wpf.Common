@@ -9,7 +9,7 @@
         xmlns:controlBehavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
         xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"  
+        Height="450" Width="800"  
         controlBehavior:WindowChromeBehavior.TitleHeight="46"
          controlBehavior:WindowChromeBehavior.IsEnable="True"
         >
@@ -20,79 +20,21 @@
             <Path Stretch="Uniform" Height="32" Width="32"
                 Data="M456 484V160.1l-335.9 72V484H456zM512 484h391.8V64.2l-391.8 84V484zM456 540H120.2v251.9l335.9 72V540zM512 540v335.9l391.8 84V540H512z" Fill="#00adef"/>
 
-            <TextBlock Text="ddddd" Foreground="Black" FontSize="18" Margin="5"/>
+            <TextBlock Text="{Binding Title,RelativeSource={RelativeSource AncestorType=Window}}" Foreground="Black" FontSize="18" Margin="5"/>
         </DockPanel>
         
     </controlBehavior:WindowChromeBehavior.TitleContent>
-    <Grid>
-        <TabControl TabStripPlacement="Left" Margin="10" Visibility="Collapsed">
-            <TabItem Header="Drop">
-                <local:DropFileView/>
-            </TabItem>
-            <TabItem Header="HeadeContentControl">
-                <local:HeaderContentView Background="AliceBlue" MinWidth="200"/>
-            </TabItem>
-
-            <TabItem Header="Brush">
-                <local:BrushView />
-            </TabItem>
-
-            <TabItem Header="ViewBox">
-                <local:ViewBoxView/>
-
-            </TabItem>
-            <TabItem Header="HugeData">
-                <local:HugeDataView/>
-            </TabItem>
-            <TabItem Header="Rank">
-                <controlView:RankView/>
-            </TabItem>
-            <TabItem Header="Slider">
-                <controlView:SliderView/>
-            </TabItem>
-            <TabItem Header="Progressbar">
-                <controlView:ProgressView/>
-            </TabItem>
-            <TabItem Header="TextBox">
-                <controlView:TextBoxView/>
-            </TabItem>
-            <TabItem Header="PasswordBox">
-                <controlView:PasswordBoxView/>
-            </TabItem>
-            <TabItem Header="ComboBox">
-                <controlView:ComboBoxView/>
-            </TabItem>
-            <TabItem Header="CheckBox">
-                <controlView:CheckBoxView/>
-            </TabItem>
-            <TabItem Header="DatePicker">
-                <controlView:DatePickerView/>
-            </TabItem>
-            <TabItem Header="RadioButton">
-                <controlView:RadioView/>
-            </TabItem>
-            <TabItem Header="Validation">
-                <controlView:ErrorTemplateView/>
-            </TabItem>
-            <TabItem Header="ToggleButton">
-                <controlView:ToggleButtonView/>
-            </TabItem>
-
-            <TabItem Header="Menu">
-                <controlView:MenuView/>
-            </TabItem>
-            <TabItem Header="MemoryLeak">
-                <local:MemoryLeakView/>
-            </TabItem>
-            <TabItem Header="TreeView">
-                <controlView:TreeViewPage/>
-            </TabItem>
-        </TabControl>
-        <DockPanel>
-            <TreeView ItemsSource="{Binding Nodes}" MinWidth="200">
-                <TreeView.InputBindings>
-                    <KeyBinding Key="F2" Command="{Binding SelectedItem.Rename}"/>
-                </TreeView.InputBindings>
+   
+        
+        <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            <TreeView ItemsSource="{Binding Nodes}" 
+                      MinWidth="200" behavior:TreeViewBehavior.SelectedItemCommand="{Binding OpenCommand,Mode=OneWay}" 
+                      >
+             
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type local:GroupNode}" ItemsSource="{Binding Items}">
                         <TextBlock Text="{Binding Name}"/>
@@ -102,8 +44,13 @@
                     </DataTemplate>
                 </TreeView.Resources>
             </TreeView>
-            <ContentControl Content="{Binding Content}"/>
+
+        <DockPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="{Binding SelectedNodeName}"   HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" DockPanel.Dock="Top"/>
+            <ContentControl x:Name="ActiveItem" Margin="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </DockPanel>
-    </Grid>
+            
+        </Grid>
+   
     
 </Window>

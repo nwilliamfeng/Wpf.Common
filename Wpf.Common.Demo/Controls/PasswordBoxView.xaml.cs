@@ -24,11 +24,11 @@ namespace Wpf.Common.Demo.Controls
         public PasswordBoxView()
         {
             InitializeComponent();
-            this.DataContext = new LoginViewModel();
+            this.DataContext = new PasswordBoxViewModel();
         }
     }
 
-    public class LoginViewModel : INotifyPropertyChanged,IDataErrorInfo
+    public class PasswordBoxViewModel : INotifyPropertyChanged,IDataErrorInfo
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -44,17 +44,7 @@ namespace Wpf.Common.Demo.Controls
             }
         }
 
-        private string _name;
-
-        public string Name
-        {
-            get => this._name;
-            set
-            {
-                this._name = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
-            }
-        }
+        
 
         public string Error => null;
 

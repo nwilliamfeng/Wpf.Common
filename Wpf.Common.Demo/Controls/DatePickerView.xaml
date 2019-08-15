@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
              xmlns:behaviors="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White" >
     
 
     <UniformGrid Columns="1">
@@ -19,6 +19,6 @@
                     Width="125"    behaviors:DatePickerBehavior.CornerRadius="5"/>
 
         <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"  Width="125"  />
-        <DatePickerTextBox VerticalAlignment="Center" HorizontalAlignment="Center"  />
+      
     </UniformGrid>
 </UserControl>

@@ -10,17 +10,9 @@ using Wpf.Common.Input;
 
 namespace Wpf.Common.Demo
 {
-    public class NodeViewModel:PropertyChangedBase
+    public abstract class NodeViewModelBase : PropertyChangedBase
     {
         private string _name;
-        private static IEventAggregator eventAggregator;
-
-        public NodeViewModel()
-        {
-            if (eventAggregator == null)
-                eventAggregator = IoC.Get<IEventAggregator>();
-        }
-
         public string Name
         {
             get => this._name;
@@ -31,44 +23,82 @@ namespace Wpf.Common.Demo
             }
         }
 
-        private int _code;
-        public int Code
+        
+
+        public abstract ICommand OpenCommand { get; }
+        
+    }
+
+
+    public class NodeViewModel: NodeViewModelBase
+    {
+     
+        private static IEventAggregator eventAggregator;
+
+        public NodeViewModel()
         {
-            get => this._code;
-            set
-            {
-                this._code = value;
-                this.NotifyOfPropertyChange(() => this.Code);
-            }
+            if (eventAggregator == null)
+                eventAggregator = IoC.Get<IEventAggregator>();
         }
+
+        
+
+       
 
         private ICommand _openCommand;
 
-        public ICommand OpenCommand
+        public override ICommand OpenCommand
         {
             get
             {
                 return this._openCommand ?? (this._openCommand = new RelayCommand(() =>
                     {
-                        eventAggregator.PublishOnUIThread(new NodeSelectEventArgs { NodeCode=this.Code});
+                        eventAggregator.PublishOnUIThread(new NodeSelectEventArgs( Name));
                     }));
             }
         }
     }
 
-    public class GroupNode
+    public class GroupNode : NodeViewModelBase
     {
-        public string Name { get; set; }
+        private ICommand _openCommand;
+
+        public override ICommand OpenCommand
+        {
+            get
+            {
+                return this._openCommand ?? (this._openCommand = new RelayCommand(() =>
+                {
+                     
+                }));
+            }
+        }
+
         public ObservableCollection<NodeViewModel> Items { get; private set; } = new ObservableCollection<NodeViewModel>();
+
+      
     }
 
     public class NodeSelectEventArgs : EventArgs
     {
-        public int NodeCode { get; set; }
+        public NodeSelectEventArgs( string name)
+        {
+           
+            this.Name=name;
+        }
+     
+
+        public string Name { get; private set; }
     }
 
-    public class NodeCodes
+
+
+    public class NodeNames
     {
-        public const int ERROR_TEMPLATE = 1;
+        public const string ERROR_TEMPLATE = "ErrorTemplate";
+
+        public const string DATE_PICKER = "DatePicker";
+
+        public const string PASSWORD_BOX = "PasswordBox";
     }
 }
