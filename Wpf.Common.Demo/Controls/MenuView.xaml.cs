@@ -23,6 +23,17 @@ namespace Wpf.Common.Demo.Controls
         public MenuView()
         {
             InitializeComponent();
+            this.Loaded += MenuView_Loaded;
         }
+
+        private void MenuView_Loaded(object sender, RoutedEventArgs e)
+        {
+             
+        }
+    }
+
+    public class MenuViewModel : Caliburn.Micro.PropertyChangedBase
+    {
+
     }
 }

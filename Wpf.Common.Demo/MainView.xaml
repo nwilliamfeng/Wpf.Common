@@ -10,7 +10,8 @@
         xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
         Height="450" Width="800"  
-        WindowStyle="None" 
+        
+        ResizeMode="CanResizeWithGrip"
         controlBehavior:WindowChromeBehavior.TitleHeight="46"
          controlBehavior:WindowChromeBehavior.IsEnable="True"
         >

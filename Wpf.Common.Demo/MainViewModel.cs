@@ -21,6 +21,7 @@ namespace Wpf.Common.Demo
         [ImportingConstructor]
         public MainViewModel(IEventAggregator eventAggregator)
         {
+             
             eventAggregator.Subscribe(this);
             this.Nodes = new ObservableCollection<GroupNode>();
             var gpNode1 = new GroupNode { Name="Template"};
@@ -29,8 +30,14 @@ namespace Wpf.Common.Demo
             Nodes.Add(gpNode1);
 
             var gpNode2 = new GroupNode { Name = "Controls" };
-            gpNode2.Items.Add(new NodeViewModel { Name =NodeNames.DATE_PICKER  });
-            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.PASSWORD_BOX });
+            foreach(var field in typeof(NodeNames).GetFields())
+            {
+                var name = field.GetValue(new NodeNames()) as string;
+                if (name != NodeNames.ERROR_TEMPLATE)
+                    gpNode2.Items.Add(new NodeViewModel { Name = name });
+            }
+          //  gpNode2.Items.Add(new NodeViewModel { Name =NodeNames.DATE_PICKER  });
+         //   gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.PASSWORD_BOX });
             Nodes.Add(gpNode2);
             this.DisplayName = "Demo";
         }
@@ -78,6 +85,31 @@ namespace Wpf.Common.Demo
                 case NodeNames.DATE_PICKER:
                     this.ActivateItem(new DatePickerViewModel());
                     break;
+                case NodeNames.CHECK_BOX:
+                    this.ActivateItem(new CheckBoxViewModel());
+                    break;
+                case NodeNames.COMBOBOX:
+                    this.ActivateItem(new ComboBoxViewModel());
+                    break;
+                case NodeNames.MENU:
+                    this.ActivateItem(new MenuViewModel());
+                    break;
+                case NodeNames.RADIO_BUTTON:
+                    this.ActivateItem(new RadioViewModel());
+                    break;
+                case NodeNames.RANK:
+                    this.ActivateItem(new RankViewModel());
+                    break;
+                case NodeNames.SLIDER:
+                    this.ActivateItem(new SliderViewModel());
+                    break;
+                case NodeNames.TEXTBOX:
+                    this.ActivateItem(new TextBoxViewModel());
+                    break;
+                case NodeNames.TOGGLE_BUTTON:
+                    this.ActivateItem(new ToggleButtonViewModel());
+                    break;
+              
 
                 default:
                     break;

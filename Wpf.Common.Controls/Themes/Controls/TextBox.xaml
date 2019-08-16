@@ -11,7 +11,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
-        <Setter Property="UseLayoutRounding" Value="True"/>
+       
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -27,19 +27,19 @@
                     <Grid>
                         <!--适用于ErrorTemplate的AdornerPlaceHolder-->
                         <AdornerDecorator >
-                            <Border x:Name="PART_Border" 
-                                    UseLayoutRounding="True"
+                            <Border x:Name="PART_Border"                                 
+                                SnapsToDevicePixels="True"
                                 BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"                                     
                                 Background="{TemplateBinding Background}"/>
                         </AdornerDecorator>
-                        <DockPanel LastChildFill="True">
+                        <DockPanel LastChildFill="True" >
                             <ContentControl x:Name="PART_IconHost" DockPanel.Dock="Left"/>
                             <Grid>
                                 <!--Watermark-->
                                 <TextBlock x:Name="PART_Watermark"                                           
                                            Foreground="{StaticResource WatermarkForeground}"                                           
-                                           Padding="{TemplateBinding Padding}"
+                                       Padding="{TemplateBinding Padding}"
                                            Visibility="Collapsed"
                                            VerticalAlignment="Center" />
                                 <!--容器-->

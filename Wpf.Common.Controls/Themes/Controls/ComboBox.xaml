@@ -92,7 +92,7 @@
     <!--不可编辑（默认）模板-->
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
 
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+        <Grid x:Name="templateRoot" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
@@ -129,7 +129,7 @@
             </Popup>
             <AdornerDecorator Grid.ColumnSpan="2">
                 <Border x:Name="PART_Border"                                
-                                UseLayoutRounding="True"
+                                 SnapsToDevicePixels="true"
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}"/>
@@ -206,7 +206,7 @@
         </Setter>
     </Style>
     <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+        <Grid x:Name="templateRoot" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
@@ -245,7 +245,7 @@
 
             <AdornerDecorator Grid.ColumnSpan="2">
                 <Border x:Name="PART_Border"                                
-                                UseLayoutRounding="True"
+                                SnapsToDevicePixels="true"
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}"/>
@@ -255,10 +255,8 @@
                               Grid.ColumnSpan="2" 
                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                               Style="{StaticResource ComboBoxToggleButton}"/>
-            <Border x:Name="border" 
-                        Background="{TemplateBinding Background}" 
-                        Margin="{TemplateBinding BorderThickness}">
-                <Grid>
+            
+                <Grid  SnapsToDevicePixels="True">
                     <!--Watermark-->
                     <TextBlock x:Name="PART_Watermark"                                           
                                            Foreground="{StaticResource WatermarkForeground}"                                           
@@ -272,8 +270,7 @@
                              Style="{StaticResource ComboBoxEditableTextBox}" 
                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
-                
-            </Border>
+            
         </Grid>
         <ControlTemplate.Triggers>
             <MultiTrigger>
@@ -334,7 +331,7 @@
     </ControlTemplate>
 
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
-        <Setter Property="UseLayoutRounding" Value="True"/>
+       
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>

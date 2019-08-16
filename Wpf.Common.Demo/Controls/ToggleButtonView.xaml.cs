@@ -25,4 +25,9 @@ namespace Wpf.Common.Demo.Controls
             InitializeComponent();
         }
     }
+
+    public class ToggleButtonViewModel : Caliburn.Micro.PropertyChangedBase
+    {
+
+    }
 }

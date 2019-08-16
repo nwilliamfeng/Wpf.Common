@@ -59,7 +59,7 @@ namespace Wpf.Common.Controls.Behavior
             if (!(e.NewValue is int) ) return;
             var height = (int)e.NewValue;
             var window = obj as Window;
-            if (window==null) return;
+            if (window==null || window.WindowStyle== WindowStyle.None || window.WindowStyle== WindowStyle.ToolWindow) return;
             var windowBorder = ResourceHelper.GetWindowBorder();
             var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
             titleBorder.Height = height;
@@ -68,10 +68,7 @@ namespace Wpf.Common.Controls.Behavior
                 var chrome = WindowChrome.GetWindowChrome(window);
                 if (chrome != null) chrome.CaptionHeight = height - 5;
             };
-          
         }
-
-         
 
         private static void OnTitleContentPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
@@ -85,7 +82,6 @@ namespace Wpf.Common.Controls.Behavior
         }
 
        
-
         private static void OnIsEnablePropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {          
             if (!(e.NewValue is bool) || !(bool)e.NewValue) return;
@@ -114,7 +110,7 @@ namespace Wpf.Common.Controls.Behavior
                 var buttons = windowBorder.FindChildren<Button>().ToList();
                 var maxBtn = buttons.First(x => x.Name == "maximizeButton");
                 var minBtn = buttons.First(x => x.Name == "minimizeButton");
-                if (window.WindowStyle == WindowStyle.None || window.WindowStyle == WindowStyle.ToolWindow)
+                if (window.WindowStyle == WindowStyle.ToolWindow)
                 {
                     maxBtn.Visibility = Visibility.Collapsed;
                     minBtn.Visibility = Visibility.Collapsed;
@@ -129,23 +125,17 @@ namespace Wpf.Common.Controls.Behavior
                 buttons.First(x => x.Name == "closeButton").Click += (s, arg) => window.Close();
 
             };
-  
-            window.WindowStyle = WindowStyle.None;
-            window.ResizeMode = ResizeMode.CanResizeWithGrip; 
+
+            window.WindowStyle = WindowStyle.None;     
             window.AllowsTransparency = true;
+           
             WindowChrome chrome = new WindowChrome {
                 ResizeBorderThickness = new Thickness(5),
                 CornerRadius = new CornerRadius(0),
-                UseAeroCaptionButtons = false,
-                
+                UseAeroCaptionButtons = false,               
                 GlassFrameThickness = new Thickness(0),
                 NonClientFrameEdges = NonClientFrameEdges.None,
             };
-
-           
-
-            
-
             window.SizeChanged += delegate
             {
                 var windowBorder = ResourceHelper.GetWindowBorder();

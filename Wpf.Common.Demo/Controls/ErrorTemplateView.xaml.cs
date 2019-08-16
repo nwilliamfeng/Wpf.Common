@@ -24,7 +24,7 @@ namespace Wpf.Common.Demo.Controls
         public ErrorTemplateView()
         {
             InitializeComponent();
-            this.DataContext = new ErrorTemplateViewModel();
+           
         }
     }
 

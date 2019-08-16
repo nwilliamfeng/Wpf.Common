@@ -24,7 +24,7 @@ namespace Wpf.Common.Demo.Controls
         public DatePickerView()
         {
             InitializeComponent();
-            this.DataContext = new DatePickerViewModel();
+            
         }
     }
 

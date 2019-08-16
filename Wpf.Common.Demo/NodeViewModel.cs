@@ -100,5 +100,21 @@ namespace Wpf.Common.Demo
         public const string DATE_PICKER = "DatePicker";
 
         public const string PASSWORD_BOX = "PasswordBox";
+
+        public const string RANK = "RankControl";
+
+        public const string TEXTBOX = "TextBox";
+
+        public const string COMBOBOX = "ComboBox";
+
+        public const string MENU = "Menu";
+
+        public const string SLIDER = "Slider";
+
+        public const string TOGGLE_BUTTON = "ToggleButton";
+
+        public const string RADIO_BUTTON = "RadioButton";
+
+        public const string CHECK_BOX = "CheckBox";
     }
 }

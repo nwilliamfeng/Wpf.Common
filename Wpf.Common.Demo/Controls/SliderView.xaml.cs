@@ -26,4 +26,9 @@ namespace Wpf.Common.Demo.Controls
             
         }
     }
+
+    public class SliderViewModel : Caliburn.Micro.PropertyChangedBase
+    {
+
+    }
 }

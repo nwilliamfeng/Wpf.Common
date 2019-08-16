@@ -25,4 +25,9 @@ namespace Wpf.Common.Demo.Controls
             InitializeComponent();
         }
     }
+
+    public class CheckBoxViewModel : Caliburn.Micro.PropertyChangedBase
+    {
+
+    }
 }

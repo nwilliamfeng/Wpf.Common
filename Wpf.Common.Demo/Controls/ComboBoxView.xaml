@@ -13,6 +13,7 @@
     
     <UniformGrid Columns="1">
         <ComboBox VerticalAlignment="Center" 
+                 
                   SelectedItem="{Binding Value,Mode=TwoWay, 
             UpdateSourceTrigger=PropertyChanged,
             ValidatesOnDataErrors=True,
