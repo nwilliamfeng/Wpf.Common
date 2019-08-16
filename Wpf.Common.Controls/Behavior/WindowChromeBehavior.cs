@@ -89,26 +89,16 @@ namespace Wpf.Common.Controls.Behavior
         private static void OnIsEnablePropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {          
             if (!(e.NewValue is bool) || !(bool)e.NewValue) return;
-            if (!(obj is Window)) return;
             var window = obj as Window;
-           
+            if (window==null) return;
+            if (window.WindowStyle == WindowStyle.None) //如果是none无需加载
+                return;
             window.Initialized += delegate
             {
+                
                 var content = window.Content as UIElement;
                 var windowBorder = ResourceHelper.GetWindowBorder();
-                //var glowBorder = ResourceHelper.GetWindowGlowBorder();
-                //window.Activated += delegate
-                //{
-                //    glowBorder.BorderBrush = GetBorderBrush(window);
-                //    glowBorder.Effect = new DropShadowEffect {Direction=190, ShadowDepth = 1, Color = (glowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 1 };
-                //};
-                //window.Deactivated += delegate
-                //{
-                //    glowBorder.BorderBrush =ResourceHelper.GetWindowInactiveBorderBrush();
-                //    glowBorder.Effect = new DropShadowEffect { Direction = 190, ShadowDepth = 1, Color = (glowBorder.BorderBrush as SolidColorBrush).Color, Opacity = 1, BlurRadius = 1 };
-                //};
-
-               
+             
                 var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
                 TextElement.SetFontSize(titleBorder,GetTitleFontSize(window));
                 TextElement.SetForeground(titleBorder, GetTitleForeground(window));
@@ -122,14 +112,26 @@ namespace Wpf.Common.Controls.Behavior
                 //注册命令按钮事件
               
                 var buttons = windowBorder.FindChildren<Button>().ToList();
-                buttons.First(x => x.Name == "maximizeButton").Click += (s, arg) => window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-                buttons.First(x => x.Name == "minimizeButton").Click += (s, arg) => window.WindowState = WindowState.Minimized;
+                var maxBtn = buttons.First(x => x.Name == "maximizeButton");
+                var minBtn = buttons.First(x => x.Name == "minimizeButton");
+                if (window.WindowStyle == WindowStyle.None || window.WindowStyle == WindowStyle.ToolWindow)
+                {
+                    maxBtn.Visibility = Visibility.Collapsed;
+                    minBtn.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    maxBtn.Click += (s, arg) => window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+                    minBtn.Click += (s, arg) => window.WindowState = WindowState.Minimized;
+                }
+                   
+               
                 buttons.First(x => x.Name == "closeButton").Click += (s, arg) => window.Close();
 
             };
   
             window.WindowStyle = WindowStyle.None;
-            window.ResizeMode = ResizeMode.CanResizeWithGrip;
+            window.ResizeMode = ResizeMode.CanResizeWithGrip; 
             window.AllowsTransparency = true;
             WindowChrome chrome = new WindowChrome {
                 ResizeBorderThickness = new Thickness(5),

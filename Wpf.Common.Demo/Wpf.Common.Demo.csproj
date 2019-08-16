@@ -257,6 +257,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Caliburn.Micro.MEF\Caliburn.Micro.MEF.csproj">
+      <Project>{1d4eb13b-9f17-4ffe-bb9a-774910922b9d}</Project>
+      <Name>Caliburn.Micro.MEF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wpf.Common.Controls\Wpf.Common.Controls.csproj">
       <Project>{1ff1575c-fb5f-4861-bd08-83b709560204}</Project>
       <Name>Wpf.Common.Controls</Name>

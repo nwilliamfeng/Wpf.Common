@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Common.Core", "Wpf.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Common.Demo", "Wpf.Common.Demo\Wpf.Common.Demo.csproj", "{3AF193EF-DC9A-47A4-965B-D2A7DCDB2207}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf", "..\..\References\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj", "{F079FB0A-A8ED-4216-B6A5-345756751A04}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Common.Controls", "Wpf.Common.Controls\Wpf.Common.Controls.csproj", "{1FF1575C-FB5F-4861-BD08-83B709560204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caliburn.Micro.MEF", "Caliburn.Micro.MEF\Caliburn.Micro.MEF.csproj", "{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,18 +38,18 @@ Global
 		{3AF193EF-DC9A-47A4-965B-D2A7DCDB2207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AF193EF-DC9A-47A4-965B-D2A7DCDB2207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AF193EF-DC9A-47A4-965B-D2A7DCDB2207}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.AppVeyor|Any CPU.ActiveCfg = AppVeyor|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.AppVeyor|Any CPU.Build.0 = AppVeyor|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1FF1575C-FB5F-4861-BD08-83B709560204}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
 		{1FF1575C-FB5F-4861-BD08-83B709560204}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
 		{1FF1575C-FB5F-4861-BD08-83B709560204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FF1575C-FB5F-4861-BD08-83B709560204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FF1575C-FB5F-4861-BD08-83B709560204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FF1575C-FB5F-4861-BD08-83B709560204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4EB13B-9F17-4FFE-BB9A-774910922B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

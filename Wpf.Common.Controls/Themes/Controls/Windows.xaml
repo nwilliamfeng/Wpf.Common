@@ -62,8 +62,8 @@
                                 HorizontalContentAlignment="Left"/>
 
                         <!--标题命令按钮-->
-                        <UniformGrid Columns="3" Grid.Column="1" VerticalAlignment="Top">
-                            <UniformGrid.Resources>
+                        <Grid   Grid.Column="1" VerticalAlignment="Top"  >
+                            <Grid.Resources>
                                 <Style TargetType="Path" x:Key="basePathStyle">
                                     <Setter Property="Stretch"  Value="Uniform"/>
                                     <Setter Property="Fill" Value="Black"/>
@@ -104,6 +104,7 @@
                                             <Setter Property="Background" Value="#CACACB" />
 
                                         </MultiTrigger>
+                                        
                                     </Style.Triggers>
                                 </Style>
                                 <Style TargetType="Button" 
@@ -126,13 +127,19 @@
                                             <Setter Property="Opacity" Value="0.8" />
                                             <Setter Property="Background" Value="Red"/>
                                         </MultiTrigger>
+                                      
                                     </Style.Triggers>
                                 </Style>
-                            </UniformGrid.Resources>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
                             <Button x:Name="minimizeButton" UseLayoutRounding="True" Style="{StaticResource normalButtonStyle}" ToolTip="最小化">
                                 <Path  Data="{StaticResource MinimizeIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="1.1" Stretch="Uniform" StrokeThickness="0.2"/>
                             </Button>
-                            <Button  x:Name="maximizeButton" UseLayoutRounding="True">
+                            <Button  x:Name="maximizeButton" UseLayoutRounding="True" Grid.Column="1">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource normalButtonStyle}">
                                         <Setter Property="ToolTip" Value="最大化"/>
@@ -150,12 +157,13 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
+                                            
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
 
                             </Button>
-                            <Button UseLayoutRounding="True"   x:Name="closeButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
+                            <Button UseLayoutRounding="True" Grid.Column="2"   x:Name="closeButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
                                 <Path  Data="{StaticResource CloseIcon}"  Width="10" Height="10"  StrokeThickness="0.1">
                                     <Path.Style>
                                         <Style TargetType="Path" BasedOn="{StaticResource  basePathStyle}">
@@ -164,12 +172,13 @@
                                                     <Setter Property="Fill" Value="White" />
                                                     <Setter Property="Stroke" Value="White" />
                                                 </DataTrigger>
+                                              
                                             </Style.Triggers>
                                         </Style>
                                     </Path.Style>
                                 </Path>
                             </Button>
-                        </UniformGrid>
+                        </Grid>
                     </Grid>
                 </Border>
 
