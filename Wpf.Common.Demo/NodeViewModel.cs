@@ -116,5 +116,7 @@ namespace Wpf.Common.Demo
         public const string RADIO_BUTTON = "RadioButton";
 
         public const string CHECK_BOX = "CheckBox";
+
+        public const string TAB_CONTROL = "TabControl";
     }
 }

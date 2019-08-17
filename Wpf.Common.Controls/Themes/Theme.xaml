@@ -18,4 +18,5 @@
     <Style TargetType="Menu" BasedOn="{StaticResource MenuStyle}"/>
     <Style TargetType="ContextMenu" BasedOn="{StaticResource ContextMenuStyle}"/>
     <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
+    <Style TargetType="TabControl" BasedOn="{StaticResource TabControlStyle}"/>
 </ResourceDictionary>

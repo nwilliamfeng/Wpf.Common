@@ -109,7 +109,9 @@ namespace Wpf.Common.Demo
                 case NodeNames.TOGGLE_BUTTON:
                     this.ActivateItem(new ToggleButtonViewModel());
                     break;
-              
+                case NodeNames.TAB_CONTROL:
+                    this.ActivateItem(new TabControlViewModel());
+                    break;
 
                 default:
                     break;

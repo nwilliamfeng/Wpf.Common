@@ -9,10 +9,10 @@
         <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
-        <Setter Property="UseLayoutRounding" Value="True"/>
+        
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
@@ -25,7 +25,8 @@
                     <Grid>
                         <!--适用于ErrorTemplate的AdornerPlaceHolder-->
                         <AdornerDecorator x:Name="adorner" >
-                            <Border x:Name="PART_Border"            
+                            <Border x:Name="PART_Border"        
+                                SnapsToDevicePixels="True"
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}"/>
@@ -68,7 +69,6 @@
                                                 <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=DatePicker}}" Value="true">
                                                     <Setter Property="Fill" Value="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=DatePicker}}"/>
                                                 </DataTrigger>
-
                                             </Style.Triggers>
                                         </Style>
                                     </Path.Style>
@@ -83,7 +83,12 @@
                                                Grid.Row="0" 
                                                VerticalContentAlignment="Stretch"/>
 
-                            <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                            <Grid x:Name="PART_DisabledVisual" 
+                                  Grid.ColumnSpan="2" 
+                                  Grid.Column="0" 
+                                  IsHitTestVisible="False" 
+                                  Opacity="0" 
+                                  Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
