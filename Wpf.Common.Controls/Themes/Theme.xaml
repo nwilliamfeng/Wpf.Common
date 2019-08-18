@@ -19,4 +19,5 @@
     <Style TargetType="ContextMenu" BasedOn="{StaticResource ContextMenuStyle}"/>
     <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
     <Style TargetType="TabControl" BasedOn="{StaticResource TabControlStyle}"/>
+    <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"/>
 </ResourceDictionary>
