@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Controls\SplitButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Controls\DropdownButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +157,7 @@
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Data\TreeViewItemLeftMarginMultiplierConverter.cs" />
+    <Compile Include="SplitButton.cs" />
     <Compile Include="DropdownButton.cs" />
     <Compile Include="Helper\TreeViewItemExtensions.cs" />
     <Compile Include="Helper\ControlTemplateHelper.cs" />
