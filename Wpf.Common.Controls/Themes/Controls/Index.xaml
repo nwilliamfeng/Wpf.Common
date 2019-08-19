@@ -19,5 +19,6 @@
         <ResourceDictionary Source="TabControl.xaml"/>
         <ResourceDictionary Source="ScrollBar.xaml"/>
         <ResourceDictionary Source="DropdownButton.xaml"/>
+        <ResourceDictionary Source="SplitButton.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

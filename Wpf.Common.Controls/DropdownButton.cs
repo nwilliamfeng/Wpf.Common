@@ -66,14 +66,14 @@ namespace Wpf.Common.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var contextMenu = this.Menu;
+            if (this.Menu == null) return;
             var button = this.GetTemplateChild(DropdownButtonName) as ToggleButton;
             this.Menu.PlacementTarget = button;
             this.Menu.Placement = PlacementMode.Bottom;
             button.Click -= OnDropdownButtonClicked;
             button.Click += OnDropdownButtonClicked;
-            contextMenu.Closed -= OnMenuClosed;
-            contextMenu.Closed += OnMenuClosed;
+            Menu.Closed -= OnMenuClosed;
+            Menu.Closed += OnMenuClosed;
             
         }
 

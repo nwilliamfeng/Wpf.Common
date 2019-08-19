@@ -10,9 +10,11 @@ using System.Windows;
 namespace Wpf.Common.Controls
 {
     [TemplatePart(Name =DropdownButtonName)]
+    [TemplatePart(Name = SelectedItemButtonName)]
     public class SplitButton:ContentControl
     {
         public const string DropdownButtonName = "PART_DropdownButton";
+        public const string SelectedItemButtonName = "PART_SelectedItemButton";
 
         public static readonly DependencyProperty MenuProperty = DependencyProperty.Register("Menu"
             , typeof(ContextMenu)
@@ -24,11 +26,15 @@ namespace Wpf.Common.Controls
            , typeof(bool)
            , typeof(SplitButton), new PropertyMetadata(OnIsDropDownPropertyValueChanged));
 
-        public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle"
+        public static readonly DependencyProperty DropdownButtonStyleProperty = DependencyProperty.Register("DropdownButtonStyle"
            , typeof(Style)
            , typeof(SplitButton), new PropertyMetadata(default(Style)));
 
-        
+
+        public static readonly DependencyProperty SelectedItemButtonStyleProperty = DependencyProperty.Register("SelectedItemButtonStyle"
+          , typeof(Style)
+          , typeof(SplitButton), new PropertyMetadata(default(Style)));
+
 
         public ContextMenu Menu
         {
@@ -44,13 +50,17 @@ namespace Wpf.Common.Controls
 
         }
 
-        public Style ButtonStyle
+        public Style DropdownButtonStyle
         {
-            get => this.GetValue<Style>(ButtonStyleProperty);
-            set => this.SetValue(ButtonStyleProperty, value);
-
+            get => this.GetValue<Style>(DropdownButtonStyleProperty);
+            set => this.SetValue(DropdownButtonStyleProperty, value);
         }
 
+        public Style SelectedItemButtonStyle
+        {
+            get => this.GetValue<Style>(SelectedItemButtonStyleProperty);
+            set => this.SetValue(SelectedItemButtonStyleProperty, value);
+        }
 
 
         private static void OnIsDropDownPropertyValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
@@ -66,14 +76,15 @@ namespace Wpf.Common.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var contextMenu = this.Menu;
+ 
+            if (Menu == null) return;
             var button = this.GetTemplateChild(DropdownButtonName) as ToggleButton;
             this.Menu.PlacementTarget = button;
             this.Menu.Placement = PlacementMode.Bottom;
             button.Click -= OnDropdownButtonClicked;
             button.Click += OnDropdownButtonClicked;
-            contextMenu.Closed -= OnMenuClosed;
-            contextMenu.Closed += OnMenuClosed;
+            Menu.Closed -= OnMenuClosed;
+            Menu.Closed += OnMenuClosed;
             
         }
 

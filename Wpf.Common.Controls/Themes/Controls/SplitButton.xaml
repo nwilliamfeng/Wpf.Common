@@ -3,95 +3,134 @@
                     xmlns:controls="clr-namespace:Wpf.Common.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Brushes.xaml"/>
-      
+
     </ResourceDictionary.MergedDictionaries>
+
  
-    <Style x:Key="DefaultSplitToggleButtonStyle" TargetType="{x:Type ToggleButton}">
-
-        <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="5,3"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="border" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" 
-                            Padding="{TemplateBinding Padding}"
-                           
-                            SnapsToDevicePixels="true">
-                        <DockPanel LastChildFill="True">
-                            <Path Fill="{TemplateBinding Foreground}" DockPanel.Dock="Right"
-                                   
-                                  Stretch="Uniform"
-                                  Height="8"
-                                  Width="8"
-                                  Margin="5,0,0,0"
-                                  Data="M512 597.333333l-170.666667-170.666666h341.333334z"/>
-               
-                            <ContentPresenter x:Name="contentPresenter" 
-                                          Focusable="False" 
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          
-                                          RecognizesAccessKey="True" 
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </DockPanel>
-                       
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Button.IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource  control-item-mouseover-brush}"/>
-                            
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource control-item-mouseover-brush}"/>
-                        </Trigger>
-                         
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" TargetName="border" Value="0.3"/>
-                            
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-   
     <ControlTemplate TargetType="{x:Type controls:SplitButton}" x:Key="SplitButtonTemplate">
         <Border x:Name="PART_Border" 
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                Padding="{TemplateBinding Padding}"
+                
                 Background="{TemplateBinding Background}"
                 SnapsToDevicePixels="True"
                 >
-            <DockPanel>
-                
-            </DockPanel>
-            <ToggleButton x:Name="PART_DropdownButton" 
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
+            <DockPanel LastChildFill="True">
+                <ToggleButton x:Name="PART_DropdownButton"                       
+                          DockPanel.Dock="Right"
                           Background="{TemplateBinding Background}"
-                          Style="{TemplateBinding ButtonStyle}"
+                          Style="{TemplateBinding  DropdownButtonStyle}"
                           Content="{TemplateBinding Content}">
 
-            </ToggleButton>
+                </ToggleButton>
+                <Button x:Name="PART_SelectedItemButton" 
+                        Content="{TemplateBinding Content}"
+                        Style="{TemplateBinding SelectedItemButtonStyle}"/>
+
+            </DockPanel>
+
         </Border>
-       
-         
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True" >
+                <Setter Property="BorderBrush" Value="{StaticResource  control-border-brush}"/>
+               
+              
+            </Trigger>
+            
+            <Trigger Property="IsDropdown" Value="true">
+              
+                <Setter Property="BorderBrush" Value="{StaticResource  control-border-brush}"/>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity"   Value="0.3"/>
+
+            </Trigger>
+        </ControlTemplate.Triggers>
+
+
     </ControlTemplate>
 
 
-    <Style TargetType="{x:Type controls:SplitButton}" x:Key="DropdownButtonStyle">
-        <Setter Property="Template" Value="{StaticResource DropdownButtonTemplate}"/>
-        <Setter Property="ButtonStyle" Value="{StaticResource DefaultDropdownToggleButtonStyle}"/>
+    <Style TargetType="{x:Type controls:SplitButton}" x:Key="SplitButtonStyle">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="5,2"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template" Value="{StaticResource SplitButtonTemplate}"/>
+        <Setter Property="DropdownButtonStyle" >
+            <Setter.Value>
+                <Style TargetType="{x:Type ToggleButton}">
+                   
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="1,0,0,0"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Border x:Name="border" 
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Padding="1,0"
+                                    Margin="{TemplateBinding Margin}"
+                                    SnapsToDevicePixels="true">
+
+                                    <Path Fill="{TemplateBinding Foreground}" DockPanel.Dock="Right"                               
+                                            Stretch="Uniform"
+                                            Height="8"
+                                            Width="8"
+                                           
+                                            Data="M512 597.333333l-170.666667-170.666666h341.333334z"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}" Value="true">
+                                        <Setter Property="BorderBrush" Value="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}"/>
+                                        <Setter Property="Background"   Value="{DynamicResource control-item-mouseover-brush}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsDropdown,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}" Value="true">
+                                        <Setter Property="BorderBrush" Value="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}"/>
+                                        <Setter Property="Background"   Value="{DynamicResource control-item-mouseover-brush}"/>
+                                    </DataTrigger>
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SelectedItemButtonStyle" >
+            <Setter.Value>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Padding" Value="{Binding Padding,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" 
+                                        Padding="{TemplateBinding Padding}"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                        Content="{Binding Content,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}" Value="true">
+                                        <Setter Property="Background"   Value="{DynamicResource control-item-mouseover-brush}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsDropdown,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}" Value="true">
+                                        <Setter Property="Background"   Value="{DynamicResource control-item-mouseover-brush}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=controls:SplitButton}}"/>
+                                    </DataTrigger>
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

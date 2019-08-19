@@ -12,7 +12,7 @@
        
        
     </UserControl.Resources>
-    <UniformGrid >
+    <UniformGrid Columns="3">
         <controls:DropdownButton VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="abc"/>
             <controls:DropdownButton.Menu>
@@ -52,6 +52,28 @@
                 </Style>
             </controls:DropdownButton.Style>
         </controls:DropdownButton>
+
+        <controls:DropdownButton VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">
+            <TextBlock Text="abc"/>
+            <controls:DropdownButton.Menu>
+                <ContextMenu>
+                    <MenuItem Header="item1"/>
+                    <MenuItem Header="item2"/>
+                    <MenuItem Header="item3"/>
+                </ContextMenu>
+            </controls:DropdownButton.Menu>
+        </controls:DropdownButton>
+
+        <controls:SplitButton VerticalAlignment="Center" HorizontalAlignment="Center"  >
+            <TextBlock Text="abc"/>
+            <controls:SplitButton.Menu>
+                <ContextMenu>
+                    <MenuItem Header="item1"/>
+                    <MenuItem Header="item2"/>
+                    <MenuItem Header="item3"/>
+                </ContextMenu>
+            </controls:SplitButton.Menu>
+        </controls:SplitButton>
 
     </UniformGrid>
 </UserControl>

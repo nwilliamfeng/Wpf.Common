@@ -21,5 +21,6 @@
     <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
     <Style TargetType="TabControl" BasedOn="{StaticResource TabControlStyle}"/>
     <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"/>
-    <Style TargetType="{x:Type controls:DropdownButton}" BasedOn="{StaticResource DropdownButtonStyle}"/>
+    <Style TargetType="{x:Type controls:DropdownButton}" BasedOn="{StaticResource  DropdownButtonStyle}"/>
+    <Style TargetType="{x:Type controls:SplitButton}" BasedOn="{StaticResource   SplitButtonStyle }"/>
 </ResourceDictionary>
