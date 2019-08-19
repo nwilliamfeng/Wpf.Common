@@ -56,16 +56,14 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Grid>
+            <Grid SnapsToDevicePixels="True">
                 <Rectangle x:Name="Track"                                     
                            Fill="Transparent" 
                            HorizontalAlignment="Left" 
                            Height="22" 
                             FocusVisualStyle="{x:Null}"
                            Stroke="Transparent"
-                           StrokeThickness="1"
-                         
-                          
+                           StrokeThickness="1"                                                
                            Width="45" 
                            RadiusY="11" 
                            RadiusX="11"/>
@@ -137,7 +135,7 @@
     </ControlTemplate>
 
     <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
-        
+      
         <Setter Property="Background" Value="{StaticResource control-border-active-brush}"/>
         <Setter Property="Template" Value="{StaticResource ToggleButtonTemplate}"/>
     </Style>

@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
 using System.Windows.Media;
+using System.Windows.Input;
 
 namespace Wpf.Common.Controls
 {
@@ -65,6 +66,23 @@ namespace Wpf.Common.Controls
             set => this.SetValue(ItemSizeProperty, value);
         }
 
+        private void OnRankItemClicked(object sender,EventArgs arg)
+        {
+            var rankItem = sender as RankItem;
+            this.Value = rankItem.IsSelected ? rankItem.Value : rankItem.Value - 1;
+        }
+
+        private void OnItemsContainerMouseLeave(object sender,MouseEventArgs e)
+        {
+            var itemsControl = sender as ItemsControl;
+            var items= itemsControl.ItemsSource.OfType<RankItem>();
+            items.Where(x => !x.IsSelected && x.IsTempSelected)
+                .ToList()
+                .ForEach(x => x.IsTempSelected = false);
+            e.Handled = true;
+        }
+
+        
 
         public override void OnApplyTemplate()
         {
@@ -75,27 +93,18 @@ namespace Wpf.Common.Controls
             var items = Enumerable.Range(1, count)
                 .Select(x => new RankItem(x) { Size = size })
                 .ToList();
-            EventHandler onClick = (s, e) =>
-            {
-              var rankItem = s as RankItem;
-              this.Value = rankItem.IsSelected ? rankItem.Value : rankItem.Value - 1;             
-            };
 
-            items.ForEach(x => 
+
+            items.ForEach(x =>
             {
                 x.ParentItems = items;
-                x.Clicked += onClick;
+                x.Clicked -= OnRankItemClicked;
+                x.Clicked += OnRankItemClicked;
             });
 
             itemControl.ItemsSource = items;
- 
-            itemControl.MouseLeave += (s, e) =>
-            {
-                items.Where(x => !x.IsSelected && x.IsTempSelected)
-                .ToList()
-                .ForEach(x => x.IsTempSelected = false);
-                e.Handled = true;
-            };
+            itemControl.MouseLeave -= this.OnItemsContainerMouseLeave;
+            itemControl.MouseLeave += this.OnItemsContainerMouseLeave;
             
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Shapes;
 
 namespace Wpf.Common.Controls.Behavior
@@ -39,7 +40,7 @@ namespace Wpf.Common.Controls.Behavior
         public static void SetCornerRadius(UIElement obj, CornerRadius value) => obj.SetValue(CornerRadiusProperty, value);
 
         public static CornerRadius GetCornerRadius(UIElement obj) => obj.GetValue<CornerRadius>(CornerRadiusProperty);
-         
+
 
 
         private static void OnWatermarkPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
@@ -48,26 +49,40 @@ namespace Wpf.Common.Controls.Behavior
             if (watermark == null) return;
             var comboBox = source as ComboBox;
             if (comboBox == null || !comboBox.IsEditable) return;
-            Func<Visibility> getVisibility = () =>
-              {
-                  return (comboBox.SelectedItem==null && string.IsNullOrEmpty(comboBox.Text)) ? Visibility.Visible : Visibility.Collapsed;
-              };
-            comboBox.Initialized += delegate
-            {
-                var tb= comboBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
-                if (tb == null) return;
-                tb.Text = watermark;                       
-                comboBox.KeyUp += delegate
-                {
-                    tb.Visibility = getVisibility();
-                };
-                comboBox.SelectionChanged += delegate
-                {
-                    tb.Visibility = getVisibility();
-                };
-            };
-            
+         
+            comboBox.Initialized -= OnInitialized;
+
+            comboBox.Initialized += OnInitialized;
+
         }
+
+        private static void OnInitialized(object sender ,EventArgs args)
+        {
+            var comboBox = sender as ComboBox;
+            var watermark = GetWatermark(comboBox);
+            var tb = comboBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+            if (tb == null) return;
+            tb.Text = watermark;
+            comboBox.KeyUp -= OnComboBoxKeyUp;
+            comboBox.KeyUp += OnComboBoxKeyUp;
+            comboBox.SelectionChanged -= OnComboBoxSelectionChanged;
+            comboBox.SelectionChanged += OnComboBoxSelectionChanged;
+
+        }
+
+        private static void UpdateWatermarkVisibility(ComboBox comboBox)
+        {
+            var tb = comboBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+            if (tb != null)
+                tb.Visibility = (comboBox.SelectedItem == null && string.IsNullOrEmpty(comboBox.Text)) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+
+        private static void OnComboBoxKeyUp(object sender, KeyEventArgs e)
+            => UpdateWatermarkVisibility(sender as ComboBox);
+
+        private static void OnComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+            => UpdateWatermarkVisibility(sender as ComboBox);
 
         private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
@@ -76,6 +91,6 @@ namespace Wpf.Common.Controls.Behavior
 
 
 
-      
+
     }
 }

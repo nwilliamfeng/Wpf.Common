@@ -77,6 +77,9 @@
     <Compile Include="Controls\DatePickerView.xaml.cs">
       <DependentUpon>DatePickerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DropdownButtonView.xaml.cs">
+      <DependentUpon>DropdownButtonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ErrorTemplateView.xaml.cs">
       <DependentUpon>ErrorTemplateView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\DatePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DropdownButtonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

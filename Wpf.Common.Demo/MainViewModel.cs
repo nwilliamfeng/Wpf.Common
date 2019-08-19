@@ -112,7 +112,9 @@ namespace Wpf.Common.Demo
                 case NodeNames.TAB_CONTROL:
                     this.ActivateItem(new TabControlViewModel());
                     break;
-
+                case NodeNames.DROPDOWN_BUTTON:
+                    this.ActivateItem(new DropdownButtonViewModel());
+                    break;
                 default:
                     break;
             }

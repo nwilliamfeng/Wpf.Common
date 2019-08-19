@@ -118,5 +118,7 @@ namespace Wpf.Common.Demo
         public const string CHECK_BOX = "CheckBox";
 
         public const string TAB_CONTROL = "TabControl";
+
+        public const string DROPDOWN_BUTTON = "DropdownButton";
     }
 }
