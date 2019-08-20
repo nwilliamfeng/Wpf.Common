@@ -10,6 +10,7 @@
 
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="5,3"/>
@@ -24,8 +25,9 @@
                            
                             SnapsToDevicePixels="true">
                         <DockPanel LastChildFill="True">
-                            <Path Fill="{TemplateBinding Foreground}" DockPanel.Dock="Right"
-                                   
+                            <Path x:Name="path"
+                                  Fill="{TemplateBinding Foreground}" DockPanel.Dock="Right"
+                                  
                                   Stretch="Uniform"
                                   Height="8"
                                   Width="8"
@@ -47,11 +49,14 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource  control-item-mouseover-brush}"/>
-                            
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource  button-mouseover-brush}"/>
+                            <Setter Property="Fill" TargetName="path" Value="{DynamicResource control-item-select-brush}"/>
+
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource control-item-mouseover-brush}"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource control-item-select-brush}"/>
+                            <Setter Property="Fill" TargetName="path" Value="White"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter"  Value="White"/>
                         </Trigger>
                          
                         <Trigger Property="IsEnabled" Value="false">
@@ -117,6 +122,7 @@
     
     <Style TargetType="{x:Type controls:DropdownButton}" x:Key="DropdownButtonStyle">
         <Setter Property="Template" Value="{StaticResource DropdownButtonTemplate}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ButtonStyle" Value="{StaticResource DefaultDropdownToggleButtonStyle}"/>
     </Style>
 </ResourceDictionary>

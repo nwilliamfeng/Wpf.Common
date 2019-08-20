@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Common.Input;
+
 
 namespace Wpf.Common.Demo.Controls
 {
@@ -23,11 +25,45 @@ namespace Wpf.Common.Demo.Controls
         public DropdownButtonView()
         {
             InitializeComponent();
+            this.DataContext = new DropdownButtonViewModel();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((sender as MenuItem).Header.ToString());
+      
+        }
+
+        private void MenuItem_Initialized(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuItem_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
         }
     }
 
     public class DropdownButtonViewModel : Caliburn.Micro.PropertyChangedBase
     {
+        private ICommand _openCommand;
 
+        public ICommand OpenCommand
+        => this._openCommand ?? (this._openCommand = new RelayCommand<OpenCommandType>(x =>
+             {
+                 MessageBox.Show(x.ToString());
+             }));
+
+
+    }
+
+    public enum OpenCommandType
+    {
+        OpenA=0,
+
+        OpenB=1,
+
+        OpenC=2,
     }
 }

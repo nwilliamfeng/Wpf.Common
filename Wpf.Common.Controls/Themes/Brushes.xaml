@@ -34,5 +34,5 @@
 
     <SolidColorBrush x:Key="submenu-border-brush" Color="{StaticResource submenu-border-color}"/>
 
-    <SolidColorBrush x:Key="button-mouseover-brush" Color="{StaticResource Gray3}"/>
+    <SolidColorBrush x:Key="button-mouseover-brush" Color="{StaticResource Gray2}"/>
 </ResourceDictionary>

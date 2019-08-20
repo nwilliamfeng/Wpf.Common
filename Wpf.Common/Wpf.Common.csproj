@@ -37,6 +37,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -50,6 +52,8 @@
     <Compile Include="Data\DelegateValueConverter.cs" />
     <Compile Include="Data\ValueConverters.cs" />
     <Compile Include="Extension\ApplicationExtension.cs" />
+    <Compile Include="Extension\ButtonExtension.cs" />
+    <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\UIElementExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

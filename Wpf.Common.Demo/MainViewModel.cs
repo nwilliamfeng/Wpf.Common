@@ -36,8 +36,7 @@ namespace Wpf.Common.Demo
                 if (name != NodeNames.ERROR_TEMPLATE)
                     gpNode2.Items.Add(new NodeViewModel { Name = name });
             }
-          //  gpNode2.Items.Add(new NodeViewModel { Name =NodeNames.DATE_PICKER  });
-         //   gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.PASSWORD_BOX });
+
             Nodes.Add(gpNode2);
             this.DisplayName = "Demo";
         }

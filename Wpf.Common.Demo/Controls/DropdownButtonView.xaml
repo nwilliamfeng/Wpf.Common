@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <UniformGrid Columns="3">
         <controls:DropdownButton VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="abc"/>
+            abcd
             <controls:DropdownButton.Menu>
                 <ContextMenu>
                     <MenuItem Header="item1"/>
@@ -64,15 +64,56 @@
             </controls:DropdownButton.Menu>
         </controls:DropdownButton>
 
-        <controls:SplitButton VerticalAlignment="Center" HorizontalAlignment="Center"  >
-            <TextBlock Text="abc"/>
+        <controls:SplitButton VerticalAlignment="Center" HorizontalAlignment="Center"
+                              Padding="10,5">
+             
             <controls:SplitButton.Menu>
                 <ContextMenu>
-                    <MenuItem Header="item1"/>
-                    <MenuItem Header="item2"/>
-                    <MenuItem Header="item3"/>
+                    <MenuItem Header="item1" Command="{Binding OpenCommand}"
+                               ToolTip="openMenuItem1"
+                              CommandParameter="{x:Static local:OpenCommandType.OpenA}">
+                        <MenuItem.Icon>
+                            <Path Height="16" 
+                                  Width="16" 
+                                  Fill="Gray" 
+                                 
+                                  Stretch="Uniform"
+                                  Data="{StaticResource HeartIcon}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="item2"  Command="{Binding OpenCommand}"
+                              ToolTip="openMenuItem2"
+                              CommandParameter="{x:Static local:OpenCommandType.OpenB}">
+                        <MenuItem.Icon>
+                            <Path Height="16" 
+                                  Width="16" 
+                                  Fill="Gray" 
+                                  Stretch="Uniform"
+                                  Data="{StaticResource DateIcon}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="item3"  
+                              Click="MenuItem_Click"
+                              ToolTip="openMenuItem3"
+                             >
+                        <MenuItem.Icon>
+                            <Path Height="16" 
+                                  Width="16" 
+                                  Fill="Gray" 
+                                  Stretch="Uniform"
+                                  Data="{StaticResource PasswordIcon}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </controls:SplitButton.Menu>
+        </controls:SplitButton>
+
+        <controls:SplitButton VerticalAlignment="Center" HorizontalAlignment="Center"
+                              Padding="10,5"/>
+
+        <controls:SplitButton VerticalAlignment="Center" HorizontalAlignment="Center"
+                          IsEnabled="False"    Padding="10,5">
+            abc
         </controls:SplitButton>
 
     </UniformGrid>

@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows;
+using System.Windows.Markup;
+using System.IO;
+using System.Xml;
 
 namespace Wpf.Common.Controls
 {
     [TemplatePart(Name =DropdownButtonName)]
     [TemplatePart(Name = SelectedItemButtonName)]
+    [TemplatePart(Name = BorderName)]
     public class SplitButton:ContentControl
     {
         public const string DropdownButtonName = "PART_DropdownButton";
         public const string SelectedItemButtonName = "PART_SelectedItemButton";
+        public const string BorderName = "PART_Border";
 
         public static readonly DependencyProperty MenuProperty = DependencyProperty.Register("Menu"
             , typeof(ContextMenu)
@@ -75,22 +80,71 @@ namespace Wpf.Common.Controls
 
         public override void OnApplyTemplate()
         {
-            base.OnApplyTemplate();
- 
+            base.OnApplyTemplate(); 
             if (Menu == null) return;
-            var button = this.GetTemplateChild(DropdownButtonName) as ToggleButton;
-            this.Menu.PlacementTarget = button;
+            var dropdown = this.GetTemplateChild(DropdownButtonName) as ToggleButton;
+            if (dropdown == null) return;
+            var border = this.GetTemplateChild(BorderName) as Border;
+            if (border == null) return;
+            var selectedItemButton = this.GetTemplateChild(SelectedItemButtonName) as Button;
+            if (selectedItemButton == null) return;
+            this.Menu.PlacementTarget = border;
+             
             this.Menu.Placement = PlacementMode.Bottom;
-            button.Click -= OnDropdownButtonClicked;
-            button.Click += OnDropdownButtonClicked;
+            var menuItems = this.Menu.Items.OfType<MenuItem>().ToList();
+            menuItems.ForEach(item =>
+            {
+                item.Click -= OnMenuItem_Click;
+                item.Click += OnMenuItem_Click;
+            });
+            if (menuItems.Count > 0)
+                this.SelectItem(menuItems.First());
+
+            dropdown.Click -= OnDropdownButtonClicked;
+            dropdown.Click += OnDropdownButtonClicked;
             Menu.Closed -= OnMenuClosed;
             Menu.Closed += OnMenuClosed;
-            
+            Menu.DataContext = this.DataContext; //在初始化时ContextMenu的DataContext为null，需要手动带入，否则menuitem的command永远为空除非打开
+          
+            selectedItemButton.Click -= OnSelectedItemButtonClicked;
+            selectedItemButton.Click += OnSelectedItemButtonClicked;
+
+             
+
         }
 
-       
+        private void SelectItem(MenuItem item )
+        {
+            if (object.ReferenceEquals(this._currentMenuItem, item))
+                return;
+            this._currentMenuItem = item;
+            this.Content = null;
+            var icon = _currentMenuItem.Icon;
+            if (icon != null)
+                this.Content = icon.Clone();
+            this.ToolTip = item.ToolTip;
+        }
 
-        private void  OnDropdownButtonClicked(object sender,RoutedEventArgs args)
+        private void OnMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.SelectItem(sender as MenuItem);      
+        }
+
+        
+
+        private MenuItem _currentMenuItem;
+
+        private void OnSelectedItemButtonClicked(object sender, RoutedEventArgs args)
+        {
+            if (_currentMenuItem == null) return;
+            var item = this.Menu.Items.OfType<MenuItem>().FirstOrDefault(x => object.ReferenceEquals(this._currentMenuItem, x));
+            if (item != null)
+                item.ExecuteClick();
+            args.Handled = true;
+        }
+
+
+        private void OnDropdownButtonClicked(object sender,RoutedEventArgs args)
         {
             this.IsDropdown = (sender as ToggleButton).IsChecked == true;
             args.Handled = true;
