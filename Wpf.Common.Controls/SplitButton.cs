@@ -20,13 +20,13 @@ namespace Wpf.Common.Controls
         public const string DropdownButtonName = "PART_DropdownButton";
         public const string SelectedItemButtonName = "PART_SelectedItemButton";
         public const string BorderName = "PART_Border";
+        private MenuItem _currentMenuItem;
 
         public static readonly DependencyProperty MenuProperty = DependencyProperty.Register("Menu"
             , typeof(ContextMenu)
             , typeof(SplitButton),new PropertyMetadata(default(ContextMenu)));
 
-      
-
+         
         public static DependencyProperty IsDropdownProperty = DependencyProperty.Register("IsDropdown"
            , typeof(bool)
            , typeof(SplitButton), new PropertyMetadata(OnIsDropDownPropertyValueChanged));
@@ -41,6 +41,9 @@ namespace Wpf.Common.Controls
           , typeof(SplitButton), new PropertyMetadata(default(Style)));
 
 
+        /// <summary>
+        /// 获取或设置下拉菜单
+        /// </summary>
         public ContextMenu Menu
         {
             get => this.GetValue<ContextMenu>(MenuProperty);
@@ -48,6 +51,9 @@ namespace Wpf.Common.Controls
            
         }
 
+        /// <summary>
+        /// 获取或设置是否下拉
+        /// </summary>
         public bool IsDropdown
         {
             get => this.GetValue<bool>(IsDropdownProperty);
@@ -109,8 +115,14 @@ namespace Wpf.Common.Controls
             selectedItemButton.Click -= OnSelectedItemButtonClicked;
             selectedItemButton.Click += OnSelectedItemButtonClicked;
 
-             
+            this.Unloaded -= SplitButton_Unloaded;
+            this.Unloaded += SplitButton_Unloaded;
 
+        }
+
+        private void SplitButton_Unloaded(object sender, RoutedEventArgs e)
+        {
+            this._currentMenuItem = null;
         }
 
         private void SelectItem(MenuItem item )
@@ -130,9 +142,7 @@ namespace Wpf.Common.Controls
             this.SelectItem(sender as MenuItem);      
         }
 
-        
-
-        private MenuItem _currentMenuItem;
+     
 
         private void OnSelectedItemButtonClicked(object sender, RoutedEventArgs args)
         {

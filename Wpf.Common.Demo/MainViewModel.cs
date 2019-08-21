@@ -26,18 +26,22 @@ namespace Wpf.Common.Demo
             this.Nodes = new ObservableCollection<GroupNode>();
             var gpNode1 = new GroupNode { Name="Template"};
             gpNode1.Items.Add(new NodeViewModel { Name = NodeNames.ERROR_TEMPLATE  });
-          
-            Nodes.Add(gpNode1);
-
+           
             var gpNode2 = new GroupNode { Name = "Controls" };
+            var filters = new string[] { NodeNames.ERROR_TEMPLATE, NodeNames.DROP };
             foreach(var field in typeof(NodeNames).GetFields())
             {
                 var name = field.GetValue(new NodeNames()) as string;
-                if (name != NodeNames.ERROR_TEMPLATE)
+                if (!filters.Contains(name))
                     gpNode2.Items.Add(new NodeViewModel { Name = name });
             }
 
+            var gpNode3 = new GroupNode { Name = "Behavior" };
+            gpNode3.Items.Add(new NodeViewModel { Name = NodeNames.DROP });
+
+            Nodes.Add(gpNode1);
             Nodes.Add(gpNode2);
+            Nodes.Add(gpNode3);
             this.DisplayName = "Demo";
         }
 
@@ -75,6 +79,9 @@ namespace Wpf.Common.Demo
             {
                 case NodeNames.ERROR_TEMPLATE:
                     this.ActivateItem(new ErrorTemplateViewModel());
+                    break;
+                case NodeNames.DROP:
+                    this.ActivateItem(new DropFileViewModel());
                     break;
 
                 case NodeNames.PASSWORD_BOX:

@@ -66,34 +66,61 @@ namespace Wpf.Common.Controls.Behavior
 
         public static Dock GetIconDock(UIElement obj) => obj.GetValue<Dock>(IconDockProperty);
 
-
-        private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
-        {         
-            source.InitializeControlIcon(arg, GetIconDock(source as UIElement));
-        }
-
+ 
 
         private static void OnWatermarkPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
             var watermark = arg.NewValue as string;
             if (watermark == null) return;
             var textBox = source as TextBox;
-            if (textBox == null) return;
-            textBox.Initialized += delegate
-            {
-                var tb= textBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);  
-                if (tb != null)
-                    tb.Text = watermark;
-            };                      
+            if (textBox == null) return;    
+            textBox.Initialized -= OnInitizedToSetWatermark;
+            textBox.Initialized += OnInitizedToSetWatermark;
+        }
+
+        private static void OnInitizedToSetWatermark(object sender, EventArgs args)
+        {
+            var textBox = sender as TextBox;
+            var tb = textBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+            if (tb != null)
+                tb.Text = GetWatermark(textBox);
         }
 
         private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
-            source.InitializeControlBorderCornerRadius(arg);
+            var control = source as Control;
+            if (control == null) return;
+            control.Initialized -= OnInitizedToSetCornerRadius;
+            control.Initialized += OnInitizedToSetCornerRadius;
         }
 
 
+        private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
+        {
+            var control = sender as Control;
+            var border = control.FindChildrenFromTemplate<Border>(ControlTemplateHelper. PART_BorderName);
+            if (border != null)
+                border.CornerRadius = GetCornerRadius(control);
+        }
 
-      
+        private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
+        {
+            var control = source as Control;
+            if (control == null) return;
+            control.Initialized -= OnInitizedToSetIcon;
+            control.Initialized += OnInitizedToSetIcon;
+        }
+
+        private static void OnInitizedToSetIcon(object sender, EventArgs args)
+        {
+            var control = sender as Control;
+            var cc = control.FindChildrenFromTemplate<ContentControl>(ControlTemplateHelper.PART_IconHostName);
+            if (cc != null)
+            {
+                cc.Content = GetIcon(control);
+                DockPanel.SetDock(cc, GetIconDock(sender as UIElement));
+            }
+        }
+
     }
 }

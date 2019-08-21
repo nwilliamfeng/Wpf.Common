@@ -84,12 +84,24 @@ namespace Wpf.Common.Controls.Behavior
         private static void OnComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
             => UpdateWatermarkVisibility(sender as ComboBox);
 
+     
+
         private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
-            source.InitializeControlBorderCornerRadius(arg);
+            var control = source as Control;
+            if (control == null) return;
+            control.Initialized -= OnInitizedToSetCornerRadius;
+            control.Initialized += OnInitizedToSetCornerRadius;
         }
 
 
+        private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
+        {
+            var control = sender as Control;
+            var border = control.FindChildrenFromTemplate<Border>(ControlTemplateHelper.PART_BorderName);
+            if (border != null)
+                border.CornerRadius = GetCornerRadius(control);
+        }
 
 
     }

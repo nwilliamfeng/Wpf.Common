@@ -63,45 +63,80 @@ namespace Wpf.Common.Controls.Behavior
 
         public static Dock GetIconDock(UIElement obj) => obj.GetValue<Dock>(IconDockProperty);
 
-
-        private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
-        {
-        
-            source.InitializeControlIcon(arg, GetIconDock(source as UIElement));
-        }
-
+ 
 
         private static void OnWatermarkPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
             var watermark = arg.NewValue as string;
             if (watermark == null) return;
-            var textBox = source as PasswordBox;
-            if (textBox == null) return;
-            Func<Visibility> getVisibility=()=> string.IsNullOrEmpty(textBox.Password) ? Visibility.Visible : Visibility.Collapsed;
-            textBox.Initialized += delegate
-            {
-                var tb= textBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
-                if (tb != null)
-                {
-                    tb.Text = watermark;
-                    tb.Visibility = getVisibility();
-                }
-                textBox.PasswordChanged += delegate
-                {
-                    if (tb != null)
-                        tb.Visibility = getVisibility();
-                };
-            };
+            var passwordBox = source as PasswordBox;
+            if (passwordBox == null) return;
             
+            passwordBox.Initialized -= OnInitizedToSetWatermarkVisibility;
+            passwordBox.Initialized += OnInitizedToSetWatermarkVisibility;
+
+            passwordBox.PasswordChanged -= OnPasswordChanged;
+            passwordBox.PasswordChanged += OnPasswordChanged;
         }
+
+        private static void OnInitizedToSetWatermarkVisibility(object sender, EventArgs args)
+        {
+            var passwordBox = sender as PasswordBox;
+            var tb = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+            if (tb != null)
+            {
+                tb.Text = GetWatermark(passwordBox);
+                tb.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        private static void OnPasswordChanged(object sender ,RoutedEventArgs args)
+        {
+            var passwordBox = sender as PasswordBox;
+            var tb = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+           
+            if (tb != null)
+                tb.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+            args.Handled = true;
+        }
+
+ 
 
         private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
-            source.InitializeControlBorderCornerRadius(arg);
+            var control = source as Control;
+            if (control == null) return;
+            control.Initialized -= OnInitizedToSetCornerRadius;
+            control.Initialized += OnInitizedToSetCornerRadius;
         }
 
 
+        private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
+        {
+            var control = sender as Control;
+            var border = control.FindChildrenFromTemplate<Border>(ControlTemplateHelper.PART_BorderName);
+            if (border != null)
+                border.CornerRadius = GetCornerRadius(control);
+        }
 
-      
+
+        private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
+        {
+            var control = source as Control;
+            if (control == null) return;
+            control.Initialized -= OnInitizedToSetIcon;
+            control.Initialized += OnInitizedToSetIcon;
+        }
+
+        private static void OnInitizedToSetIcon(object sender, EventArgs args)
+        {
+            var control = sender as Control;
+            var cc = control.FindChildrenFromTemplate<ContentControl>(ControlTemplateHelper.PART_IconHostName);
+            if (cc != null)
+            {
+                cc.Content = GetIcon(control);
+                DockPanel.SetDock(cc, GetIconDock(sender as UIElement));
+            }
+        }
     }
 }

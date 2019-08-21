@@ -38,25 +38,31 @@ namespace Wpf.Common.Behavior
         public static bool GetMultiFileEnable(UIElement element) => element.GetValue<bool>(MultiFileEnableProperty);
 
         public static void SetMultiFileEnable(UIElement element, bool enable) => element.SetValue(MultiFileEnableProperty, enable);
-        
+
         private static void OnDropCommandPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var el = d as UIElement;
             if (el == null) return;
-            el.PreviewDragOver += (s, arg) =>
-            {
-                arg.Effects = !el.GetValue<bool>(MultiFileEnableProperty) && arg.Data.IsMultiFileDroped() ? DragDropEffects.None : DragDropEffects.Copy;
-                arg.Handled = true;
-            };
-
-            el.Drop += (s, arg) =>
-            {
-                GetDropCommand(el).Execute(arg.Data);
-                arg.Handled = true;
-            };
-           
+            el.PreviewDragOver -= OnPreviewDragOver;
+            el.PreviewDragOver += OnPreviewDragOver;
+            el.Drop -= OnDrop;
+            el.Drop += OnDrop;
         }
 
+       
 
+        private static void OnPreviewDragOver(object sender,DragEventArgs e)
+        {
+            UIElement el = sender as UIElement;
+            e.Effects = !el.GetValue<bool>(MultiFileEnableProperty) && e.Data.IsMultiFileDroped() ? DragDropEffects.None : DragDropEffects.Copy;
+            e.Handled = true;
+        }
+
+        private static void OnDrop(object sender, DragEventArgs e)
+        {
+            UIElement el = sender as UIElement;
+            GetDropCommand(el).Execute(e.Data);
+            e.Handled = true;
+        }
     }
 }

@@ -18,7 +18,9 @@ namespace Wpf.Common.Controls
      
         public CustomValidationPopup()
         {
+            this.Loaded -= CustomValidationPopup_Loaded;
             this.Loaded += this.CustomValidationPopup_Loaded;
+            this.Opened -= CustomValidationPopup_Opened;
             this.Opened += this.CustomValidationPopup_Opened;
         }
 

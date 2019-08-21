@@ -95,6 +95,8 @@ namespace Wpf.Common.Demo
 
     public class NodeNames
     {
+        public const string DROP = "Drop";
+
         public const string ERROR_TEMPLATE = "ErrorTemplate";
 
         public const string DATE_PICKER = "DatePicker";

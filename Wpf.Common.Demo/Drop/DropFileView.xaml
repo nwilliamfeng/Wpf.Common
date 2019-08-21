@@ -28,7 +28,8 @@
         <HeaderedContentControl Header="DropAndFireCommand"  >
            
             <TextBox AcceptsReturn="True" TextWrapping="Wrap"
-             Text="{Binding FileNames}"
+                     IsReadOnly="True"
+             Text="{Binding FileNames,Mode=OneWay}"
             Behavior:DropBehavior.MultiFileEnable="True"
             Behavior:DropBehavior.DropCommand="{Binding LoadFileCommand}"  
             />
