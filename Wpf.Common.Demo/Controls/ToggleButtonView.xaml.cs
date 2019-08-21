@@ -26,8 +26,44 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class ToggleButtonViewModel : Caliburn.Micro.PropertyChangedBase
+    public class ToggleButtonViewModel : Caliburn.Micro.PropertyChangedBase, System.ComponentModel.IDataErrorInfo
     {
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "IsChecked")
+                    return !this.IsChecked ? "请选择" : null;
+                if (columnName == "IsChecked2")
+                    return  this.IsChecked2 ? "请取消选择" : null;
+                return null;
+            }
+        }
 
+        private bool _isChecked;
+
+        
+
+        public string Error => null;
+
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set{ _isChecked = value;
+                this.NotifyOfPropertyChange(() => this.IsChecked);
+            }
+        }
+
+        private bool _isChecked2=true;
+
+        public bool IsChecked2
+        {
+            get => _isChecked2;
+            set
+            {
+                _isChecked2 = value;
+                this.NotifyOfPropertyChange(() => this.IsChecked2);
+            }
+        }
     }
 }

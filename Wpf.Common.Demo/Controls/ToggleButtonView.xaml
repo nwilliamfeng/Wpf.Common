@@ -11,11 +11,20 @@
     </UserControl.Resources>
     <UniformGrid Columns="4">
         <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center"     />
+        
+        
 
         <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="True"   />
 
         <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"    />
 
         <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"  IsChecked="True"  />
+
+        <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center" 
+                      IsChecked="{Binding IsChecked,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"    />
+
+        <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center" 
+                      IsChecked="{Binding IsChecked2,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"    />
+
     </UniformGrid>
 </UserControl>
