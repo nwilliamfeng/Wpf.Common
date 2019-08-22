@@ -74,16 +74,10 @@ namespace Caliburn.Micro.MEF
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            List<Assembly> allAssemblies = new List<Assembly>();
-            string path = Assembly.GetEntryAssembly().Location; 
+            string path = Assembly.GetEntryAssembly().Location;
             foreach (string dll in Directory.GetFiles(Directory.GetParent(path).FullName, "*.dll"))
-                try
-                {
-                    allAssemblies.Add(Assembly.LoadFile(dll));
-                }
-                catch { }
-            allAssemblies.Add(Assembly.GetEntryAssembly());
-            return allAssemblies;
+                yield return (Assembly.LoadFile(dll));
+            yield return Assembly.GetEntryAssembly();
         }
 
         protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
