@@ -13,7 +13,7 @@ namespace Wpf.Common.Behavior
     {
         public static readonly DependencyProperty ScrollNextCommandProperty =
             DependencyProperty.RegisterAttached("ScrollNextCommand", typeof(ICommand), typeof(ScrollViewerBehavior)
-                , new PropertyMetadata(OnScrollNextCommandPropertyValueChanged));
+                , new PropertyMetadata(OnScrollNextCommandPropertyValueChanged) );
 
 
 
