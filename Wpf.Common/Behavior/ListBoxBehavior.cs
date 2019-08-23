@@ -9,10 +9,13 @@ using System.Windows.Input;
 
 namespace Wpf.Common.Behavior
 {
-    public class ScrollViewerBehavior
+    public class ListBoxBehavior
     {
+        /// <summary>
+        /// 当滚动条触底的时候触发命令
+        /// </summary>
         public static readonly DependencyProperty ScrollNextCommandProperty =
-            DependencyProperty.RegisterAttached("ScrollNextCommand", typeof(ICommand), typeof(ScrollViewerBehavior)
+            DependencyProperty.RegisterAttached("ScrollNextCommand", typeof(ICommand), typeof(ListBoxBehavior)
                 , new PropertyMetadata(OnScrollNextCommandPropertyValueChanged));
 
 
@@ -27,8 +30,10 @@ namespace Wpf.Common.Behavior
 
         private static void OnScrollNextCommandPropertyValueChanged(DependencyObject obj,DependencyPropertyChangedEventArgs e)
         {
-            var sv = obj as ScrollViewer;
-            if (sv == null) return;
+            var listBox = obj as ListBox;
+            if (listBox == null) return;
+            var sv = listBox.GetScrollViewer();
+            sv.Tag = listBox;
             sv.ScrollChanged -= OnScrollViewer_ScrollChanged;
             sv.ScrollChanged += OnScrollViewer_ScrollChanged;
         }
@@ -38,7 +43,15 @@ namespace Wpf.Common.Behavior
             var sv = sender as ScrollViewer;
             if (!sv.IsScrollEnd())
                 return;
-           var  GetScrollNextCommand(sv).Execute
+            ListBox listBox = sv.Tag as ListBox;           
+            if (listBox == null) return;
+            var cmd = GetScrollNextCommand(listBox);            
+            if (cmd.CanExecute(null))
+            {
+                var oldsh = sv.ScrollableHeight;
+                cmd.Execute(null);
+                sv.ScrollToVerticalOffset(oldsh);
+            }
         }
     }
 }
