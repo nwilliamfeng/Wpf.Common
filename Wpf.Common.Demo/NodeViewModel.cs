@@ -122,5 +122,7 @@ namespace Wpf.Common.Demo
         public const string TAB_CONTROL = "TabControl";
 
         public const string DROPDOWN_BUTTON = "Dropdown & Split Button";
+
+        public const string IMAGE_PERFORMANCE = "ImagePerformance";
     }
 }

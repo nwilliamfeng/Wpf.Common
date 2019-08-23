@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Wpf.Common.Input;
 using System.ComponentModel.Composition;
 using Wpf.Common.Demo.Controls;
+using Wpf.Common.Demo.Performance;
 
 namespace Wpf.Common.Demo
 {
@@ -39,9 +40,13 @@ namespace Wpf.Common.Demo
             var gpNode3 = new GroupNode { Name = "Behavior" };
             gpNode3.Items.Add(new NodeViewModel { Name = NodeNames.DROP });
 
+            var gpNode4 = new GroupNode { Name = "Performance" };
+            gpNode4.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_PERFORMANCE });
+
             Nodes.Add(gpNode1);
             Nodes.Add(gpNode2);
             Nodes.Add(gpNode3);
+            Nodes.Add(gpNode4);
             this.DisplayName = "Demo";
         }
 
@@ -120,6 +125,10 @@ namespace Wpf.Common.Demo
                     break;
                 case NodeNames.DROPDOWN_BUTTON:
                     this.ActivateItem(new DropdownButtonViewModel());
+                    break;
+
+                case NodeNames.IMAGE_PERFORMANCE:
+                    this.ActivateItem(new ImagePerformanceViewModel());
                     break;
                 default:
                     break;

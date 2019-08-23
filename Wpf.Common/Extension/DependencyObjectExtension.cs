@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace Wpf.Common
 {
-    public static class UIElementExtension
+    public static class DependencyObjectExtension
     {
         /// <summary>
         /// 返回依赖属性的当前有效值
@@ -18,7 +18,7 @@ namespace Wpf.Common
         /// <param name="element"></param>
         /// <param name="dp"></param>
         /// <returns></returns>
-        public static T GetValue<T>(this UIElement element, DependencyProperty dp) => (T)element.GetValue(dp);
+        public static T GetValue<T>(this DependencyObject element, DependencyProperty dp) => (T)element.GetValue(dp);
 
 
 

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3AF193EF-DC9A-47A4-965B-D2A7DCDB2207}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Wpf.Common.Demo</RootNamespace>
     <AssemblyName>Wpf.Common.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -119,6 +119,9 @@
       <DependentUpon>MemoryLeakView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NodeViewModel.cs" />
+    <Compile Include="Performance\ImagePerformanceView.xaml.cs">
+      <DependentUpon>ImagePerformanceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestChromeWindow.xaml.cs">
       <DependentUpon>TestChromeWindow.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MemoryLeakView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Performance\ImagePerformanceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
