@@ -10,11 +10,12 @@
         xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
         Height="450" Width="800"  
-        
+       
         ResizeMode="CanResizeWithGrip"
         controlBehavior:WindowChromeBehavior.TitleHeight="46"
          controlBehavior:WindowChromeBehavior.IsEnable="True"
         >
+    
     
     <controlBehavior:WindowChromeBehavior.TitleContent>
         <DockPanel Margin="5">

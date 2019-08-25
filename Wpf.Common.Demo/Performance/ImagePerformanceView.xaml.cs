@@ -63,18 +63,20 @@ namespace Wpf.Common.Demo.Performance
 
         public ObservableCollection<ImageViewModel> Images { get; private set; }
 
-        //private ICommand _loadCommand;
+        private ICommand _loadCommand;
 
-        //public ICommand LoadCommand
-        //{
-        //    get
-        //    {
-        //        return this._loadCommand ?? (this._loadCommand = new RelayCommand(() =>
-        //            {
-                         
-        //            }));
-        //    }
-        //}
+        public ICommand LoadCommand
+        {
+            get
+            {
+                return this._loadCommand ?? (this._loadCommand = new RelayCommand(() =>
+                    {
+                        this.Images.Clear();
+                        Enumerable.Range(0, 100000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList()
+                        .ForEach(x=>Images.Add(x));
+                    }));
+            }
+        }
 
 
 
