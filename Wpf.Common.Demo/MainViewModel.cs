@@ -130,6 +130,10 @@ namespace Wpf.Common.Demo
                 case NodeNames.IMAGE_PERFORMANCE:
                     this.ActivateItem(new ImagePerformanceViewModel());
                     break;
+
+                case NodeNames.LED:
+                    this.ActivateItem(new LedViewModel());
+                    break;
                 default:
                     break;
             }

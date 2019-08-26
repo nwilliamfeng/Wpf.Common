@@ -57,7 +57,7 @@ namespace Wpf.Common.Demo.Performance
         public ImagePerformanceViewModel()
         {
             this.Images = new ObservableCollection<ImageViewModel>();
-            this._imgCache = Enumerable.Range(0, 10000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList();
+            this._imgCache = Enumerable.Range(0, 1000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList();
             this._imgCache.Take(50).ToList().ForEach(x => this.Images.Add(x));
         }
 
@@ -72,7 +72,7 @@ namespace Wpf.Common.Demo.Performance
                 return this._loadCommand ?? (this._loadCommand = new RelayCommand(() =>
                     {
                         this.Images.Clear();
-                        Enumerable.Range(0, 100000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList()
+                        Enumerable.Range(0, 10000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList()
                         .ForEach(x=>Images.Add(x));
                     }));
             }
