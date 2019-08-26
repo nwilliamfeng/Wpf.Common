@@ -26,20 +26,13 @@ namespace Wpf.Common.Demo.Controls
         public LedView()
         {
             InitializeComponent();
-            //  <Line X1="6" Y1="0" X2="3" Y2="48"    />
-            //<Line X1="3" Y1="50" X2="0" Y2="98" />
-            //<Line X1="8" Y1="0" X2="32" Y2="0" />
-            //<Line X1="34" Y1="0" X2="58" Y2="0" />
-            //<Line X1="57" Y1="48" X2="60" Y2="0" />
-            //<Line X1="5" Y1="50" X2="29" Y2="50" />
-            //<Line X1="31" Y1="50" X2="55" Y2="50" />
-
-            //<Line X1="2" Y1="98" X2="26" Y2="98" />
-            //<Line X1="28" Y1="98" X2="52" Y2="98" />
-
-            //<Line X1="54" Y1="98" X2="57" Y2="50" /> 
-            
-            this.canvas.Children.Add(new Line { X1 = 6, Y1 = 0, X2 = 3, Y2 = 48 });
+        
+            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Bottom ));
+            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Bottom));
+            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Middle));
+            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Middle));
+            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Top));
+            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Top));
         }
     }
 
@@ -52,7 +45,7 @@ namespace Wpf.Common.Demo.Controls
     {
         Left,
         Right,
-        Middle,
+    
        
     }
 
@@ -74,58 +67,107 @@ namespace Wpf.Common.Demo.Controls
 
     public static class LedLineExtension
     {
-        public static Line DrawLine(this Line line, LedHorizontalPostion p1,LedVerticalPostion p2,LedLineType type)
+        private static Line Draw(this Line line, LedHorizontalPostion p1,LedVerticalPostion p2,LedLineType type)
         {
-            
+            if (type == LedLineType.Horizontal)
+                return DrawLedLine.Horizontal.Draw(line,p1,p2);
+            return line;
         }
 
-        
 
+        public static Line DrawHorizontal(this Line line, LedHorizontalPostion p1, LedVerticalPostion p2)
+        => Draw(line ,p1,p2, LedLineType.Horizontal);
     }
 
     public abstract class DrawLedLine
     {
         public const int HEIGHT = 24;
         public const int WIDTH = 24;
+        public const int SPAN = 2;
+        public const int HORIZONTAL_DIFF = 3;
 
         public abstract Line Draw(Line line , LedHorizontalPostion p1,LedVerticalPostion p2);
 
-     
-        
+        public static DrawLedLine Horizontal => new DrawLedHorizontalLine();
+
+
+
     }
 
     public class DrawLedHorizontalLine : DrawLedLine
     {
         public override Line Draw(Line line, LedHorizontalPostion hp,LedVerticalPostion vp)
         {
-            if (hp == LedHorizontalPostion.Middle) return line;
-            line.X1 = GetDefaultX1(vp);
+           
+            var pos= GetDefaultX1Y1(vp);
+            line.X1 = pos.Item1;
+            line.Y1 = line.Y2 = pos.Item2;
             switch (hp)
             {
                 case LedHorizontalPostion.Left:
                     break;
                
                 case LedHorizontalPostion.Right:
-                    line.X1 += WIDTH + 2;
+                    line.X1 += WIDTH + SPAN;
                     break;
+
+               
                 default:break;
             }
             line.X2 = line.X1 + WIDTH;
             return line;           
         }
 
-        private int GetDefaultX1(LedVerticalPostion vp)
+        private Tuple<int,int> GetDefaultX1Y1(LedVerticalPostion vp)
         {
             if (vp == LedVerticalPostion.Bottom)
-                return 2;
+                return new Tuple<int, int>( SPAN,98);
             else if (vp == LedVerticalPostion.Middle)
-                return 2 +3;
+                return new Tuple<int, int>(SPAN + HORIZONTAL_DIFF,48);
             else if (vp == LedVerticalPostion.Top)
-                return 2+ 3+3;
-            return 0;
+                return new Tuple<int, int>(SPAN + HORIZONTAL_DIFF * 2,0);
+            return default(Tuple<int,int>);
         }
             
        
     }
 
+    public class DrawLedVerticalLine : DrawLedLine
+    {
+        public override Line Draw(Line line, LedHorizontalPostion hp, LedVerticalPostion vp)
+        {
+           
+            var pos = GetDefaultX1Y1(vp);
+            line.X1 = pos.Item1;
+            line.Y1 = line.Y2 = pos.Item2;
+            switch (hp)
+            {
+                case LedHorizontalPostion.Left:
+                    break;
+
+                case LedHorizontalPostion.Right:
+                    line.X1 += WIDTH + SPAN;
+                    break;
+
+
+                default: break;
+            }
+            line.X2 = line.X1 + WIDTH;
+            return line;
+        }
+
+        private Tuple<int, int> GetDefaultX1Y1(LedHorizontalPostion hp)
+        {
+          //  < Line X1 = "3" Y1 = "50" X2 = "0" Y2 = "98" />
+            if (hp == LedHorizontalPostion.Left)
+                return new Tuple<int, int>(SPAN, 98);
+            else if (vp == LedVerticalPostion.Middle)
+                return new Tuple<int, int>(SPAN + HORIZONTAL_DIFF, 48);
+            else if (vp == LedVerticalPostion.Top)
+                return new Tuple<int, int>(SPAN + HORIZONTAL_DIFF * 2, 0);
+            return default(Tuple<int, int>);
+        }
+
+
+    }
 }

@@ -8,27 +8,55 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <Grid >
 
-        <Canvas Width="100" Height="100"  x:Name="canvas">
-            <Canvas.Resources>
-                <Style TargetType="Line">
-                    <Setter Property="Stroke" Value="Green"/>
-                    <Setter Property="StrokeThickness" Value="3"/>
-                </Style>
-            </Canvas.Resources>
-            <Line X1="6" Y1="0" X2="3" Y2="48"    />
-            <Line X1="3" Y1="50" X2="0" Y2="98" />
-            <Line X1="8" Y1="0" X2="32" Y2="0" />
-            <Line X1="34" Y1="0" X2="58" Y2="0" />
-            <Line X1="57" Y1="48" X2="60" Y2="0" />
-            <Line X1="5" Y1="50" X2="29" Y2="50" />
-            <Line X1="31" Y1="50" X2="55" Y2="50" />
+        <UniformGrid>
+            <Canvas Width="100" Height="100"  >
+                <Canvas.Resources>
+                    <Style TargetType="Line">
+                        <Setter Property="Stroke" Value="Green"/>
+                        <Setter Property="StrokeThickness" Value="6"/>
+                    </Style>
+                </Canvas.Resources>
+                <Line X1="6" Y1="0" X2="3" Y2="48"    />
+                <Line X1="3" Y1="50" X2="0" Y2="98" />
+                <Line X1="8" Y1="0" X2="32" Y2="0" />
+                <Line X1="34" Y1="0" X2="58" Y2="0" />
+                <Line X1="57" Y1="48" X2="60" Y2="0" />
+                <Line X1="5" Y1="48" X2="29" Y2="48" />
+                <Line X1="31" Y1="48" X2="55" Y2="48" />
 
-            <Line X1="2" Y1="98" X2="26" Y2="98" />
-            <Line X1="28" Y1="98" X2="52" Y2="98" />
+                <Line X1="2" Y1="98" X2="26" Y2="98" />
+                <Line X1="28" Y1="98" X2="52" Y2="98" />
 
-            <Line X1="54" Y1="98" X2="57" Y2="50" />
-            
-        </Canvas>
+                <Line X1="54" Y1="98" X2="57" Y2="50" />
+
+                <Line X1="30" Y1="50" X2="27" Y2="98" />
+                <Line X1="33" Y1="0" X2="30" Y2="48"  />
+                 
+            </Canvas>
+
+            <Canvas Width="100" Height="100"  x:Name="canvas">
+                <Canvas.Resources>
+                    <Style TargetType="Line">
+                        <Setter Property="Stroke" Value="Green"/>
+                        <Setter Property="StrokeThickness" Value="6"/>
+                    </Style>
+                </Canvas.Resources>
+                <!--<Line X1="6" Y1="0" X2="3" Y2="48"    />
+                <Line X1="3" Y1="50" X2="0" Y2="98" />
+                <Line X1="8" Y1="0" X2="32" Y2="0" />
+                <Line X1="34" Y1="0" X2="58" Y2="0" />
+                <Line X1="57" Y1="48" X2="60" Y2="0" />
+                <Line X1="5" Y1="48" X2="29" Y2="48" />
+                <Line X1="31" Y1="48" X2="55" Y2="48" />
+
+                <Line X1="2" Y1="98" X2="26" Y2="98" />
+                <Line X1="28" Y1="98" X2="52" Y2="98" />
+
+                <Line X1="54" Y1="98" X2="57" Y2="50" />-->
+
+            </Canvas>
+        </UniformGrid>
+       
         
             
         
