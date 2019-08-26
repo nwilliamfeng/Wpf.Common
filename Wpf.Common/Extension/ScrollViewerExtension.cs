@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace Wpf.Common
 {
-    public static class ScrollViewerExtensions
+    public static class ScrollViewerExtension
     {
         /// <summary>
         /// 返回指定的ScrollViewer是否已经滚动到底部

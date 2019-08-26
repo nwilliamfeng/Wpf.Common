@@ -32,7 +32,7 @@ namespace Wpf.Common.Demo.Performance
         private void listBox_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
            
-            Console.WriteLine(e.VerticalChange);
+             
         }
     }
 
@@ -53,12 +53,15 @@ namespace Wpf.Common.Demo.Performance
 
     public class ImagePerformanceViewModel : PropertyChangedBase
     {
+        private List<ImageViewModel> _imgCache  ;
         public ImagePerformanceViewModel()
         {
-            this.ImageUrls = new ObservableCollection<ImageViewModel>();
+            this.Images = new ObservableCollection<ImageViewModel>();
+            this._imgCache = Enumerable.Range(0, 10000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList();
+            this._imgCache.Take(50).ToList().ForEach(x => this.Images.Add(x));
         }
 
-        public ObservableCollection<ImageViewModel> ImageUrls { get; private set; }
+        public ObservableCollection<ImageViewModel> Images { get; private set; }
 
         private ICommand _loadCommand;
 
@@ -68,11 +71,15 @@ namespace Wpf.Common.Demo.Performance
             {
                 return this._loadCommand ?? (this._loadCommand = new RelayCommand(() =>
                     {
-                        for (int i = 0; i < 100000; i++)
-                            this.ImageUrls.Add(new ImageViewModel { Url = i.ToString() });
+                        this.Images.Clear();
+                        Enumerable.Range(0, 100000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList()
+                        .ForEach(x=>Images.Add(x));
                     }));
             }
         }
+
+
+
 
         private ICommand _clearCommand;
 
@@ -82,7 +89,24 @@ namespace Wpf.Common.Demo.Performance
             {
                 return this._clearCommand ?? (this._clearCommand = new RelayCommand(() =>
                 {
-                    this.ImageUrls.Clear();
+                    this.Images.Clear();
+                }));
+            }
+        }
+
+        private ICommand _loadNextCommand;
+
+        public ICommand LoadNextCommand
+        {
+            get
+            {
+                return this._loadNextCommand ?? (this._loadNextCommand = new RelayCommand(() =>
+                {
+                    var count = this.Images.Count;
+                    this._imgCache.Skip(count).Take(50).ToList().ForEach(x =>
+                    {
+                        this.Images.Add(x);
+                    }); 
                 }));
             }
         }

@@ -44,7 +44,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behavior\ScrollViewerBehavior.cs" />
+    <Compile Include="Behavior\ListBoxBehavior.cs" />
     <Compile Include="Behavior\TreeViewBehavior.cs" />
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\DropBehavior.cs" />
@@ -54,9 +54,11 @@
     <Compile Include="Data\ValueConverters.cs" />
     <Compile Include="Extension\ApplicationExtension.cs" />
     <Compile Include="Extension\ButtonExtension.cs" />
+    <Compile Include="Extension\ListBoxExtension.cs" />
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\DependencyObjectExtension.cs" />
-    <Compile Include="Extension\ScrollViewerExtensions.cs" />
+    <Compile Include="Extension\ScrollViewerExtension.cs" />
+    <Compile Include="Extension\VisualExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
