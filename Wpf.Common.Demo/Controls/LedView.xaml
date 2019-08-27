@@ -31,34 +31,58 @@
 
                 <Line X1="30" Y1="50" X2="27" Y2="98" />
                 <Line X1="33" Y1="0" X2="30" Y2="48"  />
-                 
+
             </Canvas>
 
-            <Canvas Width="100" Height="100"  x:Name="canvas">
+            <Canvas   Width="70"  Height="122">
                 <Canvas.Resources>
-                    <Style TargetType="Line">
-                        <Setter Property="Stroke" Value="Green"/>
-                        <Setter Property="StrokeThickness" Value="6"/>
+                    <Style TargetType="Polyline">
+                        <Setter Property="Fill" Value="Red"/>
+                        <Setter Property="Stretch" Value="Uniform"/>
                     </Style>
                 </Canvas.Resources>
-                <!--<Line X1="6" Y1="0" X2="3" Y2="48"    />
-                <Line X1="3" Y1="50" X2="0" Y2="98" />
-                <Line X1="8" Y1="0" X2="32" Y2="0" />
-                <Line X1="34" Y1="0" X2="58" Y2="0" />
-                <Line X1="57" Y1="48" X2="60" Y2="0" />
-                <Line X1="5" Y1="48" X2="29" Y2="48" />
-                <Line X1="31" Y1="48" X2="55" Y2="48" />
+                <Polyline Points="8,12 2,6 4,4 64,4 66,6 60,12" Canvas.Left="3" />
+                <Polyline Points="8,60 2,66 0,64 0,12 2,10 8,16"  Canvas.Top="4"  />
+                <Polyline Points="2,10 8,4 10,6 10,58 8,60 2,54" Canvas.Left="62" Canvas.Top="4" />
+                <Polyline Points="2,10 8,4 10,6 10,58 8,60 2,54" Canvas.Left="62" Canvas.Top="62" />
+                <Polyline Points="8,60 2,66 0,64 0,12 2,10 8,16"  Canvas.Top="62"  />
+                <Polyline Points="4,12 2,10 8,4 60,4 66,10 64,12" Canvas.Left="3"  Canvas.Top="114" />
 
-                <Line X1="2" Y1="98" X2="26" Y2="98" />
-                <Line X1="28" Y1="98" X2="52" Y2="98" />
 
-                <Line X1="54" Y1="98" X2="57" Y2="50" />-->
+                <Polyline Points="4,8 0,4 4,0 26,0 30,4 26,8"  Canvas.Left="4"   Canvas.Top="57" />
+                <Polyline Points="4,8 0,4 4,0 26,0 30,4 26,8"  Canvas.Left="36"   Canvas.Top="57" />
+
+                <Polyline Points="4,6 8,6 12,6 12,52 8,56 4,52"  Canvas.Left="31"     Canvas.Top="9" />
+
+                <Polyline Points="4,8 8,4 12,8 12,54 8,54 4,54"  Canvas.Left="31"     Canvas.Top="63" />
+
+
+                <Polyline Points="10,60 26,28" Stroke="Red" StrokeThickness="8"  Canvas.Left="8"  Canvas.Top="67" />
+
+                <Polyline Points="10,60 26,28" Stroke="Red" StrokeThickness="8"  Canvas.Left="39"  Canvas.Top="15" />
+
+                <Polyline Points="0,0 16,32" Stroke="Red" StrokeThickness="8"  Canvas.Left="8"  Canvas.Top="15" />
+
+                <Polyline Points="0,0 16,32" Stroke="Red" StrokeThickness="8"  Canvas.Left="39"  Canvas.Top="67" />
 
             </Canvas>
+
+
+            <Canvas   Width="70"  Height="122" x:Name="canvas">
+                <Canvas.Resources>
+                    <Style TargetType="Polyline">
+                        <Setter Property="Fill" Value="Red"/>
+                        <Setter Property="Stretch" Value="Uniform"/>
+                    </Style>
+                </Canvas.Resources>
+                 
+
+            </Canvas>
+
         </UniformGrid>
-       
-        
-            
-        
+
+
+
+
     </Grid>
 </UserControl>
