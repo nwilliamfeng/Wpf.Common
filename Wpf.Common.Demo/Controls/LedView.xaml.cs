@@ -26,13 +26,20 @@ namespace Wpf.Common.Demo.Controls
         public LedView()
         {
             InitializeComponent();
-        
-            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Bottom ));
-            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Bottom));
-            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Middle));
-            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Middle));
-            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Top));
-            this.canvas.Children.Add(new Line().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Top));
+            this.canvas.Children.Add(new Polyline().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Bottom));
+            this.canvas.Children.Add(new Polyline().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Middle));
+            this.canvas.Children.Add(new Polyline().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Middle));
+            this.canvas.Children.Add(new Polyline().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Top));
+
+            this.canvas.Children.Add(new Polyline().DrawVertical(LedHorizontalPostion.Left, LedVerticalPostion.Top));
+            this.canvas.Children.Add(new Polyline().DrawVertical(LedHorizontalPostion.Left, LedVerticalPostion.Bottom));
+
+            this.canvas.Children.Add(new Polyline().DrawVertical(LedHorizontalPostion.Right, LedVerticalPostion.Top));
+            this.canvas.Children.Add(new Polyline().DrawVertical(LedHorizontalPostion.Right, LedVerticalPostion.Bottom));
+
+            this.canvas.Children.Add(new Polyline().DrawVertical(LedHorizontalPostion.Left, LedVerticalPostion.Middle));
+            this.canvas.Children.Add(new Polyline().DrawVertical(LedHorizontalPostion.Right, LedVerticalPostion.Middle));
+
         }
     }
 
@@ -45,7 +52,7 @@ namespace Wpf.Common.Demo.Controls
     {
         Left,
         Right,
-    
+        
        
     }
 
@@ -67,106 +74,102 @@ namespace Wpf.Common.Demo.Controls
 
     public static class LedLineExtension
     {
-        private static Line Draw(this Line line, LedHorizontalPostion p1,LedVerticalPostion p2,LedLineType type)
-        {
-            if (type == LedLineType.Horizontal)
-                return DrawLedLine.Horizontal.Draw(line,p1,p2);
-            return line;
-        }
+         
 
+        public static Polyline DrawHorizontal(this Polyline line, LedHorizontalPostion p1, LedVerticalPostion p2)
+        => DrawLedLine.Horizontal.Draw(line, p1, p2);
 
-        public static Line DrawHorizontal(this Line line, LedHorizontalPostion p1, LedVerticalPostion p2)
-        => Draw(line ,p1,p2, LedLineType.Horizontal);
+        public static Polyline DrawVertical(this Polyline line, LedHorizontalPostion p1, LedVerticalPostion p2)
+       => DrawLedLine.Vertical.Draw(line, p1, p2);
     }
 
     public abstract class DrawLedLine
     {
         
 
-        public abstract Line Draw(Polyline line , LedHorizontalPostion p1,LedVerticalPostion p2);
+        public  Polyline Draw(Polyline line , LedHorizontalPostion hp,LedVerticalPostion vp)
+        {
+            this.HorizontalPostion = hp;
+            this.VerticalPostion = vp;
+            var position = this.GetCanvasLocation( );
+            var points = GetPoints( );
+            points.ToList().ForEach(p => line.Points.Add(p));
+            Canvas.SetLeft(line, position.Item1);
+            Canvas.SetTop(line, position.Item2);
+            return line;
+        }
+
+        protected LedHorizontalPostion HorizontalPostion { get; private set; }
+
+        protected LedVerticalPostion VerticalPostion { get; private set; }
+
+        protected abstract Tuple<int, int> GetCanvasLocation();
+
+        protected abstract IEnumerable<Point> GetPoints();
 
         public static DrawLedLine Horizontal => new DrawLedHorizontalLine();
 
+        public static DrawLedLine Vertical => new DrawLedVerticalLine();
 
 
     }
 
     public class DrawLedHorizontalLine : DrawLedLine
     {
-        public override Line Draw(Polyline line, LedHorizontalPostion hp,LedVerticalPostion vp)
+     
+
+        protected override Tuple<int,int> GetCanvasLocation( )
         {
-           //< Polyline Points = "4,12 2,10 8,4 60,4 66,10 64,12" Canvas.Left = "3"  Canvas.Top = "114" />
-
-          //   < Polyline Points = "4,8 0,4 4,0 26,0 30,4 26,8"  Canvas.Left = "4"   Canvas.Top = "57" />
-            var pos= GetCanvasLocation(vp);
-            line.X1 = pos.Item1;
-            line.Y1 = line.Y2 = pos.Item2;
-            switch (hp)
-            {
-                case LedHorizontalPostion.Left:
-                    break;
-               
-                case LedHorizontalPostion.Right:
-                    line.X1 += WIDTH + SPAN;
-                    break;
-
-               
-                default:break;
-            }
-            line.X2 = line.X1 + WIDTH;
-            return line;           
+            var offset = 57;
+            if (this.VerticalPostion == LedVerticalPostion.Bottom)
+                return new Tuple<int, int>( 3, offset * 2);
+            else if (VerticalPostion == LedVerticalPostion.Middle)
+                return HorizontalPostion== LedHorizontalPostion.Left? new Tuple<int, int>(4, offset) : new Tuple<int, int>(36, offset);
+           
+            return new Tuple<int, int>(3,0);          
         }
 
-        private Tuple<int,int> GetCanvasLocation(LedVerticalPostion vp,LedHorizontalPostion hp= LedHorizontalPostion.Left)
-        {
-            if (vp == LedVerticalPostion.Bottom)
-                return new Tuple<int, int>( 3,114);
-            else if (vp == LedVerticalPostion.Middle)
-                return hp== LedHorizontalPostion.Left? new Tuple<int, int>(4,57) : new Tuple<int, int>(36, 57);
-            else if (vp == LedVerticalPostion.Top)
-                return new Tuple<int, int>(3,0);
-            return default(Tuple<int,int>);
+        protected override IEnumerable<Point> GetPoints( )
+        {           
+            if (VerticalPostion == LedVerticalPostion.Top)
+                return "8,12 2,6 4,4 64,4 66,6 60,12".ParsePoints();
+            else if (VerticalPostion == LedVerticalPostion.Bottom)
+                return "4,12 2,10 8,4 60,4 66,10 64,12".ParsePoints();
+            return "4,8 0,4 4,0 26,0 30,4 26,8".ParsePoints();
         }
-            
-       
+
+
     }
 
-    //public class DrawLedVerticalLine : DrawLedLine
-    //{
-    //    public override Line Draw(Polyline line, LedHorizontalPostion hp, LedVerticalPostion vp)
-    //    {
+    public class DrawLedVerticalLine : DrawLedLine
+    {
+
+
+        protected override Tuple<int, int> GetCanvasLocation()
+        {
            
-    //        var pos = GetDefaultX1Y1(vp);
-    //        line.X1 = pos.Item1;
-    //        line.Y1 = line.Y2 = pos.Item2;
-    //        switch (hp)
-    //        {
-    //            case LedHorizontalPostion.Left:
-    //                break;
+            var offset = 58;
+            if (HorizontalPostion == LedHorizontalPostion.Left)
+                return VerticalPostion == LedVerticalPostion.Top ? new Tuple<int, int>(4, 0) : new Tuple<int, int>(4 + offset, 0);
 
-    //            case LedHorizontalPostion.Right:
-    //                line.X1 += WIDTH + SPAN;
-    //                break;
+            else if (HorizontalPostion == LedHorizontalPostion.Right)
+                return VerticalPostion == LedVerticalPostion.Top ? new Tuple<int, int>(4, 4+ offset) : new Tuple<int, int>(4 + offset, 4 + offset);
+            else
+                return VerticalPostion == LedVerticalPostion.Top ? new Tuple<int, int>(31, 9) : new Tuple<int, int>(31, 63);
+        }
 
-
-    //            default: break;
-    //        }
-    //        line.X2 = line.X1 + WIDTH;
-    //        return line;
-    //    }
-
-    //    private Tuple<int, int> GetDefaultX1Y1(LedHorizontalPostion hp)
-    //    {
-    //      //  < Line X1 = "3" Y1 = "50" X2 = "0" Y2 = "98" />
-    //        if (hp == LedHorizontalPostion.Left)
-    //            return new Tuple<int, int>(SPAN, 98);
-    //        else if (vp == LedVerticalPostion.Middle)
-    //            return new Tuple<int, int>(SPAN + HORIZONTAL_DIFF, 48);
-    //        else if (vp == LedVerticalPostion.Top)
-    //            return new Tuple<int, int>(SPAN + HORIZONTAL_DIFF * 2, 0);
-    //        return default(Tuple<int, int>);
-    //    }
+        protected override IEnumerable<Point> GetPoints()
+        {
+         
+            if (HorizontalPostion == LedHorizontalPostion.Left)
+                return "8,60 2,66 0,64 0,12 2,10 8,16".ParsePoints();
+            else if (HorizontalPostion == LedHorizontalPostion.Right)
+                return "2,10 8,4 10,6 10,58 8,60 2,54".ParsePoints();
+            return (VerticalPostion == LedVerticalPostion.Top ? "4,6 8,6 12,6 12,52 8,56 4,52" : "4,8 8,4 12,8 12,54 8,54 4,54").ParsePoints();
+        }
 
 
-    //}
+    }
+
+
 }

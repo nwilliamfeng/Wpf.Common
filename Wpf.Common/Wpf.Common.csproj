@@ -57,6 +57,7 @@
     <Compile Include="Extension\ListBoxExtension.cs" />
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\DependencyObjectExtension.cs" />
+    <Compile Include="Extension\PointExtension.cs" />
     <Compile Include="Extension\ScrollViewerExtension.cs" />
     <Compile Include="Extension\VisualExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
