@@ -11,6 +11,9 @@ using Wpf.Common.Controls.Helper.LedTubes;
 
 namespace Wpf.Common.Controls
 {
+    /// <summary>
+    /// 米字数码管显示
+    /// </summary>
     [TemplatePart(Name = PART_Canvas)]
     public class LedTube:Control
     {
@@ -100,7 +103,29 @@ namespace Wpf.Common.Controls
             drawLineTypeDic[CHAR_G] = new DrawLineType[] {DrawLineType.VerticalBottomLeft,DrawLineType.VerticalTopLeft ,DrawLineType.HorizontalMiddleRight,  DrawLineType.HorizontalBottom, DrawLineType.HorizontalTop, DrawLineType.VerticalBottomRight,  };
             drawLineTypeDic[CHAR_H] = AllDrawLineTypes.ExcludeObliques().ExcludeMiddleVerticals().Exclude(DrawLineType.HorizontalBottom, DrawLineType.HorizontalTop);
             drawLineTypeDic[CHAR_I] = new DrawLineType[] { DrawLineType.HorizontalTop, DrawLineType.HorizontalBottom, DrawLineType.VerticalTopMiddle, DrawLineType.VerticalBottomMiddle };
-            drawLineTypeDic[CHAR_J] = new DrawLineType[] {   DrawLineType.HorizontalBottom, DrawLineType.VerticalBottomRight, DrawLineType.VerticalTopRight };
+            drawLineTypeDic[CHAR_J] = new DrawLineType[] {DrawLineType.VerticalBottomLeft,   DrawLineType.HorizontalBottom, DrawLineType.VerticalBottomRight, DrawLineType.VerticalTopRight };
+
+            drawLineTypeDic[CHAR_K] = new DrawLineType[] {  DrawLineType.VerticalBottomLeft,DrawLineType.VerticalTopLeft, DrawLineType.HorizontalMiddleLeft,DrawLineType.ObliqueRightBottom,DrawLineType.ObliqueRightTop };
+            drawLineTypeDic[CHAR_L] = new DrawLineType[] { DrawLineType.VerticalBottomLeft, DrawLineType.VerticalTopLeft,  DrawLineType.HorizontalBottom };
+            drawLineTypeDic[CHAR_M] = AllDrawLineTypes.ExcludeMiddles().Exclude(DrawLineType.HorizontalTop, DrawLineType.HorizontalBottom, DrawLineType.ObliqueLeftBottom,DrawLineType.ObliqueRightBottom);
+            drawLineTypeDic[CHAR_N] = AllDrawLineTypes.ExcludeMiddles().Exclude(DrawLineType.HorizontalTop, DrawLineType.HorizontalBottom, DrawLineType.ObliqueLeftBottom, DrawLineType.ObliqueRightTop);
+            drawLineTypeDic[CHAR_O] = AllDrawLineTypes.ExcludeMiddles().Exclude(DrawLineType.ObliqueLeftTop,  DrawLineType.ObliqueRightBottom);
+
+            drawLineTypeDic[CHAR_P] = AllDrawLineTypes.ExcludeMiddleVerticals().ExcludeObliques().Exclude(DrawLineType.HorizontalBottom, DrawLineType.VerticalBottomRight);
+            drawLineTypeDic[CHAR_Q] = AllDrawLineTypes.ExcludeObliques().ExcludeMiddles().Union(new DrawLineType[] { DrawLineType.ObliqueRightBottom }).ToArray();
+
+            drawLineTypeDic[CHAR_R] = new DrawLineType[] {DrawLineType.HorizontalMiddleLeft,DrawLineType.HorizontalMiddleRight,  DrawLineType.VerticalTopLeft,DrawLineType.VerticalBottomLeft,DrawLineType.HorizontalTop,DrawLineType.VerticalTopRight,DrawLineType.ObliqueRightBottom };
+
+            drawLineTypeDic[CHAR_S] = new DrawLineType[] {DrawLineType.HorizontalTop,   DrawLineType.ObliqueLeftTop,DrawLineType.HorizontalMiddleRight,DrawLineType.VerticalBottomRight ,DrawLineType.HorizontalBottom };
+            drawLineTypeDic[CHAR_T] = new DrawLineType[] {DrawLineType.HorizontalTop, DrawLineType.VerticalBottomMiddle,DrawLineType.VerticalTopMiddle };
+            drawLineTypeDic[CHAR_U] = AllDrawLineTypes.ExcludeMiddles().ExcludeObliques().Exclude(DrawLineType.HorizontalTop);
+            drawLineTypeDic[CHAR_V] = new DrawLineType[] {  DrawLineType.VerticalBottomLeft,DrawLineType.VerticalTopLeft,DrawLineType.ObliqueLeftBottom,DrawLineType.ObliqueRightTop };
+            drawLineTypeDic[CHAR_W] = AllDrawLineTypes.ExcludeMiddles().Exclude(DrawLineType.HorizontalTop,DrawLineType.HorizontalBottom,DrawLineType.ObliqueLeftTop,DrawLineType.ObliqueRightTop);
+            drawLineTypeDic[CHAR_X] = new DrawLineType[] {DrawLineType.ObliqueLeftTop,DrawLineType.ObliqueLeftBottom,DrawLineType.ObliqueRightBottom,DrawLineType.ObliqueRightTop};
+            drawLineTypeDic[CHAR_Y] = new DrawLineType[] { DrawLineType.ObliqueLeftTop, DrawLineType.VerticalBottomMiddle,   DrawLineType.ObliqueRightTop };
+            drawLineTypeDic[CHAR_Z] = new DrawLineType[] { DrawLineType.HorizontalBottom,DrawLineType.HorizontalTop,DrawLineType.ObliqueLeftBottom,DrawLineType.ObliqueRightTop };
+
+
 
         }
 

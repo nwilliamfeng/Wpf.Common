@@ -9,9 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <Grid >
 
-        <UniformGrid Columns="10">
-            <controls:LedTube Char="0"/>
-
+        <!--<UniformGrid Columns="10">
+            
             <Canvas   Width="70"  Height="122" Visibility="Collapsed">
                 <Canvas.Resources>
                     <Style TargetType="Polyline">
@@ -65,12 +64,25 @@
             <controls:LedTube Char="F"/>
             <controls:LedTube Char="G"/>
             <controls:LedTube Char="H"/>
+            <controls:LedTube Char="I"/>
             <controls:LedTube Char="J"/>
             <controls:LedTube />
 
-        </UniformGrid>
+        </UniformGrid>-->
 
 
+        <ItemsControl ItemsSource="{Binding Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid IsItemsHost="True" Columns="10"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:LedTube Char="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
 
     </Grid>
