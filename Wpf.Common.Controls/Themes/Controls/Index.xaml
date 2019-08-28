@@ -20,5 +20,6 @@
         <ResourceDictionary Source="ScrollBar.xaml"/>
         <ResourceDictionary Source="DropdownButton.xaml"/>
         <ResourceDictionary Source="SplitButton.xaml"/>
+        <ResourceDictionary Source="LedTube.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

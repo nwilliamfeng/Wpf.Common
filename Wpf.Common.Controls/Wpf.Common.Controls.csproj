@@ -44,6 +44,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\LedTube\DrawLedLine.cs" />
+    <Compile Include="Helper\LedTube\Enums.cs" />
+    <Compile Include="Helper\LedTube\LedLineExtension.cs" />
+    <Compile Include="LedTube.cs" />
     <Page Include="Themes\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Controls\DatePickerTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Controls\LedTube.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,4 +23,5 @@
     <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"/>
     <Style TargetType="{x:Type controls:DropdownButton}" BasedOn="{StaticResource  DropdownButtonStyle}"/>
     <Style TargetType="{x:Type controls:SplitButton}" BasedOn="{StaticResource   SplitButtonStyle }"/>
+    <Style TargetType="{x:Type controls:LedTube}" BasedOn="{StaticResource   LedTubeStyle }"/>
 </ResourceDictionary>
