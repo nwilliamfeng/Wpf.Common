@@ -58,7 +58,6 @@ namespace Wpf.Common.Controls
 
         private static Dictionary<char, DrawLineType[]> drawLineTypeDic;
 
-
         public static readonly DependencyProperty CharProperty = DependencyProperty.Register("Char", typeof(char), typeof(LedTube)
             , new PropertyMetadata(' ',OnCharValuePropertyChanged));
 
@@ -115,7 +114,6 @@ namespace Wpf.Common.Controls
             drawLineTypeDic[CHAR_Q] = AllDrawLineTypes.ExcludeObliques().ExcludeMiddles().Union(new DrawLineType[] { DrawLineType.ObliqueRightBottom }).ToArray();
 
             drawLineTypeDic[CHAR_R] = new DrawLineType[] {DrawLineType.HorizontalMiddleLeft,DrawLineType.HorizontalMiddleRight,  DrawLineType.VerticalTopLeft,DrawLineType.VerticalBottomLeft,DrawLineType.HorizontalTop,DrawLineType.VerticalTopRight,DrawLineType.ObliqueRightBottom };
-
             drawLineTypeDic[CHAR_S] = new DrawLineType[] {DrawLineType.HorizontalTop,   DrawLineType.ObliqueLeftTop,DrawLineType.HorizontalMiddleRight,DrawLineType.VerticalBottomRight ,DrawLineType.HorizontalBottom };
             drawLineTypeDic[CHAR_T] = new DrawLineType[] {DrawLineType.HorizontalTop, DrawLineType.VerticalBottomMiddle,DrawLineType.VerticalTopMiddle };
             drawLineTypeDic[CHAR_U] = AllDrawLineTypes.ExcludeMiddles().ExcludeObliques().Exclude(DrawLineType.HorizontalTop);
@@ -124,8 +122,6 @@ namespace Wpf.Common.Controls
             drawLineTypeDic[CHAR_X] = new DrawLineType[] {DrawLineType.ObliqueLeftTop,DrawLineType.ObliqueLeftBottom,DrawLineType.ObliqueRightBottom,DrawLineType.ObliqueRightTop};
             drawLineTypeDic[CHAR_Y] = new DrawLineType[] { DrawLineType.ObliqueLeftTop, DrawLineType.VerticalBottomMiddle,   DrawLineType.ObliqueRightTop };
             drawLineTypeDic[CHAR_Z] = new DrawLineType[] { DrawLineType.HorizontalBottom,DrawLineType.HorizontalTop,DrawLineType.ObliqueLeftBottom,DrawLineType.ObliqueRightTop };
-
-
 
         }
 
@@ -138,114 +134,12 @@ namespace Wpf.Common.Controls
             if (drawLineTypeDic.ContainsKey(this.Char))
                 drawLineTypeDic[this.Char]
                     .ToList()
-                    .ForEach(x => this.CreateLine().Draw(canvas, x));
-            
-
+                    .ForEach(x => this.CreateLine().Draw(canvas, x));          
         }
 
         private DrawLineType[] AllDrawLineTypes => Enum.GetValues(typeof(DrawLineType)).OfType<DrawLineType>().ToArray();
 
-
-
-        //private void DrawTopHorizontal(Canvas canvas)
-        //{
-        //    var filters =new char[] {CHAR_DEFAULT, CHAR_2,CHAR_3,CHAR_8,CHAR_9,CHAR_0, CHAR_5, CHAR_7, CHAR_S, CHAR_T, CHAR_P, CHAR_R, CHAR_O, CHAR_B, CHAR_D, CHAR_A };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Top));
-        //}
-
-        //private void DrawBottomHorizontal(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_2,CHAR_3,CHAR_5,CHAR_6,CHAR_8,CHAR_9,CHAR_0 };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Bottom));
-        //}
-
-        //private void DrawMiddleLeftHorizontal(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_2, CHAR_3,CHAR_4, CHAR_5, CHAR_6, CHAR_8, CHAR_9};
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawHorizontal(LedHorizontalPostion.Left, LedVerticalPostion.Middle));
-        //}
-
-        //private void DrawMiddleRightHorizontal(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_4,  CHAR_2, CHAR_3, CHAR_5, CHAR_6, CHAR_8, CHAR_9 };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawHorizontal(LedHorizontalPostion.Right, LedVerticalPostion.Middle));
-        //}
-
-        //private void DrawVerticalLeftTop(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_0, CHAR_4,  CHAR_5, CHAR_6, CHAR_8, CHAR_9 };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawVertical(LedHorizontalPostion.Left, LedVerticalPostion.Top));
-        //}
-
-        //private void DrawVerticalLeftBottom(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_0 , CHAR_2,    CHAR_6, CHAR_8,   };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawVertical(LedHorizontalPostion.Left, LedVerticalPostion.Bottom));
-        //}
-
-        //private void DrawVerticalRightTop(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_0,CHAR_1, CHAR_2, CHAR_3,CHAR_4,  CHAR_7, CHAR_8, CHAR_9 };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawVertical(LedHorizontalPostion.Right, LedVerticalPostion.Top));
-        //}
-
-        //private void DrawVerticalRightBottom(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, CHAR_0, CHAR_1, CHAR_3,CHAR_4, CHAR_5, CHAR_6,CHAR_7, CHAR_8, CHAR_9 };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawVertical(LedHorizontalPostion.Right, LedVerticalPostion.Bottom));
-        //}
-
-        //private void DrawVerticalMiddleTop(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawVertical(LedHorizontalPostion.Middle, LedVerticalPostion.Top));
-        //}
-
-        //private void DrawVerticalMiddleBottom(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawVertical(LedHorizontalPostion.Middle, LedVerticalPostion.Bottom));
-        //}
-
-        //private void DrawObliqueRightTop(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawOblique(LedHorizontalPostion.Right, LedVerticalPostion.Top));
-        //}
-
-        //private void DrawObliqueRightBottom(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawOblique(LedHorizontalPostion.Right, LedVerticalPostion.Bottom));
-        //}
-
-        //private void DrawObliqueLeftTop(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT  };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawOblique(LedHorizontalPostion.Left, LedVerticalPostion.Top));
-        //}
-
-        //private void DrawObliqueLeftBottom(Canvas canvas)
-        //{
-        //    var filters = new char[] { CHAR_DEFAULT, };
-        //    if (filters.Contains(this.Char))
-        //        canvas.Children.Add(CreateLine().DrawOblique(LedHorizontalPostion.Left, LedVerticalPostion.Bottom));
-        //}
-
-
+      
         private Polyline CreateLine()
         {
             return new Polyline { Fill = this.Foreground, Stretch = Stretch.Uniform };
