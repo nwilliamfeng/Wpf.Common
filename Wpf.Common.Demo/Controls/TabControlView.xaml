@@ -4,24 +4,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
+             xmlns:behavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <UserControl.Resources>
+        <Style TargetType="TabItem" BasedOn="{StaticResource TabItemStyle}" x:Key="tabItemStyle">
+            <Setter  Property="AllowDrop" Value="True"/>
+            <Setter Property="Padding" Value="18,6"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Foreground="Orange"/>
+                    </DataTemplate>
+                </Setter.Value>
+                    
+            </Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Foreground="Red"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <EventSetter Event="PreviewMouseMove" Handler="TabItem_PreviewMouseMove"/>
+            <EventSetter Event="Drop" Handler="TabItem_Drop"/>
+        </Style>
+
+        <Style TargetType="TabItem" BasedOn="{StaticResource TabItemStyle}" x:Key="tabItemStyle">
+            <Setter  Property="AllowDrop" Value="True"/>
+            <Setter Property="Padding" Value="18,6"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Foreground="Orange"/>
+                    </DataTemplate>
+                </Setter.Value>
+
+            </Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Foreground="Red"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="behavior:TabItemBehavior.IsDropEnable" Value="True"/>
+            <Setter Property="behavior:TabItemBehavior.Drop" Value=""/>
+        </Style>
+    </UserControl.Resources>
+    <UniformGrid>
 
         
-     
 
-    </UserControl.Resources>
-    <Grid>
-        <TabControl Margin="20"  >
-            <TabControl.Resources>
-                <Style TargetType="TabItem" BasedOn="{StaticResource TabItemStyle}">
-                    <Setter Property="Padding" Value="18,6"/>
-                </Style>
-            </TabControl.Resources>
-            <TabItem Header="tab1"  >this is tab1</TabItem>
-            <TabItem Header="tab2"  >this is tab2</TabItem>
-            <TabItem Header="tab3"  >this is tab3</TabItem>
+        <TabControl Margin="20"  
+                    x:Name="tabControl" 
+                    ItemsSource="{Binding Items}" 
+                    ItemContainerStyle="{StaticResource tabItemStyle}">
+
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:TabItemViewModel}">
+                    <TextBlock Text="{Binding Title}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
         </TabControl>
-    </Grid>
+
+        <TabControl  ItemsSource="{Binding Items}" >
+            
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:TabItemViewModel}">
+                    <TextBlock Text="{Binding Title}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+    </UniformGrid>
 </UserControl>

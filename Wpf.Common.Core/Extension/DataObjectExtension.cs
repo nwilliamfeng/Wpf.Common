@@ -32,5 +32,10 @@ namespace Wpf.Common
         {
             return dataObject.GetDropFileNames().Count() > 1;
         }
+
+        public static T GetData<T>(this IDataObject dataObject)
+        {
+            return (T) dataObject.GetData(typeof(T));
+        }
     }
 }
