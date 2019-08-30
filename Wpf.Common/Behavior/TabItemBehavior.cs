@@ -23,7 +23,6 @@ namespace Wpf.Common.Behavior
 
     
 
-
     /// <summary>
     /// TabItem附加行为
     /// </summary>
@@ -44,11 +43,10 @@ namespace Wpf.Common.Behavior
 
 
         /// <summary>
-        /// 拖放事件触发后的绑定命令，命令参数是tabitem对应的datacontext实例
+        /// 拖放事件触发后的绑定命令 
         /// </summary>
         public static readonly DependencyProperty DropCommandProperty =
-            DependencyProperty.RegisterAttached("DropCommand", typeof(ICommand), typeof(TabItemBehavior)
-                , new PropertyMetadata(false, OnIsDropEnablePropertyChanged));
+            DependencyProperty.RegisterAttached("DropCommand", typeof(ICommand), typeof(TabItemBehavior) , new PropertyMetadata( null));
 
         public static ICommand GetDropCommand(DependencyObject obj)
             => obj.GetValue<ICommand>(DropCommandProperty);
@@ -56,12 +54,24 @@ namespace Wpf.Common.Behavior
         public static void SetDropCommand(DependencyObject obj, object value)
             => obj.SetValue(DropCommandProperty, value);
 
+
+         
+        //public static readonly DependencyProperty DropCommandParameterProperty =
+        //    DependencyProperty.RegisterAttached("DropCommandParameter", typeof(Tuple<object,object>), typeof(TabItemBehavior), new PropertyMetadata(null));
+
+        //public static Tuple<object, object> GetDropCommandParameter(DependencyObject obj)
+        //    => obj.GetValue<Tuple<object, object>>(DropCommandParameterProperty);
+
+        //public static void SetDropCommandParameter(DependencyObject obj, object value)
+        //    => obj.SetValue(DropCommandParameterProperty, value);
+
         //https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/attached-events-overview
+
         public static readonly RoutedEvent DropEvent = EventManager.RegisterRoutedEvent("Drop", RoutingStrategy.Bubble,
             typeof(EventHandler<TabItemDropEventArgs>), typeof(TabItemBehavior));
 
         public static void AddDropHandler(DependencyObject d, EventHandler<TabItemDropEventArgs> handler)
-        {
+        {        
             UIElement uie = d as UIElement;
             if (uie != null)
                 uie.AddHandler(TabItemBehavior.DropEvent, handler);
@@ -94,8 +104,15 @@ namespace Wpf.Common.Behavior
             if (e.Data == null) return;
             if (!(sender is TabItem)) return;
             var tabItem = e.Data.GetData<TabItem>();
-
-            (sender as TabItem).RaiseEvent(new TabItemDropEventArgs(DropEvent, sender, tabItem));
+            var sourceTabItem = sender as TabItem;
+            if(sourceTabItem.DataContext!=null && tabItem.DataContext!=null)
+            {
+                ICommand cmd = GetDropCommand(sourceTabItem);
+                var para = new Tuple<object, object>(sourceTabItem.DataContext, tabItem.DataContext);
+                if (cmd != null && cmd.CanExecute(para))
+                    cmd.Execute(para);
+            }
+            sourceTabItem.RaiseEvent(new TabItemDropEventArgs(DropEvent, sender, tabItem));
         }
 
         private static void TabItem_PreviewMouseMove(object sender, MouseEventArgs e)

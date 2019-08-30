@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Common.Behavior;
+using Wpf.Common.Input;
 
 namespace Wpf.Common.Demo.Controls
 {
@@ -27,24 +29,21 @@ namespace Wpf.Common.Demo.Controls
            
         }
 
-         
-
-        private void TabItem_PreviewDragOver(object sender, DragEventArgs e)
+        private void OnTabItemDrop(object sender, TabItemDropEventArgs args)
         {
-             
+            this.fireTB2.Text = "Event Sender:" + (sender as TabItem).Header.ToString();
+            this.dragTB2.Text = "TabItemDropEventArgs :" + args.DroppedValue.Header.ToString();
         }
 
+ 
+        
         private void TabItem_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed  )
             {
-                Console.WriteLine("click");
-             //   _isDraging = true;
                 DragDrop.DoDragDrop(sender as TabItem, sender, DragDropEffects.Move);
             }
             e.Handled = true;
-
-
         }
 
         private void TabItem_Drop(object sender, DragEventArgs e)
@@ -52,8 +51,8 @@ namespace Wpf.Common.Demo.Controls
             var tabItem = e.Data.GetData<TabItem>();
             if (tabItem == null)
                 return;
-            Console.WriteLine($"raise drop event: {tabItem.DataContext}");
-           
+            this.fireTB1.Text ="Event Sender:"+(sender as TabItem).Header.ToString();
+            this.dragTB1.Text = "Drop object:" + tabItem.Header.ToString();
         }
     }
 
@@ -75,10 +74,39 @@ namespace Wpf.Common.Demo.Controls
         {
             return this.Title;
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as TabItemViewModel;
+            if (other == null) return false;
+            return this.Title == other.Title;
+            
+        }
+
+        public override int GetHashCode()
+        {           
+            return string.IsNullOrEmpty(this.Title)?base.GetHashCode(): this.Title.GetHashCode();
+        }
     }
 
     public class TabControlViewModel : Caliburn.Micro.PropertyChangedBase
     {
+        private ICommand _setPositionCommand;
+
+        /// <summary>
+        /// 当tabitem执行drop后触发交换命令
+        /// </summary>
+        public ICommand SetPositionCommand =>
+            this._setPositionCommand ?? (this._setPositionCommand = new RelayCommand<Tuple<object,object>>(x=>
+            {
+                var nwItem = x.Item2 as TabItemViewModel;
+                var currItem = x.Item1 as TabItemViewModel;
+                if (nwItem == null || currItem == null) return;
+                this.Items.Remove(nwItem);
+                var idx = this.Items.IndexOf(currItem);
+                if (idx < 0) return;
+                this.Items.Insert( idx, nwItem);
+            }));
 
         public TabControlViewModel()
         {
