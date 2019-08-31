@@ -48,6 +48,17 @@ namespace Wpf.Common
 
         }
 
+        public static T FindParent<T>(this DependencyObject obj)
+          where T : DependencyObject
+        {
+
+            var parent = VisualTreeHelper.GetParent(obj);
+            if (parent == null) return null;
+            T result = parent as T;
+            if (result != null) return result;
+            return FindParent<T>(parent);
+        }
+
         /// <summary>
         /// 从控件模板中获取指定名称的元素
         /// </summary>

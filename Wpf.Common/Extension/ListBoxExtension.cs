@@ -11,5 +11,6 @@ namespace Wpf.Common
     public static class ListBoxExtension
     {
         public static ScrollViewer GetScrollViewer(this ListBox listBox) => listBox.GetDescendantByType<ScrollViewer>();
+ 
     }
 }

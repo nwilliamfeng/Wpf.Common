@@ -6,22 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Wpf.Common.Behavior
 {
-    public class TabItemDropEventArgs:RoutedEventArgs
+    public class TabItemDropEventArgs : RoutedEventArgs
     {
         public TabItem DroppedValue { get; private set; }
 
-   
-        public TabItemDropEventArgs(RoutedEvent routedEvent, object source,TabItem tabItem )
-            :base(routedEvent,source)
+
+        public TabItemDropEventArgs(RoutedEvent routedEvent, object source, TabItem tabItem)
+            : base(routedEvent, source)
         {
-            this.DroppedValue = tabItem;  
+            this.DroppedValue = tabItem;
         }
     }
 
-    
+
 
     /// <summary>
     /// TabItem附加行为
@@ -33,7 +34,7 @@ namespace Wpf.Common.Behavior
         /// </summary>
         public static readonly DependencyProperty IsDropEnableProperty =
             DependencyProperty.RegisterAttached("IsDropEnable", typeof(bool), typeof(TabItemBehavior)
-                , new PropertyMetadata(false,OnIsDropEnablePropertyChanged));
+                , new PropertyMetadata(false, OnIsDropEnablePropertyChanged));
 
         public static bool GetIsDropEnable(DependencyObject obj)
             => obj.GetValue<bool>(IsDropEnableProperty);
@@ -46,7 +47,7 @@ namespace Wpf.Common.Behavior
         /// 拖放事件触发后的绑定命令 
         /// </summary>
         public static readonly DependencyProperty DropCommandProperty =
-            DependencyProperty.RegisterAttached("DropCommand", typeof(ICommand), typeof(TabItemBehavior) , new PropertyMetadata( null));
+            DependencyProperty.RegisterAttached("DropCommand", typeof(ICommand), typeof(TabItemBehavior), new PropertyMetadata(null));
 
         public static ICommand GetDropCommand(DependencyObject obj)
             => obj.GetValue<ICommand>(DropCommandProperty);
@@ -55,15 +56,7 @@ namespace Wpf.Common.Behavior
             => obj.SetValue(DropCommandProperty, value);
 
 
-         
-        //public static readonly DependencyProperty DropCommandParameterProperty =
-        //    DependencyProperty.RegisterAttached("DropCommandParameter", typeof(Tuple<object,object>), typeof(TabItemBehavior), new PropertyMetadata(null));
 
-        //public static Tuple<object, object> GetDropCommandParameter(DependencyObject obj)
-        //    => obj.GetValue<Tuple<object, object>>(DropCommandParameterProperty);
-
-        //public static void SetDropCommandParameter(DependencyObject obj, object value)
-        //    => obj.SetValue(DropCommandParameterProperty, value);
 
         //https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/attached-events-overview
 
@@ -71,7 +64,7 @@ namespace Wpf.Common.Behavior
             typeof(EventHandler<TabItemDropEventArgs>), typeof(TabItemBehavior));
 
         public static void AddDropHandler(DependencyObject d, EventHandler<TabItemDropEventArgs> handler)
-        {        
+        {
             UIElement uie = d as UIElement;
             if (uie != null)
                 uie.AddHandler(TabItemBehavior.DropEvent, handler);
@@ -85,7 +78,7 @@ namespace Wpf.Common.Behavior
         }
 
 
-        private static void OnIsDropEnablePropertyChanged(DependencyObject sender,DependencyPropertyChangedEventArgs e)
+        private static void OnIsDropEnablePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var tabItem = sender as TabItem;
             if (tabItem == null) return;
@@ -97,7 +90,50 @@ namespace Wpf.Common.Behavior
             tabItem.PreviewMouseMove += TabItem_PreviewMouseMove;
             tabItem.Drop -= TabItem_Drop;
             tabItem.Drop += TabItem_Drop;
+            tabItem.PreviewDragEnter -= TabItem_PreviewDragEnter;
+            tabItem.PreviewDragEnter += TabItem_PreviewDragEnter;
+            tabItem.PreviewDragLeave -= TabItem_PreviewDragLeave;
+            tabItem.PreviewDragLeave += TabItem_PreviewDragLeave;
+
         }
+
+
+
+        private static void TabItem_PreviewDragLeave(object sender, DragEventArgs e)
+        {
+            var tabItem = sender as TabItem;
+            tabItem.BorderThickness = default(Thickness);
+            e.Handled = true;
+        }
+
+        private static void TabItem_PreviewDragEnter(object sender, DragEventArgs e)
+        {
+            var dropItem = e.Data.GetData<TabItem>();
+            if (dropItem == null) return;
+            var tabItem = sender as TabItem;
+
+            if (Object.ReferenceEquals(dropItem, tabItem))
+                return;
+
+            var tabControl = tabItem.FindParent<TabControl>();
+            var items = tabControl.FindChildren<TabItem>().ToList();
+            if (items.Count <= 1)
+                return;
+            var isLast = items.IndexOf(tabItem)==items.Count-1;
+            var point = e.GetPosition(tabItem);
+            if (point.X <= tabItem.ActualWidth / 2)
+                tabItem.BorderThickness = new Thickness(1, 0, 0, 0);
+            else
+            {
+                if (isLast)
+                    tabItem.BorderThickness = new Thickness(0, 0, 1, 0);
+                else
+                    items[items.IndexOf(tabItem) + 1].BorderThickness = new Thickness(1, 0, 0, 0);
+            }
+            e.Handled = true;
+        }
+
+
 
         private static void TabItem_Drop(object sender, DragEventArgs e)
         {
@@ -105,7 +141,9 @@ namespace Wpf.Common.Behavior
             if (!(sender is TabItem)) return;
             var tabItem = e.Data.GetData<TabItem>();
             var sourceTabItem = sender as TabItem;
-            if(sourceTabItem.DataContext!=null && tabItem.DataContext!=null)
+            var tabControl = tabItem.FindParent<TabControl>();
+            tabControl.FindChildren<TabItem>().ToList().ForEach(x=>x.BorderThickness=default(Thickness));
+            if (sourceTabItem.DataContext != null && tabItem.DataContext != null)
             {
                 ICommand cmd = GetDropCommand(sourceTabItem);
                 var para = new Tuple<object, object>(sourceTabItem.DataContext, tabItem.DataContext);
@@ -113,16 +151,19 @@ namespace Wpf.Common.Behavior
                     cmd.Execute(para);
             }
             sourceTabItem.RaiseEvent(new TabItemDropEventArgs(DropEvent, sender, tabItem));
+            e.Handled = true;
         }
 
         private static void TabItem_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton != MouseButtonState.Pressed)
-                return;
-            var tabItem = sender as TabItem;
-            if (tabItem == null)
-                return;
-            DragDrop.DoDragDrop(tabItem, sender, DragDropEffects.Move);
+
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                var tabItem = sender as TabItem;
+                if (tabItem != null)
+                    DragDrop.DoDragDrop(tabItem, sender, DragDropEffects.Move);
+            }
+            e.Handled = true;
         }
     }
 }

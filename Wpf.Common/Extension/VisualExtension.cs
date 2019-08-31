@@ -11,7 +11,7 @@ namespace Wpf.Common
     public static class VisualExtension
     {
         public static T GetDescendantByType<T>(this Visual element)
-            where T:Visual
+            where T : Visual
         {
             if (element == null)
             {
@@ -37,5 +37,10 @@ namespace Wpf.Common
             }
             return foundElement as T;
         }
+
+      
+
     }
+
+
 }
