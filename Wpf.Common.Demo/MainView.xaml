@@ -15,8 +15,14 @@
         controlBehavior:WindowChromeBehavior.TitleHeight="46"
          controlBehavior:WindowChromeBehavior.IsEnable="True"
         >
-    
-    
+   
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo >
+            <TaskbarItemInfo.ThumbButtonInfos>
+                <ThumbButtonInfo ImageSource=""
+            </TaskbarItemInfo.ThumbButtonInfos>
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
     <controlBehavior:WindowChromeBehavior.TitleContent>
         <DockPanel Margin="5">
 

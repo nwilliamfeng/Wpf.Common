@@ -27,70 +27,11 @@ namespace Wpf.Common.Demo
             this.DataContext = new CommandTest();
             
             this.Loaded += MainWindow_Loaded;
-            //this.textBox.DragEnter += TextBox_DragEnter;
-            //this.textBox.DragLeave += TextBox_DragLeave;
-            //this.textBox.DragOver += TextBox_DragOver;
-
-
-            //this.textBox.TextChanged += TextBox_TextChanged;
-
-            // this.textBox.PreviewDragEnter += TextBox_PreviewDragEnter;
-            //  this.textBox.PreviewDragLeave += TextBox_PreviewDragLeave;
-            //  this.textBox.PreviewDragOver += TextBox_PreviewDragOver;
-            //  this.textBox.PreviewDrop += TextBox_PreviewDrop;
+           
            
         }
-
-
-
+         
         
-
-        private void TextBox_PreviewDrop(object sender, DragEventArgs e)
-        {
-          
-            // throw new NotImplementedException();
-            Console.WriteLine("TextBox_PreviewDrop");
-        }
-
-        private void TextBox_PreviewDragOver(object sender, DragEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-        private void TextBox_PreviewDragLeave(object sender, DragEventArgs e)
-        {
-            // throw new NotImplementedException();
-            Console.WriteLine("TextBox_PreviewDragLeave");
-        }
-
-        private void TextBox_PreviewDragEnter(object sender, DragEventArgs e)
-        {
-            //   e.Data.
-          
-            Console.WriteLine("TextBox_PreviewDragEnter");
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Console.WriteLine("TextBox_TextChanged");
-        }
-
-        
-
-        private void TextBox_DragOver(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("TextBox_DragOver");
-        }
-
-        private void TextBox_DragLeave(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("TextBox_DragLeave");
-        }
-
-        private void TextBox_DragEnter(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("TextBox_DragEnter");
-        }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
