@@ -122,8 +122,8 @@
       <DependentUpon>MemoryLeakView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NodeViewModel.cs" />
-    <Compile Include="Performance\ImagePerformanceView.xaml.cs">
-      <DependentUpon>ImagePerformanceView.xaml</DependentUpon>
+    <Compile Include="Scroll\ScrollToLoadView.xaml.cs">
+      <DependentUpon>ScrollToLoadView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestChromeWindow.xaml.cs">
       <DependentUpon>TestChromeWindow.xaml</DependentUpon>
@@ -206,7 +206,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Performance\ImagePerformanceView.xaml">
+    <Page Include="Scroll\ScrollToLoadView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

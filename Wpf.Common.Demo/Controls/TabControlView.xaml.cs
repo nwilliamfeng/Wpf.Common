@@ -97,15 +97,17 @@ namespace Wpf.Common.Demo.Controls
         /// 当tabitem执行drop后触发交换命令
         /// </summary>
         public ICommand SetPositionCommand =>
-            this._setPositionCommand ?? (this._setPositionCommand = new RelayCommand<Tuple<object,object>>(x=>
+            this._setPositionCommand ?? (this._setPositionCommand = new RelayCommand<Tuple<object,object,bool>>(x=>
             {
                 var nwItem = x.Item2 as TabItemViewModel;
                 var currItem = x.Item1 as TabItemViewModel;
                 if (nwItem == null || currItem == null) return;
+                if (object.ReferenceEquals(nwItem, currItem)) return;
+                
                 this.Items.Remove(nwItem);
                 var idx = this.Items.IndexOf(currItem);
                 if (idx < 0) return;
-                this.Items.Insert( idx, nwItem);
+                this.Items.Insert(x.Item3? idx:idx+1, nwItem);
             }));
 
         public TabControlViewModel()

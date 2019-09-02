@@ -18,9 +18,7 @@
    
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo >
-            <TaskbarItemInfo.ThumbButtonInfos>
-                <ThumbButtonInfo ImageSource=""
-            </TaskbarItemInfo.ThumbButtonInfos>
+        
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
     <controlBehavior:WindowChromeBehavior.TitleContent>

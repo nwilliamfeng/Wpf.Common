@@ -9,7 +9,7 @@ using System.Windows.Input;
 using Wpf.Common.Input;
 using System.ComponentModel.Composition;
 using Wpf.Common.Demo.Controls;
-using Wpf.Common.Demo.Performance;
+using Wpf.Common.Demo.Scroll;
 
 namespace Wpf.Common.Demo
 {
@@ -128,7 +128,7 @@ namespace Wpf.Common.Demo
                     break;
 
                 case NodeNames.IMAGE_PERFORMANCE:
-                    this.ActivateItem(new ImagePerformanceViewModel());
+                    this.ActivateItem(new ScrollToLoadViewModel());
                     break;
 
                 case NodeNames.LED:

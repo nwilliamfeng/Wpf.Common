@@ -14,11 +14,17 @@ namespace Wpf.Common.Behavior
     {
         public TabItem DroppedValue { get; private set; }
 
+        /// <summary>
+        /// 是否在元素前插入，true是，否则在元素后面添加
+        /// </summary>
+        public bool IsInsert { get; private set; }
 
-        public TabItemDropEventArgs(RoutedEvent routedEvent, object source, TabItem tabItem)
+
+        public TabItemDropEventArgs(RoutedEvent routedEvent, object source, TabItem tabItem,bool isInsert)
             : base(routedEvent, source)
         {
             this.DroppedValue = tabItem;
+            this.IsInsert = isInsert;
         }
     }
 
@@ -119,9 +125,9 @@ namespace Wpf.Common.Behavior
             var items = tabControl.FindChildren<TabItem>().ToList();
             if (items.Count <= 1)
                 return;
-            var isLast = items.IndexOf(tabItem)==items.Count-1;
-            var point = e.GetPosition(tabItem);
-            if (point.X <= tabItem.ActualWidth / 2)
+            var isLast = items.IndexOf(tabItem) == items.Count - 1;
+             
+            if (IsMouseOnTabItemLeft(tabItem,e))
                 tabItem.BorderThickness = new Thickness(1, 0, 0, 0);
             else
             {
@@ -133,6 +139,11 @@ namespace Wpf.Common.Behavior
             e.Handled = true;
         }
 
+        private static bool IsMouseOnTabItemLeft(TabItem tabItem, DragEventArgs e)
+        {
+            var point = e.GetPosition(tabItem);
+            return point.X <= tabItem.ActualWidth / 2;
+        }
 
 
         private static void TabItem_Drop(object sender, DragEventArgs e)
@@ -142,15 +153,17 @@ namespace Wpf.Common.Behavior
             var tabItem = e.Data.GetData<TabItem>();
             var sourceTabItem = sender as TabItem;
             var tabControl = tabItem.FindParent<TabControl>();
-            tabControl.FindChildren<TabItem>().ToList().ForEach(x=>x.BorderThickness=default(Thickness));
+            tabControl.FindChildren<TabItem>().ToList().ForEach(x => x.BorderThickness = default(Thickness));
+            bool isInsert = (IsMouseOnTabItemLeft(sourceTabItem, e));
+             
             if (sourceTabItem.DataContext != null && tabItem.DataContext != null)
             {
                 ICommand cmd = GetDropCommand(sourceTabItem);
-                var para = new Tuple<object, object>(sourceTabItem.DataContext, tabItem.DataContext);
+                var para = new Tuple<object, object,bool>(sourceTabItem.DataContext, tabItem.DataContext,isInsert);
                 if (cmd != null && cmd.CanExecute(para))
                     cmd.Execute(para);
             }
-            sourceTabItem.RaiseEvent(new TabItemDropEventArgs(DropEvent, sender, tabItem));
+            sourceTabItem.RaiseEvent(new TabItemDropEventArgs(DropEvent, sender, tabItem,isInsert));
             e.Handled = true;
         }
 

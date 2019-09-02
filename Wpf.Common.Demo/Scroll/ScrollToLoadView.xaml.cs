@@ -16,14 +16,14 @@ using Wpf.Common.Input;
 using Caliburn.Micro;
 using System.Collections.ObjectModel;
 
-namespace Wpf.Common.Demo.Performance
+namespace Wpf.Common.Demo.Scroll
 {
     /// <summary>
     /// ImagePerformanceView.xaml 的交互逻辑
     /// </summary>
-    public partial class ImagePerformanceView : UserControl
+    public partial class ScrollToLoadView : UserControl
     {
-        public ImagePerformanceView()
+        public ScrollToLoadView()
         {
             InitializeComponent();
              
@@ -36,7 +36,7 @@ namespace Wpf.Common.Demo.Performance
         }
     }
 
-    public class ImageViewModel : PropertyChangedBase
+    public class ScrollItemViewModel : PropertyChangedBase
     {
         private string _url;
         public string Url
@@ -51,17 +51,17 @@ namespace Wpf.Common.Demo.Performance
     }
 
 
-    public class ImagePerformanceViewModel : PropertyChangedBase
+    public class ScrollToLoadViewModel : PropertyChangedBase
     {
-        private List<ImageViewModel> _imgCache  ;
-        public ImagePerformanceViewModel()
+        private List<ScrollItemViewModel> _itemCache  ;
+        public ScrollToLoadViewModel()
         {
-            this.Images = new ObservableCollection<ImageViewModel>();
-            this._imgCache = Enumerable.Range(0, 1000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList();
-            this._imgCache.Take(50).ToList().ForEach(x => this.Images.Add(x));
+            this.Items = new ObservableCollection<ScrollItemViewModel>();
+            this._itemCache = Enumerable.Range(0, 1000).Select(x => new ScrollItemViewModel { Url = x.ToString() }).ToList();
+            this._itemCache.Take(50).ToList().ForEach(x => this.Items.Add(x));
         }
 
-        public ObservableCollection<ImageViewModel> Images { get; private set; }
+        public ObservableCollection<ScrollItemViewModel> Items { get; private set; }
 
         private ICommand _loadCommand;
 
@@ -71,9 +71,9 @@ namespace Wpf.Common.Demo.Performance
             {
                 return this._loadCommand ?? (this._loadCommand = new RelayCommand(() =>
                     {
-                        this.Images.Clear();
-                        Enumerable.Range(0, 10000).Select(x => new ImageViewModel { Url = x.ToString() }).ToList()
-                        .ForEach(x=>Images.Add(x));
+                        this.Items.Clear();
+                        Enumerable.Range(0, 10000).Select(x => new ScrollItemViewModel { Url = x.ToString() }).ToList()
+                        .ForEach(x=>Items.Add(x));
                     }));
             }
         }
@@ -89,7 +89,7 @@ namespace Wpf.Common.Demo.Performance
             {
                 return this._clearCommand ?? (this._clearCommand = new RelayCommand(() =>
                 {
-                    this.Images.Clear();
+                    this.Items.Clear();
                 }));
             }
         }
@@ -102,10 +102,10 @@ namespace Wpf.Common.Demo.Performance
             {
                 return this._loadNextCommand ?? (this._loadNextCommand = new RelayCommand(() =>
                 {
-                    var count = this.Images.Count;
-                    this._imgCache.Skip(count).Take(50).ToList().ForEach(x =>
+                    var count = this.Items.Count;
+                    this._itemCache.Skip(count).Take(50).ToList().ForEach(x =>
                     {
-                        this.Images.Add(x);
+                        this.Items.Add(x);
                     }); 
                 }));
             }

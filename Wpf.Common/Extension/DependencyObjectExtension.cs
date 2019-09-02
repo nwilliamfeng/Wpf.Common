@@ -71,7 +71,9 @@ namespace Wpf.Common
         {
             if (control.Template == null) return null;            
             var result= control.Template.FindName(name, control) as T;
-            if (result == null) control.ApplyTemplate();//应用模板，否则取不到对应的模板元素
+            if (result != null)
+                return result;
+            control.ApplyTemplate();//应用模板，否则取不到对应的模板元素
             return control.Template.FindName(name, control) as T;
 
         }
