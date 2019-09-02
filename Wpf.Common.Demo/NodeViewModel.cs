@@ -123,7 +123,7 @@ namespace Wpf.Common.Demo
 
         public const string DROPDOWN_BUTTON = "Dropdown & Split Button";
 
-        public const string IMAGE_PERFORMANCE = "ImagePerformance";
+        public const string SCROLL_TO_LOAD = "Scroll To Load Data";
 
         public const string LED = "LED Control";
     }

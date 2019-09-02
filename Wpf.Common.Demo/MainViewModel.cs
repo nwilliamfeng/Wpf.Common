@@ -41,7 +41,7 @@ namespace Wpf.Common.Demo
             gpNode3.Items.Add(new NodeViewModel { Name = NodeNames.DROP });
 
             var gpNode4 = new GroupNode { Name = "Performance" };
-            gpNode4.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_PERFORMANCE });
+            gpNode4.Items.Add(new NodeViewModel { Name = NodeNames.SCROLL_TO_LOAD });
 
             Nodes.Add(gpNode1);
             Nodes.Add(gpNode2);
@@ -127,7 +127,7 @@ namespace Wpf.Common.Demo
                     this.ActivateItem(new DropdownButtonViewModel());
                     break;
 
-                case NodeNames.IMAGE_PERFORMANCE:
+                case NodeNames.SCROLL_TO_LOAD:
                     this.ActivateItem(new ScrollToLoadViewModel());
                     break;
 

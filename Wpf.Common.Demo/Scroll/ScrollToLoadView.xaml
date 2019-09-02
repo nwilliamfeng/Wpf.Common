@@ -19,7 +19,10 @@
           
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Url}"/>
+                    <Canvas Width="100" Height="30">
+                        <TextBlock Text="{Binding Url}" Canvas.Left="5" Canvas.Top="13"/>
+                    </Canvas>
+                    
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
