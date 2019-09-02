@@ -4,26 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
+    xmlns:commonControls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common"
             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:io="clr-namespace:System.IO;assembly=mscorlib"
             xmlns:behaviors="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              x:Class="Wpf.Common.Demo.Controls.ComboBoxView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-   
-    
+
+    <UserControl.Resources>
+        <local:FileAccessValueConverter x:Key="fileAccessValueConverter"/>
+        <ObjectDataProvider x:Key="fileAccessEnums" ObjectType="{x:Type sys:Enum}" MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="io:FileAccess" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <DataTemplate x:Key="dropDownItemTemplate">
+            <TextBlock Text="{Binding  Converter={StaticResource fileAccessValueConverter}}" Foreground="Blue" Padding="5,3" />
+        </DataTemplate>
+        <DataTemplate x:Key="selectedItemTemplate">
+            <TextBlock Text="{Binding  Converter={StaticResource fileAccessValueConverter}}" />
+        </DataTemplate>
+    </UserControl.Resources>
     <UniformGrid Columns="1">
+       
         <ComboBox VerticalAlignment="Center" 
-                 
-                  SelectedItem="{Binding Value,Mode=TwoWay, 
+                  
+                  SelectedItem="{Binding Access,Mode=TwoWay, 
             UpdateSourceTrigger=PropertyChanged,
             ValidatesOnDataErrors=True,
             ValidatesOnNotifyDataErrors=True}" 
-                  HorizontalAlignment="Center" Padding="10,5" Width="200" >
-            <sys:Int32>0</sys:Int32>
-            <sys:Int32>1</sys:Int32>
-            <sys:Int32>2</sys:Int32>
-            <sys:Int32>3</sys:Int32>
+                  HorizontalAlignment="Center" Padding="10,5" Width="200"  
+                  ItemsSource="{Binding Source={StaticResource fileAccessEnums}}" 
+                  ItemTemplateSelector="{commonControls:ComboBoxTemplateSelector 
+            DropdownItemsTemplate={StaticResource dropDownItemTemplate}
+            , SelectedItemTemplate={StaticResource selectedItemTemplate}}">
+             
+            
         </ComboBox>
+
+
 
         <ComboBox VerticalAlignment="Center" 
                   IsEditable="true"

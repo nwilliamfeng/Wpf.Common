@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
+using System.IO;
 
 namespace Wpf.Common.Demo.Controls
 {
@@ -30,7 +32,7 @@ namespace Wpf.Common.Demo.Controls
 
      
 
-    public class ComboBoxViewModel : INotifyPropertyChanged,IDataErrorInfo
+    public class ComboBoxViewModel : Caliburn.Micro.PropertyChangedBase,IDataErrorInfo
     {
 
         private int _value;
@@ -50,13 +52,60 @@ namespace Wpf.Common.Demo.Controls
             set
             {
                 this._value = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
+                this.NotifyOfPropertyChange(() => this.Value);
             }
 
         }
 
+        private FileAccess _fileAccess;
+
+
+
         public string Error => null;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public FileAccess  Access { get => _fileAccess; set
+            {
+                _fileAccess = value;
+                this.NotifyOfPropertyChange(() => this.Access);
+            }
+        }
+
+       
+    }
+
+    public class FileAccessValueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!(value is FileAccess))
+                return DependencyProperty.UnsetValue;
+            switch ((FileAccess) value)
+            {
+                case FileAccess.Read:
+                    return "只读";
+                case FileAccess.ReadWrite:
+                    return "读/写";
+                case FileAccess.Write:
+                    return "写";
+            }
+            return DependencyProperty.UnsetValue;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var str = value as string;
+            if (string.IsNullOrEmpty(str))
+                return DependencyProperty.UnsetValue;
+            switch (str)
+            {
+                case "只读":
+                    return FileAccess.Read;
+                case "读/写":
+                    return FileAccess.ReadWrite;
+                case "写":
+                    return FileAccess.Write;
+            }
+            return DependencyProperty.UnsetValue;
+        }
     }
 }
