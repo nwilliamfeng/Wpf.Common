@@ -10,6 +10,7 @@ using Wpf.Common.Input;
 using System.ComponentModel.Composition;
 using Wpf.Common.Demo.Controls;
 using Wpf.Common.Demo.Scroll;
+using Wpf.Common.Demo.Image;
 
 namespace Wpf.Common.Demo
 {
@@ -28,14 +29,19 @@ namespace Wpf.Common.Demo
             var gpNode1 = new GroupNode { Name="Template"};
             gpNode1.Items.Add(new NodeViewModel { Name = NodeNames.ERROR_TEMPLATE  });
            
-            var gpNode2 = new GroupNode { Name = "Controls" };
-            var filters = new string[] { NodeNames.ERROR_TEMPLATE, NodeNames.DROP };
-            foreach(var field in typeof(NodeNames).GetFields())
-            {
-                var name = field.GetValue(new NodeNames()) as string;
-                if (!filters.Contains(name))
-                    gpNode2.Items.Add(new NodeViewModel { Name = name });
-            }
+            var gpNode2 = new GroupNode { Name = "Controls" };         
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.CHECK_BOX });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.COMBOBOX });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.DATE_PICKER });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.TOGGLE_BUTTON });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.MENU });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.PASSWORD_BOX });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.TEXTBOX });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.RADIO_BUTTON });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.TAB_CONTROL });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.SLIDER });
+            
+
 
             var gpNode3 = new GroupNode { Name = "Behavior" };
             gpNode3.Items.Add(new NodeViewModel { Name = NodeNames.DROP });
@@ -43,10 +49,27 @@ namespace Wpf.Common.Demo
             var gpNode4 = new GroupNode { Name = "Performance" };
             gpNode4.Items.Add(new NodeViewModel { Name = NodeNames.SCROLL_TO_LOAD });
 
+            var gpNode5 = new GroupNode { Name = "Brush&Drawing" };
+            gpNode5.Items.Add(new NodeViewModel { Name = NodeNames.BRUSH });
+         
+
+            var gpNode6 = new GroupNode { Name = "Custom Controls" };
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.DROPDOWN_BUTTON });
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.LED });
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.RANK });
+
+            var gpNode7 = new GroupNode { Name = "Image" };
+            gpNode7.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_RENDER });
+
+
+
             Nodes.Add(gpNode1);
             Nodes.Add(gpNode2);
             Nodes.Add(gpNode3);
             Nodes.Add(gpNode4);
+            Nodes.Add(gpNode5);
+            Nodes.Add(gpNode6);
+            Nodes.Add(gpNode7);
             this.DisplayName = "Demo";
         }
 
@@ -134,6 +157,15 @@ namespace Wpf.Common.Demo
                 case NodeNames.LED:
                     this.ActivateItem(new LedViewModel());
                     break;
+
+                case NodeNames.IMAGE_RENDER:
+                    this.ActivateItem(new ImageRenderViewModel());
+                    break;
+
+                case NodeNames.BRUSH:
+                    this.ActivateItem(new BrushViewModel());
+                    break;
+
                 default:
                     break;
             }

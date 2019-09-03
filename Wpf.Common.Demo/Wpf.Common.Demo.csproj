@@ -116,6 +116,9 @@
     <Compile Include="Controls\TreeViewPage.xaml.cs">
       <DependentUpon>TreeViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Image\ImageRenderView.xaml.cs">
+      <DependentUpon>ImageRenderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MefBootstrapper.cs" />
     <Compile Include="MemoryLeakView.xaml.cs">
@@ -134,7 +137,7 @@
     <Compile Include="ViewBoxView.xaml.cs">
       <DependentUpon>ViewBoxView.xaml</DependentUpon>
     </Compile>
-    <Page Include="BrushView.xaml">
+    <Page Include="Drawing\BrushView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Image\ImageRenderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MemoryLeakView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,7 +237,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrushView.xaml.cs">
+    <Compile Include="Drawing\BrushView.xaml.cs">
       <DependentUpon>BrushView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Drop\DropFileView.xaml.cs">

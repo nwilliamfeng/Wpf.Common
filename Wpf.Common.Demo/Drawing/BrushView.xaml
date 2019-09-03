@@ -19,21 +19,20 @@
        
         <Border   Width="100" Height="100" >
             <Border.Background>
-                <ImageBrush ImageSource="\Resources\Imgs\Icon.png"  Stretch="Uniform"  />
+                <ImageBrush ImageSource="\Resources\Imgs\Icon.png"  
+                            Stretch="Uniform" 
+                              />
             </Border.Background>
         </Border>
         <Border   VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="100" BorderBrush="Blue" BorderThickness="1">
             <Border.Background>
                 <VisualBrush Stretch="Uniform">
                     <VisualBrush.Visual>
-                         
-                            <TextBlock Text="abd">
-                                <TextBlock.LayoutTransform>
-                                    <RotateTransform Angle="15" CenterX="0" CenterY="0" />
-                                </TextBlock.LayoutTransform>
-                            </TextBlock>
-                      
-                       
+                        <TextBlock Text="abd">
+                            <TextBlock.LayoutTransform>
+                                <RotateTransform Angle="15" CenterX="0" CenterY="0" />
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
                     </VisualBrush.Visual>
                 </VisualBrush>  
             </Border.Background>
@@ -47,18 +46,34 @@
                 </VisualBrush>
             </Border.Background>
         </Border>
-        <Border   Width="16" Height="16">
+        
+        <Border   Width="64" Height="64">
             <Border.Background>
                 <VisualBrush     >
                     <VisualBrush.Visual>
                        
-                            <Path Data="{StaticResource CloseIcon}" Fill="Red" Stretch="Uniform" />
-                      
-                        
+                            <Path Data="{StaticResource HeartIcon}" Fill="Red" Stretch="Uniform" />
+                                             
                     </VisualBrush.Visual>
                 </VisualBrush>
                 
             </Border.Background>
         </Border>
+
+        <Border Width="64" Height="64">
+            <Path Stroke="Gray" StrokeThickness="2" RenderTransformOrigin="0,0">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure>
+                            <ArcSegment IsLargeArc="True" Size="60,60">
+                                
+                            </ArcSegment>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Border>
+
+        
     </UniformGrid>
 </UserControl>

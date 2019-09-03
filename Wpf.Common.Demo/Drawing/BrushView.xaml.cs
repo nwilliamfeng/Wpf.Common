@@ -25,4 +25,9 @@ namespace Wpf.Common.Demo
             InitializeComponent(); 
         }
     }
+
+    public class BrushViewModel : Caliburn.Micro.PropertyChangedBase
+    {
+
+    }
 }
