@@ -8,7 +8,6 @@ namespace Wpf.Common.Controls.Helper.ProgressBars
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //value == actual width
             return (double) value/2;
         }
 
