@@ -130,5 +130,7 @@ namespace Wpf.Common.Demo
         public const string IMAGE_RENDER = "Image Render";
 
         public const string BRUSH = "Brush";
+
+        public const string PROGRESS = "ProgressBar";
     }
 }

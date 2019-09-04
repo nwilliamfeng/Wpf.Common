@@ -40,7 +40,7 @@ namespace Wpf.Common.Demo
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.RADIO_BUTTON });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.TAB_CONTROL });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.SLIDER });
-            
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.PROGRESS });
 
 
             var gpNode3 = new GroupNode { Name = "Behavior" };
@@ -152,6 +152,10 @@ namespace Wpf.Common.Demo
 
                 case NodeNames.SCROLL_TO_LOAD:
                     this.ActivateItem(new ScrollToLoadViewModel());
+                    break;
+
+                case NodeNames.PROGRESS:
+                    this.ActivateItem(new ProgressViewModel());
                     break;
 
                 case NodeNames.LED:

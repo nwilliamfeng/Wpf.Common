@@ -47,6 +47,13 @@
     <Compile Include="Helper\LedTube\DrawLedLine.cs" />
     <Compile Include="Helper\LedTube\Enums.cs" />
     <Compile Include="Helper\LedTube\LedLineExtension.cs" />
+    <Compile Include="Helper\ProgressBar\ArcEndPointConverter.cs" />
+    <Compile Include="Helper\ProgressBar\ArcSizeConverter.cs" />
+    <Compile Include="Helper\ProgressBar\LargeArcConverter.cs" />
+    <Compile Include="Helper\ProgressBar\LocalEx.cs" />
+    <Compile Include="Helper\ProgressBar\NotZeroConverter.cs" />
+    <Compile Include="Helper\ProgressBar\RotateTransformCentreConverter.cs" />
+    <Compile Include="Helper\ProgressBar\StartPointConverter.cs" />
     <Compile Include="LedTube.cs" />
     <Page Include="Themes\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +94,10 @@
     <Page Include="Themes\Controls\LedTube.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Controls\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Controls\SplitButton.xaml">
       <Generator>MSBuild:Compile</Generator>

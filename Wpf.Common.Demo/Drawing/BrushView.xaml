@@ -60,12 +60,20 @@
             </Border.Background>
         </Border>
 
-        <Border Width="64" Height="64">
-            <Path Stroke="Gray" StrokeThickness="2" RenderTransformOrigin="0,0">
+        <Border Width="100" Height="100"  Background="AliceBlue">
+            <Path Stroke="Gray" StrokeThickness="3" 
+                  RenderTransformOrigin="0,0"
+                 
+                  VerticalAlignment="Center" 
+                  HorizontalAlignment="Center">
                 <Path.Data>
-                    <PathGeometry>
-                        <PathFigure>
-                            <ArcSegment IsLargeArc="True" Size="60,60">
+                    <PathGeometry >
+                        <PathFigure StartPoint="0,0">
+                            <ArcSegment IsLargeArc="False" 
+                                        Size="30,30" 
+                                        Point="14,0" 
+                                        SweepDirection="Clockwise"
+                                       >
                                 
                             </ArcSegment>
                         </PathFigure>
