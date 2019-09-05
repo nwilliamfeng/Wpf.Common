@@ -6,7 +6,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!--此项仅作测试-->
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Controls;component/themes/Icons.xaml"/>
+                <!--引用样式必须添加-->
+                <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Controls;component/themes/brushes.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Controls;component/themes/theme.xaml"/>
                 <ResourceDictionary>
                     <local:MefBootstrapper x:Key="bootstrapper"/>

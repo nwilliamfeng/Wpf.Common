@@ -108,7 +108,21 @@ namespace Wpf.Common.Demo.Controls
                 var idx = this.Items.IndexOf(currItem);
                 if (idx < 0) return;
                 this.Items.Insert(x.Item3? idx:idx+1, nwItem);
+                this.SelectedItem = nwItem;
             }));
+
+        private TabItemViewModel _selectedItem;
+
+        public TabItemViewModel SelectedItem
+        {
+            get => this._selectedItem;
+
+            set
+            {
+                this._selectedItem = value;
+                this.NotifyOfPropertyChange(() => this.SelectedItem);
+            }
+        }
 
         public TabControlViewModel()
         {

@@ -315,5 +315,6 @@
   <ItemGroup>
     <Content Include="Resources\Imgs\close.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -74,7 +74,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="NTabItemBehavior.Drop Event" />
+                <TextBlock Text="TabItemBehavior.Drop Event" />
                 <TextBlock x:Name="dragTB2" Grid.Column="1" HorizontalAlignment="Center"/>
                 <TextBlock x:Name="fireTB2" Grid.Column="2"/>
             </Grid>
@@ -112,11 +112,11 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="NTabItemBehavior.Drop Event" />
+                <TextBlock Text="TabItemBehavior.Drop Event" />
                 <TextBlock   Grid.Column="1" HorizontalAlignment="Center"/>
                 <TextBlock   Grid.Column="2"/>
             </Grid>
-            <TabControl  ItemsSource="{Binding Items}" >
+            <TabControl  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem" BasedOn="{StaticResource TabItemStyle}">
                         <Setter  Property="AllowDrop" Value="True"/>
