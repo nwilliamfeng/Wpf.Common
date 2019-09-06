@@ -85,6 +85,8 @@
     <Compile Include="ControlzEx\Standard\Utilities.cs" />
     <Compile Include="ControlzEx\Standard\Utilities.Windows.cs" />
     <Compile Include="ControlzEx\Standard\Verify.cs" />
+    <Compile Include="ViewModel\PaginationViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
