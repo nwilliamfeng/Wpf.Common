@@ -22,5 +22,6 @@
         <ResourceDictionary Source="SplitButton.xaml"/>
         <ResourceDictionary Source="LedTube.xaml"/>
         <ResourceDictionary Source="ProgressBar.xaml"/>
+        <ResourceDictionary Source="Pagination.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -9,132 +9,86 @@ using System.Threading.Tasks;
 
 namespace Wpf.Common.ViewModel
 {
-    public class PaginationViewModel<T>:ViewModelBase
-        where T:class,new()
+  
+
+    public class PaginationViewModel<T> : ViewModelBase
+      where T : class, new()
     {
-        private Func<int, Tuple<IEnumerable<T>, int>> GetListByPageNumber { get; set; }
+        private Func<int,int, Tuple<IEnumerable<T>, int>> _getListByPageNumber;
 
-        public PaginationViewModel(Func<int, Tuple< IEnumerable<T> ,int>> getListByPageNumber, int totalRecordCount,int pageSize=20)
+        public PaginationViewModel()
         {
-            this.GetListByPageNumber = getListByPageNumber ?? throw new ArgumentNullException("获取");
-            this.PageSize = pageSize;
-            this.TotalCount = totalRecordCount;
-            this.Items=new ObservableCollection<T> ();
+            this.GetListByPageNumber = (page,size) => new Tuple<IEnumerable<T>, int>(default(IEnumerable<T>), 0);
+            this.Items = new ObservableCollection<T>();
+           
         }
 
-        private int _pageSize;
 
-        public int PageSize
+        public Func<int,int, Tuple<IEnumerable<T>, int>> GetListByPageNumber
         {
-            get { return this._pageSize; }
+            get { return _getListByPageNumber; }
             set
             {
-                this._pageSize = value;
-                this.NotifyPropertyChanged(nameof(PageSize));
+                this._getListByPageNumber = value ?? throw new ArgumentNullException();
             }
         }
 
 
-        public ObservableCollection<T> Items { get; private set; }  
-
-        private int _currentPageNumber;
-
-        /// <summary>
-        /// 获取或设置当前的页号
-        /// </summary>
-        public int CurrentPageNumber
+        private ObservableCollection<T> _items;
+        public ObservableCollection<T> Items
         {
-            get => this._currentPageNumber;
-            set
+            get => this._items;
+            protected set
             {
-                if (value > this.PageCount) value = this.PageCount;
-                if (value < 1) value = 1;
-                this._currentPageNumber = value;
-                this.NotifyPropertyChanged(nameof(CurrentPageNumber));
-                this.LoadByPageAsync();
+                this._items = value;
+                this.NotifyPropertyChanged(nameof(Items));
             }
         }
+
+        
 
         /// <summary>
         /// 异步加载数据
         /// </summary>
-        private async void LoadByPageAsync() 
+        private async void LoadByPageAsync(int page,int size)
         {
-            var result = await Task.Run(() => this.GetListByPageNumber(this.CurrentPageNumber));
+            var result = await Task.Run(() => this.GetListByPageNumber(page,size));
             this.Items.Clear();
             this.Items = new ObservableCollection<T>(result.Item1);
             if (this.TotalCount != result.Item2) //当记录总数和最新的不匹配则更新
             {
                 this.TotalCount = result.Item2;
-                if (this.CurrentPageNumber > this.PageCount) //如果当前的页号大于总页数（记录被删除了）则更新
-                    this.CurrentPageNumber = this.PageCount;
+
             }
         }
 
-        public int PageCount => (int)Math.Ceiling((decimal)TotalCount / PageSize);
-
+     
 
         private int _totalRecordCount;
 
         public int TotalCount
         {
             get => _totalRecordCount;
-            protected set
+            set
             {
                 this._totalRecordCount = value;
-                this.NotifyPropertyChanged(nameof(TotalCount));
-                this.NotifyPropertyChanged(nameof(PageCount));
+                this.NotifyPropertyChanged(nameof(TotalCount));           
             }
         }
 
 
-        private ICommand _previousCommand;
+        
 
-        public ICommand PreviousCommand
-        {
-            get { return this._previousCommand??(this._previousCommand=new RelayCommand(()=>
-            {
-                this.CurrentPageNumber -=1;
-            },()=>this.CurrentPageNumber>1)); }            
-        }
+        private ICommand _gotoCommand;
 
-
-        private ICommand _nextCommand;
-
-        public ICommand NextCommand
+        public ICommand GotoCommand
         {
             get
             {
-                return this._nextCommand ?? (this._nextCommand = new RelayCommand(() =>
+                return this._gotoCommand ?? (this._gotoCommand = new RelayCommand<Tuple<int, int>>(x =>
                 {
-                    this.CurrentPageNumber += 1;
-                }, () => this.CurrentPageNumber <this.PageCount));
-            }
-        }
-
-        private ICommand _firstCommand;
-
-        public ICommand FirstCommand
-        {
-            get
-            {
-                return this._firstCommand ?? (this._firstCommand = new RelayCommand(() =>
-                {
-                    this.CurrentPageNumber = 1;
-                }, () => this.CurrentPageNumber >1));
-            }
-        }
-
-        private ICommand _lastCommand;
-
-        public ICommand LastCommand
-        {
-            get
-            {
-                return this._lastCommand ?? (this._lastCommand = new RelayCommand(() =>
-                {
-                    this.CurrentPageNumber =this.PageCount;
-                }, () => this.CurrentPageNumber < this.PageCount));
+                    this.LoadByPageAsync(x.Item1,x.Item2);
+                } ));
             }
         }
 

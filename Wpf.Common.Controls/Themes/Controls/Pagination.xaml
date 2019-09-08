@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:Wpf.Common.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="buttons.xaml"/>
+        <ResourceDictionary Source="../colors/gray.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <SolidColorBrush x:Key="disableButtonForeground" Color="{StaticResource Gray2}"/>
+    <SolidColorBrush x:Key="defaultButtonForeground" Color="{StaticResource Gray5}"/>
+    <SolidColorBrush x:Key="mouseOverButtonForeground" Color="{StaticResource Gray7}"/>
+    <SolidColorBrush x:Key="pressButtonForeground" Color="{StaticResource Gray9}"/>
+    
+    <Style TargetType="controls:Pagination" x:Key="PaginationStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Pagination">
+                    <Grid TextElement.FontSize="{TemplateBinding FontSize}" 
+                          TextElement.Foreground="{TemplateBinding Foreground}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" MinWidth="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock VerticalAlignment="Center">
+                            共
+                            <Run FontWeight="Bold"  Text="{Binding TotalCount, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                            条记录,
+                            <Run FontWeight="Bold" Text="{Binding PageCount, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                            页
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="5,0">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Margin" Value="5,0"/>
+                                </Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}">
+                                    <Setter Property="Margin" Value="5,0"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource defaultButtonForeground}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="{StaticResource disableButtonForeground}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource mouseOverButtonForeground}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed"  Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource pressButtonForeground}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style TargetType="Path">
+                                    <Setter Property="Height" Value="16"/>
+                                    <Setter Property="Width" Value="16"/>
+                                    <Setter Property="Stretch" Value="Uniform"/>
+                                    <Setter Property="Fill" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                </Style>
+                            </StackPanel.Resources>
+
+                           
+                            <TextBlock Text="第"  />
+                            <ComboBox IsEditable="True" 
+                                      Height="20"
+                                      HorizontalContentAlignment="Center"
+                                      MinWidth="50"
+                                      x:Name="PART_PageComboBox" 
+                                      SelectedItem="{Binding CurrentPageNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                      ItemsSource="{Binding PageNumbers, RelativeSource={RelativeSource TemplatedParent},Mode=OneWay}">
+                                
+                            </ComboBox>
+                            <TextBlock Text="页"   />
+
+
+                            <ComboBox SelectedItem="{Binding PageSize, RelativeSource={RelativeSource TemplatedParent}}" Margin="10,0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding StringFormat='{}{0}条/页'}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                <sys:Int32>5</sys:Int32>
+                                <sys:Int32>10</sys:Int32>
+                                <sys:Int32>25</sys:Int32>
+                                <sys:Int32>50</sys:Int32>
+                            </ComboBox>
+                            
+                            <Button x:Name="PART_FirstButton"  ToolTip="第一页">
+                                <Path  Data="M758.613333 731.733333l-30.293333 29.866667a21.333333 21.333333 0 0 1-30.293333 0l-219.306667-218.88a32 32 0 0 1-9.386667-22.613333v-16.213334a32.853333 32.853333 0 0 1 9.386667-22.613333l219.306667-218.88a21.333333 21.333333 0 0 1 30.293333 0l30.293333 30.293333a20.906667 20.906667 0 0 1 0 29.866667L568.746667 512l189.866666 189.44a21.333333 21.333333 0 0 1 0 30.293333zM362.666667 256h-42.666667a21.333333 21.333333 0 0 0-21.333333 21.333333v469.333334a21.333333 21.333333 0 0 0 21.333333 21.333333h42.666667a21.333333 21.333333 0 0 0 21.333333-21.333333v-469.333334a21.333333 21.333333 0 0 0-21.333333-21.333333z"/>
+                            </Button>
+
+                            <Button  x:Name="PART_PreviousButton" ToolTip="前一页">
+                                <Path   Data="M659.2 917.333333l66.133333-66.133333L386.133333 512 725.333333 172.8 659.2 106.666667 256 512z"/>
+                            </Button>
+
+                            <Button  x:Name="PART_NextButton"    ToolTip="后一页">
+                                <Path   Data="M364.8 106.666667L298.666667 172.8 637.866667 512 298.666667 851.2l66.133333 66.133333L768 512z"/>
+                            </Button>
+
+
+                            <Button x:Name="PART_LastButton"   ToolTip="最后一页">
+                                <Path   Data="M328.832 755.498667L572.330667 512 328.832 268.501333 268.501333 328.832 451.669333 512l-183.168 183.168zM640 256h85.333333v512h-85.333333z"/>
+                            </Button>
+                        </StackPanel>
+
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

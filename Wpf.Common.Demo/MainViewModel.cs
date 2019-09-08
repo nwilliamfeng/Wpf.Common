@@ -41,6 +41,7 @@ namespace Wpf.Common.Demo
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.TAB_CONTROL });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.SLIDER });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.PROGRESS });
+            
 
 
             var gpNode3 = new GroupNode { Name = "Behavior" };
@@ -57,6 +58,7 @@ namespace Wpf.Common.Demo
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.DROPDOWN_BUTTON });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.LED });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.RANK });
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.PAGINSTION });
 
             var gpNode7 = new GroupNode { Name = "Image" };
             gpNode7.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_RENDER });
@@ -169,7 +171,9 @@ namespace Wpf.Common.Demo
                 case NodeNames.BRUSH:
                     this.ActivateItem(new BrushViewModel());
                     break;
-
+                case NodeNames.PAGINSTION:
+                    this.ActivateItem(new PaginationViewModel());
+                    break;
                 default:
                     break;
             }

@@ -89,6 +89,9 @@
     <Compile Include="Controls\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PaginationView.xaml.cs">
+      <DependentUpon>PaginationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PasswordBoxView.xaml.cs">
       <DependentUpon>PasswordBoxView.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
     <Compile Include="ViewBoxView.xaml.cs">
       <DependentUpon>ViewBoxView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\PaginationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Drawing\BrushView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
