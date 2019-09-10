@@ -37,9 +37,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extension\DataObjectExtension.cs" />
+    <Compile Include="Input\Async\AsyncCommand.cs" />
+    <Compile Include="Input\Async\AsyncCommandBase.cs" />
+    <Compile Include="Input\Async\IAsyncCommand.cs" />
+    <Compile Include="Input\Async\NotifyTaskCompletion.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayCommand.Generic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
