@@ -53,6 +53,7 @@
     <Compile Include="Controls\ComboBoxTemplateSelector.cs" />
     <Compile Include="Data\DelegateMultiValueConverter.cs" />
     <Compile Include="Data\DelegateValueConverter.cs" />
+    <Compile Include="Data\PrefixWhiteSpaceConverter.cs" />
     <Compile Include="Data\ValueConverters.cs" />
     <Compile Include="Extension\ApplicationExtension.cs" />
     <Compile Include="Extension\ButtonExtension.cs" />

@@ -10,7 +10,7 @@ using System.Windows.Media;
 namespace Wpf.Common.Data
 {
 
-    public static class ValueConverters
+    public static class ValueConverters2
     {
         public static IValueConverter NotNullToVisibilityConverter
         {
@@ -25,7 +25,7 @@ namespace Wpf.Common.Data
             }
         }
 
- 
+
         public static IValueConverter NotEmptyToVisibilityConverter
         {
             get
@@ -53,8 +53,8 @@ namespace Wpf.Common.Data
                         return Visibility.Visible;
                     var str = value as string;
                     if (str == null) return DependencyProperty.UnsetValue;
-                
-                    return  string.IsNullOrEmpty(str) ? Visibility.Visible : Visibility.Collapsed;
+
+                    return string.IsNullOrEmpty(str) ? Visibility.Visible : Visibility.Collapsed;
                 });
             }
         }
@@ -80,7 +80,7 @@ namespace Wpf.Common.Data
                 return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
                 {
 
-                    return value == null ? false: true;
+                    return value == null ? false : true;
                 });
             }
         }
@@ -128,7 +128,7 @@ namespace Wpf.Common.Data
         public static IValueConverter PrefixWhiteSpaceConverter
         {
             get
-            {             
+            {
                 return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
                 {
                     var bv = (string)value;
@@ -138,7 +138,7 @@ namespace Wpf.Common.Data
                     var spaces = "";
                     for (int i = 0; i < count; i++)
                         spaces += " ";
-                    return spaces+bv;
+                    return spaces + bv;
                 });
             }
         }
@@ -159,7 +159,7 @@ namespace Wpf.Common.Data
                     var spaces = "";
                     for (int i = 0; i < count; i++)
                         spaces += " ";
-                    return bv+spaces;
+                    return bv + spaces;
                 });
             }
         }
@@ -224,7 +224,7 @@ namespace Wpf.Common.Data
 
                 return new DelegateValueConverter((value, targetType, parameter, cultInfo) =>
                 {
-                    SolidColorBrush brush =  value as SolidColorBrush;
+                    SolidColorBrush brush = value as SolidColorBrush;
                     if (brush == null) return DependencyProperty.UnsetValue;
                     return brush.Color;
                 });
