@@ -8,7 +8,7 @@
         <ResourceDictionary Source="../Icons.xaml"/>
         <ResourceDictionary Source="../Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
+    <data:PrefixWhiteSpaceConverter x:Key="PrefixWhiteSpaceConverter"/>
     <Grid x:Key="WindowGrid">
         <Border x:Name="GlowBorder" Background="White" BorderThickness="1.2">
             <Border.Style>
@@ -57,7 +57,7 @@
                         </Grid.ColumnDefinitions>
                         <!--标题内容-->
                         <ContentControl x:Name="titleContent" 
-                                Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window},Converter={x:Static data:ValueConverters.PrefixWhiteSpaceConverter},ConverterParameter=2}"                            
+                                Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window},Converter={StaticResource PrefixWhiteSpaceConverter},ConverterParameter=2}"                            
                                 VerticalAlignment="Center"                                  
                                 HorizontalContentAlignment="Left"/>
 
