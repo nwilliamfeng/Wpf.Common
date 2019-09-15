@@ -32,7 +32,7 @@ namespace Wpf.Common.Demo.Controls
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _password;
+        private string _password ;
 
         public string Password
         {
@@ -44,7 +44,19 @@ namespace Wpf.Common.Demo.Controls
             }
         }
 
-        
+        private string _password2 = "abc";
+
+        public string Password2
+        {
+            get => this._password2;
+            set
+            {
+                this._password2 = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password2)));
+            }
+        }
+
+
 
         public string Error => null;
 
@@ -56,6 +68,8 @@ namespace Wpf.Common.Demo.Controls
                 {
                     case nameof(Password):
                         return string.IsNullOrEmpty(this.Password) ? "请输入密码" : null;
+                    case nameof(Password2):
+                        return string.IsNullOrEmpty(this.Password2) ? "请输入密码" : null;
                     default:
                         return null;
                 }

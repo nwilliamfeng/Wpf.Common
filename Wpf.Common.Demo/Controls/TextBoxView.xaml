@@ -69,7 +69,18 @@
 
         <TextBox Style="{StaticResource MaterialDesignTextBoxStyle}" Width="150" VerticalAlignment="Center"
                  Text="{Binding Name,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
-                 behavior:TextBoxBehavior.Watermark="请输入数字">
+                 behavior:TextBoxBehavior.Watermark="名称">
+            <behavior:TextBoxBehavior.Icon>
+                <Path  Margin="3" Height="16" Width="16" Data="{StaticResource  UserIcon}"
+                     
+                     
+                       Fill="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=TextBox}}" Stretch="Uniform"/>
+            </behavior:TextBoxBehavior.Icon>
+        </TextBox>
+
+        <TextBox Style="{StaticResource MaterialDesignTextBoxStyle}" Width="150" VerticalAlignment="Center"
+                 Text="{Binding Name2,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                 behavior:TextBoxBehavior.Watermark="名称">
             <behavior:TextBoxBehavior.Icon>
                 <Path  Margin="3" Height="16" Width="16" Data="{StaticResource  UserIcon}"
                      

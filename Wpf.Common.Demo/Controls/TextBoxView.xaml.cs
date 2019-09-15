@@ -44,6 +44,18 @@ namespace Wpf.Common.Demo.Controls
             }
         }
 
+        private string _name2="abc";
+
+        public string Name2
+        {
+            get => this._name2;
+            set
+            {
+                this._name2 = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name2)));
+            }
+        }
+
 
 
         public string Error => null;
@@ -56,6 +68,8 @@ namespace Wpf.Common.Demo.Controls
                 {
                     case nameof(Name):
                         return string.IsNullOrEmpty(this.Name) ? "请输入名称" : null;
+                    case nameof(Name2):
+                        return string.IsNullOrEmpty(this.Name2) ? "请输入名称" : null;
                     default:
                         return null;
                 }

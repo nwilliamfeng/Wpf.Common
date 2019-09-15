@@ -93,8 +93,12 @@ namespace Wpf.Common.Controls.Behavior
         {
             var passwordBox = sender as PasswordBox;
             var tb = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
-            if (tb != null)
-                tb.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+            var title = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_Title);
+            if (tb == null || title == null) return;
+  
+            tb.Visibility = string.IsNullOrEmpty(passwordBox.Password) && !passwordBox.IsKeyboardFocused ? Visibility.Visible : Visibility.Collapsed;
+            
+             title.Visibility = string.IsNullOrEmpty(passwordBox.Password) &&  !passwordBox.IsKeyboardFocused ? Visibility.Collapsed : Visibility.Visible;
         }
 
  
