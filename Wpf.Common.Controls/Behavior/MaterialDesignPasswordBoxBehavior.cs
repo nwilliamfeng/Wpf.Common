@@ -9,42 +9,33 @@ using System.Windows.Shapes;
 
 namespace Wpf.Common.Controls.Behavior
 {
-    /// <summary>
-    /// 密码框行为，支持水印和圆角
-    /// </summary>
-    public  class PasswordBoxBehavior:Wpf.Common.Behavior.PasswordBoxBehavior
+
+    public class MaterialDesignPasswordBoxBehavior:Wpf.Common.Behavior.PasswordBoxBehavior
     {
+
         public const string PART_WatermarkName = "PART_Watermark";
-     
+        private const string PART_Title = "PART_Title";
+
         /// <summary>
         /// 设置为空时的文本内容
         /// </summary>
         public static readonly DependencyProperty WatermarkProperty =
-            DependencyProperty.RegisterAttached("Watermark", typeof(string), typeof(PasswordBoxBehavior), new PropertyMetadata(OnWatermarkPropertyChanged));
+            DependencyProperty.RegisterAttached("Watermark", typeof(string), typeof(MaterialDesignPasswordBoxBehavior), new PropertyMetadata(OnWatermarkPropertyChanged));
 
 
-        public static void SetWatermark(UIElement obj, string value)=> obj.SetValue(WatermarkProperty, value);
+        public static void SetWatermark(UIElement obj, string value) => obj.SetValue(WatermarkProperty, value);
 
-        public static string GetWatermark(UIElement obj)=> obj.GetValue<string>(WatermarkProperty);
-
-
-        /// <summary>
-        /// 设置圆角
-        /// </summary>
-        public static readonly DependencyProperty CornerRadiusProperty =
-           DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(PasswordBoxBehavior), new PropertyMetadata(default(CornerRadius),OnCornerRaduisPropertyChanged));
+        public static string GetWatermark(UIElement obj) => obj.GetValue<string>(WatermarkProperty);
 
 
-        public static void SetCornerRadius(UIElement obj, CornerRadius value) => obj.SetValue(CornerRadiusProperty, value);
-
-        public static CornerRadius GetCornerRadius(UIElement obj) => obj.GetValue<CornerRadius>(CornerRadiusProperty);
+        
 
 
         /// <summary>
         /// 设置Icon
         /// </summary>
         public static readonly DependencyProperty IconProperty =
-           DependencyProperty.RegisterAttached("Icon", typeof(FrameworkElement), typeof(PasswordBoxBehavior), new PropertyMetadata(OnIconPropertyChanged));
+           DependencyProperty.RegisterAttached("Icon", typeof(FrameworkElement), typeof(MaterialDesignPasswordBoxBehavior), new PropertyMetadata(OnIconPropertyChanged));
 
 
         public static void SetIcon(UIElement obj, FrameworkElement value) => obj.SetValue(IconProperty, value);
@@ -52,31 +43,37 @@ namespace Wpf.Common.Controls.Behavior
         public static FrameworkElement GetIcon(UIElement obj) => obj.GetValue<FrameworkElement>(IconProperty);
 
 
-        /// <summary>
-        /// 设置IconDock
-        /// </summary>
-        public static readonly DependencyProperty IconDockProperty =
-           DependencyProperty.RegisterAttached("IconDock", typeof(Dock), typeof(PasswordBoxBehavior), new PropertyMetadata(Dock.Left));
-
-
-        public static void SetIconDock(UIElement obj, Dock value) => obj.SetValue(IconDockProperty, value);
-
-        public static Dock GetIconDock(UIElement obj) => obj.GetValue<Dock>(IconDockProperty);
-
- 
-
         private static void OnWatermarkPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
             var watermark = arg.NewValue as string;
             if (watermark == null) return;
             var passwordBox = source as PasswordBox;
             if (passwordBox == null) return;
-            
+
             passwordBox.Initialized -= OnInitizedToSetWatermarkVisibility;
             passwordBox.Initialized += OnInitizedToSetWatermarkVisibility;
 
             passwordBox.PasswordChanged -= OnPasswordChanged;
             passwordBox.PasswordChanged += OnPasswordChanged;
+            passwordBox.IsKeyboardFocusedChanged -= PasswordBox_IsKeyboardFocusedChanged;
+            passwordBox.IsKeyboardFocusedChanged += PasswordBox_IsKeyboardFocusedChanged;
+        }
+
+        private static void PasswordBox_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var passwordBox = sender as PasswordBox;
+            var waterMark = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+            var title = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_Title);
+            if (passwordBox.IsKeyboardFocused)
+            {
+                title.Visibility = Visibility.Visible;
+                waterMark.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                title.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Collapsed : Visibility.Visible;
+                waterMark.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         private static void OnInitizedToSetWatermarkVisibility(object sender, EventArgs args)
@@ -85,38 +82,22 @@ namespace Wpf.Common.Controls.Behavior
             var tb = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
             if (tb != null)
             {
+                var title = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_Title);
                 tb.Text = GetWatermark(passwordBox);
                 tb.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+                title.Visibility = Visibility.Collapsed;
             }
         }
 
-        private static void OnPasswordChanged(object sender ,RoutedEventArgs args)
+        private static void OnPasswordChanged(object sender, RoutedEventArgs args)
         {
             var passwordBox = sender as PasswordBox;
-            var tb = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);         
+            var tb = passwordBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
             if (tb != null)
                 tb.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
         }
 
  
-
-        private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
-        {
-            var control = source as Control;
-            if (control == null) return;
-            control.Initialized -= OnInitizedToSetCornerRadius;
-            control.Initialized += OnInitizedToSetCornerRadius;
-        }
-
-
-        private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
-        {
-            var control = sender as Control;
-            var border = control.FindChildrenFromTemplate<Border>(ControlTemplateHelper.PART_BorderName);
-            if (border != null)
-                border.CornerRadius = GetCornerRadius(control);
-        }
-
 
         private static void OnIconPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
@@ -133,7 +114,7 @@ namespace Wpf.Common.Controls.Behavior
             if (cc != null)
             {
                 cc.Content = GetIcon(control);
-                DockPanel.SetDock(cc, GetIconDock(sender as UIElement));
+                DockPanel.SetDock(cc, Dock.Left);
             }
         }
     }

@@ -44,6 +44,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behavior\MaterialDesignPasswordBoxBehavior.cs" />
     <Compile Include="Helper\LedTube\DrawLedLine.cs" />
     <Compile Include="Helper\LedTube\Enums.cs" />
     <Compile Include="Helper\LedTube\LedLineExtension.cs" />

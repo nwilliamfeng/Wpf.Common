@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,43 @@ namespace Wpf.Common.Demo.Controls
         public TextBoxView()
         {
             InitializeComponent();
+            this.DataContext = new TextBoxViewModel();
         }
     }
 
-    public class TextBoxViewModel : Caliburn.Micro.PropertyChangedBase
+    public class TextBoxViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private string _name;
+
+        public string Name
+        {
+            get => this._name;
+            set
+            {
+                this._name = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+            }
+        }
+
+
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Name):
+                        return string.IsNullOrEmpty(this.Name) ? "请输入名称" : null;
+                    default:
+                        return null;
+                }
+
+            }
+        }
     }
 }

@@ -5,13 +5,13 @@
         <ResourceDictionary Source="../Brushes.xaml"/>
         <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
+
+    <!--默认的文本框样式-->
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Padding" Value="5,3"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
-       
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -23,7 +23,6 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-
                     <Grid>
                         <!--适用于ErrorTemplate的AdornerPlaceHolder-->
                         <AdornerDecorator >
@@ -47,7 +46,6 @@
                                           Focusable="false"                                        
                                           HorizontalScrollBarVisibility="Hidden" 
                                           VerticalScrollBarVisibility="Hidden"/>
-
                             </Grid>
                         </DockPanel>
                     </Grid>
@@ -109,6 +107,130 @@
                         </MultiTrigger>
 
 
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                    <Condition Property="IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Material Design的文本框样式-->
+    <Style x:Key="MaterialDesignTextBoxStyle" TargetType="{x:Type TextBox}">
+   
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Padding" Value="5,3"/>
+        <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <!--适用于ErrorTemplate的AdornerPlaceHolder-->
+                        <DockPanel LastChildFill="True" >
+                            <ContentControl x:Name="PART_IconHost" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                            <Grid>
+                                <AdornerDecorator >
+                                    <Border x:Name="PART_Border"                                 
+                                        SnapsToDevicePixels="True"
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="0,0,0,2"                                     
+                                        Background="{TemplateBinding Background}"/>
+                                </AdornerDecorator>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <!--Watermark-->
+                                    <TextBlock x:Name="PART_Watermark"            
+                                               Grid.Row="0"
+                                           Foreground="{StaticResource WatermarkForeground}"                                           
+                                           Padding="{TemplateBinding Padding}"
+                                           FontSize="10"
+                                           VerticalAlignment="Center" />
+                                    <!--容器-->
+                                    <ScrollViewer x:Name="PART_ContentHost" 
+                                                  Grid.Row="1"
+                                          Focusable="false"                                        
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden"/>
+                                </Grid>
+                            </Grid>
+
+                        </DockPanel>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </Trigger>
+                      
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="PART_Border" Value="0.56"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="Validation.HasError" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" TargetName="PART_Border" Value="{StaticResource control-border-active-brush}"/>
+                          
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="Validation.HasError" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush"  Value="{StaticResource control-border-active-brush}"/>
+                            <Setter  Property="Foreground" TargetName="PART_Watermark" Value="{Binding BorderBrush,RelativeSource={RelativeSource  Mode=TemplatedParent}}"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Grid.Row" TargetName="PART_Watermark" Value="0"/>
+                            <Setter  Property="Foreground" TargetName="PART_Watermark" Value="{Binding BorderBrush,RelativeSource={RelativeSource  Mode=TemplatedParent}}"/>
+                        </MultiTrigger>
+                        
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="False"/>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+
+                            <Setter Property="Grid.Row" TargetName="PART_Watermark" Value="1"/>
+                            <Setter Property="FontSize" TargetName="PART_Watermark" Value="13"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="Validation.HasError" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" Value="Red"/>
+                                                    
+                        </MultiTrigger>
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
