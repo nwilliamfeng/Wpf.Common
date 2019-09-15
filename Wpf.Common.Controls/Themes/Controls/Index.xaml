@@ -23,5 +23,6 @@
         <ResourceDictionary Source="LedTube.xaml"/>
         <ResourceDictionary Source="ProgressBar.xaml"/>
         <ResourceDictionary Source="Pagination.xaml"/>
+        <ResourceDictionary Source="MetroProgressBar.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

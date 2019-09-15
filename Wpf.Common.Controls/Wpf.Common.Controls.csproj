@@ -56,6 +56,10 @@
     <Compile Include="Helper\ProgressBar\RotateTransformCentreConverter.cs" />
     <Compile Include="Helper\ProgressBar\StartPointConverter.cs" />
     <Compile Include="LedTube.cs" />
+    <Page Include="Themes\Controls\MetroProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -182,6 +186,7 @@
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Data\TreeViewItemLeftMarginMultiplierConverter.cs" />
+    <Compile Include="MetroProgressBar.cs" />
     <Compile Include="Pagination.cs" />
     <Compile Include="SplitButton.cs" />
     <Compile Include="DropdownButton.cs" />

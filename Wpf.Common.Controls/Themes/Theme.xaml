@@ -26,4 +26,5 @@
     <Style TargetType="{x:Type controls:SplitButton}" BasedOn="{StaticResource   SplitButtonStyle }"/>
     <Style TargetType="{x:Type controls:LedTube}" BasedOn="{StaticResource   LedTubeStyle }"/>
     <Style TargetType="{x:Type controls:Pagination}" BasedOn="{StaticResource   PaginationStyle }"/>
+    <Style TargetType="{x:Type controls:MetroProgressBar}" BasedOn="{StaticResource    MetroProgressBarStyle }"/>
 </ResourceDictionary>
