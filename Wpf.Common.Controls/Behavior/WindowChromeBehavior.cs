@@ -59,7 +59,7 @@ namespace Wpf.Common.Controls.Behavior
             if (!(e.NewValue is int) ) return;
             var height = (int)e.NewValue;
             var window = obj as Window;
-            if (window==null || window.WindowStyle== WindowStyle.None || window.WindowStyle== WindowStyle.ToolWindow) return;
+            if (window==null || window.WindowStyle== WindowStyle.None) return;
             var windowBorder = ResourceHelper.GetWindowBorder();
             var titleBorder = windowBorder.FindChildren<Border>("titleBorder");
             titleBorder.Height = height;
