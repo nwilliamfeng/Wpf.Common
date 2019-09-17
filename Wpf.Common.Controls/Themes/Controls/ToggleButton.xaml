@@ -175,6 +175,7 @@
     </ControlTemplate>
 
     <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
         <Setter Property="Background" Value="{StaticResource control-border-active-brush}"/>
         <Setter Property="Template" Value="{StaticResource ToggleButtonTemplate}"/>
