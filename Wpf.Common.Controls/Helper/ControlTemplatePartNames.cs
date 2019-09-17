@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace Wpf.Common.Controls
 {
-    public static class ControlTemplateHelper
+    internal static class ControlTemplatePartNames
     {
         public const string PART_BorderName = "PART_Border";
         

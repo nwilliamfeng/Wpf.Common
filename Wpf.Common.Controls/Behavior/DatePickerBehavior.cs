@@ -44,7 +44,7 @@ namespace Wpf.Common.Controls.Behavior
         private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
         {
             var control = sender as Control;
-            var border = control.FindChildrenFromTemplate<Border>(ControlTemplateHelper.PART_BorderName);
+            var border = control.FindChildrenFromTemplate<Border>(ControlTemplatePartNames.PART_BorderName);
             if (border != null)
                 border.CornerRadius = GetCornerRadius(control);
         }

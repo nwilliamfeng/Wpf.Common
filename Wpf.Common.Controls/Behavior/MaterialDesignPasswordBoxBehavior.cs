@@ -114,7 +114,7 @@ namespace Wpf.Common.Controls.Behavior
         private static void OnInitizedToSetIcon(object sender, EventArgs args)
         {
             var control = sender as Control;
-            var cc = control.FindChildrenFromTemplate<ContentControl>(ControlTemplateHelper.PART_IconHostName);
+            var cc = control.FindChildrenFromTemplate<ContentControl>(ControlTemplatePartNames.PART_IconHostName);
             if (cc != null)
             {
                 cc.Content = GetIcon(control);

@@ -98,7 +98,7 @@ namespace Wpf.Common.Controls.Behavior
         private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
         {
             var control = sender as Control;
-            var border = control.FindChildrenFromTemplate<Border>(ControlTemplateHelper. PART_BorderName);
+            var border = control.FindChildrenFromTemplate<Border>(ControlTemplatePartNames. PART_BorderName);
             if (border != null)
                 border.CornerRadius = GetCornerRadius(control);
         }
@@ -114,7 +114,7 @@ namespace Wpf.Common.Controls.Behavior
         private static void OnInitizedToSetIcon(object sender, EventArgs args)
         {
             var control = sender as Control;
-            var cc = control.FindChildrenFromTemplate<ContentControl>(ControlTemplateHelper.PART_IconHostName);
+            var cc = control.FindChildrenFromTemplate<ContentControl>(ControlTemplatePartNames.PART_IconHostName);
             if (cc != null)
             {
                 cc.Content = GetIcon(control);

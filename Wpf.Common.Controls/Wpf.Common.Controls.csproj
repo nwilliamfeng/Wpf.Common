@@ -191,7 +191,7 @@
     <Compile Include="SplitButton.cs" />
     <Compile Include="DropdownButton.cs" />
     <Compile Include="Helper\TreeViewItemExtensions.cs" />
-    <Compile Include="Helper\ControlTemplateHelper.cs" />
+    <Compile Include="Helper\ControlTemplatePartNames.cs" />
     <Compile Include="Helper\RankHelper.cs" />
     <Compile Include="CustomValidationPopup.cs" />
     <Compile Include="Rank.cs" />
