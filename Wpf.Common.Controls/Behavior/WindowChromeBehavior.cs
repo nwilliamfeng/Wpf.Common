@@ -89,6 +89,7 @@ namespace Wpf.Common.Controls.Behavior
             if (window==null) return;
             if (window.WindowStyle == WindowStyle.None) //如果是none无需加载
                 return;
+            var windowStyle = window.WindowStyle;
             window.Initialized += delegate
             {
                 
@@ -110,7 +111,7 @@ namespace Wpf.Common.Controls.Behavior
                 var buttons = windowBorder.FindChildren<Button>().ToList();
                 var maxBtn = buttons.First(x => x.Name == "maximizeButton");
                 var minBtn = buttons.First(x => x.Name == "minimizeButton");
-                if (window.WindowStyle == WindowStyle.ToolWindow)
+                if (windowStyle == WindowStyle.ToolWindow)
                 {
                     maxBtn.Visibility = Visibility.Collapsed;
                     minBtn.Visibility = Visibility.Collapsed;
