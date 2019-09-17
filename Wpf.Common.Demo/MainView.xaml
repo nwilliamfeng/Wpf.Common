@@ -14,6 +14,7 @@
         ResizeMode="CanResizeWithGrip"
         controlBehavior:WindowChromeBehavior.TitleHeight="46"
          controlBehavior:WindowChromeBehavior.IsEnable="True"
+        controlBehavior:WindowChromeBehavior.TitleBackground="Azure"
         >
    
     <Window.TaskbarItemInfo>
