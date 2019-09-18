@@ -58,8 +58,7 @@
                         </Grid.ColumnDefinitions>
                         <!--标题内容-->
                         <ContentControl x:Name="titleContent" 
-                                Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window},Converter={StaticResource PrefixWhiteSpaceConverter},ConverterParameter=2}"                            
-                                VerticalAlignment="Center"                                  
+                                Content="{Binding Title,RelativeSource={RelativeSource AncestorType=Window},Converter={StaticResource PrefixWhiteSpaceConverter},ConverterParameter=2}"                                                      
                                 HorizontalContentAlignment="Left"/>
 
                         <!--标题命令按钮-->
@@ -67,8 +66,7 @@
                             <Grid.Resources>
                                 <Style TargetType="Path" x:Key="basePathStyle">
                                     <Setter Property="Stretch"  Value="Uniform"/>
-                                    <Setter Property="Fill" Value="Black"/>
-                                    <Setter Property="Stroke" Value="Black"/>
+                                    <Setter Property="Fill" Value="{Binding Path=(controlBehavior:WindowChromeBehavior.TitleForeground),RelativeSource={RelativeSource AncestorType=Window}}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
                                             <Setter Property="Fill" Value="Gray"/>

@@ -114,7 +114,7 @@ namespace Wpf.Common.Controls.Behavior
                 if (windowStyle == WindowStyle.ToolWindow)
                 {
                     maxBtn.Visibility = Visibility.Collapsed;
-                    minBtn.Visibility = Visibility.Collapsed;
+                  //  minBtn.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
