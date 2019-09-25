@@ -14,6 +14,7 @@
         ResizeMode="CanResizeWithGrip"
         controlBehavior:WindowChromeBehavior.TitleHeight="46"
          controlBehavior:WindowChromeBehavior.IsEnable="True"
+        controlBehavior:WindowChromeBehavior.TitleForeground="Black"
         controlBehavior:WindowChromeBehavior.TitleBackground="Azure"
         >
    
@@ -23,13 +24,16 @@
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
     <controlBehavior:WindowChromeBehavior.TitleContent>
-        <DockPanel Margin="5">
+        <Border>
+            <DockPanel Margin="5">
 
-            <Path Stretch="Uniform" Height="32" Width="32"
+                <Path Stretch="Uniform" Height="32" Width="32"
                 Data="M456 484V160.1l-335.9 72V484H456zM512 484h391.8V64.2l-391.8 84V484zM456 540H120.2v251.9l335.9 72V540zM512 540v335.9l391.8 84V540H512z" Fill="#00adef"/>
 
-            <TextBlock Text="{Binding Title,RelativeSource={RelativeSource AncestorType=Window}}" Foreground="Black" FontSize="18" Margin="5"/>
-        </DockPanel>
+                <TextBlock Text="{Binding Title,RelativeSource={RelativeSource AncestorType=Window}}" Foreground="Black" FontSize="18" Margin="5"/>
+            </DockPanel>
+        </Border>
+      
         
     </controlBehavior:WindowChromeBehavior.TitleContent>
    

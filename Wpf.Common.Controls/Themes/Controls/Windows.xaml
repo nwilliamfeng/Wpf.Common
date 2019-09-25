@@ -66,11 +66,13 @@
                             <Grid.Resources>
                                 <Style TargetType="Path" x:Key="basePathStyle">
                                     <Setter Property="Stretch"  Value="Uniform"/>
+                                    <Setter Property="Stroke" Value="{Binding Path=(controlBehavior:WindowChromeBehavior.TitleForeground),RelativeSource={RelativeSource AncestorType=Window}}"/>
                                     <Setter Property="Fill" Value="{Binding Path=(controlBehavior:WindowChromeBehavior.TitleForeground),RelativeSource={RelativeSource AncestorType=Window}}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
                                             <Setter Property="Fill" Value="Gray"/>
                                             <Setter Property="Stroke" Value="Gray"/>
+
                                         </DataTrigger>
                                     </Style.Triggers>
 
@@ -152,7 +154,10 @@
                                                 <Setter Property="ToolTip" Value="向下还原"/>
                                                 <Setter Property="Content" >
                                                     <Setter.Value>
-                                                        <Path  Data="{StaticResource RestoreIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="10"   StrokeThickness="0.2"/>
+                                                        <Path  Data="{StaticResource RestoreIcon}"  
+                                                               Style="{DynamicResource basePathStyle}"  
+                                                               Width="10" Height="10"   
+                                                               StrokeThickness="0.2"/>
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
