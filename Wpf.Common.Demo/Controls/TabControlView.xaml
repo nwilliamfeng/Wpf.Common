@@ -52,7 +52,7 @@
                 <TextBlock x:Name="fireTB1" Grid.Column="2"/>
             </Grid>
             
-            <TabControl 
+            <!--<TabControl 
                 x:Name="tabControl" 
                     ItemsSource="{Binding Items}" 
                     ItemContainerStyle="{StaticResource tabItemStyle}">
@@ -62,6 +62,29 @@
                         <TextBlock Text="{Binding Title}"/>
                     </DataTemplate>
                 </TabControl.ItemTemplate>
+
+            </TabControl>-->
+
+            <TabControl  x:Name="tabControl"  >
+                <TabItem Header="tab1">
+                    <TextBlock>tab1</TextBlock>
+                </TabItem>
+                <TabItem Header="tab2">
+                    <TextBlock>tab2</TextBlock>
+                </TabItem>
+                <TabItem Header="tab3">
+                    <TextBlock>tab3</TextBlock>
+                </TabItem>
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="TabItem"   >
+                        <Setter  Property="AllowDrop" Value="True"/>
+                        <Setter Property="Padding" Value="18,6"/>
+                        
+                       
+                        <EventSetter Event="PreviewMouseMove" Handler="TabItem_PreviewMouseMove_Normal"/>
+                        <EventSetter Event="Drop" Handler="TabItem_Drop_Normal"/>
+                    </Style>
+                </TabControl.ItemContainerStyle>
 
             </TabControl>
         </DockPanel>

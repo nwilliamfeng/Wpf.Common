@@ -54,6 +54,31 @@ namespace Wpf.Common.Demo.Controls
             this.fireTB1.Text ="Event Sender:"+(sender as TabItem).Header.ToString();
             this.dragTB1.Text = "Drop object:" + tabItem.Header.ToString();
         }
+
+        private void TabItem_Drop_Normal(object sender, DragEventArgs e)
+        {
+            var source = e.Data.GetData<TabItem>();
+            if (source == null)
+                return;
+            var target = sender as TabItem;
+            this.fireTB1.Text = "Event Sender:" + target.Header.ToString();
+            this.dragTB1.Text = "Drop object:" + source.Header.ToString();
+            if (object.ReferenceEquals(source, target))
+                return;
+            tabControl.Items.Remove(source);
+            var i = tabControl.Items.IndexOf(sender as TabItem);
+            tabControl.Items.Insert(i<0?0:i, source);
+            source.IsSelected = true;
+        }
+
+        private void TabItem_PreviewMouseMove_Normal(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragDrop.DoDragDrop(sender as TabItem, sender, DragDropEffects.Move);
+            }
+            e.Handled = true;
+        }
     }
 
     public class TabItemViewModel : Caliburn.Micro.PropertyChangedBase
