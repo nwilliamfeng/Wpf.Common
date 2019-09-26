@@ -47,6 +47,32 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+              
+            </Grid>
+
+         
+            <TabControl   behavior:TabControlBehavior.IsDropEnable="true" ItemContainerStyle="{x:Null}">
+                <TabItem Header="tab1">
+                    <TextBlock>tab1</TextBlock>
+                </TabItem>
+                <TabItem Header="tab2">
+                    <TextBlock>tab2</TextBlock>
+                </TabItem>
+                <TabItem Header="tab3">
+                    <TextBlock>tab3</TextBlock>
+                </TabItem>
+                
+
+            </TabControl>
+        </DockPanel>
+        
+        <DockPanel  >
+            <Grid Margin="0,10" DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="Normal Drag And Drop" />
                 <TextBlock x:Name="dragTB1" Grid.Column="1" HorizontalAlignment="Center"/>
                 <TextBlock x:Name="fireTB1" Grid.Column="2"/>

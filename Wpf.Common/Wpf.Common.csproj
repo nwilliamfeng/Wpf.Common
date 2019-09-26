@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behavior\ListBoxBehavior.cs" />
+    <Compile Include="Behavior\TabControlBehavior.cs" />
     <Compile Include="Behavior\TabItemBehavior.cs" />
     <Compile Include="Behavior\TreeViewBehavior.cs" />
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
