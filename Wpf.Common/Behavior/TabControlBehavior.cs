@@ -57,6 +57,7 @@ namespace Wpf.Common.Behavior
                 tabItem.PreviewDragEnter += TabItem_PreviewDragEnter;
                 tabItem.PreviewDragLeave -= TabItem_PreviewDragLeave;
                 tabItem.PreviewDragLeave += TabItem_PreviewDragLeave;
+              
             });
         }
 
@@ -131,7 +132,10 @@ namespace Wpf.Common.Behavior
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 var tabItem = sender as TabItem;
-                if (tabItem != null)
+                if (tabItem == null)
+                    return;
+                var uiElement = tabItem.Content as UIElement;
+                if(uiElement==null || uiElement!=null && !uiElement.IsMouseOver)
                     DragDrop.DoDragDrop(tabItem, sender, DragDropEffects.Move);
             }
             e.Handled = true;
