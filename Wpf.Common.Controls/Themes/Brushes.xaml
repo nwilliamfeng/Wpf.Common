@@ -3,36 +3,75 @@
                    >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml"/>
-        <ResourceDictionary Source="Colors/Gray.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
-    <!--窗体活动状态下的画刷-->
-    <SolidColorBrush x:Key="window-border-active-brush" Color="{StaticResource window-border-active-color}"/>
 
-    <!--窗体非活动状态下的画刷-->
-    <SolidColorBrush x:Key="window-border-inactive-brush" Color="{StaticResource window-border-inactive-color}"/>
+    <SolidColorBrush x:Key="ForegroundBrush" Color="Black"/>
+
+    <!--主题画刷-->
+    <SolidColorBrush  x:Key="AccentBrush" Color="White"/>
+    <SolidColorBrush x:Key="ContextMenuBrush" Color="White"/>
+
+    <SolidColorBrush x:Key="DataGridSelectRowBackground" Color="#545A62"/>
+
+    <SolidColorBrush x:Key="HighLightBrush" Color="{StaticResource Blue2}"/>
+    <SolidColorBrush x:Key="CaretBrush" Color="Black"/>
+
+
+    <!--DataGrid的标题栏背景画刷-->
+    <SolidColorBrush x:Key="DataGridHeaderBackground" Color="{StaticResource  Black3}"/>
+
+    <!--DataGrid的单元格边框画刷-->
+    <SolidColorBrush x:Key="DataGridCellBorderBrush" Color="{StaticResource Black2}"/>
+
+    <!--DataGrid的行背景画刷-->
+    <SolidColorBrush x:Key="DataGridRowBackground" Color="{StaticResource Black1}"/>
+
+    <!--窗体活动状态下的边框色-->
+    <SolidColorBrush x:Key="ActiveWindowBorderBrush" Color="{StaticResource Blue2}"/>
+
+    <!--窗体非活动状态下的边框色-->
+    <SolidColorBrush x:Key="InactiveWindowBorderBrush" Color="{StaticResource Gray2}"/>
 
     <!--控件边框画刷-->
-    <SolidColorBrush x:Key="control-border-brush" Color="{StaticResource Gray7}"/>
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="{StaticResource Gray6}"/>
+
+    <!--处于活动状态下的控件边框画刷-->
+    <SolidColorBrush x:Key="ControlBorderActiveBrush" Color="{StaticResource Blue2}"/>
 
     <!--Watermark字体色-->
-    <SolidColorBrush x:Key="WatermarkForeground" Color="{StaticResource Gray5}"/>
-    
-    <!--处于活动状态下的控件边框画刷-->
-    <SolidColorBrush x:Key="control-border-active-brush" Color="{StaticResource control-border-active-color}"/>
+    <SolidColorBrush x:Key="WatermarkForeground" Color="{StaticResource Gray4}"/>
 
     <!--处于禁用状态下的控件边框画刷-->
-    <SolidColorBrush x:Key="control-border-disable-brush" Color="{StaticResource Gray3}"/>
+    <SolidColorBrush x:Key="ControlBorderDisableBrush" Color="{StaticResource Gray5}"/>
 
-    <SolidColorBrush x:Key="control-item-select-brush" Color="{StaticResource control-item-select-color}"/>
+    <SolidColorBrush x:Key="DefaultButtonBackground" Color="{StaticResource Gray3}"/>
 
-    <SolidColorBrush x:Key="control-item-mouseover-brush" Color="{StaticResource control-item-mouseover-color}"/>
+    <!--对话框背景-->
+    <SolidColorBrush x:Key="DialogBackground" Color="{StaticResource Gray6}"/>
 
-    <SolidColorBrush x:Key="menuItem-highlight-brush" Color="{StaticResource Gray3}"/>
+    <!--TabItem content背景色-->
+    <SolidColorBrush x:Key="TabItemContentBackground" Color="{StaticResource Gray7}"/>
 
-    <SolidColorBrush x:Key="menuItem-press-brush" Color="{StaticResource Gray4}"/>
+    <!--  Content背景色-->
+    <SolidColorBrush x:Key="ContentBackground" Color="{StaticResource Gray7}"/>
 
-    <SolidColorBrush x:Key="submenu-border-brush" Color="{StaticResource submenu-border-color}"/>
+    <!--TabControl 边框色-->
+    <SolidColorBrush x:Key="TabControlBorderBrush" Color="{StaticResource Black2}"/>
 
-    <SolidColorBrush x:Key="button-mouseover-brush" Color="{StaticResource Gray2}"/>
+    <!--MenuItem MouseOver 边框色-->
+    <SolidColorBrush x:Key="MenuItemMouseOverBrush" Color="{StaticResource Blue2}"/>
+
+    <SolidColorBrush x:Key="DialogContentBackground" Color="{StaticResource Gray9}"/>
+
+    <!--InputBackground-->
+    <SolidColorBrush x:Key="TextboxBackground" Color="White"/>
+
+    <!--对话框标题栏背景-->
+    <SolidColorBrush x:Key="DialogTitleBackground" Color="{StaticResource Gray12}"/>
+
+
+    <SolidColorBrush x:Key="ControlItemMouseOverBrush" Color="{StaticResource Blue5}"/>
+
+ 
+ 
 </ResourceDictionary>

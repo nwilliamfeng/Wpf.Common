@@ -10,31 +10,23 @@ using System.Windows.Shapes;
 
 namespace Wpf.Common.Controls.Behavior
 {
-    /// <summary>
-    /// 密码框行为，支持水印和圆角
-    /// </summary>
-    public  class ComboBoxBehavior
+   
+    public class ComboBoxBehavior
     {
-          
-        public const string PART_WatermarkName = "PART_Watermark";
+        public const string PART_EMPTY_TextBlock = "PART_EMPTY_TextBlock";
 
-        /// <summary>
-        /// 设置为空时的文本内容
-        /// </summary>
-        public static readonly DependencyProperty WatermarkProperty =
-            DependencyProperty.RegisterAttached("Watermark", typeof(string), typeof(ComboBoxBehavior), new PropertyMetadata(OnWatermarkPropertyChanged));
+        public static readonly DependencyProperty EmtpyTextProperty = DependencyProperty.RegisterAttached("EmtpyText", typeof(string), typeof(ComboBoxBehavior)
+            , new PropertyMetadata(null, OnEmtpyTextPropertyChanged));
 
+        public static string GetEmtpyText(DependencyObject obj) => obj.GetValue<string>(EmtpyTextProperty);
 
-        public static void SetWatermark(UIElement obj, string value)=> obj.SetValue(WatermarkProperty, value);
-
-        public static string GetWatermark(UIElement obj)=> obj.GetValue<string>(WatermarkProperty);
-
+        public static void SetEmtpyText(DependencyObject obj, object value) => obj.SetValue(EmtpyTextProperty, value);
 
         /// <summary>
         /// 设置圆角
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
-           DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(ComboBoxBehavior), new PropertyMetadata(default(CornerRadius),OnCornerRaduisPropertyChanged));
+           DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(ComboBoxBehavior), new PropertyMetadata(default(CornerRadius), OnCornerRaduisPropertyChanged));
 
 
         public static void SetCornerRadius(UIElement obj, CornerRadius value) => obj.SetValue(CornerRadiusProperty, value);
@@ -43,48 +35,31 @@ namespace Wpf.Common.Controls.Behavior
 
 
 
-        private static void OnWatermarkPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
-        {
-            var watermark = arg.NewValue as string;
-            if (watermark == null) return;
-            var comboBox = source as ComboBox;
-            if (comboBox == null || !comboBox.IsEditable) return;
-         
-            comboBox.Initialized -= OnInitialized;
-
-            comboBox.Initialized += OnInitialized;
-
-        }
-
-        private static void OnInitialized(object sender ,EventArgs args)
+        private static void OnEmtpyTextPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
-            var watermark = GetWatermark(comboBox);
-            var tb = comboBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
-            if (tb == null) return;
-            tb.Text = watermark;
-            comboBox.KeyUp -= OnComboBoxKeyUp;
-            comboBox.KeyUp += OnComboBoxKeyUp;
-            comboBox.SelectionChanged -= OnComboBoxSelectionChanged;
-            comboBox.SelectionChanged += OnComboBoxSelectionChanged;
-
+            if (comboBox == null)
+                return;
+            var txt = e.NewValue as string;
+            if (string.IsNullOrEmpty(txt)) return;
+            comboBox.Initialized -= ComboBox_Initialized;
+            comboBox.Initialized += ComboBox_Initialized;
         }
 
-        private static void UpdateWatermarkVisibility(ComboBox comboBox)
+        private static void ComboBox_Initialized(object sender, System.EventArgs e)
         {
-            var tb = comboBox.FindChildrenFromTemplate<TextBlock>(PART_WatermarkName);
+            var comboBox = sender as ComboBox;
+            var tb = comboBox.FindChildrenFromTemplate<TextBlock>(PART_EMPTY_TextBlock);
             if (tb != null)
-                tb.Visibility = (comboBox.SelectedItem == null && string.IsNullOrEmpty(comboBox.Text)) ? Visibility.Visible : Visibility.Collapsed;
+                tb.Text = GetEmtpyText(comboBox);
         }
 
+        public static readonly DependencyProperty InputFilterProperty =
+           DependencyProperty.RegisterAttached("InputFilter", typeof(InputFilter), typeof(ComboBoxBehavior), new PropertyMetadata(InputFilter.None));
 
-        private static void OnComboBoxKeyUp(object sender, KeyEventArgs e)
-            => UpdateWatermarkVisibility(sender as ComboBox);
+        public static void SetInputFilter(UIElement obj, object value) => obj.SetValue(InputFilterProperty, value);
 
-        private static void OnComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
-            => UpdateWatermarkVisibility(sender as ComboBox);
-
-     
+        public static InputFilter GetInputFilter(UIElement obj) => obj.GetValue<InputFilter>(InputFilterProperty);
 
         private static void OnCornerRaduisPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
@@ -95,6 +70,7 @@ namespace Wpf.Common.Controls.Behavior
         }
 
 
+
         private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
         {
             var control = sender as Control;
@@ -102,7 +78,5 @@ namespace Wpf.Common.Controls.Behavior
             if (border != null)
                 border.CornerRadius = GetCornerRadius(control);
         }
-
-
     }
 }

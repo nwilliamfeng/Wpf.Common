@@ -22,7 +22,7 @@ namespace Wpf.Common.Demo
     {
         public MainView()
         {
-           
+            
             InitializeComponent();
             this.DataContext = new CommandTest();
             

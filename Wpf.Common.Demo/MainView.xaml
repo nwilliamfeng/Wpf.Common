@@ -12,17 +12,10 @@
         Height="450" Width="800"  
        
         ResizeMode="CanResizeWithGrip"
-        controlBehavior:WindowChromeBehavior.TitleHeight="46"
-         controlBehavior:WindowChromeBehavior.IsEnable="True"
-        controlBehavior:WindowChromeBehavior.TitleForeground="Black"
-        controlBehavior:WindowChromeBehavior.TitleBackground="Azure"
+        Style="{StaticResource WindowStyle}"
+        controlBehavior:WindowChromeBehavior.TitleHeight="42"
         >
-   
-    <Window.TaskbarItemInfo>
-        <TaskbarItemInfo >
-        
-        </TaskbarItemInfo>
-    </Window.TaskbarItemInfo>
+    
     <controlBehavior:WindowChromeBehavior.TitleContent>
         <Border>
             <DockPanel Margin="5">
@@ -44,6 +37,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
             <TreeView ItemsSource="{Binding Nodes}" 
+                      Background="Transparent"
                       MinWidth="200" behavior:TreeViewBehavior.SelectedItemCommand="{Binding OpenCommand,Mode=OneWay}" 
                       >
              

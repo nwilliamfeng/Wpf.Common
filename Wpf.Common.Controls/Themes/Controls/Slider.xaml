@@ -1,8 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Colors/Gray.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
+     
 
     <!--slider默认的背景色-->
     <SolidColorBrush x:Key="defaultBackground" Color="{StaticResource Gray6}"/>
@@ -25,9 +23,9 @@
     <!--横向（默认）的Thumb模板-->
     <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
         <Border x:Name="grip" HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" 
-                    BorderBrush="White"
+                    BorderBrush="Transparent"
                     Background="{StaticResource defaultBackground}"
-                    BorderThickness="1"                   
+                    BorderThickness="0.5"                   
                     Height="24"
                     Width="9">
             <Border.Style>
@@ -108,9 +106,9 @@
     <ControlTemplate x:Key="SliderThumbVerticalDefault" TargetType="{x:Type Thumb}">
        
         <Border x:Name="grip" HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" 
-                    BorderBrush="White"
+                    BorderBrush="Transparent"
                     Background="{StaticResource defaultBackground}"
-                    BorderThickness="1"                   
+                    BorderThickness="0.5"                   
                     Height="10"
                     Width="18">
             <Border.Style>

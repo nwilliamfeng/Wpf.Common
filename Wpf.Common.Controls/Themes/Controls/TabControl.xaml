@@ -1,16 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Wpf.Common.Controls.Themes.Controls">
-    <ResourceDictionary.MergedDictionaries>
-
-        <ResourceDictionary Source="../Brushes.xaml"/>
-
-    </ResourceDictionary.MergedDictionaries>
+                   >
+   
 
     <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
        
-        <Setter Property="Foreground" Value="{StaticResource control-border-brush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Background" Value="Transparent"/>
          
         <Setter Property="Margin" Value="0"/>
@@ -56,7 +52,7 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top"/>
                             </MultiDataTrigger.Conditions>
-                            <Setter  Property="BorderBrush" Value="{StaticResource control-border-brush}" TargetName="innerBorder2"/>
+                            <Setter  Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" TargetName="innerBorder2"/>
                             
                             <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
                             <Setter Property="Opacity" TargetName="contentPresenter" Value="1"/>
@@ -78,10 +74,10 @@
                                 <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top"/>
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="Foreground" Value="{StaticResource control-border-active-brush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ControlBorderActiveBrush}"/>
                             <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
                             <Setter Property="Opacity" TargetName="contentPresenter" Value="1"/>
-                            <Setter Property="BorderBrush" TargetName="innerBorder2" Value="{StaticResource control-border-active-brush}"/>
+                            <Setter Property="BorderBrush" TargetName="innerBorder2" Value="{DynamicResource ControlBorderActiveBrush }"/>
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

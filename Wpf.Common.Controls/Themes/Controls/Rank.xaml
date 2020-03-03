@@ -7,7 +7,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="RankItemTemplate">
-        <Button Padding="5,0"  Style="{StaticResource chromeButtonStyle}" 
+        <Button Padding="5,0"  Style="{StaticResource ChromeButtonStyle}" 
                 FocusVisualStyle="{x:Null}"
                 MouseEnter="{x:Static controls:RankHelper.RankItem_MouseEnter}"
                 MouseLeave="{x:Static controls:RankHelper.RankItem_MouseLeave}"

@@ -8,7 +8,7 @@
     
     <PathGeometry x:Key="TreeArrow" Figures="M448 672c-6.4 0-19.2 0-25.6-6.4-12.8-12.8-12.8-32 0-44.8L531.2 512 422.4 409.6c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0l128 128c12.8 12.8 12.8 32 0 44.8l-128 128C467.2 672 454.4 672 448 672z"/>
     
-    <SolidColorBrush x:Key="TreeViewItem.TreeArrow.Static.Stroke" Color="#FF818181"/>
+     
     
     <Style  TargetType="{x:Type ToggleButton}" x:Key="ExpandCollapseToggleStyle">
         <Setter Property="Focusable" Value="False"/>
@@ -20,7 +20,7 @@
                         <Path x:Name="ExpandPath" 
                                   Stretch="Uniform"                                 
                                   Data="{StaticResource TreeArrow}" 
-                                  Fill="{StaticResource TreeViewItem.TreeArrow.Static.Stroke}"
+                                  Fill="#FF818181"
                                   >
                             <Path.RenderTransform>
                                 <RotateTransform Angle="0" CenterY="5" CenterX="4"/>
@@ -56,7 +56,7 @@
         <Setter Property="HorizontalContentAlignment"  Value="{Binding Path=HorizontalContentAlignment,  RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment"  Value="{Binding Path=VerticalContentAlignment,  RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Padding" Value="2,4"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="FocusVisualStyle"  Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -106,13 +106,13 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver"  Value="true" SourceName="Bd"/>
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Bd"   Property="Background" Value="{StaticResource control-item-mouseover-brush}"/>
+                            <Setter TargetName="Bd"   Property="Background" Value="{DynamicResource HighLightBrush}"/>
                         </MultiTrigger>
 
 
 
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter TargetName="Bd"   Property="Background" Value="{StaticResource control-item-select-brush}"/>
+                            <Setter TargetName="Bd"   Property="Background" Value="{DynamicResource HighLightBrush}"/>
                             <Setter Property="Foreground"   Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
                         </Trigger>
                         <MultiTrigger>

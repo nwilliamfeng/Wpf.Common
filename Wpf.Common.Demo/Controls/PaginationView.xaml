@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel LastChildFill="True" Margin="10">
 

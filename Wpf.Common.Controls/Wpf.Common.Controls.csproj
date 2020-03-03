@@ -55,7 +55,12 @@
     <Compile Include="Helper\ProgressBar\NotZeroConverter.cs" />
     <Compile Include="Helper\ProgressBar\RotateTransformCentreConverter.cs" />
     <Compile Include="Helper\ProgressBar\StartPointConverter.cs" />
+    <Compile Include="InputFilter.cs" />
     <Compile Include="LedTube.cs" />
+    <Page Include="Themes\Controls\FocusVisual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Controls\MetroProgressBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,10 +70,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Colors\Gray.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -188,6 +189,7 @@
     <Compile Include="Data\TreeViewItemLeftMarginMultiplierConverter.cs" />
     <Compile Include="MetroProgressBar.cs" />
     <Compile Include="Pagination.cs" />
+    <Compile Include="ThemeExtension.cs" />
     <Compile Include="SplitButton.cs" />
     <Compile Include="DropdownButton.cs" />
     <Compile Include="Helper\TreeViewItemExtensions.cs" />

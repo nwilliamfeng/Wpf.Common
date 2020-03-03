@@ -4,7 +4,9 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
+using Wpf.Common.Controls;
 
 namespace Wpf.Common.Demo
 {
@@ -17,8 +19,8 @@ namespace Wpf.Common.Demo
         {
            
             base.OnStartup(e);
-           
-        }
+           // this.SetDarkTheme();
+        } 
 
      
     }

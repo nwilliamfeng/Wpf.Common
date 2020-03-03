@@ -3,7 +3,6 @@
                   >
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Brushes.xaml"/>
         <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
@@ -111,7 +110,7 @@
                     <Condition Property="IsChecked" Value="False"/>
                     <Condition Property="Validation.HasError" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Stroke" TargetName="Track" Value="Black"/>
+                <Setter Property="Stroke" TargetName="Track" Value="{Binding BorderBrush,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                 <Setter Property="Fill" TargetName="Track" Value="White"/>
             </MultiTrigger>
 
@@ -131,7 +130,7 @@
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Thumb" Property="Fill" Value="Red" />
                 <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
-                <Setter Property="Foreground" Value="Gray"/>
+                
                 <Setter Property="Stroke" TargetName="Track" Value="Red"/>
             </MultiTrigger>
 
@@ -142,11 +141,12 @@
                 </MultiTrigger.Conditions>
                 <Setter TargetName="Thumb" Property="Fill" Value="White" />
                 <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
-                <Setter Property="Foreground" Value="Gray"/>
+                <Setter Property="Stroke" TargetName="Track" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"/>
+               
             </MultiTrigger>
 
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Stroke" TargetName="Track" Value="Transparent"/>
+               
                 <Setter Property="Fill" TargetName="Track" Value="LightGray"/>
 
             </Trigger>
@@ -156,28 +156,20 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsEnabled" Value="False"/>
-                    <Condition Property="IsChecked" Value="True"/>
+                   
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />
-                <Setter TargetName="Track" Property="Fill" Value="{StaticResource control-border-disable-brush}"/>
+                <Setter Property="Opacity" Value="0.5"/>
+             
             </MultiTrigger>
 
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEnabled" Value="False"/>
-                    <Condition Property="IsChecked" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Thumb" Property="Fill" Value="#BDBDBD" />
-                <Setter TargetName="Track" Property="Fill" Value="Transparent"/>
-                <Setter Property="Stroke" TargetName="Track" Value="#BDBDBD"/>
-            </MultiTrigger>
+           
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
-        <Setter Property="Background" Value="{StaticResource control-border-active-brush}"/>
+        <Setter Property="Background" Value="{DynamicResource ControlBorderActiveBrush}"/>
         <Setter Property="Template" Value="{StaticResource ToggleButtonTemplate}"/>
     </Style>
 

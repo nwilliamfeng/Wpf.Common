@@ -12,10 +12,10 @@
         
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>
-        
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="5"/>
-        <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -32,9 +32,7 @@
                                 Background="{TemplateBinding Background}"/>
                         </AdornerDecorator>
 
-
-                        <Grid x:Name="PART_Root" 
-                              
+                        <Grid x:Name="PART_Root"                               
                                   Background="{TemplateBinding Background}" 
                                   Margin="{TemplateBinding Padding}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -54,7 +52,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Button   x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" 
-                                      Style="{StaticResource chromeButtonStyle}"
+                                      Style="{StaticResource ChromeButtonStyle}"
                                       Focusable="False" 
                                       HorizontalAlignment="Left" 
                                       Margin="3,0,3,0" 
@@ -73,7 +71,6 @@
                                         </Style>
                                     </Path.Style>
                                 </Path>
-
                             </Button>
                             <DatePickerTextBox x:Name="PART_TextBox" 
                                                Grid.Column="0" 
@@ -110,7 +107,7 @@
                             <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
                         </DataTrigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="BorderBrush" Value="{StaticResource control-border-disable-brush}"/>
+                            <Setter Property="Opacity" Value="0.3"/>
                         </Trigger>
 
 
@@ -120,15 +117,7 @@
                                 <Condition Property="Validation.HasError" Value="True"/>
                             </MultiTrigger.Conditions>
 
-                            <Setter Property="Effect"  TargetName="PART_Border">
-                                <Setter.Value>
-                                    <DropShadowEffect Direction="-90"            
-                                                      ShadowDepth="0"    
-                                                      Color="Red"  
-                                                      BlurRadius="2" 
-                                                      />
-                                </Setter.Value>
-                            </Setter>
+                         
                         </MultiTrigger>
 
                         <MultiTrigger>
@@ -136,16 +125,8 @@
                                 <Condition Property="IsKeyboardFocused" Value="True" SourceName="PART_TextBox"/>
                                 <Condition Property="Validation.HasError" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush" Value="{StaticResource control-border-active-brush}"/>
-                            <Setter Property="Effect"  TargetName="PART_Border">
-                                <Setter.Value>
-                                    <DropShadowEffect Direction="-90"   
-                                                      ShadowDepth="0"    
-                                                      Color="{StaticResource control-border-active-color}"  
-                                                      BlurRadius="2" 
-                                                     />
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderActiveBrush}"/>
+                           
                         </MultiTrigger>
 
                      
@@ -154,7 +135,7 @@
                                 <Condition Property="IsMouseOver" Value="True"/>
                                 <Condition Property="Validation.HasError" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush"  Value="{StaticResource control-border-active-brush}"/>
+                            <Setter Property="BorderBrush"  Value="{DynamicResource ControlBorderActiveBrush}"/>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

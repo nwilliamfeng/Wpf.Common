@@ -12,24 +12,9 @@ namespace Wpf.Common.Controls
     internal static class ResourceHelper
     {
 
-        public static Border GetWindowBorder()
-        {
-            var grid = GetWindowGrid();
-            return grid == null ? null : grid.FindChildren<Border>("WindowBorder");
-        }
+        public static SolidColorBrush GetWindowActiveBorderBrush() => Application.Current.FindResource("ActiveWindowBorderBrush") as SolidColorBrush;
 
-        public static Border GetWindowGlowBorder()
-        {
-            var grid = GetWindowGrid();
-            return grid == null ? null : grid.FindChildren<Border>("GlowBorder");
-        }
-
-        public static Grid GetWindowGrid() => Application.Current.FindResource("WindowGrid") as Grid;
-       
-
-        public static SolidColorBrush GetWindowActiveBorderBrush() => Application.Current.FindResource("window-border-active-brush") as SolidColorBrush;
-
-        public static SolidColorBrush GetWindowInactiveBorderBrush() => Application.Current.FindResource("window-border-inactive-brush") as SolidColorBrush;
+        public static SolidColorBrush GetWindowInactiveBorderBrush() => Application.Current.FindResource("InactiveWindowBorderBrush") as SolidColorBrush;
 
     }
 }

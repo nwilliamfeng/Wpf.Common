@@ -5,19 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Shapes;
 
 namespace Wpf.Common.Controls.Behavior
 {
-    /// <summary>
-    /// 文本框行为，支持水印、图标和圆角
-    /// </summary>
-    public  class TextBoxBehavior
+    public class TextBoxBehavior
     {
         public const string PART_WatermarkName = "PART_Watermark";
-      
-      
-
 
         /// <summary>
         /// 设置为空时的文本内容
@@ -25,23 +20,19 @@ namespace Wpf.Common.Controls.Behavior
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.RegisterAttached("Watermark", typeof(string), typeof(TextBoxBehavior), new PropertyMetadata(OnWatermarkPropertyChanged));
 
+        public static void SetWatermark(UIElement obj, string value) => obj.SetValue(WatermarkProperty, value);
 
-        public static void SetWatermark(UIElement obj, string value)=> obj.SetValue(WatermarkProperty, value);
-
-        public static string GetWatermark(UIElement obj)=> obj.GetValue<string>(WatermarkProperty);
-
+        public static string GetWatermark(UIElement obj) => obj.GetValue<string>(WatermarkProperty);
 
         /// <summary>
         /// 设置圆角
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
-           DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(TextBoxBehavior), new PropertyMetadata(default(CornerRadius),OnCornerRaduisPropertyChanged));
-
+           DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(TextBoxBehavior), new PropertyMetadata(default(CornerRadius), OnCornerRaduisPropertyChanged));
 
         public static void SetCornerRadius(UIElement obj, CornerRadius value) => obj.SetValue(CornerRadiusProperty, value);
 
         public static CornerRadius GetCornerRadius(UIElement obj) => obj.GetValue<CornerRadius>(CornerRadiusProperty);
-
 
         /// <summary>
         /// 设置Icon
@@ -49,11 +40,9 @@ namespace Wpf.Common.Controls.Behavior
         public static readonly DependencyProperty IconProperty =
            DependencyProperty.RegisterAttached("Icon", typeof(FrameworkElement), typeof(TextBoxBehavior), new PropertyMetadata(OnIconPropertyChanged));
 
-
         public static void SetIcon(UIElement obj, FrameworkElement value) => obj.SetValue(IconProperty, value);
 
         public static FrameworkElement GetIcon(UIElement obj) => obj.GetValue<FrameworkElement>(IconProperty);
-
 
         /// <summary>
         /// 设置IconDock
@@ -61,19 +50,16 @@ namespace Wpf.Common.Controls.Behavior
         public static readonly DependencyProperty IconDockProperty =
            DependencyProperty.RegisterAttached("IconDock", typeof(Dock), typeof(TextBoxBehavior), new PropertyMetadata(Dock.Left));
 
-
         public static void SetIconDock(UIElement obj, Dock value) => obj.SetValue(IconDockProperty, value);
 
         public static Dock GetIconDock(UIElement obj) => obj.GetValue<Dock>(IconDockProperty);
-
- 
 
         private static void OnWatermarkPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
         {
             var watermark = arg.NewValue as string;
             if (watermark == null) return;
             var textBox = source as TextBox;
-            if (textBox == null) return;    
+            if (textBox == null) return;
             textBox.Initialized -= OnInitizedToSetWatermark;
             textBox.Initialized += OnInitizedToSetWatermark;
         }
@@ -94,11 +80,10 @@ namespace Wpf.Common.Controls.Behavior
             control.Initialized += OnInitizedToSetCornerRadius;
         }
 
-
         private static void OnInitizedToSetCornerRadius(object sender, EventArgs args)
         {
             var control = sender as Control;
-            var border = control.FindChildrenFromTemplate<Border>(ControlTemplatePartNames. PART_BorderName);
+            var border = control.FindChildrenFromTemplate<Border>(ControlTemplatePartNames.PART_BorderName);
             if (border != null)
                 border.CornerRadius = GetCornerRadius(control);
         }
@@ -122,5 +107,36 @@ namespace Wpf.Common.Controls.Behavior
             }
         }
 
+
+        public static readonly DependencyProperty InputFilterProperty =
+            DependencyProperty.RegisterAttached("InputFilter", typeof(InputFilter), typeof(TextBoxBehavior), new PropertyMetadata(InputFilter.None, OnInputFilterPropertyChanged));
+
+        public static void SetInputFilter(UIElement obj, object value) => obj.SetValue(InputFilterProperty, value);
+
+        public static InputFilter GetInputFilter(UIElement obj) => obj.GetValue<InputFilter>(InputFilterProperty);
+
+        private static void OnInputFilterPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs arg)
+        {
+            var textBox = source as TextBox;
+            if (textBox == null) return;
+
+            if (!(arg.NewValue is InputFilter)) return;
+            InputFilter inputFilter = (InputFilter)arg.NewValue;
+            KeyEventHandler keyHandle = (s, e) =>
+            {
+                if (inputFilter == InputFilter.None) return;
+                if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Left || e.Key == Key.Right)
+                    return;
+                if (inputFilter == InputFilter.OnlyInteger)
+                {
+                    if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
+                        return;
+                }
+
+                e.Handled = true;
+            };
+            textBox.PreviewKeyDown -= keyHandle;
+            textBox.PreviewKeyDown += keyHandle;
+        }
     }
 }

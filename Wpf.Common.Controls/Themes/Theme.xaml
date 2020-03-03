@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Wpf.Common.Controls"
+                    xmlns:behavior="clr-namespace:Wpf.Common.Controls.Behavior"
                    >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml"/>
@@ -27,4 +28,12 @@
     <Style TargetType="{x:Type controls:LedTube}" BasedOn="{StaticResource   LedTubeStyle }"/>
     <Style TargetType="{x:Type controls:Pagination}" BasedOn="{StaticResource   PaginationStyle }"/>
     <Style TargetType="{x:Type controls:MetroProgressBar}" BasedOn="{StaticResource    MetroProgressBarStyle }"/>
+    <Style TargetType="Window" BasedOn="{StaticResource WindowStyle}">
+        <Setter Property="behavior:WindowChromeBehavior.IsEnable" Value="true"/>
+        <Setter Property="behavior:WindowChromeBehavior.WindowCommandButtonPadding" Value="10,6"/>
+        <Setter Property="behavior:WindowChromeBehavior.WindowCommandButtonMouseOverColor" Value="#6C6C6F"/>
+
+        
+        <Setter Property="behavior:WindowChromeBehavior.TitleBackground" Value="{StaticResource AccentBrush}"/>
+    </Style>
 </ResourceDictionary>

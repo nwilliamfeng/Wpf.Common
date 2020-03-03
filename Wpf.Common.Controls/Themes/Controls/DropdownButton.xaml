@@ -1,14 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Wpf.Common.Controls">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Brushes.xaml"/>
-      
-    </ResourceDictionary.MergedDictionaries>
- 
+
+
     <Style x:Key="DefaultDropdownToggleButtonStyle" TargetType="{x:Type ToggleButton}">
 
-        <Setter Property="BorderBrush" Value="{StaticResource control-border-brush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -33,7 +30,7 @@
                                   Width="8"
                                   Margin="5,0,0,0"
                                   Data="M512 597.333333l-170.666667-170.666666h341.333334z"/>
-               
+
                             <ContentPresenter x:Name="contentPresenter" 
                                           Focusable="False" 
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -42,26 +39,26 @@
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </DockPanel>
-                       
+
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Button.IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource  HighLightBrush}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource  button-mouseover-brush}"/>
-                            <Setter Property="Fill" TargetName="path" Value="{DynamicResource control-item-select-brush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource  HighLightBrush}"/>
+                            <Setter Property="Fill" TargetName="path" Value="{DynamicResource HighLightBrush}"/>
 
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource control-item-select-brush}"/>
-                            <Setter Property="Fill" TargetName="path" Value="White"/>
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter"  Value="White"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource HighLightBrush}"/>
+                            <Setter Property="Fill" TargetName="path" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter"  Value="{DynamicResource ForegroundBrush}"/>
                         </Trigger>
-                         
+
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.3"/>
-                            
+
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -85,17 +82,17 @@
                             Background="{TemplateBinding Background}" 
                             Padding="{TemplateBinding Padding}"                          
                             SnapsToDevicePixels="true">
-                     
-                            <ContentPresenter x:Name="contentPresenter" 
+
+                        <ContentPresenter x:Name="contentPresenter" 
                                           Focusable="False" 
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                         
                                           RecognizesAccessKey="True" 
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                       
+
                     </Border>
                     <ControlTemplate.Triggers>
-                       
+
 
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="border" Value="0.3"/>
@@ -109,19 +106,22 @@
 
     <ControlTemplate TargetType="{x:Type controls:DropdownButton}" x:Key="DropdownButtonTemplate">
         <ToggleButton x:Name="PART_DropdownButton" 
+                      Foreground="{TemplateBinding Foreground}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           Background="{TemplateBinding Background}"
                           Style="{TemplateBinding ButtonStyle}"
                           Content="{TemplateBinding Content}">
-                
-            </ToggleButton>
-         
+
+        </ToggleButton>
+
     </ControlTemplate>
-    
-    
+
+
     <Style TargetType="{x:Type controls:DropdownButton}" x:Key="DropdownButtonStyle">
         <Setter Property="Template" Value="{StaticResource DropdownButtonTemplate}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ButtonStyle" Value="{StaticResource DefaultDropdownToggleButtonStyle}"/>
     </Style>

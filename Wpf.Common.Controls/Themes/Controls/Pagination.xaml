@@ -4,7 +4,7 @@
                     xmlns:controls="clr-namespace:Wpf.Common.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="buttons.xaml"/>
-        <ResourceDictionary Source="../colors/gray.xaml"/>
+       
     </ResourceDictionary.MergedDictionaries>
     <SolidColorBrush x:Key="disableButtonForeground" Color="{StaticResource Gray2}"/>
     <SolidColorBrush x:Key="defaultButtonForeground" Color="{StaticResource Gray5}"/>
@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="pressButtonForeground" Color="{StaticResource Gray9}"/>
     
     <Style TargetType="controls:Pagination" x:Key="PaginationStyle">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Pagination">
@@ -35,20 +36,20 @@
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Margin" Value="5,0"/>
                                 </Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource chromeButtonStyle}">
+                                <Style TargetType="Button" BasedOn="{StaticResource ChromeButtonStyle}">
                                     <Setter Property="Margin" Value="5,0"/>
                                     <Setter Property="Cursor" Value="Hand"/>
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource defaultButtonForeground}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsEnabled" Value="false">
-                                            <Setter Property="Foreground" Value="{StaticResource disableButtonForeground}"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="true">
-                                            <Setter Property="Foreground" Value="{StaticResource mouseOverButtonForeground}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource HighLightBrush}"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed"  Value="true">
-                                            <Setter Property="Foreground" Value="{StaticResource pressButtonForeground}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -64,6 +65,7 @@
                             <TextBlock Text="第"  />
                             <ComboBox IsEditable="True" 
                                       Height="20"
+                                      Padding="2,0"
                                       HorizontalContentAlignment="Center"
                                       MinWidth="50"
                                       x:Name="PART_PageComboBox" 

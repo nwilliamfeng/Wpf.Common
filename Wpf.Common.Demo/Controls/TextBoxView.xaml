@@ -8,20 +8,21 @@
              xmlns:behavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              xmlns:commonBehavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800"  >
     
     <UniformGrid Columns="4">
 
         <TextBox Width="150" VerticalAlignment="Center" 
                   x:Name="tb"
-                 Padding="10" behavior:TextBoxBehavior.Watermark="请输入名字"
+                   behavior:TextBoxBehavior.Watermark="请输入名字"
                  behavior:TextBoxBehavior.CornerRadius="5"/>
        
        
 
         <TextBox Width="150" VerticalAlignment="Center" 
+                 IsEnabled="False"
                  behavior:TextBoxBehavior.Watermark="请输入数字"
-                 Padding="5"
+                 Padding="5,2"
                   />
 
         <TextBox Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="2,8,8,8" 
@@ -31,11 +32,11 @@
             </behavior:TextBoxBehavior.Icon>
          </TextBox>
 
-        <TextBox Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,10,2,10" 
+        <TextBox Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,2" 
                  behavior:TextBoxBehavior.Watermark="请输入数字" 
                  behavior:TextBoxBehavior.IconDock="Right">
             <behavior:TextBoxBehavior.Icon>
-                <Button Padding="5" Foreground="LightGray" Style="{StaticResource chromeButtonStyle}" >
+                <Button Padding="5" Foreground="LightGray" Style="{StaticResource ChromeButtonStyle}" >
                     <Path Height="16" Width="16" 
                           Data="{StaticResource  FindIcon}"                          
                           
@@ -91,11 +92,6 @@
             </behavior:TextBoxBehavior.Icon>
         </TextBox>
 
-        <StackPanel VerticalAlignment="Center">
-            <TextBlock Text="AutoComplete"/>
-            <TextBox Style="{StaticResource AutoCompleteTextBoxStyle}" 
-                     commonBehavior:AutoCompleteBehavior.ItemsSource="{Binding Source=1234567}"/>
-
-        </StackPanel>
+       
     </UniformGrid>
 </UserControl>
