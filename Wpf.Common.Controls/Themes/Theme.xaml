@@ -9,6 +9,7 @@
         <ResourceDictionary Source="Controls/Index.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="Slider" BasedOn="{StaticResource SliderStyle}"/>
+    <Style TargetType="Separator" BasedOn="{StaticResource  SeparatorStyle}"/>
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
     <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
     <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
@@ -28,12 +29,13 @@
     <Style TargetType="{x:Type controls:LedTube}" BasedOn="{StaticResource   LedTubeStyle }"/>
     <Style TargetType="{x:Type controls:Pagination}" BasedOn="{StaticResource   PaginationStyle }"/>
     <Style TargetType="{x:Type controls:MetroProgressBar}" BasedOn="{StaticResource    MetroProgressBarStyle }"/>
+    <Style TargetType="{x:Type controls:AutoCompleteBox}" BasedOn="{StaticResource AutoCompleteBoxStyle}"/>
+    <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource  NumericUpDownStyle}"/>
+    <Style TargetType="{x:Type controls:DateTimePicker}" BasedOn="{StaticResource  DateTimePickerStyle}"/>
     <Style TargetType="Window" BasedOn="{StaticResource WindowStyle}">
         <Setter Property="behavior:WindowChromeBehavior.IsEnable" Value="true"/>
         <Setter Property="behavior:WindowChromeBehavior.WindowCommandButtonPadding" Value="10,6"/>
         <Setter Property="behavior:WindowChromeBehavior.WindowCommandButtonMouseOverColor" Value="#6C6C6F"/>
-
-        
         <Setter Property="behavior:WindowChromeBehavior.TitleBackground" Value="{StaticResource AccentBrush}"/>
     </Style>
 </ResourceDictionary>

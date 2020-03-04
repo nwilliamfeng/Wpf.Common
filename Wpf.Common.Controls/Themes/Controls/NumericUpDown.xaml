@@ -1,0 +1,125 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                     xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+                    xmlns:controls="clr-namespace:Wpf.Common.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="repeatbutton.xaml"/>
+        <ResourceDictionary Source="../ErrorTemplate.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="NumericUpDownStyle" TargetType="{x:Type controls:NumericUpDown}">
+        <Setter Property="Padding" Value="2,2"/>
+        <Setter Property="Background" Value="{StaticResource TextboxBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:NumericUpDown}">
+                    <Border Background="{TemplateBinding Background}" 
+                        
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  >
+                        <DockPanel LastChildFill="True">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                                <StackPanel.Resources>
+                                    <Style TargetType="RepeatButton" BasedOn="{StaticResource RepeatButtonStyle}">
+                                        <Setter Property="Padding" Value="5,1"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <RepeatButton x:Name="PART_ButtonUp"   Content="+"  Visibility="{TemplateBinding ButtonVisibility}"   FontSize="{TemplateBinding FontSize}"/>
+                                <RepeatButton x:Name="PART_ButtonDown"   Content="-" Padding="7,1"  Visibility="{TemplateBinding ButtonVisibility}" FontSize="{TemplateBinding FontSize}"/>
+                            </StackPanel>
+                            <TextBox x:Name="PART_TextBox" 
+                                     TabIndex="{TemplateBinding TabIndex}"
+                                     Background="{TemplateBinding Background}"
+                                     Height="{TemplateBinding Height}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     Padding="{TemplateBinding Padding}"
+                                     input:InputMethod.IsInputMethodEnabled="False"
+                                     BorderThickness="0"                                     
+                                     Foreground="{TemplateBinding Foreground}"
+                                     CaretBrush="{TemplateBinding CaretBrush}" 
+                                    />
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DefaultNumericUpDownStyle" TargetType="{x:Type controls:NumericUpDown}">
+        <Setter Property="Padding" Value="5,2"/>
+        <Setter Property="Background" Value="{StaticResource TextboxBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:NumericUpDown}">
+                    <Border Background="{TemplateBinding Background}"                         
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  >
+                        <DockPanel LastChildFill="True">
+                            <StackPanel  DockPanel.Dock="Right">
+                                <StackPanel.Resources>
+                                    <Style TargetType="RepeatButton" BasedOn="{StaticResource RepeatButtonStyle}">
+                                        <Setter Property="Padding" Value="5,0"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <RepeatButton x:Name="PART_ButtonUp"   Content="∧"    FontSize="8"/>
+                                <RepeatButton x:Name="PART_ButtonDown"   Content="∨"    FontSize="8"/>
+                            </StackPanel>
+                            <TextBox x:Name="PART_TextBox" 
+                                     Background="Transparent"
+                                     Height="{TemplateBinding Height}"                                
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="Stretch"
+                                     Padding="{TemplateBinding Padding}"
+                                     input:InputMethod.IsInputMethodEnabled="False"
+                                     BorderThickness="0"                                    
+                                     CaretBrush="{TemplateBinding CaretBrush}" 
+                                     Foreground="White"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DataGridCellNumericUpDownStyle" TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource NumericUpDownStyle}">
+
+        <Setter Property="Padding" Value="3,2"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+
+    </Style>
+
+</ResourceDictionary>

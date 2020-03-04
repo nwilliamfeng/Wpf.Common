@@ -44,7 +44,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCompleteBox.cs" />
     <Compile Include="Behavior\MaterialDesignPasswordBoxBehavior.cs" />
+    <Compile Include="BindingProxy.cs" />
+    <Compile Include="DateTimePicker.cs" />
+    <Compile Include="Helper\ChineseSpellHelper.cs" />
     <Compile Include="Helper\LedTube\DrawLedLine.cs" />
     <Compile Include="Helper\LedTube\Enums.cs" />
     <Compile Include="Helper\LedTube\LedLineExtension.cs" />
@@ -57,7 +61,24 @@
     <Compile Include="Helper\ProgressBar\StartPointConverter.cs" />
     <Compile Include="InputFilter.cs" />
     <Compile Include="LedTube.cs" />
+    <Compile Include="Behavior\DocumentViewerBehavior.cs" />
+    <Page Include="Themes\Controls\AutoCompleteBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\DateTimePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\DocumentViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Controls\FocusVisual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\ListBoxItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -101,11 +122,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Controls\NumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Controls\Pagination.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Controls\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\RepeatButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\Separator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -188,6 +221,7 @@
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Data\TreeViewItemLeftMarginMultiplierConverter.cs" />
     <Compile Include="MetroProgressBar.cs" />
+    <Compile Include="NumericUpDown.cs" />
     <Compile Include="Pagination.cs" />
     <Compile Include="ThemeExtension.cs" />
     <Compile Include="SplitButton.cs" />

@@ -44,7 +44,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behavior\AutoCompleteBehavior.cs" />
     <Compile Include="Behavior\SelectorBehavior.cs" />
     <Compile Include="Behavior\ListBoxBehavior.cs" />
     <Compile Include="Behavior\TabControlBehavior.cs" />
