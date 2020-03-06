@@ -9,7 +9,7 @@
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Padding" Value="2,2"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="CaretBrush" Value="{DynamicResource CaretBrush}"/>
+      
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="{DynamicResource TextboxBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
@@ -86,8 +86,9 @@
     <Style x:Key="MaterialDesignTextBoxStyle" TargetType="{x:Type TextBox}">
 
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-      
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="Padding" Value="5,3"/>
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -196,15 +197,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                    <Condition Property="IsSelectionActive" Value="false"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-            </MultiTrigger>
-        </Style.Triggers>
+         
     </Style>
 
 
@@ -333,13 +326,7 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                    <Condition Property="IsSelectionActive" Value="false"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-            </MultiTrigger>
+         
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsKeyboardFocused" Value="True"/>

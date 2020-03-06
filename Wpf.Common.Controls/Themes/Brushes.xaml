@@ -14,8 +14,7 @@
     <SolidColorBrush x:Key="DataGridSelectRowBackground" Color="#545A62"/>
 
     <SolidColorBrush x:Key="HighLightBrush" Color="{StaticResource Blue2}"/>
-    <SolidColorBrush x:Key="CaretBrush" Color="Black"/>
-
+ 
 
     <!--DataGrid的标题栏背景画刷-->
     <SolidColorBrush x:Key="DataGridHeaderBackground" Color="{StaticResource  Black3}"/>

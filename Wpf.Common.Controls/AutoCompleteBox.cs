@@ -1,23 +1,4 @@
-﻿/**************************************************************************
-*   Copyright (c) QiCheng Tech Corporation.  All rights reserved.
-*   http://www.iqichengtech.com 
-*   
-*   =================================
-*   CLR版本  ：4.0.30319.42000
-*   命名空间 ：QiCheng.QCTrader.Controls
-*   文件名称 ：AutoCompleteBox.cs
-*   =================================
-*   创 建 者 ：wei.feng
-*   创建日期 ：2019/10/21 11:44:43 
-*   功能描述 ：
-*   使用说明 ：
-*   =================================
-*   修 改 者 ：
-*   修改日期 ：
-*   修改内容 ：
-*   =================================
-*  
-***************************************************************************/
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -179,7 +160,7 @@ namespace Wpf.Common.Controls
             else
             {
                 var pName = string.IsNullOrEmpty(this.SearchPath) ? this.DisplayMemberPath : this.SearchPath;
-                this._textBox.Text = item.GetType().GetProperty(pName)?.GetValue(item)?.ToString();
+                this._textBox.Text = item.GetType().GetProperty(pName)?.GetValue(item,null)?.ToString();
             }
         }
 
@@ -193,7 +174,7 @@ namespace Wpf.Common.Controls
 
                 if (pi != null)
                 {
-                    var txt = pi.GetValue(SelectedItem) as string;
+                    var txt = pi.GetValue(SelectedItem,null) as string;
                     if (this._textBox.Text != txt)
                         this._textBox.Text = txt;
                 }
@@ -240,7 +221,7 @@ namespace Wpf.Common.Controls
             if (string.IsNullOrEmpty(this.SearchPath)) return obj.ToString();
             var pi = obj.GetType().GetProperty(this.SearchPath);
             if (pi == null) return null;
-            return pi.GetValue(obj) as string;
+            return pi.GetValue(obj,null) as string;
         }
 
         private bool _disableSearch = false;
@@ -266,7 +247,7 @@ namespace Wpf.Common.Controls
                 {
                     var pi = x.GetType().GetProperty(this.SearchPath);
                     if (pi == null) return false;
-                    value = pi.GetValue(x) as string;
+                    value = pi.GetValue(x,null) as string;
                     if (string.IsNullOrEmpty(value)) return false;
                  
                 }
@@ -364,7 +345,7 @@ namespace Wpf.Common.Controls
             if (this.SelectedItem != null && !string.IsNullOrEmpty(this.SearchPath))
             {
                 var pi = this.SelectedItem.GetType().GetProperty(SearchPath);
-                if (pi != null && pi.GetValue(SelectedItem) as string == txtBox.Text)
+                if (pi != null && pi.GetValue(SelectedItem,null) as string == txtBox.Text)
                     return;
             }
             if (!_disableSearch)

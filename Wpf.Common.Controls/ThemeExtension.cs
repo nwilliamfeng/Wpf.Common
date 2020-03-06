@@ -13,7 +13,7 @@ namespace Wpf.Common.Controls
         public const string ForegroundBrush = "ForegroundBrush"; 
         public const string AccentBrush = "AccentBrush";
         public const string TextboxBackground = "TextboxBackground";
-        public const string CaretBrush = "CaretBrush";
+      
         public const string ControlBorderBrush = "ControlBorderBrush";
         public const string ContextMenuBrush = "ContextMenuBrush";
         public const string MenuItemMouseOverBrush = "MenuItemMouseOverBrush";
@@ -44,7 +44,7 @@ namespace Wpf.Common.Controls
             dic[BrushResourceKey.ForegroundBrush] = new SolidColorBrush(Colors.White);
             dic[BrushResourceKey.AccentBrush] = GetBrushFromResource(application, ColorResourceKey.Gray1);
             dic[BrushResourceKey.TextboxBackground] = GetBrushFromResource(application, ColorResourceKey.Gray10);
-            dic[BrushResourceKey.CaretBrush] = GetBrushFromResource(application, ColorResourceKey.Gray4);
+        
             dic[BrushResourceKey.ControlBorderBrush] = GetBrushFromResource(application, ColorResourceKey.Gray3);
             dic[BrushResourceKey.ContextMenuBrush] = GetBrushFromResource(application, ColorResourceKey.Gray7);
             dic[BrushResourceKey.MenuItemMouseOverBrush] = GetBrushFromResource(application, ColorResourceKey.Gray8);

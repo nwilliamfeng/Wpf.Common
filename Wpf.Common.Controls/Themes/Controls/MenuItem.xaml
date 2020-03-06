@@ -55,7 +55,7 @@
                         <Border x:Name="SubMenuBorder" 
                             BorderBrush="{DynamicResource ControlBorderBrush}" 
                             BorderThickness="1" 
-                            Background="{StaticResource TabItemContentBackground}" 
+                            Background="{DynamicResource AccentBrush}" 
                             UseLayoutRounding="True"  >
                             <ScrollViewer x:Name="SubMenuScrollViewer" 
                                       Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}" 
