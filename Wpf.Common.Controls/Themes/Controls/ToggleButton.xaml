@@ -12,6 +12,7 @@
             
         </ControlTemplate.Resources>
         <Grid>
+          
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CheckStates">
                     <VisualStateGroup.Transitions>
@@ -57,7 +58,12 @@
             </VisualStateManager.VisualStateGroups>
             <Grid SnapsToDevicePixels="True">
                 <AdornerDecorator>
-                    <Rectangle x:Name="Track"                                     
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="Track"                                     
                            Fill="Transparent" 
                            HorizontalAlignment="Left" 
                            Height="22" 
@@ -67,30 +73,39 @@
                            Width="45" 
                            RadiusY="11" 
                            RadiusX="11"/>
+                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                      Content="{TemplateBinding Content}" 
+                                      FocusVisualStyle="{x:Null}"
+                                      Margin="{TemplateBinding Padding}"   
+                                      Grid.Column="1"
+                                      x:Name="ContentPresenter"                                                  
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                      FlowDirection="LeftToRight"/>
+                    </Grid>
+                   
                 </AdornerDecorator>
                 <Grid x:Name="ThumbHolder" HorizontalAlignment="Left" VerticalAlignment="Top">
                    
-                        <Ellipse x:Name="Thumb"
+                    <Ellipse x:Name="Thumb"
                                              Fill="{TemplateBinding Foreground}" Stroke="{x:Null}" 
                                              HorizontalAlignment="Center" VerticalAlignment="Center"
                                              Width="11" Height="11"
                                              Margin="5,5,0,0"
                                              RenderTransformOrigin="0.5,0.5" >
                         </Ellipse>
+
+
+                  
                     
-                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                      Content="{TemplateBinding Content}" 
-                                      FocusVisualStyle="{x:Null}"
-                                      Margin="{TemplateBinding Padding}"                                               
-                                      x:Name="ContentPresenter"                                                  
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                      FlowDirection="LeftToRight"/>
                     <Grid.RenderTransform>
                         <TranslateTransform X="0" Y="0"/>
                     </Grid.RenderTransform>
+
+               
                 </Grid>
             </Grid>
+         
         </Grid>
         <ControlTemplate.Triggers>
             <!--<Trigger Property="IsChecked" Value="True">
@@ -168,6 +183,7 @@
 
     <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}"/>
         <Setter Property="Background" Value="{DynamicResource ControlBorderActiveBrush}"/>
         <Setter Property="Template" Value="{StaticResource ToggleButtonTemplate}"/>

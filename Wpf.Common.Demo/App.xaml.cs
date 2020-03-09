@@ -19,7 +19,7 @@ namespace Wpf.Common.Demo
         {
            
             base.OnStartup(e);
-           // this.SetDarkTheme();
+            
         } 
 
      

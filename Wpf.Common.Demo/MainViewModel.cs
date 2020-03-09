@@ -11,6 +11,8 @@ using System.ComponentModel.Composition;
 using Wpf.Common.Demo.Controls;
 using Wpf.Common.Demo.Scroll;
 using Wpf.Common.Demo.Image;
+using System.Windows;
+using Wpf.Common.Controls;
 
 namespace Wpf.Common.Demo
 {
@@ -73,6 +75,22 @@ namespace Wpf.Common.Demo
             Nodes.Add(gpNode6);
             Nodes.Add(gpNode7);
             this.DisplayName = "Demo";
+        }
+
+        private bool _isDarkTheme;
+
+        public bool IsDarkTheme
+        {
+            get => this._isDarkTheme;
+            set
+            {
+                this._isDarkTheme = value;
+                if (value)
+                    Application.Current.SetDarkTheme();
+                else
+                    Application.Current.SetDefaultTheme();
+                this.NotifyOfPropertyChange(() => this.IsDarkTheme);
+            }
         }
 
         private ICommand _openCommand;

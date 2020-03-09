@@ -8,11 +8,9 @@
     <SolidColorBrush x:Key="ForegroundBrush" Color="Black"/>
 
     <!--主题画刷-->
-    <SolidColorBrush  x:Key="AccentBrush" Color="White"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="White"/>
     <SolidColorBrush x:Key="ContextMenuBrush" Color="White"/>
-
     <SolidColorBrush x:Key="DataGridSelectRowBackground" Color="#545A62"/>
-
     <SolidColorBrush x:Key="HighLightBrush" Color="{StaticResource Blue2}"/>
  
 

@@ -34,6 +34,8 @@ namespace Wpf.Common.Controls
         public const string Gray10 = "Gray10";
         public const string Gray11 = "Gray11";
         public const string Gray12 = "Gray12";
+        public const string Black2 = "Black2";
+        public const string Blue2 = "Blue2";
     }
 
     public static class ThemeExtension
@@ -48,6 +50,18 @@ namespace Wpf.Common.Controls
             dic[BrushResourceKey.ControlBorderBrush] = GetBrushFromResource(application, ColorResourceKey.Gray3);
             dic[BrushResourceKey.ContextMenuBrush] = GetBrushFromResource(application, ColorResourceKey.Gray7);
             dic[BrushResourceKey.MenuItemMouseOverBrush] = GetBrushFromResource(application, ColorResourceKey.Gray8);
+        }
+
+        public static void SetDefaultTheme(this Application application)
+        {
+            var dic = application.Resources;
+            dic[BrushResourceKey.ForegroundBrush] = new SolidColorBrush(Colors.Black);
+            dic[BrushResourceKey.AccentBrush] = new SolidColorBrush(Colors.White);
+            dic[BrushResourceKey.TextboxBackground] = new SolidColorBrush(Colors.White);
+
+            dic[BrushResourceKey.ControlBorderBrush] = GetBrushFromResource(application, ColorResourceKey.Blue2);
+            dic[BrushResourceKey.ContextMenuBrush] = new SolidColorBrush(Colors.White);
+            dic[BrushResourceKey.MenuItemMouseOverBrush] = GetBrushFromResource(application, ColorResourceKey.Blue2);
         }
 
         public static Color GetColorFromResource(this Application application, string colorKey) =>(Color) ColorConverter.ConvertFromString(application.Resources[colorKey].ToString());

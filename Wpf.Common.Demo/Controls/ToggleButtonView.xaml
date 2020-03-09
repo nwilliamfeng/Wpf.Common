@@ -14,7 +14,7 @@
         
         
 
-        <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="True"   />
+        <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center"  IsChecked="True"  Content="abc" />
 
         <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"    />
 
