@@ -90,7 +90,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="Padding" Value="5,3"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -161,7 +161,7 @@
                                 <Condition Property="IsKeyboardFocused" Value="True"/>
                                 <Condition Property="Validation.HasError" Value="False"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="BorderBrush"  Value="{StaticResource ControlBorderActiveBrush}"/>
+                            <Setter Property="BorderBrush"  Value="{DynamicResource ControlBorderActiveBrush}"/>
                             <Setter  Property="Foreground" TargetName="PART_Watermark" Value="{Binding BorderBrush,RelativeSource={RelativeSource  Mode=TemplatedParent}}"/>
                         </MultiTrigger>
 
@@ -207,7 +207,7 @@
       
         <Setter Property="Padding" Value="5,3"/>
         <Setter Property="BorderThickness" Value="0,0,0,1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>

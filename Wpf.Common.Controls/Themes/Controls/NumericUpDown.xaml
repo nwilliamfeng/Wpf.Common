@@ -63,8 +63,8 @@
 
     <Style x:Key="DefaultNumericUpDownStyle" TargetType="{x:Type controls:NumericUpDown}">
         <Setter Property="Padding" Value="5,2"/>
-        <Setter Property="Background" Value="{StaticResource TextboxBackground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource TextboxBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>

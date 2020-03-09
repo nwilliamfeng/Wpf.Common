@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
+             xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
              xmlns:behaviors="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"   >
@@ -229,6 +230,10 @@
                     Width="125"    />
 
         <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"  Width="125"  />
+
+        <controls:DateTimePicker VerticalAlignment="Center" HorizontalAlignment="Center"      />
+
+        <controls:DateTimePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"   />
 
     </UniformGrid>
 </UserControl>
