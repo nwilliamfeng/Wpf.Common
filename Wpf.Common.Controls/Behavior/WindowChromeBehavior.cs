@@ -29,7 +29,7 @@ namespace Wpf.Common.Controls.Behavior
         /// <summary>
         /// 设置窗体标题栏的高度
         /// </summary>
-        public static readonly DependencyProperty TitleHeightProperty = DependencyProperty.RegisterAttached("TitleHeight", typeof(int), typeof(WindowChromeBehavior), new PropertyMetadata(24, OnTitleHeightPropertyChange));
+        public static readonly DependencyProperty TitleHeightProperty = DependencyProperty.RegisterAttached("TitleHeight", typeof(int), typeof(WindowChromeBehavior), new PropertyMetadata(28, OnTitleHeightPropertyChange));
 
         /// <summary>
         /// 设置标题栏的背景色
@@ -81,7 +81,7 @@ namespace Wpf.Common.Controls.Behavior
             Action setSize = () =>
             {
                 var chrome = WindowChrome.GetWindowChrome(window);
-                if (chrome != null) chrome.CaptionHeight = height;
+                if (chrome != null) chrome.CaptionHeight = GetChromeCaptionHeight(window);
             };
             if (window.IsInitialized)
                 setSize();
@@ -90,6 +90,11 @@ namespace Wpf.Common.Controls.Behavior
                 {
                     setSize();
                 };
+        }
+
+        private static double GetChromeCaptionHeight(UIElement el)
+        {
+            return GetTitleHeight(el as UIElement) - 5;
         }
 
         private static void OnTitleBackgroundPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -202,6 +207,7 @@ namespace Wpf.Common.Controls.Behavior
                 //  CornerRadius = new CornerRadius(0),
                 //  UseAeroCaptionButtons = false,
                 GlassFrameThickness = new Thickness(1),
+                CaptionHeight = GetChromeCaptionHeight(window),
                 //   NonClientFrameEdges = NonClientFrameEdges.None,
             };
 

@@ -7,6 +7,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:behavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              xmlns:commonBehavior="clr-namespace:Wpf.Common.Behavior;assembly=Wpf.Common"
+             xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"  >
     
@@ -92,6 +93,6 @@
             </behavior:TextBoxBehavior.Icon>
         </TextBox>
 
-       
+        <controls:NumericUpDown Width="100"/>
     </UniformGrid>
 </UserControl>
