@@ -10,8 +10,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -91,10 +90,11 @@
     </Style>
 
     <Style TargetType="Button" BasedOn="{StaticResource ChromeButtonStyle}" x:Key="FlatWithBorderButtonStyle">
-        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Padding" Value="15,2"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="BorderBrush" Value="#FF5A5A63"/>
         <Style.Triggers>
@@ -114,8 +114,8 @@
                     <Condition Property="IsMouseOver" Value="true"/>
                     <Condition Property="IsPressed" Value="false"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="Black"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource HighLightBrush}"/>
+                <Setter Property="Background" Value="{DynamicResource HighLightBrush}"/>
+
             </MultiTrigger>
         </Style.Triggers>
     </Style>
@@ -136,7 +136,7 @@
                     <Condition Property="IsPressed" Value="true"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="Opacity" Value="1"/>
-                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Background" Value="{DynamicResource HighLightBrush}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -144,7 +144,7 @@
                     <Condition Property="IsPressed" Value="false"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="Opacity" Value="0.9"/>
-                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Background" Value="{DynamicResource HighLightBrush}"/>
             </MultiTrigger>
         </Style.Triggers>
     </Style>

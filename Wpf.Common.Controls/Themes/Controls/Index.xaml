@@ -8,6 +8,7 @@
         <ResourceDictionary Source="CheckBox.xaml"/>
         <ResourceDictionary Source="DatePicker.xaml"/>
         <ResourceDictionary Source="DateTimePicker.xaml"/>
+        <ResourceDictionary Source="DataGrid.xaml"/>
         <ResourceDictionary Source="DropdownButton.xaml"/>
         <ResourceDictionary Source="DocumentViewer.xaml"/>
         <ResourceDictionary Source="LedTube.xaml"/>

@@ -52,6 +52,7 @@
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
+    <Compile Include="Behavior\WindowBehavior.cs" />
     <Compile Include="Controls\ComboBoxTemplateSelector.cs" />
     <Compile Include="Data\DelegateMultiValueConverter.cs" />
     <Compile Include="Data\DelegateValueConverter.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Extension\PointExtension.cs" />
     <Compile Include="Extension\ScrollViewerExtension.cs" />
     <Compile Include="Extension\VisualExtension.cs" />
+    <Compile Include="Extension\WindowExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
