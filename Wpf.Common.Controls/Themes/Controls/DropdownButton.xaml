@@ -106,12 +106,13 @@
 
     <ControlTemplate TargetType="{x:Type controls:DropdownButton}" x:Key="DropdownButtonTemplate">
         <ToggleButton x:Name="PART_DropdownButton" 
+                      Padding="{TemplateBinding Padding}"
                       Foreground="{TemplateBinding Foreground}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          Background="{TemplateBinding Background}"
-                          Style="{TemplateBinding ButtonStyle}"
-                          Content="{TemplateBinding Content}">
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      Background="{TemplateBinding Background}"
+                      Style="{TemplateBinding ButtonStyle}"
+                      Content="{TemplateBinding Content}">
 
         </ToggleButton>
 
@@ -121,6 +122,7 @@
     <Style TargetType="{x:Type controls:DropdownButton}" x:Key="DropdownButtonStyle">
         <Setter Property="Template" Value="{StaticResource DropdownButtonTemplate}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="5,2"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ButtonStyle" Value="{StaticResource DefaultDropdownToggleButtonStyle}"/>
