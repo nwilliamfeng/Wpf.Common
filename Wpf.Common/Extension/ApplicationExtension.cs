@@ -21,7 +21,8 @@ namespace Wpf.Common
                 if (window == null) return;
 
                 HwndSource source = PresentationSource.FromVisual(window) as HwndSource;
-                source.AddHook(WndProc);
+                if (source != null)
+                    source.AddHook(WndProc);
 
                 Application.Current.Exit += (s, arg) => mutex.ReleaseMutex();
             }
