@@ -10,8 +10,8 @@
         <ResourceDictionary Source="../ErrorTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-  
-    
+
+
     <Style x:Key="DateTimeCalendarItemStyle" TargetType="{x:Type CalendarItem}">
         <Setter Property="Margin" Value="0,3,0,3"/>
         <Setter Property="Background" Value="{DynamicResource ContentBackground}"/>
@@ -179,7 +179,7 @@
                                     <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Grid.ColumnSpan="3" Margin="10">
                                         <StackPanel.Resources>
                                             <Style TargetType="control:NumericUpDown" BasedOn="{StaticResource DefaultNumericUpDownStyle}">
-                                                <Setter Property="Width" Value="45"/>
+                                                <Setter Property="MinWidth" Value="45"/>
                                                 <Setter Property="Background" Value="Transparent"/>
                                                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
                                                 <Setter Property="Padding" Value="2"/>
@@ -197,7 +197,7 @@
                                         <control:NumericUpDown  MaxValue="59" MinValue="0"  x:Name="PART_Seconds_NumericUpDown"/>
                                         <TextBlock Text="秒"  />
                                     </StackPanel>
-                                    
+
                                 </Grid>
                             </Border>
                         </Border>
@@ -227,10 +227,10 @@
         <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
 
         <Setter Property="BorderThickness" Value="1"/>
-         
+
     </Style>
 
-     
+
     <Style x:Key="InnerDatePickerStyle" TargetType="{x:Type DatePicker}">
 
         <Setter Property="IsTodayHighlighted" Value="True"/>
@@ -295,7 +295,7 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="TextBox">
-                                                    <Border Width="20" VerticalAlignment="Center">
+                                                    <Border MinWidth="20" VerticalAlignment="Center">
                                                         <ScrollViewer x:Name="PART_ContentHost" 
                                                                       Focusable="false"     
                                                                       VerticalContentAlignment="Center"
@@ -313,7 +313,7 @@
                                 <TextBlock Text=":"/>
                                 <TextBox Text="00" x:Name="PART_Seconds_TB" TabIndex="1002"/>
                             </StackPanel>
-                            
+
                             <Button   x:Name="PART_Button" 
                                       Grid.Column="2" 
                                       Foreground="{TemplateBinding Foreground}" 
@@ -410,7 +410,7 @@
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
- 
+
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -428,7 +428,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="control:DateTimePicker" >
-                    
+
                     <DatePicker x:Name="PART_DatePicker" 
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 Padding="{TemplateBinding Padding}"
