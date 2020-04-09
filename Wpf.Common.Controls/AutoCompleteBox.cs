@@ -29,9 +29,6 @@ namespace Wpf.Common.Controls
 
         public static readonly DependencyProperty DropdownHorizontalOffsetProperty = DependencyProperty.Register(nameof(DropdownHorizontalOffset), typeof(double), typeof(AutoCompleteBox));
 
-        /// <summary>
-        /// 下拉框的水平偏移量，某些情况下会产生偏移，需要调整，默认为0
-        /// </summary>
         public double DropdownHorizontalOffset
         {
             get => this.GetValue<double>(DropdownHorizontalOffsetProperty);
@@ -208,7 +205,17 @@ namespace Wpf.Common.Controls
         private void _popup_Opened(object sender, EventArgs e)
         {
             this._dropdownButton.IsChecked = true;
-            this._listBox.SelectedItem = null;
+            if (this.SelectedItem != null)
+            {
+                foreach (var item in this._listBox.Items)
+                    if (this.SelectedItem.Equals(item))
+                    {
+                        this._listBox.SelectedItem = item;
+                        break;
+                    }
+            }
+            else
+                this._listBox.SelectedItem = null;
         }
 
         private void _popup_Closed(object sender, EventArgs e)
@@ -382,4 +389,5 @@ namespace Wpf.Common.Controls
         }
 
     }
+
 }
