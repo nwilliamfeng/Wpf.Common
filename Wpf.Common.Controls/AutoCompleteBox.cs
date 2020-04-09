@@ -27,6 +27,17 @@ namespace Wpf.Common.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoCompleteBox), new FrameworkPropertyMetadata(typeof(AutoCompleteBox)));
         }
 
+        public static readonly DependencyProperty DropdownHorizontalOffsetProperty = DependencyProperty.Register(nameof(DropdownHorizontalOffset), typeof(double), typeof(AutoCompleteBox));
+
+        /// <summary>
+        /// 下拉框的水平偏移量，某些情况下会产生偏移，需要调整，默认为0
+        /// </summary>
+        public double DropdownHorizontalOffset
+        {
+            get => this.GetValue<double>(DropdownHorizontalOffsetProperty);
+            set => this.SetValue(DropdownHorizontalOffsetProperty, value);
+        }
+
         private ToggleButton _dropdownButton;
 
         public override void OnApplyTemplate()
@@ -72,27 +83,27 @@ namespace Wpf.Common.Controls
 
             _textBox.PreviewKeyDown -= _textBox_PreviewKeyDown;
             _textBox.PreviewKeyDown += _textBox_PreviewKeyDown;
-           
+
         }
 
 
         private void _dropdownButton_Checked(object sender, RoutedEventArgs e)
-        {         
+        {
             if (this._dropdownButton.IsChecked == true)
             {
                 _needLoadAll = true;
-                
+
                 (ItemsSource as ICollectionView)?.Refresh();
                 this._popup.IsOpen = true;
             }
-              
+
             else if (this._dropdownButton.IsChecked == false)
                 this._popup.IsOpen = false;
             this._textBox.Focus();
         }
 
-      
-        
+
+
 
         private void _textBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -144,7 +155,7 @@ namespace Wpf.Common.Controls
 
         private void SetSelectItemText()
         {
-            if (_textBox == null || this._listBox==null) return;
+            if (_textBox == null || this._listBox == null) return;
             var item = this.SelectedItem;
             this._disableSearch = true;
             if (item == null)
@@ -160,7 +171,7 @@ namespace Wpf.Common.Controls
             else
             {
                 var pName = string.IsNullOrEmpty(this.SearchPath) ? this.DisplayMemberPath : this.SearchPath;
-                this._textBox.Text = item.GetType().GetProperty(pName)?.GetValue(item,null)?.ToString();
+                this._textBox.Text = item.GetType().GetProperty(pName)?.GetValue(item, null)?.ToString();
             }
         }
 
@@ -174,7 +185,7 @@ namespace Wpf.Common.Controls
 
                 if (pi != null)
                 {
-                    var txt = pi.GetValue(SelectedItem,null) as string;
+                    var txt = pi.GetValue(SelectedItem, null) as string;
                     if (this._textBox.Text != txt)
                         this._textBox.Text = txt;
                 }
@@ -196,7 +207,7 @@ namespace Wpf.Common.Controls
 
         private void _popup_Opened(object sender, EventArgs e)
         {
-             this._dropdownButton.IsChecked = true;
+            this._dropdownButton.IsChecked = true;
             this._listBox.SelectedItem = null;
         }
 
@@ -221,7 +232,7 @@ namespace Wpf.Common.Controls
             if (string.IsNullOrEmpty(this.SearchPath)) return obj.ToString();
             var pi = obj.GetType().GetProperty(this.SearchPath);
             if (pi == null) return null;
-            return pi.GetValue(obj,null) as string;
+            return pi.GetValue(obj, null) as string;
         }
 
         private bool _disableSearch = false;
@@ -247,9 +258,9 @@ namespace Wpf.Common.Controls
                 {
                     var pi = x.GetType().GetProperty(this.SearchPath);
                     if (pi == null) return false;
-                    value = pi.GetValue(x,null) as string;
+                    value = pi.GetValue(x, null) as string;
                     if (string.IsNullOrEmpty(value)) return false;
-                 
+
                 }
 
                 var result = value.Contains(_textBox.Text);
@@ -318,7 +329,7 @@ namespace Wpf.Common.Controls
             //}
         }
 
-      
+
         private Popup _popup;
 
         private ListBox _listBox;
@@ -345,7 +356,7 @@ namespace Wpf.Common.Controls
             if (this.SelectedItem != null && !string.IsNullOrEmpty(this.SearchPath))
             {
                 var pi = this.SelectedItem.GetType().GetProperty(SearchPath);
-                if (pi != null && pi.GetValue(SelectedItem,null) as string == txtBox.Text)
+                if (pi != null && pi.GetValue(SelectedItem, null) as string == txtBox.Text)
                     return;
             }
             if (!_disableSearch)
@@ -371,5 +382,4 @@ namespace Wpf.Common.Controls
         }
 
     }
-
 }
