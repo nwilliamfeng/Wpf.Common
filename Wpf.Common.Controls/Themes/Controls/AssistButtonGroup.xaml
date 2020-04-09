@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:control="clr-namespace:Wpf.Common.Controls"
+                     >
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Buttons.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style TargetType="{x:Type control:AssistButtonGroup}"  x:Key="AssistButtonGroupStyle">
+        <Setter Property="Padding" Value="5"/>
+        <!--<Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="Button" BasedOn="{StaticResource FlatButtonStyle}">
+                    <Setter Property="Margin" Value="3"/>
+                    <Setter Property="Content" Value="{Binding}"/>
+                </Style>
+            </Setter.Value>
+        </Setter>-->
+       
+        <Setter  Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="control:AssistButtonGroup">
+                    <Border Padding="{TemplateBinding Padding}" 
+                            Margin="{TemplateBinding Margin}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"                           
+                            >
+                        <DockPanel>
+                            <ContentControl Content="{TemplateBinding Header}" 
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                            <ItemsControl ItemsSource="{TemplateBinding ItemsSource}" 
+                                      ItemTemplate="{TemplateBinding ItemTemplate}"
+                                      ItemContainerStyle="{TemplateBinding ItemContainerStyle}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="{Binding Columns,RelativeSource={RelativeSource AncestorType=control:AssistButtonGroup}}" IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DockPanel>
+                        
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

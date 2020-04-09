@@ -44,6 +44,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssistButtonGroup.cs" />
     <Compile Include="AutoCompleteBox.cs" />
     <Compile Include="Behavior\MaterialDesignPasswordBoxBehavior.cs" />
     <Compile Include="BindingProxy.cs" />
@@ -63,6 +64,10 @@
     <Compile Include="LedTube.cs" />
     <Compile Include="Behavior\DocumentViewerBehavior.cs" />
     <Page Include="Themes\Controls\AutoCompleteBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\AssistButtonGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

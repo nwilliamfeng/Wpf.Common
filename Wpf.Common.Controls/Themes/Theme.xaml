@@ -33,7 +33,8 @@
     <Style TargetType="{x:Type controls:SplitButton}" BasedOn="{StaticResource   SplitButtonStyle }"/>
     <Style TargetType="{x:Type controls:MetroProgressBar}" BasedOn="{StaticResource    MetroProgressBarStyle }"/>
     <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource  NumericUpDownStyle}"/>
-
+    <Style TargetType="{x:Type controls:AssistButtonGroup}" BasedOn="{StaticResource  AssistButtonGroupStyle}"/>
+    
     <Style TargetType="Window" BasedOn="{StaticResource WindowStyle}">
         <Setter Property="behavior:WindowChromeBehavior.IsEnable" Value="true"/>
         <Setter Property="behavior:WindowChromeBehavior.WindowCommandButtonPadding" Value="10,6"/>

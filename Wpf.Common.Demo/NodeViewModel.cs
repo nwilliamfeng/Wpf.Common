@@ -134,5 +134,7 @@ namespace Wpf.Common.Demo
         public const string PROGRESS = "ProgressBar";
 
         public const string PAGINSTION = "Pagination";
+
+        public const string ASSISTBUTTONGROUP = "AssistButtonGroup";
     }
 }

@@ -61,6 +61,7 @@ namespace Wpf.Common.Demo
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.LED });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.RANK });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.PAGINSTION });
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.ASSISTBUTTONGROUP });
 
             var gpNode7 = new GroupNode { Name = "Image" };
             gpNode7.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_RENDER });
@@ -191,6 +192,9 @@ namespace Wpf.Common.Demo
                     break;
                 case NodeNames.PAGINSTION:
                     this.ActivateItem(new PaginationViewModel());
+                    break;
+                case NodeNames.ASSISTBUTTONGROUP:
+                    this.ActivateItem(new AssistButtonGroupViewModel());
                     break;
                 default:
                     break;
