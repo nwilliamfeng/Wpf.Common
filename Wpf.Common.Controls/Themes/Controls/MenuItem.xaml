@@ -84,7 +84,7 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsSubmenuOpen" Value="true">
-                <Setter Property="Background" Value="{DynamicResource MenuItemMouseOverBrush}" />
+                <Setter Property="Background" Value="{DynamicResource HighLightBrush}" />
 
                 <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
             </Trigger>
@@ -102,7 +102,7 @@
                     <Condition Property="IsMouseOver" Value="True"/>
                     <Condition Property="IsSubmenuOpen" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource  MenuItemMouseOverBrush}"/>
+                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource  HighLightBrush}"/>
             </MultiTrigger>
 
 
@@ -187,7 +187,7 @@
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource MenuItemMouseOverBrush}"/>
+                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource HighLightBrush}"/>
 
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
@@ -303,7 +303,7 @@
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource MenuItemMouseOverBrush}"/>
+                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource HighLightBrush}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="#FF707070"/>
@@ -368,7 +368,7 @@
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource MenuItemMouseOverBrush}"/>
+                <Setter Property="Background" TargetName="templateRoot" Value="{DynamicResource HighLightBrush}"/>
             </Trigger>
             <!--<Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource menuItem-press-brush}"/>
