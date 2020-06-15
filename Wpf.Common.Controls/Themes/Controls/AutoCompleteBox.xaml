@@ -32,12 +32,12 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="PART_TextBox"
-                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        FontSize="{TemplateBinding FontSize}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Padding="{TemplateBinding Padding}"
-                       
+                        Style="{StaticResource TextBoxStyle}"
                         TabIndex="{TemplateBinding TabIndex}"
                         BorderThickness="0"            
                         Foreground="{TemplateBinding Foreground}">
