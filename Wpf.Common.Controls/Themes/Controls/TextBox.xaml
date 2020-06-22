@@ -39,8 +39,8 @@
                                 <!--Watermark-->
                                 <TextBlock x:Name="PART_Watermark"                                           
                                            Foreground="LightGray"                                           
-                                           Margin="{TemplateBinding Padding}"
-                                           Padding="{TemplateBinding Padding}"
+                                        
+                                          
                                            Visibility="Collapsed"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center" />
