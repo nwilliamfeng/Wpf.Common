@@ -39,16 +39,15 @@
                                 <!--Watermark-->
                                 <TextBlock x:Name="PART_Watermark"                                           
                                            Foreground="LightGray"                                           
-                                        
-                                          
+                                           Margin="{TemplateBinding Margin}"
+                                           Padding="{TemplateBinding Padding}"
                                            Visibility="Collapsed"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center" />
 
                                 <!--容器-->
                                 <ScrollViewer x:Name="PART_ContentHost" 
-                                          Focusable="false"  
-                                          Margin="{TemplateBinding Padding}"
+                                          Focusable="false"                                          
                                           HorizontalScrollBarVisibility="Hidden" 
                                           VerticalScrollBarVisibility="Hidden"/>
                             </Grid>

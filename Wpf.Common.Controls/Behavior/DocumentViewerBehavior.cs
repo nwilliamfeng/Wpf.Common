@@ -6,7 +6,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Wpf.Common.Input;
 
-namespace Wpf.Common.Controls.Behaviors
+namespace Wpf.Common.Controls.Behavior
 {
     /// <summary>
     /// DocumentViewerBehavior

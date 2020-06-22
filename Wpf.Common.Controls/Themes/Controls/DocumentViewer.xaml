@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:behavior="clr-namespace:Wpf.Common.Controls.Behaviors"
+                    xmlns:behavior="clr-namespace:Wpf.Common.Controls.Behavior"
                     xmlns:controls="clr-namespace:Wpf.Common.Controls"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     >
