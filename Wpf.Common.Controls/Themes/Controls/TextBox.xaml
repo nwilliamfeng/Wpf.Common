@@ -9,7 +9,6 @@
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Padding" Value="2,2"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-      
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="{DynamicResource TextboxBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>

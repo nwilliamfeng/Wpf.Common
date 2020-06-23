@@ -20,24 +20,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:NumericUpDown}">
-                    <Border Background="{TemplateBinding Background}" 
-                        
+                  
+                        <Border Background="{TemplateBinding Background}" 
+                            x:Name="PART_ControlBorder"
+                            Width="{TemplateBinding Width}"
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
                               VerticalAlignment="{TemplateBinding VerticalAlignment}" 
                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  >
-                        <DockPanel LastChildFill="True">
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                                <StackPanel.Resources>
-                                    <Style TargetType="RepeatButton" BasedOn="{StaticResource RepeatButtonStyle}">
-                                        <Setter Property="Padding" Value="5,1"/>
-                                    </Style>
-                                </StackPanel.Resources>
-                                <RepeatButton x:Name="PART_ButtonUp"   Content="+"  Visibility="{TemplateBinding ButtonVisibility}"   FontSize="{TemplateBinding FontSize}"/>
-                                <RepeatButton x:Name="PART_ButtonDown"   Content="-" Padding="7,1"  Visibility="{TemplateBinding ButtonVisibility}" FontSize="{TemplateBinding FontSize}"/>
-                            </StackPanel>
-                            <TextBox x:Name="PART_TextBox" 
+                            <DockPanel LastChildFill="True">
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="RepeatButton" BasedOn="{StaticResource RepeatButtonStyle}">
+                                            <Setter Property="Padding" Value="5,1"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <RepeatButton x:Name="PART_ButtonUp"   Content="+"  Visibility="{TemplateBinding ButtonVisibility}"   FontSize="{TemplateBinding FontSize}"/>
+                                    <RepeatButton x:Name="PART_ButtonDown"   Content="-" Padding="7,1"  Visibility="{TemplateBinding ButtonVisibility}" FontSize="{TemplateBinding FontSize}"/>
+                                </StackPanel>
+                                <TextBox x:Name="PART_TextBox" 
                                      TabIndex="{TemplateBinding TabIndex}"
                                      Background="{TemplateBinding Background}"
                                      Height="{TemplateBinding Height}"
@@ -45,12 +47,19 @@
                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                      Padding="{TemplateBinding Padding}"
                                      input:InputMethod.IsInputMethodEnabled="False"
-                                     BorderThickness="0"                                     
+                                     BorderThickness="0"  
+                                         Validation.ErrorTemplate="{x:Null}"
                                      Foreground="{TemplateBinding Foreground}"
                                      CaretBrush="{TemplateBinding CaretBrush}" 
                                     />
-                        </DockPanel>
-                    </Border>
+                            </DockPanel>
+                        </Border>
+                   
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -73,7 +82,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:NumericUpDown}">
-                    <Border Background="{TemplateBinding Background}"                         
+                    <Border Background="{TemplateBinding Background}"    
+                            Width="{TemplateBinding Width}"
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
                               VerticalAlignment="{TemplateBinding VerticalAlignment}" 
