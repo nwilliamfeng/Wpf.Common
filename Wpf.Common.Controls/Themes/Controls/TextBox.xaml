@@ -58,7 +58,7 @@
                             <Setter Property="Visibility" TargetName="PART_Watermark" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" TargetName="PART_Border" Value="0.56"/>
+                            <Setter Property="Opacity"   Value="0.3"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
