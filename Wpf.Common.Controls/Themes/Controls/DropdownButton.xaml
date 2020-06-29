@@ -47,8 +47,8 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource  HighLightBrush}"/>
-                            <Setter Property="Fill" TargetName="path" Value="{DynamicResource HighLightBrush}"/>
-
+                            <!--<Setter Property="Fill" TargetName="path" Value="{DynamicResource HighLightBrush}"/>-->
+                            <Setter Property="Background" Value="{DynamicResource HighLightBrush}" TargetName="border"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{DynamicResource HighLightBrush}"/>
