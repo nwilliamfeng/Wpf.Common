@@ -139,6 +139,9 @@
                             <Setter Property="Background" Value="{DynamicResource HighLightBrush}"/>
 
                         </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3"/>
+                        </Trigger>
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

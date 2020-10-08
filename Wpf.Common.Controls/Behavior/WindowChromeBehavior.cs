@@ -181,7 +181,7 @@ namespace Wpf.Common.Controls.Behavior
                     maxBtn.Visibility = Visibility.Collapsed;
 
                     minBtn.Visibility = GetMinimizeButtonVisibleWhenInToolWindowMode(window) ? Visibility.Visible : Visibility.Collapsed;
-                    window.ResizeMode = ResizeMode.CanMinimize;
+                    window.ResizeMode = ResizeMode.CanResize;
                 }
                 else
                 {

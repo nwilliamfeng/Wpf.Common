@@ -86,18 +86,14 @@
                    
                 </AdornerDecorator>
                 <Grid x:Name="ThumbHolder" HorizontalAlignment="Left" VerticalAlignment="Top">
-                   
+
                     <Ellipse x:Name="Thumb"
-                                             Fill="{TemplateBinding Foreground}" Stroke="{x:Null}" 
+                                             Stroke="{x:Null}" 
                                              HorizontalAlignment="Center" VerticalAlignment="Center"
                                              Width="11" Height="11"
                                              Margin="5,5,0,0"
                                              RenderTransformOrigin="0.5,0.5" >
-                        </Ellipse>
-
-
-                  
-                    
+                    </Ellipse>
                     <Grid.RenderTransform>
                         <TranslateTransform X="0" Y="0"/>
                     </Grid.RenderTransform>
@@ -125,6 +121,7 @@
                     <Condition Property="IsChecked" Value="False"/>
                     <Condition Property="Validation.HasError" Value="False"/>
                 </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="{DynamicResource HighLightBrush}"/>
                 <Setter Property="Stroke" TargetName="Track" Value="{Binding BorderBrush,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                 <Setter Property="Fill" TargetName="Track" Value="White"/>
             </MultiTrigger>
@@ -134,6 +131,7 @@
                     <Condition Property="IsChecked" Value="False"/>
                     <Condition Property="Validation.HasError" Value="True"/>
                 </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="{DynamicResource HighLightBrush}"/>
                 <Setter Property="Stroke" TargetName="Track" Value="Red"/>
                 <Setter Property="Fill" TargetName="Track" Value="White"/>
             </MultiTrigger>
@@ -143,6 +141,7 @@
                     <Condition Property="IsChecked" Value="True"/>
                     <Condition Property="Validation.HasError" Value="True"/>
                 </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="{DynamicResource ForegroundBrush}"/>
                 <Setter TargetName="Thumb" Property="Fill" Value="Red" />
                 <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                 
@@ -154,6 +153,7 @@
                     <Condition Property="IsChecked" Value="True"/>
                     <Condition Property="Validation.HasError" Value="False"/>
                 </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="{DynamicResource ForegroundBrush}"/>
                 <Setter TargetName="Thumb" Property="Fill" Value="White" />
                 <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                 <Setter Property="Stroke" TargetName="Track" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"/>
