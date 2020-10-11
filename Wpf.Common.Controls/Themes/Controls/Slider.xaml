@@ -24,7 +24,7 @@
     <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
         <Border x:Name="grip" HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" 
                     BorderBrush="Transparent"
-                    Background="{StaticResource defaultBackground}"
+                    
                     BorderThickness="0.5"                   
                     Height="24"
                     Width="9">
@@ -32,6 +32,7 @@
                 <Style TargetType="Border">
                     <Setter Property="Margin" Value="0,-6"/>
                     <Setter Property="CornerRadius" Value="6"/>
+                    <Setter Property="Background" Value="{Binding Background,RelativeSource={RelativeSource AncestorType=Slider}}"/>
                 </Style>
             </Border.Style>
         </Border>
@@ -64,7 +65,7 @@
                 </Grid.RowDefinitions>
                 <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}"  Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
                 <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
-                <Border x:Name="TrackBackground"  Background="{StaticResource defaultBackground}" Height="4" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
+                <Border x:Name="TrackBackground"  Background="{TemplateBinding Background}" Height="4" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
 
                     <Rectangle x:Name="PART_SelectionRange" Fill="Red" Height="4" Visibility="Hidden"/>
 
@@ -188,8 +189,9 @@
 
     <!--Slider样式-->
     <Style x:Key="SliderStyle" TargetType="{x:Type Slider}">
+        <Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
-        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="Foreground" Value="{DynamicResource HighLightBrush}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         
         <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
