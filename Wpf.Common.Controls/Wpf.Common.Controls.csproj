@@ -44,6 +44,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alertbar.cs" />
     <Compile Include="AssistButtonGroup.cs" />
     <Compile Include="AutoCompleteBox.cs" />
     <Compile Include="Behavior\MaterialDesignPasswordBoxBehavior.cs" />

@@ -54,35 +54,42 @@
     
     <!--横向Slider模板-->
     <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
-        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" 
+        <DockPanel FocusVisualStyle="{x:Null}">
+            
+            <TextBlock  DockPanel.Dock="Right" Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{TemplateBinding FontSize}"   >
+                    <Run Text="{Binding Value,RelativeSource={ RelativeSource Mode=TemplatedParent}}"/>
+                    %
+            </TextBlock>
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" 
                 BorderThickness="{TemplateBinding BorderThickness}" 
-                 SnapsToDevicePixels="True">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}"  Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
-                <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
-                <Border x:Name="TrackBackground"  Background="{TemplateBinding Background}" Height="4" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
+                 SnapsToDevicePixels="True" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}"  Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
+                    <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
+                    <Border x:Name="TrackBackground"  Background="{TemplateBinding Background}" Height="4" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
+                        <Rectangle x:Name="PART_SelectionRange" Fill="Red" Height="4" Visibility="Hidden"/>
+                    </Border>
+                    <Track x:Name="PART_Track" Grid.Row="1" Margin="0,-1" >
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Background="{TemplateBinding Foreground}" Style="{StaticResource RepeatButtonTransparent}"/>
+                        </Track.DecreaseRepeatButton>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
+                        </Track.IncreaseRepeatButton>
+                        <Track.Thumb>
+                            <Thumb x:Name="Thumb" Focusable="False" Height="4"    OverridesDefaultStyle="True" Template="{StaticResource SliderThumbHorizontalDefault}" VerticalAlignment="Center" Width="10"/>
+                        </Track.Thumb>
+                    </Track>
 
-                    <Rectangle x:Name="PART_SelectionRange" Fill="Red" Height="4" Visibility="Hidden"/>
-
-                </Border>
-                <Track x:Name="PART_Track" Grid.Row="1" Margin="0,-1" >
-                    <Track.DecreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Background="{TemplateBinding Foreground}" Style="{StaticResource RepeatButtonTransparent}"/>
-                    </Track.DecreaseRepeatButton>
-                    <Track.IncreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
-                    </Track.IncreaseRepeatButton>
-                    <Track.Thumb>
-                        <Thumb x:Name="Thumb" Focusable="False" Height="4"    OverridesDefaultStyle="True" Template="{StaticResource SliderThumbHorizontalDefault}" VerticalAlignment="Center" Width="10"/>
-                    </Track.Thumb>
-                </Track>
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
+        </DockPanel>
+      
         <ControlTemplate.Triggers>
             <Trigger Property="TickPlacement" Value="TopLeft">
                 <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
