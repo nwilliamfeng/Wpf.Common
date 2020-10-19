@@ -64,6 +64,10 @@
     <Compile Include="InputFilter.cs" />
     <Compile Include="LedTube.cs" />
     <Compile Include="Behavior\DocumentViewerBehavior.cs" />
+    <Page Include="Themes\Controls\Alertbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Controls\AutoCompleteBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

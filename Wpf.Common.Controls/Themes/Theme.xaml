@@ -25,6 +25,7 @@
     <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}"/>
     <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
     <Style TargetType="TabControl" BasedOn="{StaticResource TabControlStyle}"/>
+    <Style TargetType="controls:Alertbar" BasedOn="{StaticResource AlertbarStyle}"/>
     <Style TargetType="{x:Type controls:AutoCompleteBox}" BasedOn="{StaticResource AutoCompleteBoxStyle}"/>
     <Style TargetType="{x:Type controls:DateTimePicker}" BasedOn="{StaticResource  DateTimePickerStyle}"/>
     <Style TargetType="{x:Type controls:DropdownButton}" BasedOn="{StaticResource  DropdownButtonStyle}"/>
