@@ -115,6 +115,8 @@ namespace Wpf.Common.Demo
 
         public const string TOGGLE_BUTTON = "ToggleButton";
 
+        public const string DATAGRID = "DataGrid";
+
         public const string RADIO_BUTTON = "RadioButton";
 
         public const string CHECK_BOX = "CheckBox";

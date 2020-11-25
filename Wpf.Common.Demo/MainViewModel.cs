@@ -34,6 +34,7 @@ namespace Wpf.Common.Demo
             var gpNode2 = new GroupNode { Name = "Controls" };         
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.CHECK_BOX });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.COMBOBOX });
+            gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.DATAGRID });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.DATE_PICKER });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.TOGGLE_BUTTON });
             gpNode2.Items.Add(new NodeViewModel { Name = NodeNames.MENU });
@@ -145,6 +146,10 @@ namespace Wpf.Common.Demo
                     break;
                 case NodeNames.COMBOBOX:
                     this.ActivateItem(new ComboBoxViewModel());
+                    break;
+
+                case NodeNames.DATAGRID:
+                    this.ActivateItem(new DataGridViewModel());
                     break;
                 case NodeNames.MENU:
                     this.ActivateItem(new MenuViewModel());

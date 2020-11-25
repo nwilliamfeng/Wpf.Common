@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -47,6 +48,9 @@
     <Compile Include="Alertbar.cs" />
     <Compile Include="AssistButtonGroup.cs" />
     <Compile Include="AutoCompleteBox.cs" />
+    <Compile Include="Behavior\DataGridColumnHeaderBehavior.cs" />
+    <Compile Include="Behavior\DataGridBehavior.cs" />
+    <Compile Include="Behavior\DataGridColumnConfig.cs" />
     <Compile Include="Behavior\MaterialDesignPasswordBoxBehavior.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="DateTimePicker.cs" />
