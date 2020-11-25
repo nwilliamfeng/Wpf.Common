@@ -3,12 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Threading;
 
 namespace Caliburn.Micro.MEF
 {
@@ -34,23 +32,21 @@ namespace Caliburn.Micro.MEF
         protected override void Configure()
         {
             var catalog = new AggregateCatalog();
-
-            var composablePartCatalog = AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>();
-
+            var composablePartCatalog = AssemblySource.Instance.Select(x => new AssemblyCatalog(x));
             foreach (var part in composablePartCatalog)
                 catalog.Catalogs.Add(part);
-
             _container = new CompositionContainer(catalog);
-
             var batch = new CompositionBatch();
-
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
             InjectWindowManager(batch);
             batch.AddExportedValue(_container);
             _container.Compose(batch);
         }
 
-
+        /// <summary>
+        /// 注入WindowManager
+        /// </summary>
+        /// <param name="batch"></param>
         protected virtual void InjectWindowManager(CompositionBatch batch)
         {
             batch.AddExportedValue<IWindowManager>(new WindowManager());
@@ -60,18 +56,14 @@ namespace Caliburn.Micro.MEF
         {
             var contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
             var exports = _container.GetExportedValues<object>(contract);
-
             if (exports.Count() > 0)
                 return exports.First();
-
             throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
         }
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
-        {
-            return _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
-        }
-
+            => _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
+       
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             string path = Assembly.GetEntryAssembly().Location;
@@ -79,12 +71,5 @@ namespace Caliburn.Micro.MEF
                 yield return (Assembly.LoadFile(dll));
             yield return Assembly.GetEntryAssembly();
         }
-
-        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
-        {
-            base.OnUnhandledException(sender, e);
-        }
-
-
     }
 }
