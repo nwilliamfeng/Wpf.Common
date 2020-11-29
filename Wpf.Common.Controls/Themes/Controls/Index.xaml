@@ -11,6 +11,7 @@
         <ResourceDictionary Source="DatePicker.xaml"/>
         <ResourceDictionary Source="DateTimePicker.xaml"/>
         <ResourceDictionary Source="DataGrid.xaml"/>
+        <ResourceDictionary Source="DataGridColumnHeader.xaml"/>
         <ResourceDictionary Source="DropdownButton.xaml"/>
         <ResourceDictionary Source="DocumentViewer.xaml"/>
         <ResourceDictionary Source="LedTube.xaml"/>

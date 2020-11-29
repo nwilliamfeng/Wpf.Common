@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Wpf.Common.Demo.Controls"
              xmlns:control="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
              xmlns:controlbehavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
              mc:Ignorable="d" 
@@ -11,7 +10,7 @@
     <UserControl.Resources>
         <control:BindingProxy Data="{Binding}" x:Key="proxy1"/>
     </UserControl.Resources>
-    <UniformGrid>
+    <StackPanel  >
         <Expander Header="Custom Sort Column">
             <DataGrid x:Name="grid" 
                   ItemsSource="{Binding Datas}"
@@ -21,89 +20,38 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
-
                 <DataGrid.Columns>
-                    <DataGridTextColumn  SortMemberPath="InstrumentCode" Header="合约" IsReadOnly="True" MinWidth="100" 
-                                    Binding="{Binding InstrumentCode}" CanUserSort="False">
+                    <DataGridTextColumn  SortMemberPath="InstrumentCode" Header="合约" IsReadOnly="True" MinWidth="100" Binding="{Binding InstrumentCode}" CanUserSort="False">
                         <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Padding" Value="5,2"/>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource CustomSortDataGridColumnHeaderStyle}">
                                 <Setter Property="controlbehavior:DataGridColumnHeaderBehavior.SortDirection"  Value="{Binding Data.InstrumentCodeSortDirection,Source={StaticResource proxy1}}"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="DataGridColumnHeader">
-                                            <Border Padding="{TemplateBinding Padding}">
-
-
-                                                <CheckBox IsThreeState="True"  IsChecked="{Binding Path=(controlbehavior:DataGridColumnHeaderBehavior.SortDirection),RelativeSource={RelativeSource AncestorType=DataGridColumnHeader} }" DockPanel.Dock="Right"
-                                                          Content="{TemplateBinding Content}">
-                                                    <CheckBox.Style>
-                                                        <Style TargetType="CheckBox">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="CheckBox">
-                                                                        <DockPanel Background="Transparent">
-                                                                            <Border Height="6" Width="9"  x:Name="bd"  DockPanel.Dock="Right">
-                                                                                <Border.Background>
-                                                                                    <DrawingBrush>
-                                                                                        <DrawingBrush.Drawing >
-                                                                                            <GeometryDrawing  Brush="Gray"/>
-                                                                                        </DrawingBrush.Drawing>
-                                                                                    </DrawingBrush>
-                                                                                </Border.Background>
-                                                                            </Border>
-                                                                            <ContentPresenter Content="{TemplateBinding Content}"/>
-                                                                        </DockPanel>
-
-                                                                        <ControlTemplate.Triggers>
-                                                                            <Trigger Property="IsChecked" Value="{x:Null}">
-                                                                                <Setter Property="Background" TargetName="bd" Value="Transparent"/>
-                                                                            </Trigger>
-                                                                            <Trigger Property="IsChecked" Value="True">
-                                                                                <Setter Property="Background" TargetName="bd">
-                                                                                    <Setter.Value>
-                                                                                        <DrawingBrush>
-                                                                                            <DrawingBrush.Drawing >
-                                                                                                <GeometryDrawing  Brush="Gray" Geometry="M 1,10 5,0 9,10"/>
-                                                                                            </DrawingBrush.Drawing>
-                                                                                        </DrawingBrush>
-                                                                                    </Setter.Value>
-                                                                                </Setter>
-                                                                            </Trigger>
-                                                                            <Trigger Property="IsChecked" Value="False">
-                                                                                <Setter Property="Background" TargetName="bd">
-                                                                                    <Setter.Value>
-                                                                                        <DrawingBrush>
-                                                                                            <DrawingBrush.Drawing >
-                                                                                                <GeometryDrawing  Brush="Gray" Geometry="M 1,0 5,10 9,0"/>
-                                                                                            </DrawingBrush.Drawing>
-                                                                                        </DrawingBrush>
-                                                                                    </Setter.Value>
-                                                                                </Setter>
-                                                                            </Trigger>
-                                                                        </ControlTemplate.Triggers>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </Style>
-                                                    </CheckBox.Style>
-                                                </CheckBox>
-
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
-
                     </DataGridTextColumn>
+             
+                    <DataGridTextColumn Header="手数" Binding="{Binding Lots}" MinWidth="100"  />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Expander>
 
+        <Expander Header="RowNumber">
+            <DataGrid ItemsSource="{Binding Datas}" AutoGenerateColumns="False" 
+                      controlbehavior:DataGridBehavior.DisplayRowNumber="True"  
+                      controlbehavior:DataGridBehavior.SelectAllButtonTemplate="{StaticResource DefaultDataGridSelectAllButtonTemplate}"
+                      GridLinesVisibility="Vertical">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+                    </Style>
+                </DataGrid.RowStyle>
+              
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="合约" Binding="{Binding InstrumentCode}" MinWidth="100"  />
                     <DataGridTextColumn Header="手数" Binding="{Binding Lots}" MinWidth="100"  />
                 </DataGrid.Columns>
             </DataGrid>
         </Expander>
        
-    </UniformGrid>
+    </StackPanel>
 </UserControl>
