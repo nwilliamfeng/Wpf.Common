@@ -7,7 +7,7 @@
     <!--the controltemplate of selectall button in the top-left of datagrid -->
     <ControlTemplate x:Key="DefaultDataGridSelectAllButtonTemplate" TargetType="{x:Type Button}">
         <Border x:Name="Border"
-          
+           Background="{DynamicResource AccentBrush}"
             BorderBrush="{DynamicResource ControlBorderBrush}"
             VerticalAlignment="Stretch">
             <TextBlock Text="行号" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}"/>
@@ -73,10 +73,12 @@
     <!--Default DataGridRow Style-->
     <Style TargetType="DataGridRow" x:Key="DefaultDataGridRowStyle">
 
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="BorderBrush" Value="Black" />
-        <Setter Property="BorderThickness" Value="1"/>
-        <Style.Triggers>
+     
+        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <!--<Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource DataGridSelectRowBackground}"/>
             </Trigger>
@@ -84,61 +86,63 @@
                 <Setter Property="BorderBrush" Value="#003575"/>
                 <Setter Property="BorderBrush" Value="Orange"/>
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
     </Style>
 
 
-    <!--Default DataGrid Style-->
-    <Style TargetType="DataGrid" x:Key="DataGridStyle">
-        <Setter Property="EnableRowVirtualization" Value="True"/>
-        <Setter Property="GridLinesVisibility" Value="None"/>
-        <Setter Property="SelectionMode" Value="Single"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
-        <Setter Property="RowHeaderWidth" Value="0"/>
-        <Setter Property="CanUserSortColumns" Value="False"/>
-        <Setter Property="RowHeaderStyle">
+
+    <Style TargetType="DataGridRowHeader" x:Key="DefaultDataGridRowHeaderStyle">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="SeparatorVisibility" Value="Visible"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Template">
             <Setter.Value>
-                <Style TargetType="DataGridRowHeader">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="SeparatorVisibility" Value="Visible"/>
-                    <Setter Property="Padding" Value="10,5"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="DataGridRowHeader">
-                                <Border Background="{TemplateBinding Background}" 
+                <ControlTemplate TargetType="DataGridRowHeader">
+                    <Border Background="{TemplateBinding Background}" 
                                         BorderThickness="0,0,0,0" 
                                         
                                         x:Name="rowHeaderBorder"
                                         BorderBrush="{TemplateBinding BorderBrush}">
-                                    <ContentPresenter Margin="{TemplateBinding Padding}"  
+                        <ContentPresenter Margin="{TemplateBinding Padding}"  
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding GridLinesVisibility,RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="All">
-                                        <Setter Property="BorderThickness" TargetName="rowHeaderBorder" Value="0,0,1,0"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding GridLinesVisibility,RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="Vertical">
-                                        <Setter Property="BorderThickness" TargetName="rowHeaderBorder" Value="0,0,1,0"/>
-                                    </DataTrigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <!--<Style.Triggers>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding GridLinesVisibility,RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="All">
+                            <Setter Property="BorderThickness" TargetName="rowHeaderBorder" Value="0,0,1,0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding GridLinesVisibility,RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="Vertical">
+                            <Setter Property="BorderThickness" TargetName="rowHeaderBorder" Value="0,0,1,0"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--<Style.Triggers>
                         <Trigger Property="IsRowSelected" Value="true">
                             <Setter Property="Background" Value="{StaticResource DataGridSelectRowBackground}"/>
                             <Setter Property="BorderBrush" Value="Orange"/>
                         </Trigger>
                     </Style.Triggers>-->
-                </Style>
-            </Setter.Value>
-        </Setter>
+    </Style>
 
-       
+
+    <!--Default DataGrid Style-->
+    <Style TargetType="DataGrid" x:Key="DataGridStyle">
+      
+        <Setter Property="EnableRowVirtualization" Value="True"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource ControlBorderBrush}" />
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource ControlBorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="CanUserSortColumns" Value="False"/>
+        <Setter Property="RowHeaderStyle" Value="{DynamicResource DefaultDataGridRowHeaderStyle}"/>
+        <Setter Property="RowStyle" Value="{DynamicResource DefaultDataGridRowStyle}"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="CanUserAddRows" Value="False"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
