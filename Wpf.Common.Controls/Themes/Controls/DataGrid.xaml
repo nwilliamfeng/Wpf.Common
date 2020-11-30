@@ -7,7 +7,7 @@
     <!--the controltemplate of selectall button in the top-left of datagrid -->
     <ControlTemplate x:Key="DefaultDataGridSelectAllButtonTemplate" TargetType="{x:Type Button}">
         <Border x:Name="Border"
-            Background="{DynamicResource AccentBrush}"
+          
             BorderBrush="{DynamicResource ControlBorderBrush}"
             VerticalAlignment="Stretch">
             <TextBlock Text="行号" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}"/>
@@ -138,7 +138,7 @@
             </Setter.Value>
         </Setter>
 
-        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+       
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="CanUserAddRows" Value="False"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>

@@ -52,6 +52,48 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Expander>
-       
+
+        <Expander Header="Merge Columns">
+            <DataGrid ItemsSource="{Binding Datas}" AutoGenerateColumns="False" 
+                      controlbehavior:DataGridBehavior.DisplayRowNumber="True"  
+               VerticalGridLinesBrush="{StaticResource ControlBorderBrush}"
+             
+                      controlbehavior:DataGridBehavior.SelectAllButtonTemplate="{StaticResource DefaultDataGridSelectAllButtonTemplate}"
+                      GridLinesVisibility="Vertical">
+               
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="合约" Binding="{Binding InstrumentCode}" MinWidth="100"  />
+                    <DataGridTextColumn Header="手数" Binding="{Binding Lots}" MinWidth="100"  />
+                    <DataGridTemplateColumn Width="0.5*">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="DataGridColumnHeader">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.5*"/>
+                                                    <ColumnDefinition Width="0.5*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="合约" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="手数" VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="1"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Expander>
     </StackPanel>
 </UserControl>
