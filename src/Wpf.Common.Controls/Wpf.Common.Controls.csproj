@@ -288,11 +288,5 @@
       <Name>Wpf.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Docs\Bugs.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Docs\Todo.txt" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
