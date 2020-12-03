@@ -138,5 +138,7 @@ namespace Wpf.Common.Demo
         public const string PAGINSTION = "Pagination";
 
         public const string ASSISTBUTTONGROUP = "AssistButtonGroup";
+
+        public const string TransitionContentControl = "TransitionContentControl";
     }
 }

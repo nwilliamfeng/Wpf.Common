@@ -63,6 +63,7 @@ namespace Wpf.Common.Demo
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.RANK });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.PAGINSTION });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.ASSISTBUTTONGROUP });
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.TransitionContentControl });
 
             var gpNode7 = new GroupNode { Name = "Image" };
             gpNode7.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_RENDER });
@@ -200,6 +201,9 @@ namespace Wpf.Common.Demo
                     break;
                 case NodeNames.ASSISTBUTTONGROUP:
                     this.ActivateItem(new AssistButtonGroupViewModel());
+                    break;
+                case NodeNames.TransitionContentControl:
+                    this.ActivateItem(new TransitionContentControlViewModel());
                     break;
                 default:
                     break;

@@ -31,6 +31,7 @@
         <ResourceDictionary Source="SplitButton.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
         <ResourceDictionary Source="ToggleButton.xaml"/>
+        <ResourceDictionary Source="TransitionContentControl.xaml"/>
         <ResourceDictionary Source="TreeViewItem.xaml"/>
         <ResourceDictionary Source="TabControl.xaml"/>
         <ResourceDictionary Source="Windows.xaml"/>
