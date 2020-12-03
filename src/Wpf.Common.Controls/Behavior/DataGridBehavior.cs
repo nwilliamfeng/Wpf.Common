@@ -40,7 +40,7 @@ namespace Wpf.Common.Controls.Behavior
             DependencyProperty.RegisterAttached("DisplayRowNumber",
                                                 typeof(bool),
                                                 typeof(DataGridBehavior),
-                                                new FrameworkPropertyMetadata(false, OnDisplayRowNumberChanged));
+                                                new FrameworkPropertyMetadata(BooleanBoxes.False, OnDisplayRowNumberChanged));
 
         public static bool GetDisplayRowNumber(DependencyObject target)
         {
@@ -49,7 +49,7 @@ namespace Wpf.Common.Controls.Behavior
 
         public static void SetDisplayRowNumber(DependencyObject target, bool value)
         {
-            target.SetValue(DisplayRowNumberProperty, value);
+            target.SetValue(DisplayRowNumberProperty, value.Box());
         }
 
         private static void OnDisplayRowNumberChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
@@ -177,7 +177,7 @@ namespace Wpf.Common.Controls.Behavior
             DependencyProperty.RegisterAttached("ScrollToEndAfterRowAdded",
                                                 typeof(bool),
                                                 typeof(DataGridBehavior),
-                                                new PropertyMetadata(false, OnScrollToEndAfterRowAddedPropertyValueChanged));
+                                                new PropertyMetadata(BooleanBoxes.False, OnScrollToEndAfterRowAddedPropertyValueChanged));
 
 
         public static bool GetScrollToEndAfterRowAdded(DependencyObject dependencyObject)
@@ -338,16 +338,16 @@ namespace Wpf.Common.Controls.Behavior
 
                                 void changed(object s, PropertyChangedEventArgs arg)
                                 {
-                                    if (arg.PropertyName == "Visible" || arg.PropertyName == "IsEnable")
+                                    if (arg.PropertyName == nameof(DataGridColumnConfig.Visible) || arg.PropertyName == nameof(DataGridColumnConfig.IsEnable))
                                     {
                                         col.Visibility = config.IsEnable && config.Visible ? Visibility.Visible : Visibility.Collapsed;
                                     }
-                                    if (arg.PropertyName == "Name")
+                                    if (arg.PropertyName == nameof(DataGridColumnConfig.Name))
                                     {
                                         if (header != config.Name)
                                             config.Name = header;
                                     }
-                                    if (arg.PropertyName == "SortDirection")
+                                    if (arg.PropertyName == nameof(DataGridColumnConfig.SortDirection))
                                     {
                                         col.SortDirection = config.SortDirection;
                                         config.SortName = col.SortMemberPath;
@@ -485,7 +485,7 @@ namespace Wpf.Common.Controls.Behavior
           DependencyProperty.RegisterAttached("FocusAfterUnloadRow",
                                               typeof(bool),
                                               typeof(DataGridBehavior),
-                                              new FrameworkPropertyMetadata(false, OnFocusAfterUnloadRowPropertyValueChanged));
+                                              new FrameworkPropertyMetadata(BooleanBoxes.False, OnFocusAfterUnloadRowPropertyValueChanged));
 
         private static void OnFocusAfterUnloadRowPropertyValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs arg)
         {
@@ -513,7 +513,7 @@ namespace Wpf.Common.Controls.Behavior
             => obj.GetValue<bool>(FocusAfterUnloadRowProperty);
 
         public static void SetFocusAfterUnloadRow(DependencyObject obj, bool value)
-            => obj.SetValue(FocusAfterUnloadRowProperty, value);
+            => obj.SetValue(FocusAfterUnloadRowProperty, value.Box());
         #endregion
     }
 }

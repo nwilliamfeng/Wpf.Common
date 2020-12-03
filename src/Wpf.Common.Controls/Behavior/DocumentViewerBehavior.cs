@@ -21,7 +21,7 @@ namespace Wpf.Common.Controls.Behavior
         public const string PART_ZoomComboBox_Name = "PART_ZoomComboBox";
      
         public static readonly DependencyProperty IsEnableProperty = DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(DocumentViewerBehavior)
-           , new PropertyMetadata(false, OnIsEnablePropertyChanged));
+           , new PropertyMetadata(BooleanBoxes.False, OnIsEnablePropertyChanged));
 
         public static bool GetIsEnable(DependencyObject obj) => obj.GetValue<bool>(IsEnableProperty);
 
@@ -100,12 +100,10 @@ namespace Wpf.Common.Controls.Behavior
                         dv.Zoom =Math.Round( x,0);
                 }                         
             };
-
          
             zoomTB.PreviewKeyDown -= zoomChange;
             zoomTB.PreviewKeyDown += zoomChange;
-          
-           
+                     
             SelectionChangedEventHandler selectionChangedEventHandler = (s, arg) =>
             {
                 double x;

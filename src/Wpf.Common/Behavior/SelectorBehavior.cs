@@ -16,7 +16,7 @@ namespace Wpf.Common.Behavior
             "FocusWhenSelected",
             typeof(bool),
             typeof(SelectorBehavior),
-            new PropertyMetadata(false, new PropertyChangedCallback(OnFocusWhenSelectedChanged)));
+            new PropertyMetadata(BooleanBoxes.False, new PropertyChangedCallback(OnFocusWhenSelectedChanged)));
 
 
         public static bool GetFocusWhenSelected(DependencyObject obj)
@@ -26,7 +26,7 @@ namespace Wpf.Common.Behavior
 
         public static void SetFocusWhenSelected(DependencyObject obj, bool value)
         {
-            obj.SetValue(FocusWhenSelectedProperty, value);
+            obj.SetValue(FocusWhenSelectedProperty, value.Box());
         }
 
 

@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BooleanBoxes.cs" />
     <Compile Include="Extension\DataObjectExtension.cs" />
     <Compile Include="Input\Async\AsyncCommand.cs" />
     <Compile Include="Input\Async\AsyncCommandBase.cs" />

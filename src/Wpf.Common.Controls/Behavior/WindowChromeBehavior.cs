@@ -24,7 +24,7 @@ namespace Wpf.Common.Controls.Behavior
         /// <summary>
         /// 设置是否可用，默认是false，即不启用定制样式
         /// </summary>
-        public static readonly DependencyProperty IsEnableProperty = DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(OnIsEnablePropertyChange));
+        public static readonly DependencyProperty IsEnableProperty = DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(BooleanBoxes.False, OnIsEnablePropertyChange));
 
         /// <summary>
         /// 设置窗体标题栏的高度
@@ -60,7 +60,7 @@ namespace Wpf.Common.Controls.Behavior
         /// <summary>
         /// 设置最小化按钮是否可见
         /// </summary>
-        public static readonly DependencyProperty MinimizeButtonVisibleWhenInToolWindowModeProperty = DependencyProperty.RegisterAttached("MinimizeButtonVisibleWhenInToolWindowMode", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(false));
+        public static readonly DependencyProperty MinimizeButtonVisibleWhenInToolWindowModeProperty = DependencyProperty.RegisterAttached("MinimizeButtonVisibleWhenInToolWindowMode", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(BooleanBoxes.False));
 
 
 
@@ -186,7 +186,6 @@ namespace Wpf.Common.Controls.Behavior
                 else
                 {
                     maxBtn.Click += (s, arg) => window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-
                 }
 
                 minBtn.Click += (s, arg) => window.WindowState = WindowState.Minimized;
@@ -216,11 +215,11 @@ namespace Wpf.Common.Controls.Behavior
 
 
 
-        public static void SetMinimizeButtonVisibleWhenInToolWindowMode(UIElement el, bool value) => el.SetValue(MinimizeButtonVisibleWhenInToolWindowModeProperty, value);
+        public static void SetMinimizeButtonVisibleWhenInToolWindowMode(UIElement el, bool value) => el.SetValue(MinimizeButtonVisibleWhenInToolWindowModeProperty, value.Box());
 
         public static bool GetMinimizeButtonVisibleWhenInToolWindowMode(UIElement el) => el.GetValue<bool>(MinimizeButtonVisibleWhenInToolWindowModeProperty);
 
-        public static void SetIsEnable(UIElement el, bool value) => el.SetValue(IsEnableProperty, value);
+        public static void SetIsEnable(UIElement el, bool value) => el.SetValue(IsEnableProperty, value.Box());
 
         public static bool GetIsEnable(UIElement el) => el.GetValue<bool>(IsEnableProperty);
 

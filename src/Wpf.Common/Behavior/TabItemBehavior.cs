@@ -40,13 +40,13 @@ namespace Wpf.Common.Behavior
         /// </summary>
         public static readonly DependencyProperty IsDropEnableProperty =
             DependencyProperty.RegisterAttached("IsDropEnable", typeof(bool), typeof(TabItemBehavior)
-                , new PropertyMetadata(false, OnIsDropEnablePropertyChanged));
+                , new PropertyMetadata(BooleanBoxes.False, OnIsDropEnablePropertyChanged));
 
         public static bool GetIsDropEnable(DependencyObject obj)
             => obj.GetValue<bool>(IsDropEnableProperty);
 
-        public static void SetIsDropEnable(DependencyObject obj, object value)
-            => obj.SetValue(IsDropEnableProperty, value);
+        public static void SetIsDropEnable(DependencyObject obj, bool value)
+            => obj.SetValue(IsDropEnableProperty, value.Box());
 
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Wpf.Common.Behavior
         public static ICommand GetDropCommand(DependencyObject obj)
             => obj.GetValue<ICommand>(DropCommandProperty);
 
-        public static void SetDropCommand(DependencyObject obj, object value)
+        public static void SetDropCommand(DependencyObject obj, ICommand value)
             => obj.SetValue(DropCommandProperty, value);
 
 

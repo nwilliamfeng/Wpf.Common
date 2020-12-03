@@ -64,11 +64,11 @@ namespace Wpf.Common.Behavior
         /// 自动滚动到底部
         /// </summary>
         public static readonly DependencyProperty AutoScrollToBottomProperty
-            = DependencyProperty.RegisterAttached("AutoScrollToBottom", typeof(bool), typeof(ListBoxBehavior), new PropertyMetadata(OnAutoScrollToBottomPropertyChanged));
+            = DependencyProperty.RegisterAttached("AutoScrollToBottom", typeof(bool), typeof(ListBoxBehavior), new PropertyMetadata(BooleanBoxes.False, OnAutoScrollToBottomPropertyChanged));
 
         public static bool GetAutoScrollToBottom(DependencyObject dependencyObject) => dependencyObject.GetValue<bool>(AutoScrollToBottomProperty);
 
-        public static void SetAutoScrollToBottom(DependencyObject dependencyObject, object value) => dependencyObject.SetValue(AutoScrollToBottomProperty, value);
+        public static void SetAutoScrollToBottom(DependencyObject dependencyObject, bool value) => dependencyObject.SetValue(AutoScrollToBottomProperty, value.Box());
 
 
         private static void OnAutoScrollToBottomPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)

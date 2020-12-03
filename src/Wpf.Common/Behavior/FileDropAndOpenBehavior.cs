@@ -17,7 +17,7 @@ namespace Wpf.Common.Behavior
         public static readonly DependencyProperty OpenFileEnableProperty = DependencyProperty.RegisterAttached("OpenFileEnable"
             , typeof(bool)
             , typeof(FileDropAndOpenBehavior)
-            , new PropertyMetadata(OnPropertyChange));
+            , new PropertyMetadata(BooleanBoxes.False, OnPropertyChange));
 
         /// <summary>
         /// 支持的文件扩展名
@@ -31,7 +31,7 @@ namespace Wpf.Common.Behavior
 
         public static string GetFileExtensions(UIElement element) => element.GetValue<string>(FileExtensionsProperty);
 
-        public static void SetOpenFileEnable(UIElement element, bool value) => element.SetValue(OpenFileEnableProperty, value);
+        public static void SetOpenFileEnable(UIElement element, bool value) => element.SetValue(OpenFileEnableProperty, value.Box());
 
         public static bool GetOpenFileEnable(UIElement element) => element.GetValue<bool>(OpenFileEnableProperty);
 

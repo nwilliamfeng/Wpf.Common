@@ -11,11 +11,11 @@ namespace Wpf.Common.Behavior
     {
         #region Blink
         public static readonly DependencyProperty IsBlinkEnableProperty =
-        DependencyProperty.RegisterAttached("IsBlinkEnable", typeof(bool), typeof(WindowBehavior), new PropertyMetadata(false, OnIsBlinkEnablePropertyChanged));
+        DependencyProperty.RegisterAttached("IsBlinkEnable", typeof(bool), typeof(WindowBehavior), new PropertyMetadata(BooleanBoxes.False, OnIsBlinkEnablePropertyChanged));
 
         public static bool GetIsBlinkEnable(DependencyObject obj) => obj.GetValue<bool>(IsBlinkEnableProperty);
 
-        public static void SetIsBlinkEnable(DependencyObject obj, object value) => obj.SetValue(IsBlinkEnableProperty, value);
+        public static void SetIsBlinkEnable(DependencyObject obj, bool value) => obj.SetValue(IsBlinkEnableProperty, value.Box());
 
 
         private static void OnIsBlinkEnablePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -31,11 +31,11 @@ namespace Wpf.Common.Behavior
         }
 
         public static readonly DependencyProperty CloseBlinkWhenDeactiveProperty =
-       DependencyProperty.RegisterAttached("CloseBlinkWhenDeactive", typeof(bool), typeof(WindowBehavior), new PropertyMetadata(false, OnCloseBlinkWhenDeactiveChange));
+       DependencyProperty.RegisterAttached("CloseBlinkWhenDeactive", typeof(bool), typeof(WindowBehavior), new PropertyMetadata(BooleanBoxes.False, OnCloseBlinkWhenDeactiveChange));
 
         public static bool GetCloseBlinkWhenDeactive(DependencyObject obj) => obj.GetValue<bool>(CloseBlinkWhenDeactiveProperty);
 
-        public static void SetCloseBlinkWhenDeactive(DependencyObject obj, object value) => obj.SetValue(CloseBlinkWhenDeactiveProperty, value);
+        public static void SetCloseBlinkWhenDeactive(DependencyObject obj, bool value) => obj.SetValue(CloseBlinkWhenDeactiveProperty, value.Box());
 
         private static void OnCloseBlinkWhenDeactiveChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -58,7 +58,7 @@ namespace Wpf.Common.Behavior
         #region Esc To Close
 
         public static readonly DependencyProperty EscToCloseProperty
-            = DependencyProperty.RegisterAttached("EscToClose", typeof(bool), typeof(WindowBehavior), new PropertyMetadata(false, new PropertyChangedCallback(OnEscToClosePropertyChanged)));
+            = DependencyProperty.RegisterAttached("EscToClose", typeof(bool), typeof(WindowBehavior), new PropertyMetadata(BooleanBoxes.False, new PropertyChangedCallback(OnEscToClosePropertyChanged)));
 
         private static void OnEscToClosePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -75,7 +75,7 @@ namespace Wpf.Common.Behavior
             };
         }
 
-        public static void SetEscToClose(DependencyObject obj, bool enable) => obj.SetValue(EscToCloseProperty, enable);
+        public static void SetEscToClose(DependencyObject obj, bool enable) => obj.SetValue(EscToCloseProperty, enable.Box());
 
         public static void GetEscToClose(DependencyObject obj) => obj.GetValue<bool>(EscToCloseProperty);
 

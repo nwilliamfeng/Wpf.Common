@@ -28,7 +28,7 @@ namespace Wpf.Common.Behavior
         public static readonly DependencyProperty MultiFileEnableProperty = DependencyProperty.RegisterAttached("MultiFileEnable",
            typeof(bool),
            typeof(DropBehavior),
-           new PropertyMetadata(false));
+           new PropertyMetadata(BooleanBoxes.False));
 
 
         public static ICommand GetDropCommand(UIElement element) => element.GetValue<ICommand>(DropCommandProperty);  
@@ -37,7 +37,7 @@ namespace Wpf.Common.Behavior
 
         public static bool GetMultiFileEnable(UIElement element) => element.GetValue<bool>(MultiFileEnableProperty);
 
-        public static void SetMultiFileEnable(UIElement element, bool enable) => element.SetValue(MultiFileEnableProperty, enable);
+        public static void SetMultiFileEnable(UIElement element, bool enable) => element.SetValue(MultiFileEnableProperty, enable.Box());
 
         private static void OnDropCommandPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

@@ -24,15 +24,15 @@ namespace Wpf.Common.Behavior
         /// 设置是否有效，默认为false，如果为true将启用密码绑定
         /// </summary>
         public static readonly DependencyProperty IsEnableProperty =
-            DependencyProperty.RegisterAttached("IsEnable",typeof(bool), typeof(PasswordBoxBehavior), new PropertyMetadata(false, Attach));
+            DependencyProperty.RegisterAttached("IsEnable",typeof(bool), typeof(PasswordBoxBehavior), new PropertyMetadata(BooleanBoxes.False, Attach));
 
         private static readonly DependencyProperty IsUpdatingProperty =
-           DependencyProperty.RegisterAttached("IsUpdating", typeof(bool), typeof(PasswordBoxBehavior));
+           DependencyProperty.RegisterAttached("IsUpdating", typeof(bool), typeof(PasswordBoxBehavior),new PropertyMetadata(BooleanBoxes.False));
 
 
         public static void SetIsEnable(DependencyObject dp, bool value)
         {
-            dp.SetValue(IsEnableProperty, value);
+            dp.SetValue(IsEnableProperty, value.Box());
         }
 
         public static bool GetIsEnable(DependencyObject dp)
@@ -57,7 +57,7 @@ namespace Wpf.Common.Behavior
 
         private static void SetIsUpdating(DependencyObject dp, bool value)
         {
-            dp.SetValue(IsUpdatingProperty, value);
+            dp.SetValue(IsUpdatingProperty, value.Box());
         }
 
         private static void OnPasswordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
