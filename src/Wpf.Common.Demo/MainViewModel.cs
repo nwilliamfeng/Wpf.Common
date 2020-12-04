@@ -63,12 +63,13 @@ namespace Wpf.Common.Demo
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.RANK });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.PAGINSTION });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.ASSISTBUTTONGROUP });
-            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.TransitionContentControl });
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.MetroContentControl });
 
             var gpNode7 = new GroupNode { Name = "Image" };
             gpNode7.Items.Add(new NodeViewModel { Name = NodeNames.IMAGE_RENDER });
 
-
+            var gpNode8 = new GroupNode { Name = "Window" };
+            gpNode8.Items.Add(new NodeViewModel { Name = NodeNames.WINDOW });
 
             Nodes.Add(gpNode1);
             Nodes.Add(gpNode2);
@@ -77,6 +78,7 @@ namespace Wpf.Common.Demo
             Nodes.Add(gpNode5);
             Nodes.Add(gpNode6);
             Nodes.Add(gpNode7);
+            Nodes.Add(gpNode8);
             this.DisplayName = "Demo";
         }
 
@@ -202,8 +204,11 @@ namespace Wpf.Common.Demo
                 case NodeNames.ASSISTBUTTONGROUP:
                     this.ActivateItem(new AssistButtonGroupViewModel());
                     break;
-                case NodeNames.TransitionContentControl:
-                    this.ActivateItem(new TransitionContentControlViewModel());
+                case NodeNames.MetroContentControl:
+                    this.ActivateItem(new MetroContentControlViewModel());
+                    break;
+                case NodeNames.WINDOW:
+                    this.ActivateItem(new WindowViewModel());
                     break;
                 default:
                     break;

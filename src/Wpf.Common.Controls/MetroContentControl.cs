@@ -8,7 +8,7 @@ namespace Wpf.Common.Controls
     /// A ContentControl which use a transition to slide in the content.
     /// </summary>
     /// <seealso cref="MahApps.Metro.Controls.MetroContentControl"/>
-    public class TransitionContentControl : ContentControl
+    public class MetroContentControl : ContentControl
     {
         private Storyboard afterLoadedStoryboard;
         private Storyboard afterLoadedReverseStoryboard;
@@ -18,7 +18,7 @@ namespace Wpf.Common.Controls
         public static readonly DependencyProperty ReverseTransitionProperty
             = DependencyProperty.Register(nameof(ReverseTransition),
                                           typeof(bool),
-                                          typeof(TransitionContentControl),
+                                          typeof(MetroContentControl),
                                           new FrameworkPropertyMetadata(BooleanBoxes.False));
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Wpf.Common.Controls
         public static readonly DependencyProperty TransitionsEnabledProperty
             = DependencyProperty.Register(nameof(TransitionsEnabled),
                                           typeof(bool),
-                                          typeof(TransitionContentControl),
+                                          typeof(MetroContentControl),
                                           new FrameworkPropertyMetadata(BooleanBoxes.True));
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Wpf.Common.Controls
         public static readonly DependencyProperty OnlyLoadTransitionProperty
             = DependencyProperty.Register(nameof(OnlyLoadTransition),
                                           typeof(bool),
-                                          typeof(TransitionContentControl),
+                                          typeof(MetroContentControl),
                                           new FrameworkPropertyMetadata(BooleanBoxes.False));
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Wpf.Common.Controls
             = EventManager.RegisterRoutedEvent(nameof(TransitionStarted),
                                                RoutingStrategy.Bubble,
                                                typeof(RoutedEventHandler),
-                                               typeof(TransitionContentControl));
+                                               typeof(MetroContentControl));
 
         /// <summary>
         /// The event which will be fired when the transition starts.
@@ -83,7 +83,7 @@ namespace Wpf.Common.Controls
             = EventManager.RegisterRoutedEvent(nameof(TransitionCompleted),
                                                RoutingStrategy.Bubble,
                                                typeof(RoutedEventHandler),
-                                               typeof(TransitionContentControl));
+                                               typeof(MetroContentControl));
 
         /// <summary>
         /// The event which will be fired when the transition ends.
@@ -98,7 +98,7 @@ namespace Wpf.Common.Controls
         private static readonly DependencyPropertyKey IsTransitioningPropertyKey
             = DependencyProperty.RegisterReadOnly(nameof(IsTransitioning),
                                                   typeof(bool),
-                                                  typeof(TransitionContentControl),
+                                                  typeof(MetroContentControl),
                                                   new PropertyMetadata(BooleanBoxes.False));
 
         /// <summary>Identifies the <see cref="IsTransitioning"/> dependency property.</summary>
@@ -113,9 +113,9 @@ namespace Wpf.Common.Controls
             protected set => this.SetValue(IsTransitioningPropertyKey, BooleanBoxes.Box(value));
         }
 
-        public TransitionContentControl()
+        public MetroContentControl()
         {
-            this.DefaultStyleKey = typeof(TransitionContentControl);
+            this.DefaultStyleKey = typeof(MetroContentControl);
 
             this.Loaded += this.MetroContentControlLoaded;
             this.Unloaded += this.MetroContentControlUnloaded;

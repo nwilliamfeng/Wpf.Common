@@ -68,8 +68,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\TransitionContentControlView.xaml.cs">
-      <DependentUpon>TransitionContentControlView.xaml</DependentUpon>
+    <Compile Include="Dialogs\ToolWindow.xaml.cs">
+      <DependentUpon>ToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\WindowView.xaml.cs">
+      <DependentUpon>WindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MetroContentControlView.xaml.cs">
+      <DependentUpon>MetroContentControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataGridView.xaml.cs">
       <DependentUpon>DataGridView.xaml</DependentUpon>
@@ -137,6 +143,9 @@
       <DependentUpon>MemoryLeakView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NodeViewModel.cs" />
+    <Compile Include="Dialogs\NormalWindow.xaml.cs">
+      <DependentUpon>NormalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scroll\ScrollToLoadView.xaml.cs">
       <DependentUpon>ScrollToLoadView.xaml</DependentUpon>
     </Compile>
@@ -153,7 +162,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TransitionContentControlView.xaml">
+    <Page Include="Dialogs\ToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\WindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MetroContentControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -238,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MemoryLeakView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\NormalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

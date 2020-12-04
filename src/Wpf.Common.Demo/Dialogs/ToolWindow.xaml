@@ -1,0 +1,16 @@
+﻿<Window x:Class="Wpf.Common.Demo.ToolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controlbehavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
+        xmlns:local="clr-namespace:Wpf.Common.Demo"
+        WindowStyle="ToolWindow"
+        mc:Ignorable="d"
+        Title="NormalWindow" Height="450" Width="800"
+       Style="{StaticResource WindowStyle}"
+        >
+    <Grid>
+        
+    </Grid>
+</Window>

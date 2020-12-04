@@ -104,7 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Controls\TransitionContentControl.xaml">
+    <Page Include="Themes\Controls\MetroContentControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -246,7 +246,7 @@
     <Compile Include="Behavior\TextBoxBehavior.cs" />
     <Compile Include="Behavior\WindowChromeBehavior.cs" />
     <Compile Include="Data\TreeViewItemLeftMarginMultiplierConverter.cs" />
-    <Compile Include="TransitionContentControl.cs" />
+    <Compile Include="MetroContentControl.cs" />
     <Compile Include="MetroProgressBar.cs" />
     <Compile Include="NumericUpDown.cs" />
     <Compile Include="Pagination.cs" />

@@ -15,23 +15,31 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.IO;
+using Wpf.Common.Input;
 
 namespace Wpf.Common.Demo.Controls
 {
     /// <summary>
-    /// TransitionContentControlView.xaml 的交互逻辑
+    /// DialogWindowView.xaml 的交互逻辑
     /// </summary>
-    public partial class TransitionContentControlView : UserControl
+    public partial class WindowView : UserControl
     {
-        public TransitionContentControlView()
+        public WindowView()
         {
             InitializeComponent();
-            this.DataContext = new TransitionContentControlViewModel();
+            this.DataContext = new MetroContentControlViewModel();
         }
+
+        private void openNormalWindowBtn_Click(object sender, RoutedEventArgs e) => new NormalWindow().Show();
+
+
+        private void openToolWindowBtn_Click(object sender, RoutedEventArgs e) => new ToolWindow().Show();
+         
+    }
+
+    public class WindowViewModel : Caliburn.Micro.PropertyChangedBase
+    {
+       
     }
  
-    public class TransitionContentControlViewModel : Caliburn.Micro.PropertyChangedBase
-    {
-
-    }
 }

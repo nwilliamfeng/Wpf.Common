@@ -9,16 +9,16 @@
             xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:io="clr-namespace:System.IO;assembly=mscorlib"
             xmlns:behaviors="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
-             x:Class="Wpf.Common.Demo.Controls.TransitionContentControlView"
+             x:Class="Wpf.Common.Demo.Controls.MetroContentControlView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"  Background="Transparent">
     
 
      
     <UniformGrid Columns="1">
-        <controls:TransitionContentControl>
+        <controls:MetroContentControl>
             <TextBlock Text="this is a transitionContentControl" FontSize="20" />
-        </controls:TransitionContentControl>
+        </controls:MetroContentControl>
         
    
 

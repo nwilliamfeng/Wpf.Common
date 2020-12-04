@@ -17,6 +17,7 @@
         <ResourceDictionary Source="LedTube.xaml"/>
         <ResourceDictionary Source="ListBoxItem.xaml"/>
         <ResourceDictionary Source="MenuItem.xaml"/>
+        <ResourceDictionary Source="MetroContentControl.xaml"/>
         <ResourceDictionary Source="MetroProgressBar.xaml"/>
         <ResourceDictionary Source="Menu.xaml"/>
         <ResourceDictionary Source="NumericUpDown.xaml"/>
@@ -31,7 +32,6 @@
         <ResourceDictionary Source="SplitButton.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
         <ResourceDictionary Source="ToggleButton.xaml"/>
-        <ResourceDictionary Source="TransitionContentControl.xaml"/>
         <ResourceDictionary Source="TreeViewItem.xaml"/>
         <ResourceDictionary Source="TabControl.xaml"/>
         <ResourceDictionary Source="Windows.xaml"/>

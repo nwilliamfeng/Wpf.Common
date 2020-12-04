@@ -139,6 +139,8 @@ namespace Wpf.Common.Demo
 
         public const string ASSISTBUTTONGROUP = "AssistButtonGroup";
 
-        public const string TransitionContentControl = "TransitionContentControl";
+        public const string WINDOW = "WINDOW";
+
+        public const string MetroContentControl = "MetroContentControl";
     }
 }

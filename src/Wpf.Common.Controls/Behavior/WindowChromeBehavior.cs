@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shell;
-using Wpf.Common.Controls;
 
 namespace Wpf.Common.Controls.Behavior
 {
