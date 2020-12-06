@@ -68,10 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\ToolWindow.xaml.cs">
+    <Compile Include="Windows\ToolWindow.xaml.cs">
       <DependentUpon>ToolWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\WindowView.xaml.cs">
+    <Compile Include="Windows\WindowView.xaml.cs">
       <DependentUpon>WindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MetroContentControlView.xaml.cs">
@@ -143,7 +143,7 @@
       <DependentUpon>MemoryLeakView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NodeViewModel.cs" />
-    <Compile Include="Dialogs\NormalWindow.xaml.cs">
+    <Compile Include="Windows\NormalWindow.xaml.cs">
       <DependentUpon>NormalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scroll\ScrollToLoadView.xaml.cs">
@@ -162,11 +162,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\ToolWindow.xaml">
+    <Page Include="Windows\ToolWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\WindowView.xaml">
+    <Page Include="Windows\WindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -258,7 +258,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\NormalWindow.xaml">
+    <Page Include="Windows\NormalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

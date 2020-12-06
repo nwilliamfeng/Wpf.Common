@@ -6,8 +6,9 @@
         xmlns:controlbehavior="clr-namespace:Wpf.Common.Controls.Behavior;assembly=Wpf.Common.Controls"
         xmlns:local="clr-namespace:Wpf.Common.Demo"
         WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="NormalWindow" Height="450" Width="800"
+        Title="ToolWindow" Height="450" Width="800"
        Style="{StaticResource WindowStyle}"
         >
     <Grid>

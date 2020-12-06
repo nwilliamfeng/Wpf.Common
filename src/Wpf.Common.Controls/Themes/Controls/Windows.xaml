@@ -75,7 +75,7 @@
                         </ContentControl>
 
                         <!--标题命令按钮-->
-                        <Grid   Grid.Column="2" VerticalAlignment="Top"  >
+                        <Grid    VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="PART_WindowCommandGrid" Grid.Column="2">
                             <Grid.Resources>
                                 <Style TargetType="Path" x:Key="basePathStyle">
                                     <Setter Property="Stretch"  Value="Uniform"/>
@@ -171,7 +171,7 @@
                             <Button UseLayoutRounding="True" Grid.Column="2"   x:Name="PART_CloseButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
                                 <Path  Data="{StaticResource CloseIcon}"  Width="10" Height="10"  StrokeThickness="0.1">
                                     <Path.Style>
-                                        <Style TargetType="Path" BasedOn="{StaticResource  basePathStyle}">
+                                        <Style TargetType="Path" BasedOn="{StaticResource basePathStyle}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=Button}}" Value="true">
                                                     <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
@@ -189,13 +189,42 @@
                     <!--Content-->
                     <!--注意此处的AdornerDecorator-->
                     <AdornerDecorator>
-                        <ContentControl x:Name="PART_ContentControl" Content="{TemplateBinding Content}" />
+                        <Grid>
+                            <ContentControl x:Name="PART_ContentControl" Content="{TemplateBinding Content}" >
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Style.Triggers>
+                                            
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Opacity" Value="0.5"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                            <ContentControl x:Name="PART_DialogContainer" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Content="{Binding Path=., Source=behavior:WindowChromeBehavior.DialogContent}"
+                                            HorizontalContentAlignment="Center" 
+                                            VerticalContentAlignment="Center">
+                               
+                                
+                            </ContentControl>
+                        </Grid>
+                        
                     </AdornerDecorator>
                 </DockPanel>
             </Border>
             <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" IsTabStop="false" Visibility="Collapsed" VerticalAlignment="Bottom"/>
+                       
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="behavior:WindowChromeBehavior.DialogContent" Value="{x:Null}">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="PART_DialogContainer"/>
+                <Setter Property="IsEnabled" Value="False" TargetName="PART_ContentControl"/>
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
@@ -216,6 +245,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="behavior:WindowChromeBehavior.IsEnable" Value="True"/>
         <Style.Triggers>
+           
             <Trigger Property="WindowStyle" Value="SingleBorderWindow">
                 <Setter Property="Template" Value="{StaticResource DefaultWindowControlTemplate}"/>
             </Trigger>

@@ -10,9 +10,10 @@
         xmlns:controlView="clr-namespace:Wpf.Common.Demo.Controls"
         mc:Ignorable="d"
         Height="450" Width="800"  
-       
+        WindowStartupLocation="CenterOwner"
         ResizeMode="CanResizeWithGrip"
         Style="{StaticResource WindowStyle}"
+        controlBehavior:WindowChromeBehavior.DialogContent="abc"
         controlBehavior:WindowChromeBehavior.TitleHeight="42"
         >
     
@@ -27,40 +28,38 @@
                     <TextBlock Text="{Binding Title,RelativeSource={RelativeSource AncestorType=Window}}" Foreground="Black" FontSize="18" Margin="5"/>
                     <ToggleButton IsChecked="{Binding IsDarkTheme}" Content="暗色"/>
                 </StackPanel>
-                
+
             </DockPanel>
         </Border>
-      
-        
+
+
     </controlBehavior:WindowChromeBehavior.TitleContent>
-   
-        
-        <Grid >
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            <TreeView ItemsSource="{Binding Nodes}" 
+        <TreeView ItemsSource="{Binding Nodes}" 
                       Background="Transparent"
                       MinWidth="200" behavior:TreeViewBehavior.SelectedItemCommand="{Binding OpenCommand,Mode=OneWay}" 
                       >
-             
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type local:GroupNode}" ItemsSource="{Binding Items}">
-                        <TextBlock Text="{Binding Name}"/>
-                    </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type local:NodeViewModel}">
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </TreeView.Resources>
-            </TreeView>
+
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type local:GroupNode}" ItemsSource="{Binding Items}">
+                    <TextBlock Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type local:NodeViewModel}">
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
 
         <DockPanel Grid.Column="1" Margin="10">
             <TextBlock Text="{Binding SelectedNodeName}"   HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" DockPanel.Dock="Top"/>
             <ContentControl x:Name="ActiveItem" Margin="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </DockPanel>
-            
-        </Grid>
-   
-    
+
+    </Grid>
+
+
 </Window>

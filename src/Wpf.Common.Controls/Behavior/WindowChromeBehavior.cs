@@ -21,6 +21,11 @@ namespace Wpf.Common.Controls.Behavior
         public const string MINIMIZE_BUTTON = "PART_MinimizeButton";
 
         /// <summary>
+        /// 设置对话框内容，默认为空
+        /// </summary>
+        public static readonly DependencyProperty  DialogContentProperty = DependencyProperty.RegisterAttached("DialogContent", typeof(object), typeof(WindowChromeBehavior), new PropertyMetadata(null));
+
+        /// <summary>
         /// 设置是否可用，默认是false，即不启用定制样式
         /// </summary>
         public static readonly DependencyProperty IsEnableProperty = DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(BooleanBoxes.False, OnIsEnablePropertyChange));
@@ -68,6 +73,8 @@ namespace Wpf.Common.Controls.Behavior
         /// </summary>
         public static readonly DependencyProperty BorderBrushProperty = DependencyProperty.RegisterAttached("BorderBrush", typeof(SolidColorBrush), typeof(WindowChromeBehavior), new PropertyMetadata(ResourceHelper.GetWindowActiveBorderBrush()));
 
+        
+
         private static void OnTitleHeightPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             if (!(e.NewValue is int)) return;
@@ -93,8 +100,10 @@ namespace Wpf.Common.Controls.Behavior
 
         private static double GetChromeCaptionHeight(UIElement el)
         {
-            return GetTitleHeight(el as UIElement) - 5;
+            var height = GetTitleHeight(el as UIElement) - 5;
+            return height > 0 ? height : 0;
         }
+       
 
         private static void OnTitleBackgroundPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
@@ -178,9 +187,7 @@ namespace Wpf.Common.Controls.Behavior
                 if (windowStyle == WindowStyle.ToolWindow)
                 {
                     maxBtn.Visibility = Visibility.Collapsed;
-
                     minBtn.Visibility = GetMinimizeButtonVisibleWhenInToolWindowMode(window) ? Visibility.Visible : Visibility.Collapsed;
-                    window.ResizeMode = ResizeMode.CanResize;
                 }
                 else
                 {
@@ -212,7 +219,9 @@ namespace Wpf.Common.Controls.Behavior
             WindowChrome.SetWindowChrome(window, chrome);
         }
 
+        public static void SetDialogContent(UIElement el, object content) => el.SetValue(DialogContentProperty, content);
 
+        public static object GetDialogContent(UIElement el) => el.GetValue(DialogContentProperty);
 
         public static void SetMinimizeButtonVisibleWhenInToolWindowMode(UIElement el, bool value) => el.SetValue(MinimizeButtonVisibleWhenInToolWindowModeProperty, value.Box());
 
