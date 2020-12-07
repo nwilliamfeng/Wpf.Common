@@ -26,9 +26,16 @@ namespace Wpf.Common.Controls.Behavior
         public static readonly DependencyProperty  DialogContentProperty = DependencyProperty.RegisterAttached("DialogContent", typeof(object), typeof(WindowChromeBehavior), new PropertyMetadata(null));
 
         /// <summary>
+        /// 设置对话框内容的DataTemplate
+        /// </summary>
+        public static readonly DependencyProperty DialogContentTemplateProperty = DependencyProperty.RegisterAttached("DialogContentTemplate", typeof(DataTemplate), typeof(WindowChromeBehavior), new PropertyMetadata(null));
+
+
+
+        /// <summary>
         /// 设置是否可用，默认是false，即不启用定制样式
         /// </summary>
-        public static readonly DependencyProperty IsEnableProperty = DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(BooleanBoxes.False, OnIsEnablePropertyChange));
+        public static readonly DependencyProperty IsEnableProperty = DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(false, OnIsEnablePropertyChange));
 
         /// <summary>
         /// 设置窗体标题栏的高度
@@ -66,15 +73,11 @@ namespace Wpf.Common.Controls.Behavior
         /// </summary>
         public static readonly DependencyProperty MinimizeButtonVisibleWhenInToolWindowModeProperty = DependencyProperty.RegisterAttached("MinimizeButtonVisibleWhenInToolWindowMode", typeof(bool), typeof(WindowChromeBehavior), new PropertyMetadata(BooleanBoxes.False));
 
-
-
         /// <summary>
         /// 设置窗体边框画刷
         /// </summary>
         public static readonly DependencyProperty BorderBrushProperty = DependencyProperty.RegisterAttached("BorderBrush", typeof(SolidColorBrush), typeof(WindowChromeBehavior), new PropertyMetadata(ResourceHelper.GetWindowActiveBorderBrush()));
-
         
-
         private static void OnTitleHeightPropertyChange(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             if (!(e.NewValue is int)) return;
@@ -222,6 +225,10 @@ namespace Wpf.Common.Controls.Behavior
         public static void SetDialogContent(UIElement el, object content) => el.SetValue(DialogContentProperty, content);
 
         public static object GetDialogContent(UIElement el) => el.GetValue(DialogContentProperty);
+
+        public static void SetDialogContentTemplate(UIElement el, DataTemplate contentTemplate) => el.SetValue(DialogContentTemplateProperty, contentTemplate);
+
+        public static object GetDialogContentTemplate(UIElement el) => el.GetValue<DataTemplate>(DialogContentTemplateProperty);
 
         public static void SetMinimizeButtonVisibleWhenInToolWindowMode(UIElement el, bool value) => el.SetValue(MinimizeButtonVisibleWhenInToolWindowModeProperty, value.Box());
 

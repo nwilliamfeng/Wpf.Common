@@ -18,7 +18,7 @@ namespace Wpf.Common.Demo
 {
 
     [Export(typeof(MainViewModel))]
-    public class MainViewModel:Conductor<object>,IHandle<NodeSelectEventArgs>
+    public class MainViewModel:Conductor<object>,IHandle<NodeSelectEventArgs>,IHandle<OpenMetroDialogEventArgs>
     {
         public ObservableCollection<GroupNode> Nodes { get; private set; }
         
@@ -70,6 +70,7 @@ namespace Wpf.Common.Demo
 
             var gpNode8 = new GroupNode { Name = "Window" };
             gpNode8.Items.Add(new NodeViewModel { Name = NodeNames.WINDOW });
+            gpNode8.Items.Add(new NodeViewModel { Name = NodeNames.DIALOG });
 
             Nodes.Add(gpNode1);
             Nodes.Add(gpNode2);
@@ -210,9 +211,25 @@ namespace Wpf.Common.Demo
                 case NodeNames.WINDOW:
                     this.ActivateItem(new WindowViewModel());
                     break;
+                case NodeNames.DIALOG:
+                    this.ActivateItem(new DialogViewModel());
+                    break;
                 default:
                     break;
             }
+        }
+
+        private object _dialog;
+
+        public object Dialog
+        {
+            get => _dialog;
+            private set => this.Set(ref _dialog, value);
+        }
+
+        void IHandle<OpenMetroDialogEventArgs>.Handle(OpenMetroDialogEventArgs arg)
+        {
+            this.Dialog = arg.Dialog;
         }
     }
 }

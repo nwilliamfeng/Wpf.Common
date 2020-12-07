@@ -141,6 +141,8 @@ namespace Wpf.Common.Demo
 
         public const string WINDOW = "WINDOW";
 
+        public const string DIALOG = "DIALOG";
+
         public const string MetroContentControl = "MetroContentControl";
     }
 }

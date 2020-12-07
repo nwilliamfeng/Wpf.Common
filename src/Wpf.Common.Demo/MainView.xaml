@@ -12,11 +12,18 @@
         Height="450" Width="800"  
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResizeWithGrip"
-        Style="{StaticResource WindowStyle}"
-        controlBehavior:WindowChromeBehavior.DialogContent="abc"
+        Style="{StaticResource WindowStyle}"       
+        controlBehavior:WindowChromeBehavior.DialogContent="{Binding Dialog,Mode=OneWay}"
         controlBehavior:WindowChromeBehavior.TitleHeight="42"
         >
-    
+    <controlBehavior:WindowChromeBehavior.DialogContentTemplate>
+        <DataTemplate   >
+            <DockPanel Background="Orange">
+                <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
+                <TextBlock Text="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+            </DockPanel>
+        </DataTemplate>
+    </controlBehavior:WindowChromeBehavior.DialogContentTemplate>
     <controlBehavior:WindowChromeBehavior.TitleContent>
         <Border>
             <DockPanel Margin="5">

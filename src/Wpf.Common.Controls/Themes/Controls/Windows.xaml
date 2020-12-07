@@ -15,8 +15,7 @@
     <!--Default Window ControlTemplate-->
     <ControlTemplate  TargetType="{x:Type Window}" x:Key="DefaultWindowControlTemplate">
         <Grid>
-            <Border x:Name="GlowBorder" 
-                                Background="{TemplateBinding Background}" BorderThickness="1.2">
+            <Border x:Name="GlowBorder" Background="{TemplateBinding Background}" BorderThickness="1.2">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="{StaticResource ActiveWindowBorderBrush}"/>
@@ -87,16 +86,13 @@
                                             <Setter Property="Stroke" Value="LightGray"/>
                                         </DataTrigger>
                                     </Style.Triggers>
-
                                 </Style>
                                 <Style x:Key="windowButtonStyle"  TargetType="Button"  BasedOn="{StaticResource ChromeButtonStyle}">
                                     <Setter Property="Padding" Value="16,9"/>
                                     <Setter Property="VerticalAlignment" Value="Stretch"/>
-
                                     <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
                                 </Style>
                                 <Style TargetType="Button"  BasedOn="{StaticResource windowButtonStyle}"  x:Key="normalButtonStyle">
-
                                     <Style.Triggers>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -104,7 +100,6 @@
                                                 <Condition Property="IsPressed" Value="False"/>
                                             </MultiTrigger.Conditions>
                                             <Setter Property="Background" Value="Gray" />
-
                                         </MultiTrigger>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -123,7 +118,6 @@
                                                 <Condition Property="IsPressed" Value="False"/>
                                             </MultiTrigger.Conditions>
                                             <Setter Property="Background" Value="Red"/>
-
                                         </MultiTrigger>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -133,7 +127,6 @@
                                             <Setter Property="Opacity" Value="0.8" />
                                             <Setter Property="Background" Value="Red"/>
                                         </MultiTrigger>
-
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Resources>
@@ -163,7 +156,6 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
@@ -177,7 +169,6 @@
                                                     <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
                                                     <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
                                                 </DataTrigger>
-
                                             </Style.Triggers>
                                         </Style>
                                     </Path.Style>
@@ -195,7 +186,6 @@
                                     <Style TargetType="ContentControl">
                                         <Setter Property="IsEnabled" Value="False"/>
                                         <Style.Triggers>
-                                            
                                             <Trigger Property="IsEnabled" Value="False">
                                                 <Setter Property="Opacity" Value="0.5"/>
                                             </Trigger>
@@ -203,17 +193,16 @@
                                     </Style>
                                 </ContentControl.Style>
                             </ContentControl>
+                            <!--DialogContainer-->
                             <ContentControl x:Name="PART_DialogContainer" 
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center" 
-                                            Content="{Binding Path=., Source=behavior:WindowChromeBehavior.DialogContent}"
+                                            ContentTemplate="{Binding Path=(behavior:WindowChromeBehavior.DialogContentTemplate),RelativeSource={RelativeSource AncestorType=Window}}"
+                                            Content="{Binding Path=(behavior:WindowChromeBehavior.DialogContent),RelativeSource={RelativeSource AncestorType=Window}}"
                                             HorizontalContentAlignment="Center" 
                                             VerticalContentAlignment="Center">
-                               
-                                
                             </ContentControl>
                         </Grid>
-                        
                     </AdornerDecorator>
                 </DockPanel>
             </Border>
@@ -223,7 +212,7 @@
         <ControlTemplate.Triggers>
             <Trigger Property="behavior:WindowChromeBehavior.DialogContent" Value="{x:Null}">
                 <Setter Property="Visibility" Value="Collapsed" TargetName="PART_DialogContainer"/>
-                <Setter Property="IsEnabled" Value="False" TargetName="PART_ContentControl"/>
+                <Setter Property="IsEnabled" Value="true" TargetName="PART_ContentControl"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -245,7 +234,6 @@
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="behavior:WindowChromeBehavior.IsEnable" Value="True"/>
         <Style.Triggers>
-           
             <Trigger Property="WindowStyle" Value="SingleBorderWindow">
                 <Setter Property="Template" Value="{StaticResource DefaultWindowControlTemplate}"/>
             </Trigger>

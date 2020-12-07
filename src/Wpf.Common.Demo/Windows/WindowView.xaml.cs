@@ -27,7 +27,7 @@ namespace Wpf.Common.Demo.Controls
         public WindowView()
         {
             InitializeComponent();
-            this.DataContext = new MetroContentControlViewModel();
+     
         }
 
         private void openNormalWindowBtn_Click(object sender, RoutedEventArgs e) => new NormalWindow().Show();
