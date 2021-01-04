@@ -18,10 +18,13 @@
         >
     <controlBehavior:WindowChromeBehavior.DialogContentTemplate>
         <DataTemplate   >
-            <DockPanel Background="Orange">
-                <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
-                <TextBlock Text="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
-            </DockPanel>
+            <Border Padding="30,15" Background="Orange">
+                <DockPanel >
+                    <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+                    <Button DockPanel.Dock="Bottom" Content="close" Command="{Binding CloseCommand}"/>
+                </DockPanel>
+            </Border>
         </DataTemplate>
     </controlBehavior:WindowChromeBehavior.DialogContentTemplate>
     <controlBehavior:WindowChromeBehavior.TitleContent>

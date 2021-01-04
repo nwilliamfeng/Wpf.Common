@@ -8,6 +8,7 @@
         Title="MessageDialogView" Height="450" Width="800">
     <DockPanel>
         <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
+   
         <TextBlock Text="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
     </DockPanel>
 </Window>
