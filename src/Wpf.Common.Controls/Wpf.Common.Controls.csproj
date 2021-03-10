@@ -68,6 +68,7 @@
     <Compile Include="InputFilter.cs" />
     <Compile Include="LedTube.cs" />
     <Compile Include="Behavior\DocumentViewerBehavior.cs" />
+    <Compile Include="ZoomBoxPanel.cs" />
     <Page Include="Themes\Controls\Alertbar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
