@@ -62,7 +62,8 @@
     <Compile Include="Data\EnumVisibilityConverter.cs" />
     <Compile Include="Data\EqualsConverter.cs" />
     <Compile Include="Data\PrefixWhiteSpaceConverter.cs" />
-    <Compile Include="Extension\ApplicationExtension.cs" />
+    <Compile Include="Extension\SingleInstanceHelper.cs" />
+    <Compile Include="Extension\AutoRunHelper.cs" />
     <Compile Include="Extension\ButtonExtension.cs" />
     <Compile Include="Extension\ListBoxExtension.cs" />
     <Compile Include="Extension\ObjectExtension.cs" />

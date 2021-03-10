@@ -47,6 +47,8 @@ namespace Wpf.Common.Demo
             get => _content;
             set => this.Set(ref _content, value);
         }
+
+        public ICommand CloseCommand { get; set; }
     }
 
     public class DialogViewModel : Caliburn.Micro.PropertyChangedBase
@@ -65,6 +67,10 @@ namespace Wpf.Common.Demo
             _openMetroDialogCommand = new RelayCommand(() =>
             {
                 var dialog = new MessageDialogViewModel { Title = "dialog", Content = "abcd" };
+                dialog.CloseCommand = new RelayCommand(() =>
+                 {
+                     IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
+                 });
                 IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
             });
     }

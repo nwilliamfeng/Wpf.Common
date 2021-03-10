@@ -31,188 +31,220 @@
                                 BorderThickness="1" 
                                 UseLayoutRounding="True" 
                                 Background="{TemplateBinding Background}">
-                <DockPanel LastChildFill="True">
-                    <!--Title-->
-                    <Grid  x:Name="PART_TitleGrid" DockPanel.Dock="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{TemplateBinding Icon}" Stretch="None"  >
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Margin" Value="5,0,-5,0"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="Source" Value="{x:Null}">
-                                            <Setter Property="Margin" Value="0"/>
-                                        </Trigger>
-                                        <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="false">
-                                            <Setter Property="Opacity" Value="0.5"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
-                        <!--标题内容-->
-                        <ContentControl x:Name="PART_Title" 
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--Title-->
+                        <Grid  x:Name="PART_TitleGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                              
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{TemplateBinding Icon}" Stretch="None"  >
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Margin" Value="5,0,-5,0"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="Source" Value="{x:Null}">
+                                                <Setter Property="Margin" Value="0"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="false">
+                                                <Setter Property="Opacity" Value="0.5"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <!--标题内容-->
+                            <ContentControl x:Name="PART_Title" 
                                                         Grid.Column="1"
                                                         VerticalContentAlignment="Center"
                                                         VerticalAlignment="Center"   
                                                         Foreground="{TemplateBinding Foreground}"
                                                         Content="{TemplateBinding Title ,Converter={StaticResource PrefixWhiteSpaceConverter},ConverterParameter=2}"                                                                                      
                                                         HorizontalContentAlignment="Left" Grid.ColumnSpan="2">
-                            <ContentControl.Style>
-                                <Style TargetType="ContentControl">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="false">
-                                            <Setter Property="Opacity" Value="0.5"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ContentControl.Style>
-                        </ContentControl>
-
-                        <!--标题命令按钮-->
-                        <Grid    VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="PART_WindowCommandGrid" Grid.Column="2">
-                            <Grid.Resources>
-                                <Style TargetType="Path" x:Key="basePathStyle">
-                                    <Setter Property="Stretch"  Value="Uniform"/>
-                                    <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}"/>
-                                    <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
-                                            <Setter Property="Fill" Value="LightGray"/>
-                                            <Setter Property="Stroke" Value="LightGray"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                                <Style x:Key="windowButtonStyle"  TargetType="Button"  BasedOn="{StaticResource ChromeButtonStyle}">
-                                    <Setter Property="Padding" Value="16,9"/>
-                                    <Setter Property="VerticalAlignment" Value="Stretch"/>
-                                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-                                </Style>
-                                <Style TargetType="Button"  BasedOn="{StaticResource windowButtonStyle}"  x:Key="normalButtonStyle">
-                                    <Style.Triggers>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True"/>
-                                                <Condition Property="IsPressed" Value="False"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Background" Value="Gray" />
-                                        </MultiTrigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True"/>
-                                                <Condition Property="IsPressed" Value="True"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Background" Value="#CACACB" />
-                                        </MultiTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource windowButtonStyle}" x:Key="closeButtonStyle">
-                                    <Style.Triggers>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True"/>
-                                                <Condition Property="IsPressed" Value="False"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Background" Value="Red"/>
-                                        </MultiTrigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True"/>
-                                                <Condition Property="IsPressed" Value="True"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Opacity" Value="0.8" />
-                                            <Setter Property="Background" Value="Red"/>
-                                        </MultiTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Resources>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Button x:Name="PART_MinimizeButton" UseLayoutRounding="True" Style="{StaticResource normalButtonStyle}" ToolTip="最小化" VerticalContentAlignment="Bottom">
-                                <Path  Data="{StaticResource MinimizeIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="1.1" Stretch="Uniform" StrokeThickness="0.2"  />
-                            </Button>
-                            <Button  x:Name="PART_MaximizeButton" UseLayoutRounding="True" Grid.Column="1">
-                                <Button.Style>
-                                    <Style TargetType="Button" BasedOn="{StaticResource normalButtonStyle}">
-                                        <Setter Property="ToolTip" Value="最大化"/>
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <Path  Data="{StaticResource MaximizeIcon}" Style="{StaticResource basePathStyle}"     Width="10" Height="10"   StrokeThickness="0.2"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding WindowState,RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
-                                                <Setter Property="ToolTip" Value="向下还原"/>
-                                                <Setter Property="Content" >
-                                                    <Setter.Value>
-                                                        <Path  Data="{StaticResource RestoreIcon}" Style="{DynamicResource basePathStyle}"   Width="10" Height="10"   StrokeThickness="0.2"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                            <Button UseLayoutRounding="True" Grid.Column="2"   x:Name="PART_CloseButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
-                                <Path  Data="{StaticResource CloseIcon}"  Width="10" Height="10"  StrokeThickness="0.1">
-                                    <Path.Style>
-                                        <Style TargetType="Path" BasedOn="{StaticResource basePathStyle}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=Button}}" Value="true">
-                                                    <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
-                                                    <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Path.Style>
-                                </Path>
-                            </Button>
-                        </Grid>
-                    </Grid>
-
-                    <!--Content-->
-                    <!--注意此处的AdornerDecorator-->
-                    <AdornerDecorator>
-                        <Grid>
-                            <ContentControl x:Name="PART_ContentControl" Content="{TemplateBinding Content}" >
                                 <ContentControl.Style>
                                     <Style TargetType="ContentControl">
-                                        <Setter Property="IsEnabled" Value="False"/>
                                         <Style.Triggers>
-                                            <Trigger Property="IsEnabled" Value="False">
+                                            <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="false">
                                                 <Setter Property="Opacity" Value="0.5"/>
-                                            </Trigger>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ContentControl.Style>
                             </ContentControl>
-                            <!--DialogContainer-->
-                            <ContentControl x:Name="PART_DialogContainer" 
-                                            HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" 
-                                            ContentTemplate="{Binding Path=(behavior:WindowChromeBehavior.DialogContentTemplate),RelativeSource={RelativeSource AncestorType=Window}}"
-                                            Content="{Binding Path=(behavior:WindowChromeBehavior.DialogContent),RelativeSource={RelativeSource AncestorType=Window}}"
-                                            HorizontalContentAlignment="Center" 
-                                            VerticalContentAlignment="Center">
-                            </ContentControl>
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                       
                         </Grid>
-                    </AdornerDecorator>
-                </DockPanel>
+
+                        <!--Content-->
+                        <!--注意此处的AdornerDecorator-->
+                        <AdornerDecorator Grid.Row="1">
+                            
+                                <ContentControl x:Name="PART_ContentControl" 
+                                                Content="{TemplateBinding Content}" >
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Opacity" Value="0.5"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                           
+                        </AdornerDecorator>
+
+                        <!--DialogContainer-->
+                        <Border x:Name="PART_DialogContainerBorder"   
+                                Grid.RowSpan="2"
+                                HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"
+                                BorderBrush="{StaticResource ControlBorderBrush }" 
+                                BorderThickness="1">
+                            <ContentControl x:Name="PART_DialogContainer"                                      
+                                        MinHeight="100"                                     
+                                        Padding="20"                                      
+                                        MinWidth="100"                                     
+                                        ContentTemplate="{Binding Path=(behavior:WindowChromeBehavior.DialogContentTemplate),RelativeSource={RelativeSource AncestorType=Window}}"
+                                        Content="{Binding Path=(behavior:WindowChromeBehavior.DialogContent),RelativeSource={RelativeSource AncestorType=Window}}"
+                                        HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center">
+                            </ContentControl>
+                        </Border>
+                       
+
+                    </Grid>
+                    <!--标题命令按钮-->
+                    <Grid    VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="PART_WindowCommandGrid" >
+                        <Grid.Resources>
+                            <Style TargetType="Path" x:Key="basePathStyle">
+                                <Setter Property="Stretch"  Value="Uniform"/>
+                                <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}"/>
+                                <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
+                                        <Setter Property="Fill" Value="LightGray"/>
+                                        <Setter Property="Stroke" Value="LightGray"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style x:Key="windowButtonStyle"  TargetType="Button"  BasedOn="{StaticResource ChromeButtonStyle}">
+                                <Setter Property="Padding" Value="16,9"/>
+                                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                            </Style>
+                            <Style TargetType="Button"  BasedOn="{StaticResource windowButtonStyle}"  x:Key="normalButtonStyle">
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                            <Condition Property="IsPressed" Value="False"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background" Value="Gray" />
+                                    </MultiTrigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                            <Condition Property="IsPressed" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background" Value="#CACACB" />
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource windowButtonStyle}" x:Key="closeButtonStyle">
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                            <Condition Property="IsPressed" Value="False"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background" Value="Red"/>
+                                    </MultiTrigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                            <Condition Property="IsPressed" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Opacity" Value="0.8" />
+                                        <Setter Property="Background" Value="Red"/>
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="PART_MinimizeButton" UseLayoutRounding="True" Style="{StaticResource normalButtonStyle}" ToolTip="最小化" VerticalContentAlignment="Bottom">
+                            <Path  Data="{StaticResource MinimizeIcon}" Style="{StaticResource basePathStyle}"  Width="10" Height="1.1" Stretch="Uniform" StrokeThickness="0.2"  />
+                        </Button>
+                        <Button  x:Name="PART_MaximizeButton" UseLayoutRounding="True" Grid.Column="1">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource normalButtonStyle}">
+                                    <Setter Property="ToolTip" Value="最大化"/>
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Path  Data="{StaticResource MaximizeIcon}" Style="{StaticResource basePathStyle}"     Width="10" Height="10"   StrokeThickness="0.2"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding WindowState,RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                                            <Setter Property="ToolTip" Value="向下还原"/>
+                                            <Setter Property="Content" >
+                                                <Setter.Value>
+                                                    <Path  Data="{StaticResource RestoreIcon}" Style="{DynamicResource basePathStyle}"   Width="10" Height="10"   StrokeThickness="0.2"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button UseLayoutRounding="True" Grid.Column="2"   x:Name="PART_CloseButton" Style="{StaticResource closeButtonStyle}" ToolTip="关闭">
+                            <Path  Data="{StaticResource CloseIcon}"  Width="10" Height="10"  StrokeThickness="0.1">
+                                <Path.Style>
+                                    <Style TargetType="Path" BasedOn="{StaticResource basePathStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=Button}}" Value="true">
+                                                <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
+                                                <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Path.Style>
+                            </Path>
+                        </Button>
+                    </Grid>
+                </Grid>
+               
             </Border>
             <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" IsTabStop="false" Visibility="Collapsed" VerticalAlignment="Bottom"/>
                        
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="behavior:WindowChromeBehavior.DialogContent" Value="{x:Null}">
-                <Setter Property="Visibility" Value="Collapsed" TargetName="PART_DialogContainer"/>
+                <Setter Property="Visibility" Value="Collapsed" TargetName="PART_DialogContainerBorder"/>
                 <Setter Property="IsEnabled" Value="true" TargetName="PART_ContentControl"/>
+                <Setter Property="IsEnabled" Value="true" TargetName="PART_TitleGrid"/>
+                
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

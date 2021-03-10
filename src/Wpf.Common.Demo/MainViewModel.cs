@@ -18,7 +18,7 @@ namespace Wpf.Common.Demo
 {
 
     [Export(typeof(MainViewModel))]
-    public class MainViewModel:Conductor<object>,IHandle<NodeSelectEventArgs>,IHandle<OpenMetroDialogEventArgs>
+    public class MainViewModel:Conductor<object>,IHandle<NodeSelectEventArgs>,IHandle<OpenMetroDialogEventArgs>,IHandle<CloseMetroDialogEventArgs>
     {
         public ObservableCollection<GroupNode> Nodes { get; private set; }
         
@@ -230,6 +230,14 @@ namespace Wpf.Common.Demo
         void IHandle<OpenMetroDialogEventArgs>.Handle(OpenMetroDialogEventArgs arg)
         {
             this.Dialog = arg.Dialog;
+        }
+
+        void IHandle<CloseMetroDialogEventArgs>.Handle(CloseMetroDialogEventArgs arg)
+        {
+            if (object.ReferenceEquals(this.Dialog, arg.Dialog))
+            {
+                this.Dialog = null;
+            }
         }
     }
 }

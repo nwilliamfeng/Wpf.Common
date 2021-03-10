@@ -15,4 +15,14 @@ namespace Wpf.Common.Demo
 
         public object Dialog { get; }
     }
+
+    public class CloseMetroDialogEventArgs : EventArgs
+    {
+        public CloseMetroDialogEventArgs(object dialog)
+        {
+            Dialog = dialog;
+        }
+
+        public object Dialog { get; }
+    }
 }
