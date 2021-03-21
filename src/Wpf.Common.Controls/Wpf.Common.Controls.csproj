@@ -68,6 +68,7 @@
     <Compile Include="InputFilter.cs" />
     <Compile Include="LedTube.cs" />
     <Compile Include="Behavior\DocumentViewerBehavior.cs" />
+    <Compile Include="MetroDialog.cs" />
     <Compile Include="ZoomBoxPanel.cs" />
     <Page Include="Themes\Controls\Alertbar.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Controls\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Controls\MetroDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

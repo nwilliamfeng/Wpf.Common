@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooleanBoxes.cs" />
+    <Compile Include="Events\DialogEvents.cs" />
     <Compile Include="Extension\DataObjectExtension.cs" />
     <Compile Include="Input\Async\AsyncCommand.cs" />
     <Compile Include="Input\Async\AsyncCommandBase.cs" />

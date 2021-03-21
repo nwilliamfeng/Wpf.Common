@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wpf.Common.Demo
+namespace Wpf.Common.Events
 {
     public class OpenMetroDialogEventArgs:EventArgs
     {

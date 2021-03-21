@@ -115,6 +115,7 @@ namespace Wpf.Common.Controls.Behavior
             var window = obj as Window;
             if (window == null) return;
             var windowBorder = window.FindChildrenFromTemplate<Border>(WINDOW_BORDER);
+            if (windowBorder == null) return;
             var titleBorder = windowBorder.FindChildren<Grid>(TITLE_GRID);
             titleBorder.Background = brush;
         }
@@ -170,7 +171,7 @@ namespace Wpf.Common.Controls.Behavior
             {
                 var content = window.Content as UIElement;
                 var windowBorder = window.FindChildrenFromTemplate<Border>(WINDOW_BORDER);
-
+                if (windowBorder == null) return;
                 var titleBorder = windowBorder.FindChildren<Grid>(TITLE_GRID);
                 TextElement.SetFontSize(titleBorder, GetTitleFontSize(window));
                 TextElement.SetForeground(titleBorder, GetTitleForeground(window));

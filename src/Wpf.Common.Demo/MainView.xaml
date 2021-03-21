@@ -16,7 +16,7 @@
         controlBehavior:WindowChromeBehavior.DialogContent="{Binding Dialog,Mode=OneWay}"
         controlBehavior:WindowChromeBehavior.TitleHeight="42"
         >
-    <controlBehavior:WindowChromeBehavior.DialogContentTemplate>
+    <!--<controlBehavior:WindowChromeBehavior.DialogContentTemplate>
         <DataTemplate   >
             <Border Padding="30,15" Background="Orange">
                 <DockPanel >
@@ -26,7 +26,7 @@
                 </DockPanel>
             </Border>
         </DataTemplate>
-    </controlBehavior:WindowChromeBehavior.DialogContentTemplate>
+    </controlBehavior:WindowChromeBehavior.DialogContentTemplate>-->
     <controlBehavior:WindowChromeBehavior.TitleContent>
         <Border>
             <DockPanel Margin="5">

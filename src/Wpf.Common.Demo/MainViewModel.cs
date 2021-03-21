@@ -13,6 +13,7 @@ using Wpf.Common.Demo.Scroll;
 using Wpf.Common.Demo.Image;
 using System.Windows;
 using Wpf.Common.Controls;
+using Wpf.Common.Events;
 
 namespace Wpf.Common.Demo
 {

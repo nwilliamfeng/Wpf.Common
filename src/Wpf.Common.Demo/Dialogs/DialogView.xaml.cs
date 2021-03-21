@@ -17,6 +17,7 @@ using System.Globalization;
 using System.IO;
 using Caliburn.Micro;
 using Wpf.Common.Input;
+using Wpf.Common.Events;
 
 namespace Wpf.Common.Demo
 {
