@@ -69,6 +69,7 @@
     <Compile Include="LedTube.cs" />
     <Compile Include="Behavior\DocumentViewerBehavior.cs" />
     <Compile Include="MetroDialog.cs" />
+    <Compile Include="MetroWindowManager.cs" />
     <Compile Include="ZoomBoxPanel.cs" />
     <Page Include="Themes\Controls\Alertbar.xaml">
       <Generator>MSBuild:Compile</Generator>

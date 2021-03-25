@@ -39,6 +39,7 @@
     <Compile Include="BooleanBoxes.cs" />
     <Compile Include="Events\DialogEvents.cs" />
     <Compile Include="Extension\DataObjectExtension.cs" />
+    <Compile Include="IMetroWindowManager.cs" />
     <Compile Include="Input\Async\AsyncCommand.cs" />
     <Compile Include="Input\Async\AsyncCommandBase.cs" />
     <Compile Include="Input\Async\IAsyncCommand.cs" />

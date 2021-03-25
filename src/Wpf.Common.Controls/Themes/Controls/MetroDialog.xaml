@@ -5,6 +5,9 @@
         <ResourceDictionary Source="Buttons.xaml"/>
         <ResourceDictionary Source="../Icons.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+    <DataTemplate x:Key="MetroDialogHeaderTemplate">
+        
+    </DataTemplate>
 
   
     <Style TargetType="{x:Type controls:MetroDialog}" x:Key="MetroDialogStyle">
@@ -16,12 +19,13 @@
                 <ControlTemplate TargetType="{x:Type controls:MetroDialog}">
                     <DockPanel>
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                            <Button Content="Ok"/>
+                            <Button Content="Ok" Padding="15 5" Style="{StaticResource DialogButtonStyle}"/>
                         </StackPanel>
                         <HeaderedContentControl x:Name="PART_Contianer" 
                                   FocusVisualStyle="{x:Null}"
                                   Background="Transparent"
                                   VerticalAlignment="Center"
+                                  Content="{TemplateBinding Content}"
                                   HorizontalAlignment="Center"
                                   ContentTemplate="{TemplateBinding ContentTemplate}"
                                   HeaderTemplate="{TemplateBinding HeaderTemplate}">

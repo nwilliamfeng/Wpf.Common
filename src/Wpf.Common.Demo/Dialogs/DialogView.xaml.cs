@@ -72,7 +72,7 @@ namespace Wpf.Common.Demo
                  {
                      IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
                  });
-                IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
+              //  IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
             });
     }
  
