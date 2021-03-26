@@ -70,9 +70,10 @@ namespace Wpf.Common.Demo
                 var dialog = new MessageDialogViewModel { Title = "dialog", Content = "abcd" };
                 dialog.CloseCommand = new RelayCommand(() =>
                  {
-                     IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
+                   //  IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
                  });
-              //  IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
+               var dr= IoC.Get<IMetroWindowManager>().ShowDialog(dialog);
+           //   IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
             });
     }
  

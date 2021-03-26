@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResizeWithGrip"
         Style="{StaticResource WindowStyle}"       
-        controlBehavior:WindowChromeBehavior.DialogContent="{Binding Dialog,Mode=OneWay}"
+      
         controlBehavior:WindowChromeBehavior.TitleHeight="42"
         >
     <!--<controlBehavior:WindowChromeBehavior.DialogContentTemplate>

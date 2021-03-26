@@ -6,33 +6,91 @@
         <ResourceDictionary Source="../Icons.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <DataTemplate x:Key="MetroDialogHeaderTemplate">
-        
+        <DockPanel>
+            <!--close button-->
+            <Button DockPanel.Dock="Right">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ChromeButtonStyle}"  >
+                        <Setter Property="Padding" Value="16,9"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsPressed" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="Red"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsPressed" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Opacity" Value="0.8" />
+                                <Setter Property="Background" Value="Red"/>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Path Data="{StaticResource CloseIcon}" Height="10" Width="10" StrokeThickness="1">
+                    <Path.Style>
+                        <Style TargetType="Path" >
+                            <Setter Property="Stretch"  Value="Uniform"/>
+                            <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}"/>
+                            
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=Button}}" Value="true">
+                                    <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
+                                    <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Path.Style>
+                </Path>
+            </Button>
+            <TextBlock Text="{Binding}" Foreground="Black" FontSize="18" Padding="5"/>
+        </DockPanel>
     </DataTemplate>
 
-  
+
     <Style TargetType="{x:Type controls:MetroDialog}" x:Key="MetroDialogStyle">
-      
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
- 
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="HeaderTemplate" Value="{StaticResource MetroDialogHeaderTemplate}"/>
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:MetroDialog}">
-                    <DockPanel>
-                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                            <Button Content="Ok" Padding="15 5" Style="{StaticResource DialogButtonStyle}"/>
-                        </StackPanel>
-                        <HeaderedContentControl x:Name="PART_Contianer" 
+                    <Border 
+                           Padding="0"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            >
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                                <Button Content="Ok" Padding="15 5" Style="{StaticResource DialogButtonStyle}"/>
+                            </StackPanel>
+                            <ContentControl DockPanel.Dock="Top" 
+                                            HorizontalContentAlignment="Stretch"
+                                            Content="{TemplateBinding Header}" 
+                                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                            />
+                            <ContentControl x:Name="PART_Contianer" 
                                   FocusVisualStyle="{x:Null}"
+                                  Padding="{TemplateBinding Padding}"
                                   Background="Transparent"
                                   VerticalAlignment="Center"
                                   Content="{TemplateBinding Content}"
-                                  HorizontalAlignment="Center"
-                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                  HeaderTemplate="{TemplateBinding HeaderTemplate}">
+                                  HorizontalAlignment="Center"                               
+                                  ContentTemplate="{TemplateBinding ContentTemplate}">
 
-
-                        </HeaderedContentControl>
-                    </DockPanel>
+                            </ContentControl>
+                        </DockPanel>
+                    </Border>
                     <ControlTemplate.Triggers>
                       
                         <Trigger Property="IsEnabled" Value="false">

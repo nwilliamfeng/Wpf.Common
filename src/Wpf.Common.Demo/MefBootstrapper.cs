@@ -12,12 +12,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro.MEF;
+using Wpf.Common.Controls;
 
 namespace Wpf.Common.Demo
 {
     class MefBootstrapper  : MefBootstrapperBase<MainViewModel>
     {
-         
+        protected override void InjectWindowManager(CompositionBatch batch)
+        {
+            base.InjectWindowManager(batch);
+            batch.AddExportedValue<IMetroWindowManager>(new MetroWindowManager());
+        }
 
     }
 }
