@@ -8,6 +8,6 @@ namespace Wpf.Common
 {
     public interface IMetroWindowManager
     {
-        bool? ShowDialog(object dialogViewModel);
+        Task<bool?> ShowDialog(object dialogViewModel);
     }
 }

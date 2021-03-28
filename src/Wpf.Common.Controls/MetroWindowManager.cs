@@ -11,13 +11,21 @@ namespace Wpf.Common.Controls
 {
     public class MetroWindowManager : IMetroWindowManager
     {
-        public bool? ShowDialog(object dialogViewModel)
+        public async Task<bool?> ShowDialog(object dialogViewModel)
         {
             var window = Application.Current.MainWindow;
             if (window == null) return null;
             if (!WindowChromeBehavior.GetIsEnable(window))
                 return null;
+
             WindowChromeBehavior.SetDialogContent(window,dialogViewModel);
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+
+                }
+            });
             return true;
         }
     }
