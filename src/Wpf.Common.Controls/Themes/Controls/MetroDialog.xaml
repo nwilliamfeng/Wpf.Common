@@ -25,7 +25,7 @@
                             >
                         <DockPanel>
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                                <Button Content="Ok" Padding="15 5" Style="{StaticResource DialogButtonStyle}"/>
+                                <Button Content="Ok" Padding="15 5" Style="{StaticResource DialogButtonStyle}" x:Name="PART_OK_BUTTON"/>
                             </StackPanel>
                             <DockPanel DockPanel.Dock="Top">
                                 <Button DockPanel.Dock="Right" x:Name="PART_CLOSE_BUTTON">
