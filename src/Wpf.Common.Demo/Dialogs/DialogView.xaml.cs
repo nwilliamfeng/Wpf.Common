@@ -59,21 +59,29 @@ namespace Wpf.Common.Demo
         public ICommand OpenNormalDialogCommand =>
             _openNormalDialogCommand = new RelayCommand(() =>
               {
-                  IoC.Get<IWindowManager>().ShowDialog(new MessageDialogViewModel { Title="dialog",Content="abcd"});
+                  IoC.Get<IWindowManager>().ShowDialog(new MessageDialogViewModel { Title = "dialog", Content = "abcd" });
               });
 
         private ICommand _openMetroDialogCommand;
 
         public ICommand OpenMetroDialogCommand =>
-            _openMetroDialogCommand = new RelayCommand(() =>
+            _openMetroDialogCommand = new RelayCommand(async () =>
             {
                 var dialog = new MessageDialogViewModel { Title = "dialog", Content = "abcd" };
                 dialog.CloseCommand = new RelayCommand(() =>
                  {
-                   //  IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
+                     //  IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
                  });
-               var dr= IoC.Get<IMetroWindowManager>().ShowDialog(dialog);
-           //   IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
+                var dr = await IoC.Get<IMetroWindowManager>().ShowDialog(dialog);
+                if (dr == true)
+                {
+
+                }
+                else if (dr == false)
+                {
+
+                }
+                //   IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
             });
     }
  

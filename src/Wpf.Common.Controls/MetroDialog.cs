@@ -25,20 +25,17 @@ namespace Wpf.Common.Controls
 
         public static readonly DependencyProperty ShowOkButtonProperty = DependencyProperty.Register(nameof(ShowOkButton), typeof(bool), typeof(MetroDialog),new PropertyMetadata(BooleanBoxes.True));
 
-        public static readonly DependencyProperty  OkButtonStyleProperty = DependencyProperty.Register(nameof(OkButtonStyle), typeof(bool), typeof(MetroDialog));
+        public static readonly DependencyProperty  OkButtonStyleProperty = DependencyProperty.Register(nameof(OkButtonStyle), typeof(Style), typeof(MetroDialog));
+
+        public static readonly DependencyProperty CancelButtonStyleProperty = DependencyProperty.Register(nameof(CancelButtonStyle), typeof(Style), typeof(MetroDialog));
 
         public static readonly DependencyProperty ShowCancelButtonProperty = DependencyProperty.Register(nameof(ShowCancelButton), typeof(bool), typeof(MetroDialog), new PropertyMetadata(BooleanBoxes.True));
 
-
-        public MetroDialog()
-        {
-            
-        }
-
+ 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var closeButton = this.GetTemplateChild(CloseButtonName) as Button; 
+            var closeButton = this.GetTemplateChild(CloseButtonName) as Button;
             closeButton.Click -= CloseButton_Click;
             closeButton.Click += CloseButton_Click;
             var confirmButton = this.GetTemplateChild(OkButtonName) as Button;
@@ -80,6 +77,12 @@ namespace Wpf.Common.Controls
         {
             get => this.GetValue<Style>(OkButtonStyleProperty);
             set => this.SetValue(OkButtonStyleProperty, value);
+        }
+
+        public Style CancelButtonStyle
+        {
+            get => this.GetValue<Style>(CancelButtonStyleProperty);
+            set => this.SetValue(CancelButtonStyleProperty, value);
         }
     }
 }
