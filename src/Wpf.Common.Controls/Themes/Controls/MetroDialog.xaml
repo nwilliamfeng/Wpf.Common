@@ -5,7 +5,7 @@
         <ResourceDictionary Source="Buttons.xaml"/>
         <ResourceDictionary Source="../Icons.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-     
+    <BooleanToVisibilityConverter x:Key="boolToVisibleConverter"/>
 
     <Style TargetType="{x:Type controls:MetroDialog}" x:Key="MetroDialogStyle">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -16,6 +16,14 @@
             <Setter.Value>
                 <Style TargetType="Button" BasedOn="{StaticResource DialogButtonStyle}">
                     <Setter Property="Content" Value="确定"/>
+                    <Setter Property="Padding" Value="15,5"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CancelButtonStyle">
+            <Setter.Value>
+                <Style TargetType="Button" BasedOn="{StaticResource DialogButtonStyle}">
+                    <Setter Property="Content" Value="取消"/>
                     <Setter Property="Padding" Value="15,5"/>
                 </Style>
             </Setter.Value>
@@ -31,9 +39,9 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             >
                         <DockPanel>
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                                <Button  x:Name="PART_OK_BUTTON" Style="{TemplateBinding OkButtonStyle}"/>
-
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,5" HorizontalAlignment="Right">
+                                <Button  x:Name="PART_OK_BUTTON" Style="{TemplateBinding OkButtonStyle}" Margin="0 ,0,10,0" Visibility="{TemplateBinding ShowOkButton,Converter={StaticResource boolToVisibleConverter}}"/>
+                                <Button  x:Name="PART_CANCEL_BUTTON" Style="{TemplateBinding CancelButtonStyle}"  Margin="0 ,0,10,0" Visibility="{TemplateBinding ShowCancelButton,Converter={StaticResource boolToVisibleConverter}}" />
                             </StackPanel>
                             <DockPanel DockPanel.Dock="Top">
                                 <Button DockPanel.Dock="Right" x:Name="PART_CLOSE_BUTTON">
@@ -78,6 +86,8 @@
                                     </Path>
                                 </Button>
                                 <ContentControl  
+                                    Margin="5"
+                                    FontSize="18"
                                             HorizontalContentAlignment="Stretch"
                                             Content="{TemplateBinding Header}" 
                                             ContentTemplate="{TemplateBinding HeaderTemplate}"

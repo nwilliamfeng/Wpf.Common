@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:Wpf.Common.Demo"
              xmlns:controls="clr-namespace:Wpf.Common.Controls;assembly=Wpf.Common.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"   Foreground="White" MinHeight="60" MinWidth="200"  >
-    <controls:MetroDialog Header="abcd">
+             d:DesignHeight="450" d:DesignWidth="800"    MinHeight="60" MinWidth="200"  >
+    <controls:MetroDialog Header="abcd" ShowCancelButton="False">
         <DockPanel >
             <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
             <TextBlock Text="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
