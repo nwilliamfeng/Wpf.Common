@@ -37,8 +37,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.45*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="0.45*"/>
+                        </Grid.ColumnDefinitions>
                         <!--Title-->
-                        <Grid  x:Name="PART_TitleGrid">
+                        <Grid  x:Name="PART_TitleGrid" Grid.ColumnSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -93,7 +98,7 @@
 
                         <!--Content-->
                         <!--注意此处的AdornerDecorator-->
-                        <AdornerDecorator Grid.Row="1">
+                        <AdornerDecorator Grid.Row="1" Grid.ColumnSpan="3">
                             
                                 <ContentControl x:Name="PART_ContentControl" 
                                                 Content="{TemplateBinding Content}" >
@@ -114,13 +119,14 @@
                         <!--DialogContainer-->
                         <Border x:Name="PART_DialogContainerBorder"   
                                 Grid.RowSpan="2"
+                                Grid.Column="1"
                                 HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"
-                                BorderBrush="{StaticResource ControlBorderBrush }" 
-                                BorderThickness="1">
-                            <ContentControl x:Name="PART_DialogContainer"                                      
+                                VerticalAlignment="Center"
+                              >
+                            <ContentControl x:Name="PART_DialogContainer"      
+                                           
                                         MinHeight="100"                                     
-                                        Padding="20"                                      
+                                        Padding="20"                                                   
                                         MinWidth="100"                                     
                                         ContentTemplate="{Binding Path=(behavior:WindowChromeBehavior.DialogContentTemplate),RelativeSource={RelativeSource AncestorType=Window}}"
                                         Content="{Binding Path=(behavior:WindowChromeBehavior.DialogContent),RelativeSource={RelativeSource AncestorType=Window}}"

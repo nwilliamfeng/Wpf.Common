@@ -36,11 +36,17 @@ namespace Wpf.Common.Controls
         {
             base.OnApplyTemplate();
             var closeButton = this.GetTemplateChild(CloseButtonName) as Button;
-            closeButton.Click -= CloseButton_Click;
-            closeButton.Click += CloseButton_Click;
+            if (closeButton != null)
+            {
+                closeButton.Click -= CloseButton_Click;
+                closeButton.Click += CloseButton_Click;
+            }
             var confirmButton = this.GetTemplateChild(OkButtonName) as Button;
-            confirmButton.Click -= ConfirmButton_Click;
-            confirmButton.Click += ConfirmButton_Click;
+            if (confirmButton != null)
+            {
+                confirmButton.Click -= ConfirmButton_Click;
+                confirmButton.Click += ConfirmButton_Click;
+            }
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)

@@ -75,11 +75,11 @@ namespace Wpf.Common.Demo
                 var dr = await IoC.Get<IMetroWindowManager>().ShowDialog(dialog);
                 if (dr == true)
                 {
-
+                    MessageBox.Show("ok");
                 }
                 else if (dr == false)
                 {
-
+                    MessageBox.Show("cancel");
                 }
                 //   IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
             });

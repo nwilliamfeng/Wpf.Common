@@ -22,6 +22,7 @@
     <Style TargetType="Slider" BasedOn="{StaticResource SliderStyle}"/>
     <Style TargetType="Separator" BasedOn="{StaticResource  SeparatorStyle}"/>
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
+    <Style TargetType="ListBox" BasedOn="{StaticResource ListBoxStyle}"/>
     <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}"/>
     <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
     <Style TargetType="TabControl" BasedOn="{StaticResource TabControlStyle}"/>

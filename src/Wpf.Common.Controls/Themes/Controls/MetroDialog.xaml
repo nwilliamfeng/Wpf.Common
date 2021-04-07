@@ -9,7 +9,7 @@
 
     <Style TargetType="{x:Type controls:MetroDialog}" x:Key="MetroDialogStyle">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource HighLightBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="10"/>
         <Setter Property="OkButtonStyle">
@@ -35,7 +35,7 @@
                     <Border 
                            Padding="0"
                             Background="{TemplateBinding Background}"
-                            BorderThickness="0"
+                            BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             >
                         <DockPanel>
@@ -48,7 +48,7 @@
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource ChromeButtonStyle}"  >
                                             <Setter Property="Padding" Value="16,8"/>
-                                            <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                            <Setter Property="VerticalAlignment" Value="Top"/>
                                             <Style.Triggers>
                                                 <MultiTrigger>
                                                     <MultiTrigger.Conditions>
@@ -98,9 +98,9 @@
                                   FocusVisualStyle="{x:Null}"
                                   Padding="{TemplateBinding Padding}"
                                   Background="Transparent"
-                                  VerticalAlignment="Center"
+                                  VerticalAlignment="Stretch"
                                   Content="{TemplateBinding Content}"
-                                  HorizontalAlignment="Center"                               
+                                  HorizontalAlignment="Stretch"                               
                                   ContentTemplate="{TemplateBinding ContentTemplate}">
 
                             </ContentControl>
