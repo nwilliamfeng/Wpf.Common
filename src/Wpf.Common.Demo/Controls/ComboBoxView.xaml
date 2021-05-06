@@ -104,7 +104,23 @@
         
         <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" IsEditable="True"  IsEnabled="False"  />
 
-   
+        <!--<ComboBox VerticalAlignment="Center" HorizontalAlignment="Center"   MinWidth="200"  IsEditable="True" Padding="5">
+            <ComboBoxItem TextSearch.Text="a">
+                <sys:String>aaa</sys:String>
+            </ComboBoxItem>
+            <ComboBoxItem  >
+                <sys:String>bbb</sys:String>
+            </ComboBoxItem>
+           
+            <ComboBoxItem TextSearch.Text="c">
+                <sys:String>ccc</sys:String>
+            </ComboBoxItem>
+            <ComboBoxItem  >
+                <sys:String>bcd</sys:String>
+            </ComboBoxItem>
+        </ComboBox>-->
+
+        
 
     </UniformGrid>
 </UserControl>

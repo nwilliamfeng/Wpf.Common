@@ -274,11 +274,11 @@
                                            VerticalAlignment="Center" />
                 <TextBox x:Name="PART_EditableTextBox" 
                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                             IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" 
-                             Margin="{TemplateBinding Padding}" 
+                             IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"                           
                              Style="{StaticResource ComboBoxEditableTextBox}"                         
                              CaretBrush="{TemplateBinding Foreground}"
-                             Padding="{TemplateBinding Padding}"
+                             Margin="{TemplateBinding Padding}"
+                           Padding="0"
                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Grid>
 
