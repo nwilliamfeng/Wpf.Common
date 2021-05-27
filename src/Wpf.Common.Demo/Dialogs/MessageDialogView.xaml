@@ -11,6 +11,6 @@
     <DockPanel Background="Green">
         <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
    
-        <TextBlock Text="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+        <Button Content="{Binding Content}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" Padding="50" IsCancel="True"/>
     </DockPanel>
 </Window>

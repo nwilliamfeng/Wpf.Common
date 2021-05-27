@@ -11,9 +11,12 @@ namespace Wpf.Common.Controls
     {
         None=0,
 
-        OnlyInteger= 1,
+        Numeric = 1,
+
+        OnlyInteger = 2,
 
  
+        
 
 
     }

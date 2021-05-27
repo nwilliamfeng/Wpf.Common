@@ -12,7 +12,7 @@
     </UserControl.Resources>
     <StackPanel  >
         <Expander Header="Custom Sort Column">
-            <DataGrid x:Name="grid" 
+            <DataGrid x:Name="grid"
                   ItemsSource="{Binding Datas}"
                   CanUserSortColumns="True" AutoGenerateColumns="False">
               

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -122,21 +123,49 @@ namespace Wpf.Common.Controls.Behavior
 
             if (!(arg.NewValue is InputFilter)) return;
             InputFilter inputFilter = (InputFilter)arg.NewValue;
-            KeyEventHandler keyHandle = (s, e) =>
-            {
-                if (inputFilter == InputFilter.None) return;
-                if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Left || e.Key == Key.Right)
-                    return;
-                if (inputFilter == InputFilter.OnlyInteger)
-                {
-                    if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
-                        return;
-                }
 
-                e.Handled = true;
+            DataObjectPastingEventHandler dataPastingHandle = (s, e) =>
+            {
+                if (e.DataObject.GetDataPresent(typeof(String)))
+                {
+                    String text = (String)e.DataObject.GetData(typeof(String));
+                    if (  inputFilter == InputFilter.OnlyInteger )
+                    {
+                        if (int_regex.IsMatch(text))
+                            e.CancelCommand();
+                    }
+                    else if (inputFilter == InputFilter.Numeric)
+                    {
+                        if (num_regex.IsMatch(text))
+                            e.CancelCommand();
+                    }
+                }
+                else
+                {
+                    e.CancelCommand();
+                }
             };
-            textBox.PreviewKeyDown -= keyHandle;
-            textBox.PreviewKeyDown += keyHandle;
+
+            if (inputFilter == InputFilter.OnlyInteger || inputFilter== InputFilter.Numeric)
+            {
+                InputMethod.SetIsInputMethodEnabled(textBox, false);
+                DataObject.RemovePastingHandler(textBox, dataPastingHandle);
+                DataObject.AddPastingHandler(textBox, dataPastingHandle);
+            }
+
+            TextCompositionEventHandler inputHandle = (s, e) =>
+            {
+                if (inputFilter == InputFilter.OnlyInteger)
+                    e.Handled = int_regex.IsMatch(e.Text);
+                else if (inputFilter == InputFilter.Numeric)
+                    e.Handled = num_regex.IsMatch(e.Text);
+            };
+
+            textBox.PreviewTextInput -= inputHandle;
+            textBox.PreviewTextInput += inputHandle;
         }
+
+        private static readonly Regex num_regex = new Regex("[^0-9.-]+");
+        private static readonly Regex int_regex = new Regex("[^0-9-]+");
     }
 }

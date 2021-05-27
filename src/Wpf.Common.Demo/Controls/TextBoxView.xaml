@@ -23,10 +23,12 @@
         <TextBox Width="150" VerticalAlignment="Center" 
                  IsEnabled="False"
                  behavior:TextBoxBehavior.Watermark="请输入数字"
+                 behavior:TextBoxBehavior.InputFilter="{x:Static controls:InputFilter.OnlyInteger}"
                  Padding="5,2"
                   />
 
         <TextBox Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="2,8,8,8" 
+                 behavior:TextBoxBehavior.InputFilter="{x:Static controls:InputFilter.OnlyInteger}"
                  behavior:TextBoxBehavior.Watermark="请输入数字">
             <behavior:TextBoxBehavior.Icon>
                 <Path  Margin="5" Height="16" Width="16" Data="{StaticResource HeartIcon}" Fill="LightGray" Stretch="Uniform"/>
@@ -35,6 +37,7 @@
 
         <TextBox Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,2" 
                  behavior:TextBoxBehavior.Watermark="请输入数字" 
+                  behavior:TextBoxBehavior.InputFilter="{x:Static controls:InputFilter.OnlyInteger}"
                  behavior:TextBoxBehavior.IconDock="Right">
             <behavior:TextBoxBehavior.Icon>
                 <Button Padding="5" Foreground="LightGray" Style="{StaticResource ChromeButtonStyle}" >
