@@ -123,6 +123,15 @@
                             />
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding HorizontalContentAlignment,RelativeSource={RelativeSource AncestorType=ListBox}}" Value="Left">
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HorizontalContentAlignment,RelativeSource={RelativeSource AncestorType=ListBox}}" Value="Center">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HorizontalContentAlignment,RelativeSource={RelativeSource AncestorType=ListBox}}" Value="Right">
+                            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                        </DataTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="true"/>
