@@ -189,4 +189,180 @@
         <Setter Property="Template" Value="{StaticResource ToggleButtonTemplate}"/>
     </Style>
 
+
+
+
+
+    <ControlTemplate TargetType="{x:Type ToggleButton}" x:Key="MaterialDesignToggleButtonTemplate">
+        <ControlTemplate.Resources>
+            <SineEase x:Key="RippleEasingFunction" EasingMode="EaseInOut"/>
+        </ControlTemplate.Resources>
+        <Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CheckStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="*" To="Checked">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="18">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseOut"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                        <VisualTransition From="Checked" To="Unchecked">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="18"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseOut"/>
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ThumbHolder" Duration="0" To="18" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" 
+                                             Storyboard.TargetName="ThumbHolder"
+                                             Duration="0" 
+                                             To="0" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid SnapsToDevicePixels="True">
+                <AdornerDecorator>
+                    <Grid Height="22">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="Track"                                     
+                           Fill="DarkGray" 
+                           HorizontalAlignment="Left" 
+                           Height="10" 
+                            FocusVisualStyle="{x:Null}"
+                           
+                                                               
+                           Width="30" 
+                                   VerticalAlignment="Center"
+                           RadiusY="5" 
+                           RadiusX="5"/>
+                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                      Content="{TemplateBinding Content}" 
+                                      FocusVisualStyle="{x:Null}"
+                                      Margin="{TemplateBinding Padding}"   
+                                      Grid.Column="1"
+                                      x:Name="ContentPresenter"                                                  
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                      FlowDirection="LeftToRight"/>
+                    </Grid>
+
+                </AdornerDecorator>
+                <Grid x:Name="ThumbHolder" HorizontalAlignment="Left" >
+
+                    <Ellipse x:Name="Thumb"
+                                             Stroke="{x:Null}" 
+                             StrokeThickness="1" 
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                                             Width="16" Height="16"
+                                            
+                                             RenderTransformOrigin="0.5,0.5" >
+                    </Ellipse>
+                    <Grid.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </Grid.RenderTransform>
+
+
+                </Grid>
+            </Grid>
+
+        </Grid>
+        <ControlTemplate.Triggers>
+
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="False"/>
+                    <Condition Property="Validation.HasError" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="White"/>
+                <Setter Property="Stroke" TargetName="Thumb" Value="LightGray"/>
+
+                <Setter Property="Fill" TargetName="Track" Value="DarkGray"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="False"/>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="White"/>
+                <Setter Property="Stroke" TargetName="Track" Value="Red"/>
+                <Setter Property="Fill" TargetName="Track" Value="DarkGray"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="{DynamicResource ForegroundBrush}"/>
+                <Setter TargetName="Thumb" Property="Fill" Value="Red" />
+                <Setter TargetName="Track" Property="Fill" Value="	#6495ED" />
+
+                <Setter Property="Stroke" TargetName="Track" Value="Red"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                    <Condition Property="Validation.HasError" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Fill" TargetName="Thumb" Value="{DynamicResource ForegroundBrush}"/>
+                <Setter TargetName="Thumb" Property="Fill" Value="{StaticResource HighLightBrush}" />
+                <Setter TargetName="Track" Property="Fill" Value="	#6495ED" />
+
+            </MultiTrigger>
+
+            <Trigger Property="IsPressed" Value="True">
+
+                <Setter Property="Fill" TargetName="Track" Value="LightGray"/>
+
+            </Trigger>
+            <Trigger Property="Button.IsDefaulted" Value="true"/>
+            <Trigger Property="IsMouseOver" Value="true"/>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False"/>
+
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="0.5"/>
+
+            </MultiTrigger>
+
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="MaterialDesignToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource ControlBorderActiveBrush}"/>
+        <Setter Property="Template" Value="{StaticResource MaterialDesignToggleButtonTemplate}"/>
+    </Style>
+
 </ResourceDictionary>
