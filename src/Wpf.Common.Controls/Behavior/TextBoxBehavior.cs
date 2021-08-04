@@ -131,12 +131,12 @@ namespace Wpf.Common.Controls.Behavior
                     String text = (String)e.DataObject.GetData(typeof(String));
                     if (  inputFilter == InputFilter.OnlyInteger )
                     {
-                        if (int_regex.IsMatch(text))
+                        if (Int_regex.IsMatch(text))
                             e.CancelCommand();
                     }
                     else if (inputFilter == InputFilter.Numeric)
                     {
-                        if (num_regex.IsMatch(text))
+                        if (Double_regex.IsMatch(text))
                             e.CancelCommand();
                     }
                 }
@@ -156,16 +156,16 @@ namespace Wpf.Common.Controls.Behavior
             TextCompositionEventHandler inputHandle = (s, e) =>
             {
                 if (inputFilter == InputFilter.OnlyInteger)
-                    e.Handled = int_regex.IsMatch(e.Text);
+                    e.Handled = Int_regex.IsMatch(e.Text);
                 else if (inputFilter == InputFilter.Numeric)
-                    e.Handled = num_regex.IsMatch(e.Text);
+                    e.Handled = Double_regex.IsMatch(e.Text);
             };
 
             textBox.PreviewTextInput -= inputHandle;
             textBox.PreviewTextInput += inputHandle;
         }
 
-        private static readonly Regex num_regex = new Regex("[^0-9.-]+");
-        private static readonly Regex int_regex = new Regex("[^0-9-]+");
+        public static readonly Regex Double_regex = new Regex("[^0-9.-]+");
+        public static readonly Regex Int_regex = new Regex("[^0-9-]+");
     }
 }

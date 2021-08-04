@@ -59,6 +59,7 @@ namespace Wpf.Common.Demo
          
 
             var gpNode6 = new GroupNode { Name = "Custom Controls" };
+            gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.NUMERIC_UPDOWN });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.DROPDOWN_BUTTON });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.LED });
             gpNode6.Items.Add(new NodeViewModel { Name = NodeNames.RANK });
@@ -179,6 +180,9 @@ namespace Wpf.Common.Demo
                     break;
                 case NodeNames.DROPDOWN_BUTTON:
                     this.ActivateItem(new DropdownButtonViewModel());
+                    break;
+                case NodeNames.NUMERIC_UPDOWN:
+                    this.ActivateItem(new NumericUpDownViewModel());
                     break;
 
                 case NodeNames.SCROLL_TO_LOAD:

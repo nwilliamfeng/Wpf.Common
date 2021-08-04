@@ -75,8 +75,7 @@ namespace Wpf.Common.Controls.Behavior
                     dv.GoToPage((int)pnNumUpDown.Tag);
             };
             Action<string> pageNumTxtChange = s => pnNumUpDown.Tag = string.IsNullOrEmpty(s) ? 1 : int.Parse(s);
-            pnNumUpDown.TextChanged -= pageNumTxtChange;
-            pnNumUpDown.TextChanged += pageNumTxtChange;
+           
             pnNumUpDown.PreviewKeyDown -= pageNumInput;
             pnNumUpDown.PreviewKeyDown += pageNumInput;
 

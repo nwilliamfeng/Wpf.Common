@@ -107,6 +107,8 @@ namespace Wpf.Common.Demo
 
         public const string TEXTBOX = "TextBox";
 
+        public const string NUMERIC_UPDOWN = "NumericUpDown";
+
         public const string COMBOBOX = "ComboBox";
 
         public const string MENU = "Menu";

@@ -17,45 +17,22 @@ using System.Windows.Shapes;
 namespace Wpf.Common.Demo.Controls
 {
     /// <summary>
-    /// TextBoxView.xaml 的交互逻辑
+    /// NumericUpDownView.xaml 的交互逻辑
     /// </summary>
-    public partial class TextBoxView : UserControl
+    public partial class NumericUpDownView : UserControl
     {
-        public TextBoxView()
+        public NumericUpDownView()
         {
             InitializeComponent();
-            this.DataContext = new TextBoxViewModel();
+            this.DataContext = new NumericUpDownViewModel();
         }
     }
 
-    public class TextBoxViewModel : INotifyPropertyChanged, IDataErrorInfo
+    public class NumericUpDownViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _name;
-
-        public string Name
-        {
-            get => this._name;
-            set
-            {
-                this._name = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
-            }
-        }
-
-        private string _name2="abc";
-
-        public string Name2
-        {
-            get => this._name2;
-            set
-            {
-                this._name2 = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name2)));
-            }
-        }
-
+       
         private double? _value1;
 
         public double? Value1
@@ -88,10 +65,9 @@ namespace Wpf.Common.Demo.Controls
             {
                 switch (columnName)
                 {
-                    case nameof(Name):
-                        return string.IsNullOrEmpty(this.Name) ? "请输入名称" : null;
-                    case nameof(Name2):
-                        return string.IsNullOrEmpty(this.Name2) ? "请输入名称" : null;
+                    case nameof(Value1):
+                        return Value1==null ? "请输入值" : null;
+                   
                     default:
                         return null;
                 }

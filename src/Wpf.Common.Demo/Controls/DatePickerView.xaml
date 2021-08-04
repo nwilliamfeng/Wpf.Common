@@ -226,12 +226,12 @@
 
         <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Style="{x:Null}"
-                    SelectedDate="{Binding Date,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  
+                    SelectedDate="{Binding Date,UpdateSourceTrigger=PropertyChanged }"  
                     Width="125"    />
 
         <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"  Width="125"  />
 
-        <controls:DateTimePicker VerticalAlignment="Center" HorizontalAlignment="Center"      />
+        <controls:DateTimePicker VerticalAlignment="Center" HorizontalAlignment="Center"  Value="{Binding Date,UpdateSourceTrigger=PropertyChanged}"    />
 
         <controls:DateTimePicker VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False"   />
 

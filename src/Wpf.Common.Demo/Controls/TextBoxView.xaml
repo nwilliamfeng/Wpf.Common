@@ -96,6 +96,7 @@
             </behavior:TextBoxBehavior.Icon>
         </TextBox>
 
-        <controls:NumericUpDown Width="100"/>
+         
+        <TextBox Width="100" Text="{Binding Value1 }"   VerticalAlignment="Center"/>
     </UniformGrid>
 </UserControl>
