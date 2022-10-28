@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
  
-namespace Wpf.Common
+namespace Wpf.Common.Controls
 {     
+    [Serializable]
     public abstract class Node : ViewModelBase,IComparable<Node>
     {     
         private object _tag;
@@ -13,7 +14,7 @@ namespace Wpf.Common
             set => this.Set(ref _tag, value);
         }
 
-        private bool _isSelected;
+        private bool _isSelected;    
         public bool IsSelected
         {
             get => _isSelected;
@@ -22,6 +23,15 @@ namespace Wpf.Common
                 if (value && this.Parent != null && this.Parent.IsSelected) return; //如果父节点已选中则取消
                 this.Set(ref _isSelected, value);
             }
+        }
+
+        public Func<Node,string,bool> RenameHandle { get; set; }
+
+        private bool _isEditing;
+        public bool IsEditing
+        {
+            get => _isEditing;
+            set => this.Set(ref _isEditing, value);
         }
 
         private bool _isVisible = true;
@@ -88,7 +98,15 @@ namespace Wpf.Common
         public string Name
         {
             get => _name;
-            set => this.Set(ref _name, value);
+            set
+            {
+                if (this.IsEditing)
+                {
+                    if (RenameHandle != null && !this.RenameHandle(this, value))
+                        return;
+                }
+                this.Set(ref _name, value);
+            }
         }
 
         public override bool Equals(object obj)
@@ -128,7 +146,7 @@ namespace Wpf.Common
                 return parent;
             }
         }
-
+ 
         public abstract Node Copy(string newName = null);
 
         public int CompareTo(Node other)
@@ -137,6 +155,13 @@ namespace Wpf.Common
                 return this.NodeType.CompareTo(other.NodeType);
             return this.Name.CompareTo(other.Name);
         }
+    }
+
+    public enum NodeType
+    {  
+        File = 0,
+
+        Folder = 1,
     }
 
 }
