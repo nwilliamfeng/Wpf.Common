@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Wpf.Common
+{ 
     [Serializable]
     public class FileNode:Node
     {

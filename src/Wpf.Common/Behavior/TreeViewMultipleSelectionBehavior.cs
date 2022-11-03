@@ -149,7 +149,7 @@ namespace Wpf.Common.Behavior
 
         public static void SetSelectedItems(TreeView element, IList value) => element.SetValue(SelectedItemsProperty, value);
 
-        private static bool IsRelationShip(INode node1, INode node2)
+        private static bool IsRelationShip(Node node1, Node node2)
         {
             if (node1.Level == node2.Level) return false;
             if (node1.Level > node2.Level)
@@ -181,8 +181,8 @@ namespace Wpf.Common.Behavior
         private static void SelectMultipleItemsRandomly(TreeView treeView, TreeViewItem treeViewItem)
         {
             var isSelected = !GetIsItemSelected(treeViewItem);
-            var currNode = treeViewItem.DataContext as INode;
-            foreach (var node in GetSelectedItems(treeView).OfType<INode>())
+            var currNode = treeViewItem.DataContext as Node;
+            foreach (var node in GetSelectedItems(treeView).OfType<Node>())
             {
                 if (IsRelationShip(node, currNode))
                 {
@@ -278,9 +278,9 @@ namespace Wpf.Common.Behavior
         /// <returns></returns>
         private static List<TreeViewItem> GetDisableChilds(List<TreeViewItem> items)
         {
-            var dic = items.ToDictionary(x => x.DataContext as INode);
+            var dic = items.ToDictionary(x => x.DataContext as Node);
             var lst = dic.Keys.ToList();
-            var deleteItems = new List<INode>();
+            var deleteItems = new List<Node>();
             for (int i = 0; i < lst.Count; i++)
             {
                 var node = lst[i];
@@ -351,7 +351,7 @@ namespace Wpf.Common.Behavior
             trigger.Setters.Add(new Setter { Property = TreeViewItem.ForegroundProperty, Value = SystemColors.HighlightTextBrush });
             treeView.ItemContainerStyle.Triggers.Add(trigger);
 
-            Setter setter1 = new Setter { Property = TreeViewMultipleSelectionBehavior.IsItemSelectedProperty, Value = new Binding { Path = new PropertyPath(nameof(INode.IsSelected)), Mode = BindingMode.TwoWay } };
+            Setter setter1 = new Setter { Property = TreeViewMultipleSelectionBehavior.IsItemSelectedProperty, Value = new Binding { Path = new PropertyPath(nameof(Node.IsSelected)), Mode = BindingMode.TwoWay } };
             treeView.ItemContainerStyle.Setters.Add(setter1);
 
             MultiTrigger multiTrigger2 = new MultiTrigger();

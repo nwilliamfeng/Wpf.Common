@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
- 
-namespace Wpf.Common.Controls
+using Wpf.Common.ViewModel;
+
+namespace Wpf.Common
 {     
     [Serializable]
     public abstract class Node : ViewModelBase,IComparable<Node>

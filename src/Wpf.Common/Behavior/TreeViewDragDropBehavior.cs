@@ -22,11 +22,11 @@ namespace Wpf.Common.Behavior
         /// DropItem
         /// </summary>
         public static readonly DependencyProperty DropItemProperty
-            = DependencyProperty.RegisterAttached("DropItem", typeof(INode), typeof(TreeViewDragDropBehavior),new FrameworkPropertyMetadata(null,FrameworkPropertyMetadataOptions.BindsTwoWayByDefault ));
+            = DependencyProperty.RegisterAttached("DropItem", typeof(Node), typeof(TreeViewDragDropBehavior),new FrameworkPropertyMetadata(null,FrameworkPropertyMetadataOptions.BindsTwoWayByDefault ));
 
-        public static INode GetDropItem (DependencyObject dependencyObject) => (INode)dependencyObject.GetValue(DropItemProperty);
+        public static Node GetDropItem (DependencyObject dependencyObject) => (Node)dependencyObject.GetValue(DropItemProperty);
 
-        public static void SetDropItem(DependencyObject dependencyObject, INode value) => dependencyObject.SetValue(DropItemProperty, value);
+        public static void SetDropItem(DependencyObject dependencyObject, Node value) => dependencyObject.SetValue(DropItemProperty, value);
 
         public static bool GetDragDropEnable(DependencyObject dependencyObject) => (bool)dependencyObject.GetValue(DragDropEnableProperty);
 
@@ -58,14 +58,14 @@ namespace Wpf.Common.Behavior
                     arg.Handled = true;
                     if (arg.OriginalSource is FrameworkElement fe)
                     {
-                        if (fe.DataContext is INode node)
+                        if (fe.DataContext is Node node)
                         {
                             var format = arg.Data.GetFormats().FirstOrDefault();
                             if (arg.Data.GetDataPresent(DataFormats.FileDrop))
                             {
                                 string[] files = (string[])arg.Data.GetData(DataFormats.FileDrop);
                                 var command =GetDropFileCommand(d);
-                                command?.Execute(new Tuple<INode,string[]>(node, files));
+                                command?.Execute(new Tuple<Node,string[]>(node, files));
                                 return; 
                             }
                             if (!arg.Data.GetData(format).Equals(node)) //有可能是同一个treeviewitem
@@ -98,7 +98,7 @@ namespace Wpf.Common.Behavior
             {
                 if (s.LeftButton != MouseButtonState.Pressed) return;
                 if (s.OriginalSource is FrameworkElement fe)
-                    if (fe.DataContext is INode node)
+                    if (fe.DataContext is Node node)
                         DragDrop.DoDragDrop(sender as TreeViewItem, node, DragDropEffects.Move);
             }
             catch (Exception ex)
@@ -113,15 +113,15 @@ namespace Wpf.Common.Behavior
                 if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 {
                     if (e.OriginalSource is FrameworkElement fe)
-                        if (fe.DataContext is INode node)
+                        if (fe.DataContext is Node node)
                         {
-                            e.Effects = node.AddItemEnable ? DragDropEffects.Copy : DragDropEffects.None;
+                            e.Effects = node.NodeType== NodeType.Folder ? DragDropEffects.Copy : DragDropEffects.None;
                         }
                 }
                 else if (e.OriginalSource is FrameworkElement fe)
-                    if (fe.DataContext is INode node)
+                    if (fe.DataContext is Node node)
                     {
-                        e.Effects = node.AddItemEnable ? DragDropEffects.Move : DragDropEffects.None;
+                        e.Effects = node.NodeType == NodeType.Folder ? DragDropEffects.Move : DragDropEffects.None;
                     }
                 e.Handled = true;
             }

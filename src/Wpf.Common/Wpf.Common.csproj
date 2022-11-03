@@ -54,8 +54,15 @@
     <Compile Include="Behavior\PasswordBoxBehavior.cs" />
     <Compile Include="Behavior\DropBehavior.cs" />
     <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
+    <Compile Include="Behavior\TreeViewDragDropBehavior.cs" />
+    <Compile Include="Behavior\TreeViewItemScrollBehavior.cs" />
+    <Compile Include="Behavior\TreeViewMultipleSelectionBehavior.cs" />
+    <Compile Include="Behavior\TreeViewSelectBehavior.cs" />
     <Compile Include="Behavior\WindowBehavior.cs" />
     <Compile Include="Controls\ComboBoxTemplateSelector.cs" />
+    <Compile Include="Controls\FileNode.cs" />
+    <Compile Include="Controls\FolderNode.cs" />
+    <Compile Include="Controls\Node.cs" />
     <Compile Include="Data\ReverseBooleanConverter.cs" />
     <Compile Include="Data\DelegateMultiValueConverter.cs" />
     <Compile Include="Data\DelegateValueConverter.cs" />
