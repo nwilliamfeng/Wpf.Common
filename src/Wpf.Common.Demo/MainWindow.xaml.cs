@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wpf.Common.Demo.Image
+namespace Wpf.Common.Demo
 {
     /// <summary>
-    /// ImageRenderView.xaml 的交互逻辑
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ImageRenderView : UserControl
+    public partial class MainWindow : Window
     {
-        public ImageRenderView()
+        public MainWindow()
         {
             InitializeComponent();
         }
-    }
-
-    public class ImageRenderViewModel : NotifyPropertyChangedObject
-    {
-        
     }
 }

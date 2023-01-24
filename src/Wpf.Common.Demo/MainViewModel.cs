@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Wpf.Common.Input;
-using System.ComponentModel.Composition;
 using Wpf.Common.Demo.Controls;
 using Wpf.Common.Demo.Scroll;
 using Wpf.Common.Demo.Image;
@@ -15,19 +13,22 @@ using System.Windows;
 using Wpf.Common.Controls;
 using Wpf.Common.Events;
 
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+
 namespace Wpf.Common.Demo
 {
 
     [Export(typeof(MainViewModel))]
-    public class MainViewModel:Conductor<object>,IHandle<NodeSelectEventArgs>,IHandle<OpenMetroDialogEventArgs>,IHandle<CloseMetroDialogEventArgs>
+    public class MainViewModel:NotifyPropertyChangedObject,IObserver<NodeSelectEventArgs>
     {
         public ObservableCollection<GroupNode> Nodes { get; private set; }
         
         [ImportingConstructor]
         public MainViewModel(IEventAggregator eventAggregator)
         {
-             
-            eventAggregator.Subscribe(this);
+            eventAggregator.GetEvent<NodeSelectEventArgs>().Subscribe(this);
+           
             this.Nodes = new ObservableCollection<GroupNode>();
             var gpNode1 = new GroupNode { Name="Template"};
             gpNode1.Items.Add(new NodeViewModel { Name = NodeNames.ERROR_TEMPLATE  });
@@ -82,7 +83,7 @@ namespace Wpf.Common.Demo
             Nodes.Add(gpNode6);
             Nodes.Add(gpNode7);
             Nodes.Add(gpNode8);
-            this.DisplayName = "Demo";
+       
         }
 
         private bool _isDarkTheme;
@@ -114,7 +115,19 @@ namespace Wpf.Common.Demo
             }
         }
 
-     
+        private object _selectedScreen;
+        public object SelectedScreen
+        {
+            get => this._selectedScreen;
+            set=>this.Set(ref this._selectedScreen, value);
+        }
+
+        private void ActivateItem(object screen)
+        {
+            this.SelectedScreen= screen;
+        }
+
+
 
         private string _selectedNodeName;
 
@@ -128,7 +141,7 @@ namespace Wpf.Common.Demo
             }
         }
 
-        void IHandle<NodeSelectEventArgs>.Handle(NodeSelectEventArgs arg)
+        void Handle(NodeSelectEventArgs arg)
         {
             this.SelectedNodeName = arg.Name;
             switch (arg.Name)
@@ -232,17 +245,32 @@ namespace Wpf.Common.Demo
             private set => this.Set(ref _dialog, value);
         }
 
-        void IHandle<OpenMetroDialogEventArgs>.Handle(OpenMetroDialogEventArgs arg)
+        void Handle(OpenMetroDialogEventArgs arg)
         {
             this.Dialog = arg.Dialog;
         }
 
-        void IHandle<CloseMetroDialogEventArgs>.Handle(CloseMetroDialogEventArgs arg)
+        void  Handle(CloseMetroDialogEventArgs arg)
         {
             if (object.ReferenceEquals(this.Dialog, arg.Dialog))
             {
                 this.Dialog = null;
             }
+        }
+
+        void IObserver<NodeSelectEventArgs>.OnCompleted()
+        {
+           
+        }
+
+        void IObserver<NodeSelectEventArgs>.OnError(Exception error)
+        {
+            MessageBox.Show(error.Message);
+        }
+
+        void IObserver<NodeSelectEventArgs>.OnNext(NodeSelectEventArgs value)
+        {
+            Handle(value);
         }
     }
 }

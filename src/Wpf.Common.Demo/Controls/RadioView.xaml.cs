@@ -26,7 +26,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class RadioViewModel : Caliburn.Micro.PropertyChangedBase
+    public class RadioViewModel : NotifyPropertyChangedObject
     {
 
     }

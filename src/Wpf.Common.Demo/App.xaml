@@ -2,12 +2,36 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Wpf.Common.Demo"
+             xmlns:mef="clr-namespace:Wpf.Common.Composition;assembly=Wpf.Common.Composition"
+             xmlns:demoControls="clr-namespace:Wpf.Common.Demo.Controls"
               >
     <Application.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type local:MessageDialogViewModel}" >
                 <local:MetroMessageDialogView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:ToggleButtonViewModel}">
+                <demoControls:ToggleButtonView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:CheckBoxViewModel}">
+                <demoControls:CheckBoxView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:ComboBoxViewModel}">
+                <demoControls:ComboBoxView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:DataGridViewModel}">
+                <demoControls:DataGridView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:MenuViewModel}">
+                <demoControls:MenuView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:WindowViewModel}">
+                <demoControls:WindowView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:DialogViewModel}">
+                <local:DialogView/>
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
                 <!--此项仅作测试-->
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Controls;component/themes/Icons.xaml"/>
@@ -15,7 +39,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Controls;component/themes/brushes.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Wpf.Common.Controls;component/themes/theme.xaml"/>
                 <ResourceDictionary>
-                    <local:MefBootstrapper x:Key="bootstrapper"/>
+                    <local:DemoBootstrapper x:Key="bootstrapper"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

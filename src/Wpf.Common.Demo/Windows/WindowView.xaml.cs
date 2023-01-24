@@ -37,7 +37,7 @@ namespace Wpf.Common.Demo.Controls
          
     }
 
-    public class WindowViewModel : Caliburn.Micro.PropertyChangedBase
+    public class WindowViewModel : NotifyPropertyChangedObject
     {
        
     }

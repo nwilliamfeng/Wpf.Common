@@ -26,7 +26,7 @@ namespace Wpf.Common.Demo
         }
     }
 
-    public class BrushViewModel : Caliburn.Micro.PropertyChangedBase
+    public class BrushViewModel : NotifyPropertyChangedObject
     {
 
     }

@@ -26,7 +26,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class ToggleButtonViewModel : Caliburn.Micro.PropertyChangedBase, System.ComponentModel.IDataErrorInfo
+    public class ToggleButtonViewModel : NotifyPropertyChangedObject, System.ComponentModel.IDataErrorInfo
     {
         public string this[string columnName]
         {

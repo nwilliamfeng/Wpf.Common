@@ -32,7 +32,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class MenuViewModel : Caliburn.Micro.PropertyChangedBase
+    public class MenuViewModel : NotifyPropertyChangedObject
     {
 
     }

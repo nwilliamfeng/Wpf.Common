@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Caliburn.Micro;
+ 
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Wpf.Common.Input;
+using System.Windows.Media.Media3D;
 
 namespace Wpf.Common.Demo
 {
-    public abstract class NodeViewModelBase : PropertyChangedBase
+    public abstract class NodeViewModelBase : NotifyPropertyChangedObject
     {
         private string _name;
         public string Name
@@ -29,9 +30,27 @@ namespace Wpf.Common.Demo
         
     }
 
-
-    public class NodeViewModel: NodeViewModelBase
+    internal class Unsubscriber<T> : IDisposable
     {
+        private List<IObserver<T>> _observers;
+        private IObserver<T> _observer;
+
+        internal Unsubscriber(List<IObserver<T>> observers, IObserver<T> observer)
+        {
+            this._observers = observers;
+            this._observer = observer;
+        }
+
+        public void Dispose()
+        {
+            if (_observers.Contains(_observer))
+                _observers.Remove(_observer);
+        }
+    }
+
+    public class NodeViewModel: NodeViewModelBase,IObservable<NodeSelectEventArgs>
+    {
+        private List<IObserver<NodeSelectEventArgs>> _observers=new List<IObserver<NodeSelectEventArgs>> ();
      
         private static IEventAggregator eventAggregator;
 
@@ -39,11 +58,9 @@ namespace Wpf.Common.Demo
         {
             if (eventAggregator == null)
                 eventAggregator = IoC.Get<IEventAggregator>();
+            eventAggregator.RegistEvent<NodeSelectEventArgs>(this);
         }
-
-        
-
-       
+ 
 
         private ICommand _openCommand;
 
@@ -53,9 +70,18 @@ namespace Wpf.Common.Demo
             {
                 return this._openCommand ?? (this._openCommand = new RelayCommand(() =>
                     {
-                        eventAggregator.PublishOnUIThread(new NodeSelectEventArgs( Name));
+                        _observers.ForEach(obs => obs.OnNext(new NodeSelectEventArgs(Name)));
                     }));
             }
+        }
+
+        public IDisposable Subscribe(IObserver<NodeSelectEventArgs> observer)
+        {
+            if (!_observers.Contains(observer))
+            {
+                _observers.Add(observer);
+            }
+            return new Unsubscriber<NodeSelectEventArgs>(_observers, observer);
         }
     }
 

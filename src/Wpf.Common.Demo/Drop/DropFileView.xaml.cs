@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
-using Caliburn.Micro;
+ 
 using Wpf.Common.Input;
 
 namespace Wpf.Common.Demo
@@ -31,7 +31,7 @@ namespace Wpf.Common.Demo
     }
 
 
-    public class DropFileViewModel : PropertyChangedBase
+    public class DropFileViewModel : NotifyPropertyChangedObject
     {
         private ICommand _loadFileCommand;
 

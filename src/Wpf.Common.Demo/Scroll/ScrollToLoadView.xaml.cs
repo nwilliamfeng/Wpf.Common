@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Common.Input;
-using Caliburn.Micro;
+ 
 using System.Collections.ObjectModel;
 
 namespace Wpf.Common.Demo.Scroll
@@ -36,7 +36,7 @@ namespace Wpf.Common.Demo.Scroll
         }
     }
 
-    public class ScrollItemViewModel : PropertyChangedBase
+    public class ScrollItemViewModel : NotifyPropertyChangedObject
     {
         private string _url;
         public string Url
@@ -51,7 +51,7 @@ namespace Wpf.Common.Demo.Scroll
     }
 
 
-    public class ScrollToLoadViewModel : PropertyChangedBase
+    public class ScrollToLoadViewModel : NotifyPropertyChangedObject
     {
         private List<ScrollItemViewModel> _itemCache  ;
         public ScrollToLoadViewModel()

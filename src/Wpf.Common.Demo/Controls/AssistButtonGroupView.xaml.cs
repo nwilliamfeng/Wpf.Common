@@ -29,7 +29,7 @@ namespace Wpf.Common.Demo.Controls
        
     }
 
-    public class AssistButtonGroupViewModel : Caliburn.Micro.PropertyChangedBase
+    public class AssistButtonGroupViewModel : NotifyPropertyChangedObject
     {
 
     }

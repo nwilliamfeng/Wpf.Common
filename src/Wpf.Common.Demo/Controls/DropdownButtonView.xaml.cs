@@ -45,7 +45,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class DropdownButtonViewModel : Caliburn.Micro.PropertyChangedBase
+    public class DropdownButtonViewModel : NotifyPropertyChangedObject
     {
         private ICommand _openCommand;
 

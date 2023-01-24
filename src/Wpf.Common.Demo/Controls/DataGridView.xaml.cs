@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Caliburn.Micro;
+ 
 
 namespace Wpf.Common.Demo.Controls
 {
@@ -30,9 +30,9 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class DataGridViewModel : Caliburn.Micro.PropertyChangedBase
+    public class DataGridViewModel : NotifyPropertyChangedObject
     {
-        public sealed class NormalOrder : PropertyChangedBase
+        public sealed class NormalOrder : NotifyPropertyChangedObject
         {
             public string InstrumentCode { get => _instrumentCode; set => Set(ref _instrumentCode, value); }
             private string _instrumentCode = null;

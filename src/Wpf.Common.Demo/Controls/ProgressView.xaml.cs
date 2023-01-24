@@ -26,7 +26,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class ProgressViewModel : Caliburn.Micro.PropertyChangedBase
+    public class ProgressViewModel : NotifyPropertyChangedObject
     {
         
     }

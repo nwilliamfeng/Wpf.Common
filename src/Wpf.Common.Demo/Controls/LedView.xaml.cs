@@ -35,7 +35,7 @@ namespace Wpf.Common.Demo.Controls
  
     }
 
-    public class LedViewModel : Caliburn.Micro.PropertyChangedBase
+    public class LedViewModel : NotifyPropertyChangedObject
     {
         public ObservableCollection<char> Items { get; set; }
 

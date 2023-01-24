@@ -26,7 +26,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class CheckBoxViewModel : Caliburn.Micro.PropertyChangedBase
+    public class CheckBoxViewModel : NotifyPropertyChangedObject
     {
 
     }

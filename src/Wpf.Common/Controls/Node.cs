@@ -4,9 +4,9 @@ using System.Linq;
 using Wpf.Common.ViewModel;
 
 namespace Wpf.Common
-{     
+{
     [Serializable]
-    public abstract class Node : ViewModelBase,IComparable<Node>
+    public abstract class Node : NotifyPropertyChangedObject,IComparable<Node>
     {     
         private object _tag;
         public object Tag

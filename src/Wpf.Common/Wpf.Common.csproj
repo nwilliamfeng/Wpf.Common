@@ -1,124 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3025E53-623F-4493-88B7-6E642A4DE3DC}</ProjectGuid>
-    <OutputType>library</OutputType>
-    <RootNamespace>Wpf.Common</RootNamespace>
-    <AssemblyName>Wpf.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <TargetFrameworkProfile />
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Behavior\MouseWheelWithCtrlKeyBehavior.cs" />
-    <Compile Include="Behavior\SelectorBehavior.cs" />
-    <Compile Include="Behavior\ListBoxBehavior.cs" />
-    <Compile Include="Behavior\TabControlBehavior.cs" />
-    <Compile Include="Behavior\TabItemBehavior.cs" />
-    <Compile Include="Behavior\TreeViewBehavior.cs" />
-    <Compile Include="Behavior\PasswordBoxBehavior.cs" />
-    <Compile Include="Behavior\DropBehavior.cs" />
-    <Compile Include="Behavior\FileDropAndOpenBehavior.cs" />
-    <Compile Include="Behavior\TreeViewDragDropBehavior.cs" />
-    <Compile Include="Behavior\TreeViewItemScrollBehavior.cs" />
-    <Compile Include="Behavior\TreeViewMultipleSelectionBehavior.cs" />
-    <Compile Include="Behavior\TreeViewSelectBehavior.cs" />
-    <Compile Include="Behavior\WindowBehavior.cs" />
-    <Compile Include="Controls\ComboBoxTemplateSelector.cs" />
-    <Compile Include="Controls\FileNode.cs" />
-    <Compile Include="Controls\FolderNode.cs" />
-    <Compile Include="Controls\Node.cs" />
-    <Compile Include="Data\ReverseBooleanConverter.cs" />
-    <Compile Include="Data\DelegateMultiValueConverter.cs" />
-    <Compile Include="Data\DelegateValueConverter.cs" />
-    <Compile Include="Data\EnumBooleanConverter.cs" />
-    <Compile Include="Data\EnumVisibilityConverter.cs" />
-    <Compile Include="Data\EqualsConverter.cs" />
-    <Compile Include="Data\PrefixWhiteSpaceConverter.cs" />
-    <Compile Include="Extension\SingleInstanceHelper.cs" />
-    <Compile Include="Extension\AutoRunHelper.cs" />
-    <Compile Include="Extension\ButtonExtension.cs" />
-    <Compile Include="Extension\ListBoxExtension.cs" />
-    <Compile Include="Extension\ObjectExtension.cs" />
-    <Compile Include="Extension\DependencyObjectExtension.cs" />
-    <Compile Include="Extension\PointExtension.cs" />
-    <Compile Include="Extension\ScrollViewerExtension.cs" />
-    <Compile Include="Extension\VisualExtension.cs" />
-    <Compile Include="Extension\WindowExtension.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="ControlzEx\Native\Constants.cs" />
-    <Compile Include="ControlzEx\DesignerConstants.cs" />
-    <Compile Include="ControlzEx\Standard\ErrorCodes.cs" />
-    <Compile Include="ControlzEx\Standard\MONITORINFO.cs" />
-    <Compile Include="ControlzEx\Standard\NativeMethods.cs" />
-    <Compile Include="ControlzEx\Native\SafeLibraryHandle.cs" />
-    <Compile Include="ControlzEx\Native\UnsafeNativeMethods.cs" />
-    <Compile Include="ControlzEx\Standard\Utilities.cs" />
-    <Compile Include="ControlzEx\Standard\Utilities.Windows.cs" />
-    <Compile Include="ControlzEx\Standard\Verify.cs" />
-    <Compile Include="ViewModel\PaginationViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj">
-      <Project>{eddcaa6e-8cd6-46c6-930e-0d691187b03e}</Project>
-      <Name>Wpf.Common.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

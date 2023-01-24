@@ -9,18 +9,16 @@ using System.Threading.Tasks;
 
 namespace Wpf.Common.ViewModel
 {
-  
 
-    public class PaginationViewModel<T> : ViewModelBase
+
+    public class PaginationViewModel<T> : NotifyPropertyChangedObject
       where T : class, new()
     {
         private Func<int,int, Tuple<IEnumerable<T>, int>> _getListByPageNumber;
 
         public PaginationViewModel()
         {
-            this.GetListByPageNumber = (page,size) => new Tuple<IEnumerable<T>, int>(default(IEnumerable<T>), 0);
-            this.Items = new ObservableCollection<T>();
-           
+            this.GetListByPageNumber = (page,size) => new Tuple<IEnumerable<T>, int>(new T[] { }, 0);
         }
 
 
@@ -34,7 +32,7 @@ namespace Wpf.Common.ViewModel
         }
 
 
-        private ObservableCollection<T> _items;
+        private ObservableCollection<T> _items=new ObservableCollection<T> ();
         public ObservableCollection<T> Items
         {
             get => this._items;

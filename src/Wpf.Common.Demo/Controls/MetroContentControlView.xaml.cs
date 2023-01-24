@@ -30,7 +30,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
  
-    public class MetroContentControlViewModel : Caliburn.Micro.PropertyChangedBase
+    public class MetroContentControlViewModel : NotifyPropertyChangedObject
     {
 
     }

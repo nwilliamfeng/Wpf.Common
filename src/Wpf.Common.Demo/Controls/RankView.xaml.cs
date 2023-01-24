@@ -26,7 +26,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class RankViewModel : Caliburn.Micro.PropertyChangedBase
+    public class RankViewModel : NotifyPropertyChangedObject
     {
 
     }

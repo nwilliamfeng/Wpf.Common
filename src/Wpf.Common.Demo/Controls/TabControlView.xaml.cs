@@ -81,7 +81,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class TabItemViewModel : Caliburn.Micro.PropertyChangedBase
+    public class TabItemViewModel : NotifyPropertyChangedObject
     {
         private string _title;
 
@@ -114,7 +114,7 @@ namespace Wpf.Common.Demo.Controls
         }
     }
 
-    public class TabControlViewModel : Caliburn.Micro.PropertyChangedBase
+    public class TabControlViewModel : NotifyPropertyChangedObject
     {
         private ICommand _setPositionCommand;
 

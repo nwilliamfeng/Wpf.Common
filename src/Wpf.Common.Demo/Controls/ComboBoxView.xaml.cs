@@ -32,7 +32,7 @@ namespace Wpf.Common.Demo.Controls
 
      
 
-    public class ComboBoxViewModel : Caliburn.Micro.PropertyChangedBase,IDataErrorInfo
+    public class ComboBoxViewModel : NotifyPropertyChangedObject, IDataErrorInfo
     {
 
         private int _value;

@@ -15,9 +15,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.IO;
-using Caliburn.Micro;
+ 
 using Wpf.Common.Input;
 using Wpf.Common.Events;
+ 
 
 namespace Wpf.Common.Demo
 {
@@ -36,7 +37,7 @@ namespace Wpf.Common.Demo
          
     }
 
-    public class MessageDialogViewModel : PropertyChangedBase
+    public class MessageDialogViewModel : NotifyPropertyChangedObject
     {
         
         public string Title { get; set; }
@@ -52,7 +53,7 @@ namespace Wpf.Common.Demo
         public ICommand CloseCommand { get; set; }
     }
 
-    public class DialogViewModel : Caliburn.Micro.PropertyChangedBase
+    public class DialogViewModel : NotifyPropertyChangedObject
     {
         private ICommand _openNormalDialogCommand;
 
@@ -67,21 +68,21 @@ namespace Wpf.Common.Demo
         public ICommand OpenMetroDialogCommand =>
             _openMetroDialogCommand = new RelayCommand(async () =>
             {
-                var dialog = new MessageDialogViewModel { Title = "dialog", Content = "abcd" };
-                dialog.CloseCommand = new RelayCommand(() =>
-                 {
-                     //  IoC.Get<IEventAggregator>().PublishOnUIThread(new CloseMetroDialogEventArgs(dialog));
-                 });
-                var dr = await IoC.Get<IMetroWindowManager>().ShowDialog(dialog);
-                if (dr == true)
-                {
-                    MessageBox.Show("ok");
-                }
-                else if (dr == false)
-                {
-                    MessageBox.Show("cancel");
-                }
-                //   IoC.Get<IEventAggregator>().PublishOnUIThread( new OpenMetroDialogEventArgs(dialog) );
+                //var dialog = new MessageDialogViewModel { Title = "dialog", Content = "abcd" };
+                //dialog.CloseCommand = new RelayCommand(() =>
+                // {
+                     
+                // });
+                //var dr = await IoC.Get<IMetroWindowManager>().ShowDialog(dialog);
+                //if (dr == true)
+                //{
+                //    MessageBox.Show("ok");
+                //}
+                //else if (dr == false)
+                //{
+                //    MessageBox.Show("cancel");
+                //}
+              
             });
     }
  
