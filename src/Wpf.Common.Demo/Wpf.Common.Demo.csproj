@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Imgs\close.svg" />
+    <None Remove="Resources\Imgs\Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
   </ItemGroup>
 
@@ -16,6 +21,15 @@
     <ProjectReference Include="..\Wpf.Common.Controls\Wpf.Common.Controls.csproj" />
     <ProjectReference Include="..\Wpf.Common.Core\Wpf.Common.Core.csproj" />
     <ProjectReference Include="..\Wpf.Common\Wpf.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Imgs\close.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Imgs\Icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

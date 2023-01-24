@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Wpf.Common.Demo"
              xmlns:mef="clr-namespace:Wpf.Common.Composition;assembly=Wpf.Common.Composition"
              xmlns:demoControls="clr-namespace:Wpf.Common.Demo.Controls"
+             xmlns:scrollDemo="clr-namespace:Wpf.Common.Demo.Scroll"
+             xmlns:imageDemo="clr-namespace:Wpf.Common.Demo.Image"
               >
     <Application.Resources>
         <ResourceDictionary>
@@ -22,14 +24,71 @@
             <DataTemplate DataType="{x:Type demoControls:DataGridViewModel}">
                 <demoControls:DataGridView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:ErrorTemplateViewModel}">
+                <demoControls:ErrorTemplateView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:DropdownButtonViewModel}">
+                <demoControls:DropdownButtonView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:DatePickerViewModel}">
+                <demoControls:DatePickerView/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type demoControls:MenuViewModel}">
                 <demoControls:MenuView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:LedViewModel}">
+                <demoControls:LedView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:PaginationViewModel}">
+                <demoControls:PaginationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:MetroContentControlViewModel}">
+                <demoControls:MetroContentControlView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:ProgressViewModel}">
+                <demoControls:ProgressView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:RadioViewModel}">
+                <demoControls:RadioView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:SliderViewModel}">
+                <demoControls:SliderView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:TabControlViewModel}">
+                <demoControls:TabControlView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:PasswordBoxViewModel}">
+                <demoControls:PasswordBoxView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:NumericUpDownViewModel}">
+                <demoControls:NumericUpDownView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:TextBoxViewModel}">
+                <demoControls:TextBoxView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:RankViewModel}">
+                <demoControls:RankView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type demoControls:AssistButtonGroupViewModel}">
+                <demoControls:AssistButtonGroupView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type demoControls:WindowViewModel}">
                 <demoControls:WindowView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type local:DialogViewModel}">
                 <local:DialogView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:DropFileViewModel}">
+                <local:DropFileView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:BrushViewModel}">
+                <local:BrushView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type scrollDemo:ScrollToLoadViewModel}">
+                <scrollDemo:ScrollToLoadView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type imageDemo:ImageRenderViewModel}">
+                <imageDemo:ImageRenderView/>
             </DataTemplate>
 
             <ResourceDictionary.MergedDictionaries>
