@@ -155,6 +155,8 @@ namespace Wpf.Common.Demo
 
         public const string SCROLL_TO_LOAD = "Scroll To Load Data";
 
+        public const string SCROLL_TO_SELECT = "Scroll To Select";
+
         public const string LED = "LED Control";
 
         public const string IMAGE_RENDER = "Image Render";

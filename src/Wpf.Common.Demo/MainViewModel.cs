@@ -54,6 +54,7 @@ namespace Wpf.Common.Demo
 
             var gpNode4 = new GroupNode { Name = "Performance" };
             gpNode4.Items.Add(new NodeViewModel { Name = NodeNames.SCROLL_TO_LOAD });
+            gpNode4.Items.Add(new NodeViewModel { Name = NodeNames.SCROLL_TO_SELECT });
 
             var gpNode5 = new GroupNode { Name = "Brush&Drawing" };
             gpNode5.Items.Add(new NodeViewModel { Name = NodeNames.BRUSH });
@@ -200,6 +201,10 @@ namespace Wpf.Common.Demo
 
                 case NodeNames.SCROLL_TO_LOAD:
                     this.ActivateItem(new ScrollToLoadViewModel());
+                    break;
+
+                case NodeNames.SCROLL_TO_SELECT:
+                    this.ActivateItem(new ScrollToSelectViewModel());
                     break;
 
                 case NodeNames.PROGRESS:

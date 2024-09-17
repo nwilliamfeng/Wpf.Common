@@ -87,6 +87,11 @@
             <DataTemplate DataType="{x:Type scrollDemo:ScrollToLoadViewModel}">
                 <scrollDemo:ScrollToLoadView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type scrollDemo:ScrollToSelectViewModel}">
+                <scrollDemo:ScrollToSelectView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type imageDemo:ImageRenderViewModel}">
                 <imageDemo:ImageRenderView/>
             </DataTemplate>
